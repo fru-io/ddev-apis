@@ -1,0 +1,60 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.billing.v1;
+
+// For rest annotations if we want to support
+import "google/api/annotations.proto";
+
+import "live/billing/v1alpha1/subscription.proto";
+
+option go_package = "github.com/drud/ddev-apis/live/billing/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "ServiceProto";
+option java_package = "com.ddev.live.billing.v1alpha1";
+
+service Subscriptions {
+  // Lists the instances of a version.
+  rpc ListSubscriptions(ListSubscriptionsRequest) returns (ListSubscriptionsRequest) {
+    option (google.api.http) = {
+    get: "/v1alpha1/{parent=billing/versions/*/customer/*}/subscriptions"
+    };
+  }
+}
+
+// Request message for `Subscriptions.ListSubscriptions`.
+message ListSubscriptionsRequest {
+    // Name of the parent Version resource.
+    // EG: FullPath
+    // <API VERSION>/billing/versions/<BILLING API VERSION>/customer/<CUSTOMER ID>/subscriptions
+    string parent = 1;
+  
+    // Maximum results to return per page.
+    int32 page_size = 2;
+  
+    // Continuation token for fetching the next page of results.
+    string page_token = 3;
+  }
+  
+  // Response message for `Subscriptions.ListSubscriptions`.
+  message ListInstancesResponse {
+    // The subscriptions belonging to the customer account.
+    repeated Subscription subscriptions = 1;
+  
+    // Continuation token for fetching the next page of results.
+    string next_page_token = 2;
+  }
+  
