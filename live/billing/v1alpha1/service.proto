@@ -27,34 +27,84 @@ option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.billing.v1alpha1";
 
 service Subscriptions {
+
+  rpc CreateSubscription(CreateSubscriptionRequest) returns (CreateSubscriptionRequest) {
+    option (google.api.http) = {
+    put: "/v1alpha1/{parent=billing/versions/*/customer/*}/subscriptions"
+    };
+  }
+  
   // Lists the subscriptions of a customer.
   rpc ListSubscriptions(ListSubscriptionsRequest) returns (ListSubscriptionsRequest) {
     option (google.api.http) = {
     get: "/v1alpha1/{parent=billing/versions/*/customer/*}/subscriptions"
     };
   }
+
+  rpc DeleteSubscription(DeleteSubscriptionRequest) returns (DeleteSubscriptionRequest) {
+    option (google.api.http) = {
+    delete: "/v1alpha1/{parent=billing/versions/*/customer/*}/subscriptions"
+    };
+  }
+}
+
+message CreateSubscriptionRequest {
+    // Name of the parent customer resource.
+    string parent = 1;
+
+    // The subscription to create
+    Subscription subscription = 2;
+
+    //TODO: We can either create procedures that block, or add options to block on create
+    // and not return until successful in stripe.
+    // It is unlikely that all RPC's evalulate to kube objects, such as customer which may have
+    //  billing data we only want to pass through to stripe.
+}
+
+
+message CreateSubscriptionResponse {
+    // Name of the parent customer resource.
+    string parent = 1;
+
+    // The subscription created
+    Subscription subscription = 2;
+}
+
+message DeleteSubscriptionRequest {
+    // Name of the parent customer resource.
+    string parent = 1;
+
+    // The subscription to delete
+    Subscription subscription = 2;
+}
+
+message DeleteSubscriptionResponse {
+    // Name of the parent customer resource.
+    string parent = 1;
+
+    // The subscription deleted
+    Subscription subscription = 2;
 }
 
 // Request message for `Subscriptions.ListSubscriptions`.
 message ListSubscriptionsRequest {
-    // Name of the parent Version resource.
+    // Name of the parent customer resource.
     // EG: FullPath
     // <API VERSION>/billing/versions/<BILLING API VERSION>/customer/<CUSTOMER ID>/subscriptions
     string parent = 1;
-  
+
     // Maximum results to return per page.
     int32 page_size = 2;
-  
+
     // Continuation token for fetching the next page of results.
     string page_token = 3;
-  }
+}
   
-  // Response message for `Subscriptions.ListSubscriptions`.
-  message ListInstancesResponse {
+// Response message for `Subscriptions.ListSubscriptions`.
+message ListInstancesResponse {
     // The subscriptions belonging to the customer account.
     repeated Subscription subscriptions = 1;
-  
+
     // Continuation token for fetching the next page of results.
     string next_page_token = 2;
-  }
-  
+}
