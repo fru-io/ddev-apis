@@ -27,7 +27,7 @@ option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.billing.v1alpha1";
 
 service Subscriptions {
-  // Lists the instances of a version.
+  // Lists the subscriptions of a customer.
   rpc ListSubscriptions(ListSubscriptionsRequest) returns (ListSubscriptionsRequest) {
     option (google.api.http) = {
     get: "/v1alpha1/{parent=billing/versions/*/customer/*}/subscriptions"
