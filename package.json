@@ -1,0 +1,16 @@
+{
+  "name": "@drud/ddev-apis",
+  "author": "Derek Lemon",
+  "license": "Apache-2.0",
+  "version": "0.1.0",
+  "description": "ddev-live SDK",
+  "dependencies": {
+    "@types/google-protobuf": "^3.7.2",
+    "google-protobuf": "^3.12.2"
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "repository": {
+    "type" : "git",
+    "url": "git://github.com/drud/ddev-apis.git"
+  }
+}

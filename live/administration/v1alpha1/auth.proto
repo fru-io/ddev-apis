@@ -1,0 +1,324 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.administration.v1alpha1;
+
+option go_package = "github.com/drud/admin-api/gen/live/administration/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "AuthProto";
+option java_package = "com.ddev.live.administration.v1alpha1";
+
+/*
+Scope is a structure helpful in parsing user authorization in a workspace
+*/
+message Scope {
+
+    /*
+    `Required`
+    The workspace for user authorization
+    */
+    string workspace = 1;
+
+    /*
+    `Optional`
+    The capabilities a user has in a workspace
+    */
+    repeated Capability capabilities = 2;
+
+    /*
+    `Optional`
+    The Role of the user.  Must be a known role.
+    */
+    string role = 3;
+}
+
+message Role {
+
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+
+    /*
+    `Optional`
+    The capabilities of the role
+    */
+    repeated Capability capabilities = 2;
+
+}
+
+message ListRolesRequest {
+
+}
+
+message ListRolesResponse {
+
+    /*
+    The roles known in this context
+    */
+    repeated Role roles = 1;
+}
+
+message DescribeRoleRequest {
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+}
+
+message DescribeRoleResponse {
+
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+
+    /*
+    `Optional`
+    The capabilities of the role
+    */
+    repeated Capability capabilities = 2;
+}
+
+message CreateRoleRequest {
+
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+
+    /*
+    `Optional`
+    The capabilities of the role
+    */
+    repeated Capability capabilities = 2;
+
+}
+
+message CreateRoleResponse {
+
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+
+    /*
+    `Optional`
+    The capabilities of the role
+    */
+    repeated Capability capabilities = 2;
+}
+
+message CreateTokenRequest {
+
+    /*
+    `Required`
+    The long lived token provided by the ddev-live dashboard
+    */
+    string apiToken = 1;
+}
+
+message CreateTokenResponse {
+
+    /*
+    `OutputOnly`
+    A generated short lived token to be provided to scoped clients
+    */
+    string token = 1;
+}
+
+message SetCapabilitiesRequest {
+
+    /*
+    `Required`
+    The user email to update capabilities for
+    */
+    string email = 1;
+
+    /*
+    `Optional`
+    The capabilities to grant the user
+    */
+    repeated Capability capabilities = 2;
+}
+
+message SetCapabilitiesResponse {
+
+    /*
+    `OutputOnly`
+    The user email capabilties have been set for
+    */
+    string email = 1;
+
+    /*
+    `OutputOnly`
+    The capabilties granted to this user
+    */
+    repeated Capability capabilities = 2;
+}
+
+message SetRolesRequest {
+
+    /*
+    `Required`
+    The user email to update roles for
+    */
+    string email = 1;
+
+    /*
+    `Optional`
+    The roles to assign to the user
+    */
+    repeated string roles = 2;
+}
+
+message SetRolesResponse {
+
+    /*
+    `OutputOnly`
+    The user email roles have been set for
+    */
+    string email = 1;
+
+    /*
+    `OutputOnly`
+    The roles assigned to this user
+    */
+    repeated Role roles = 2;
+}
+
+message ListCapabilitiesRequest {
+
+    /*
+    `Required`
+    The user email to list capabilties for
+    */
+    string email = 1;
+}
+
+message ListCapabilitiesResponse {
+    
+    /*
+    `OutputOnly`
+    The capabilties of the requested user
+    */
+    repeated Capability capabilities = 1;
+}
+
+/*
+A request whose context can be used to validate user actions against the platform
+*/
+message AuthorizationRequest {
+
+}
+
+message AuthorizationResponse {
+
+    /*
+    If the user matched this authorization type
+    */
+    bool status = 1;
+
+    /*
+    The reason which may allow the behavior, for example if the request was for SiteViewer and the user contained SiteAdmin they may match however on a higher privileged capability or role
+    */
+    oneof matched {
+        Capability capability = 2;
+        string role = 3;
+    }
+}
+
+/*
+Describes a set of access policies for a user
+*/
+enum Capability {
+
+    /*
+    Describes a permission which can read the API scopes a user has.
+    */
+    AuthTokenViewer = 0;
+
+    /*
+    Describes a permission which can issue different API access scopes within an organization
+    */
+    AuthTokenEditor = 1;
+
+    /*
+    Describes a permission which can access billing artifacts such as invoices
+    */
+    BillingViewer = 2;
+
+    /*
+    Describes a permission which can modify elements such as their subscription
+    */
+    BillingEditor = 3;
+
+    /*
+    Describes a permission which is an admin of a workspace
+    */
+    WorkspaceAdmin = 4;
+
+    /*
+    Describes a permission which has read capability for workspace objects
+    */
+    WorkspaceViewer = 5;
+
+    /*
+    Describes a permission which is capable of creating or modifying a site
+    */
+    SiteEditor = 6;
+
+    /*
+    Describes a permission which is capable of viewing site specifications created in a workspace
+    */
+    SiteViewer = 7;
+
+    /*
+    Describes a permission which allows for the viewing of site logs
+    */
+    LogsViewer = 8;
+
+    /*
+    Describes a permission which allows for the execution of commands inside a running site container
+    */
+    SiteExecutor = 9;
+
+    /*
+    Describes a permission which allows full control over site databases, which includes restore and push operations
+    */
+    DatabaseAdmin = 10;
+
+    /*
+    Describes a permission which allows pull access for a sites database
+    */
+    DatabaseViewer = 11;
+
+    /*
+    Describes a permission which allows full control over site files, which includes restore and push operations
+    */
+    FileAdmin = 12;
+
+    /*
+    Describes a permission which allows pull access for a sites files
+    */
+    FileViewer = 13;
+
+}

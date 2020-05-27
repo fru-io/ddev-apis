@@ -1,0 +1,199 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.administration.v1alpha1;
+
+import "live/administration/v1alpha1/auth.proto";
+import "live/administration/v1alpha1/workspace.proto";
+
+option go_package = "github.com/drud/admin-api/gen/live/administration/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "ServiceProto";
+option java_package = "com.ddev.live.administration.v1alpha1";
+
+/*
+The Billing service provides administrative functions over a users ddev-live account.
+To access the billing service consumers will have to initialize an authenticated client.  This requires
+several metadata to be passed to the client.
+
+`x-auth-token` which is a authentication token for the call.  In most cases this will be a temporary token 
+issued by the API.  This can be the integration token provided on the dashboard when retrieving temporary tokens.
+
+`x-ddev-workspace` which is the workspace for all workspace scoped procedures.  For example a client request `ListSubscriptions` will list all subscriptions in the workspace whose value is derived from the key `x-ddev-workspace`.
+*/
+service Administration {
+
+    /*
+    Creates an ID token from a refresh token
+    */
+    rpc CreateToken(CreateTokenRequest) returns (CreateTokenResponse) {
+
+    }
+
+    /*
+    Creates a Role
+    */
+    rpc CreateRoles(CreateRoleRequest) returns (CreateRoleResponse) {
+
+    }
+
+    /*
+    Describes a named role
+    */
+    rpc DescribeRole(DescribeRoleRequest) returns (DescribeRoleResponse) {
+
+    }
+
+    /*
+    Lists all known roles
+    */
+    rpc ListRoles(ListRolesRequest) returns (ListRolesResponse) {
+
+    }
+
+    /*
+    Updates a users API capabilities.  Will requre a refresh of their token through CreateToken.
+    */
+    rpc SetCapabilities(SetCapabilitiesRequest) returns (SetCapabilitiesResponse) {
+
+    }
+
+    /*
+    Lists a users API capabilities.
+    */
+    rpc ListCapabilities(ListCapabilitiesRequest) returns (ListCapabilitiesResponse) {
+
+    }
+
+
+    // Workspaces
+    
+    // ListWorkspaces will return a list of workspaces the user has authorization for
+    rpc ListWorkspaces(ListWorkspaceRequest) returns (ListWorkspaceResponse) {
+    }
+
+    /* 
+    Add an administrator to a workspace.  Requires a workspace administrator token.
+    */
+    rpc AddWorkspaceAdmin(AddWorkspaceAdminRequest) returns (AddWorkspaceAdminResponse) {       
+    }
+
+    /*
+    Add a developer to a workspace.   Requires a workspace administrator token.
+    */
+    rpc AddWorkspaceDeveloper(AddWorkspaceDeveloperRequest) returns (AddWorkspaceDeveloperResponse) {       
+    }
+
+    /* 
+    Remove an administrator from a workspace.  Requires a workspace administrator token.  An administrator cannot remove themselves.
+    */
+    rpc DeleteWorkspaceAdmin(DeleteWorkspaceAdminRequest) returns (DeleteWorkspaceAdminResponse) {       
+    }
+
+    /* 
+    Remove a developer from a workspace.  Requires a workspace administrator token.
+    */
+    rpc DeleteWorkspaceDeveloper(DeleteWorkspaceDeveloperRequest) returns (DeleteWorkspaceDeveloperResponse) {       
+    }
+
+    /*
+    Helpers on parsing permissions from context metadata
+    */
+
+    /*
+    Describes a permission which can read the API scopes a user has.
+    */
+    rpc IsAuthTokenViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which can issue different API access scopes within an organization
+    */
+    rpc IsAuthTokenEditor(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which can access billing artifacts such as invoices
+    */
+    rpc IsBillingViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which can modify elements such as their subscription
+    */
+    rpc IsBillingEditor(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which is an admin of a workspace
+    */
+    rpc IsWorkspaceAdmin(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which has read capability for workspace objects
+    */
+    rpc IsWorkspaceViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which is capable of creating or modifying a site
+    */
+    rpc IsSiteEditor(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which is capable of viewing site specifications created in a workspace
+    */
+    rpc IsSiteViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows for the viewing of site logs
+    */
+    rpc IsLogsViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows for the execution of commands inside a running site container
+    */
+    rpc IsSiteExecutor(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows full control over site databases, which includes restore and push operations
+    */
+    rpc IsDatabaseAdmin(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows pull access for a sites database
+    */
+    rpc IsDatabaseViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows full control over site files, which includes restore and push operations
+    */
+    rpc IsFileAdmin(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows pull access for a sites files
+    */
+    rpc IsFileViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+}
