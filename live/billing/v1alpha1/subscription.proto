@@ -1,0 +1,55 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.billing.v1;
+
+option go_package = "github.com/drud/ddev-apis/live/billing/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "ServiceProto";
+option java_package = "com.ddev.live.billing.v1alpha1";
+
+message Subscription {
+
+    // Full path to the Instance resource in the API.
+    // Example: `apps/myapp/services/default/versions/v1/instances/instance-1`.
+    //
+    // @OutputOnly
+    string name = 1;
+
+    // Relative name of the instance within the version.
+    // Example: `instance-1`.
+    //
+    // @OutputOnly
+    string id = 2;
+
+    // The UNIX timestamp for the billing period start
+    int64 CurrentPeriodStart = 3;
+
+    // The UNIX timestamp for the billing period end
+    int64 CurrentPeriodEnd = 4;
+
+    // If the subscription is currently active
+    bool Active = 5;
+
+    // Indicators about the state of the subscription internally to the platform
+    enum State {
+        READY = 0;
+    
+        NOTREADY = 1;
+    
+        UNKOWN = 2;
+      }
+}
