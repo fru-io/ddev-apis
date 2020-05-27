@@ -1,0 +1,22 @@
+proto_library(
+    name = "subscription_proto",
+    srcs = [
+        "subscription.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
+
+proto_library(
+    name = "service_grpc",
+    srcs = [
+        "service.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":subscription_proto",
+    ],
+)
