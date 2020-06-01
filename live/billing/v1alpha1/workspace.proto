@@ -16,45 +16,20 @@ syntax = "proto3";
 
 package ddev.billing.v1alpha1;
 
-import "live/billing/v1alpha1/workspace.proto";
-
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
 option java_multiple_files = true;
 option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.billing.v1alpha1";
 
-message Subscription {
+// TODO: This should be a part of org operator?
 
-    // Full path to the Instance resource in the API.
-    // Example: `apps/myapp/services/default/versions/v1/instances/instance-1`.
-    //
-    // @OutputOnly
+message Workspace {
+
+    // Workspace Name
     string name = 1;
 
-    // Relative name of the instance within the version.
-    // Example: `instance-1`.
+    // Workspace ID
     //
     // @OutputOnly
     string id = 2;
-
-    // FIXME: Must provide workspace
-    Workspace workspace = 3;
-
-    // The UNIX timestamp for the billing period start
-    int64 CurrentPeriodStart = 4;
-
-    // The UNIX timestamp for the billing period end
-    int64 CurrentPeriodEnd = 5;
-
-    // If the subscription is currently active
-    bool Active = 6;
-
-    // Indicators about the state of the subscription internally to the platform
-    enum State {
-        READY = 0;
-    
-        NOTREADY = 1;
-    
-        UNKOWN = 2;
-      }
 }
