@@ -17,9 +17,8 @@ syntax = "proto3";
 package ddev.billing.v1alpha1;
 
 import "live/billing/v1alpha1/subscription.proto";
-import "live/billing/v1alpha1/customer.proto";
-import "live/billing/v1alpha1/workspace.proto";
-import "live/billing/v1alpha1/subscriptionitem.proto";
+import "live/billing/v1alpha1/plan.proto";
+import "live/billing/v1alpha1/product.proto";
 
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
 option java_multiple_files = true;
@@ -28,69 +27,72 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 service Billing {
 
-  rpc CreateSubscription(CreateSubscriptionRequest) returns (CreateSubscriptionResponse) {
-  }
-  
-  // Lists the subscriptions of a customer.
-  rpc ListSubscriptions(ListSubscriptionRequest) returns (ListSubscriptionResponse) {
-  }
-
-  rpc DeleteSubscription(DeleteSubscriptionRequest) returns (DeleteSubscriptionResponse) {
-  }
-
-  rpc GetEvents(GetEventRequest) returns (stream SubscriptionEvents) {
-  }
-
-}
-
-message GetEventRequest {
-}
-
-message SubscriptionEvents {
-}
-
-message CreateSubscriptionRequest {
-    // The subscription to create
-    Subscription subscription = 1;
-
-    Customer customer = 2;
-
-    repeated SubscriptionItem items = 3;
-
-    //TODO: We can either create procedures that block, or add options to block on create
-    // and not return until successful in stripe.
-    // It is unlikely that all RPC's evalulate to kube objects, such as customer which may have
-    //  billing data we only want to pass through to stripe.
-
-    // blocking indicates that this call should block until the subscription is ready.
-    // Subsequent requests will continue to block event if the subscription has been created.
-    // Failures to create the subscription should be cleaned up with DeleteSubscription.
-    bool blocking = 16;
-}
+    // REVIEW:  I am wrapping types in request types, 
+    // this allows some more flexibility dealing with the types directly instead of the requests
+    // and standardizes calls such as GetSubscription that only would want a Name/Workspace
+    // however it may be more simple to return the types directly
+    // This pattern is used in coreos dex
+    // REF: https://github.com/dexidp/dex/blob/master/api/api.proto
 
 
-message CreateSubscriptionResponse {
-    // The subscription created
-    Subscription subscription = 2;
-}
+    // SUBSCRIPTIONS
 
-message DeleteSubscriptionRequest {
-    // The subscription to delete
-    Subscription subscription = 2;
-}
+    //
+    rpc CreateSubscription(CreateSubscriptionRequest) returns (CreateSubscriptionResponse) {
+    }
 
-message DeleteSubscriptionResponse {
-    // The subscription deleted
-    Subscription subscription = 2;
-}
+    //
+    rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {
+    }
 
-// Request message for `Subscriptions.ListSubscriptions`.
-message ListSubscriptionRequest {
-    Workspace workspace = 1;
-}
-  
-// Response message for `Subscriptions.ListSubscriptions`.
-message ListSubscriptionResponse {
-    // The subscriptions belonging to the customer account.
-    repeated Subscription subscriptions = 1;
+    // Lists the subscriptions of a customer.
+    rpc ListSubscriptions(ListSubscriptionRequest) returns (ListSubscriptionResponse) {
+    }
+
+    //
+    rpc UpdateSubscription(UpdateSubscriptionRequest) returns (UpdateSubscriptionResponse) {
+    }
+
+    //
+    rpc DeleteSubscription(DeleteSubscriptionRequest) returns (DeleteSubscriptionResponse) {
+    }
+
+    // Review: These can be independent services however it may be less user friendly
+
+    // PRODUCTS
+
+    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
+    }
+
+    rpc GetProduct(GetProductRequest) returns (GetProductResponse) {
+    }
+
+    // Lists available products.
+    rpc ListProduct(ListProductRequest) returns (ListProductResponse) {
+    }
+
+    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {
+    }
+
+    rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {
+    }
+
+    // PLANS
+
+    rpc CreatePlan(CreatePlanRequest) returns (CreatePlanResponse) {
+    }
+
+    rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
+    }
+
+    // Lists available products.
+    rpc ListPlan(ListPlanRequest) returns (ListPlanResponse) {
+    }
+
+    rpc UpdatePlan(UpdatePlanRequest) returns (UpdatePlanResponse) {
+    }
+
+    rpc DeletePlan(DeletePlanRequest) returns (DeletePlanResponse) {
+    }
+
 }

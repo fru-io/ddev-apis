@@ -17,18 +17,19 @@ syntax = "proto3";
 package ddev.billing.v1alpha1;
 
 import "live/billing/v1alpha1/workspace.proto";
+import "live/billing/v1alpha1/customer.proto";
+import "live/billing/v1alpha1/subscriptionitem.proto";
 
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
 option java_multiple_files = true;
-option java_outer_classname = "ServiceProto";
+option java_outer_classname = "SubscriptionProto";
 option java_package = "com.ddev.live.billing.v1alpha1";
 
 message Subscription {
 
     // Full path to the Instance resource in the API.
-    // Example: `apps/myapp/services/default/versions/v1/instances/instance-1`.
     //
-    // @OutputOnly
+    // @Required
     string name = 1;
 
     // Relative name of the instance within the version.
@@ -37,19 +38,28 @@ message Subscription {
     // @OutputOnly
     string id = 2;
 
-    // FIXME: Must provide workspace
+    // The workspace the subscription belongs to
+    //
+    // @Required
     Workspace workspace = 3;
 
     // The UNIX timestamp for the billing period start
+    //
+    // @OutputOnly
     int64 CurrentPeriodStart = 4;
 
     // The UNIX timestamp for the billing period end
+    //
+    // @OutputOnly
     int64 CurrentPeriodEnd = 5;
 
     // If the subscription is currently active
+    //
     bool Active = 6;
 
     // Indicators about the state of the subscription internally to the platform
+    //
+    // @OutputOnly
     enum State {
         READY = 0;
     
@@ -57,4 +67,105 @@ message Subscription {
     
         UNKOWN = 2;
       }
+}
+
+//
+// Message Types
+//
+
+
+message CreateSubscriptionRequest {
+
+  // The subscription to create
+  //
+  // @Required
+  Subscription subscription = 1;
+
+  // The customer the subscription belongs to
+  //
+  // @Required
+  Customer customer = 2;
+
+  // The subscription items this subscription shall contain
+  //
+  // @Required
+  repeated SubscriptionItem items = 3;
+
+  // blocking indicates that this call should block until the subscription is ready.
+  // Subsequent requests will continue to block event if the subscription has been created.
+  // Failures to create the subscription should be cleaned up with DeleteSubscription.
+  //
+  bool blocking = 16;
+}
+
+//
+message CreateSubscriptionResponse {
+  // The subscription created
+  //
+  // @Required
+  Subscription subscription = 1;
+}
+
+//
+message GetSubscriptionRequest {
+  // The name of the subscription
+  //
+  // @Required
+  string name = 1;
+  
+  // The workspace of the subscription
+  //
+  // @Required
+  string workspace = 2;
+}
+
+//
+message GetSubscriptionResponse {
+  Subscription subscription = 1;
+}
+
+// Request message for `Billing.ListSubscriptions`.
+message ListSubscriptionRequest {
+  Workspace workspace = 1;
+}
+
+// Response message for `Billing.ListSubscriptions`.
+message ListSubscriptionResponse {
+
+  // The subscriptions belonging to the customer account.
+  //
+  // @Required
+  repeated Subscription subscriptions = 1;
+}
+
+//
+message UpdateSubscriptionRequest {
+
+  // The subscription to update
+  //
+  // @Required
+  Subscription subscription = 1;
+  
+  bool blocking = 16;
+}
+
+message UpdateSubscriptionResponse {
+  // The subscription updated
+  //
+  // @OutputOnly
+  Subscription subscription = 1;
+}
+
+message DeleteSubscriptionRequest {
+  // The subscription to delete
+  //
+  // @Required
+  Subscription subscription = 1;
+}
+
+message DeleteSubscriptionResponse {
+  // The subscription deleted
+  //
+  // @Required
+  Subscription subscription = 1;
 }

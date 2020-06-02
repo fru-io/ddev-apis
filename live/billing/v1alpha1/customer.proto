@@ -18,7 +18,7 @@ package ddev.billing.v1alpha1;
 
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
 option java_multiple_files = true;
-option java_outer_classname = "ServiceProto";
+option java_outer_classname = "CustomerProto";
 option java_package = "com.ddev.live.billing.v1alpha1";
 
 // The minimum from https://stripe.com/docs/api/customers/object
