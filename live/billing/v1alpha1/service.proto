@@ -45,7 +45,6 @@ service Billing {
     rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {
     }
 
-    // Lists the subscriptions of a customer.
     rpc ListSubscriptions(ListSubscriptionRequest) returns (ListSubscriptionResponse) {
     }
 
@@ -67,7 +66,6 @@ service Billing {
     rpc GetProduct(GetProductRequest) returns (GetProductResponse) {
     }
 
-    // Lists available products.
     rpc ListProduct(ListProductRequest) returns (ListProductResponse) {
     }
 
@@ -85,7 +83,6 @@ service Billing {
     rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
     }
 
-    // Lists available products.
     rpc ListPlan(ListPlanRequest) returns (ListPlanResponse) {
     }
 

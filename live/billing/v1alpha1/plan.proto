@@ -23,38 +23,28 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 message Plan {
 
-    // Whether the plan can be used for new purchases.
-    //
-    // @OutputOnly
+    // Whether the plan can be used for new purchases. - Required
     string id = 1;
 
-    // Whether the plan can be used for new purchases.
-    //
-    // @OutputOnly
+    // Whether the plan can be used for new purchases. - OutputOnly
     bool active = 2;
 
-    // positive integer or zero
-    //
+    // positive integer or zero. - Required
     int64 amount = 3;
 
-    // Three-letter ISO currency code, in lowercase. Must be a supported currency
-    //
+    // Three-letter ISO currency code, in lowercase. Must be a supported currency. - Required
     string currency = 4;
 
-    // The frequency at which a subscription is billed. One of day, week, month or year.
-    //
+    // The frequency at which a subscription is billed. One of day, week, month or year. - Required
     string interval = 5;
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-    //
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. - Optional
     map<string, string>  metadata = 6;
 
-    // A brief description of the plan, hidden from customers
-    //
+    // A brief description of the plan, hidden from customers - Optional
     string nickname = 7;
 
-    // The Product whose pricing this plan determines.
-    //
+    // The Product whose pricing this plan determines. - Required
     string product = 8;
 
 }
@@ -62,39 +52,27 @@ message Plan {
 // Message Types
 
 message CreatePlanRequest {
-    // The plan to create
-    //
-    // @Required
+    // The plan to create. - Required
     Plan plan = 1;
 
-    // blocking indicates that this call should block until the plan is ready.
-    // Subsequent requests will continue to block event if the plan has been created.
-    // Failures to create the plan should be cleaned up with DeletePlan.
-    // 
-    // @Optional
+    // Blocking indicates that this call should block until the plan is ready. Subsequent requests will continue to block event if the plan has been created. Failures to create the plan should be cleaned up with DeletePlan. - Optional
     bool blocking = 16;
 }
 
 message CreatePlanResponse {
-    // The plan created
-    //
-    // @OutputOnly
+    // The plan created. - OutputOnly
     Plan plan = 1;
 }
   
 //
 message GetPlanRequest {
-    // The name of the plan
-    //
-    // @Required
+    // The name of the plan. - Required
     string name = 1;
 }
 
 //
 message GetPlanResponse {
-    // The plan
-    //
-    // @OutputOnly
+    // The plan. - OutputOnly
     Plan plan = 1;
 }
 
@@ -104,44 +82,30 @@ message ListPlanRequest {
 
 // Response message for `Billing.ListPlans`.
 message ListPlanResponse {
-    // The list of available plans.
-    //
-    // @OutputOnly
+    // The list of available plans. - OutputOnly
     repeated Plan plans = 1;
 }
 
 //
 message UpdatePlanRequest {
-    // The updated plan
-    //
-    // @Required
+    // The updated plan. - Required
     Plan plan = 1;
 
-    // blocking indicates that this call should block until the plan is ready.
-    // Subsequent requests will continue to block event if the plan has been created.
-    // Failures to create the plan should be cleaned up with DeletePlan.
-    // 
-    // @Optional
+    // Blocking indicates that this call should block until the plan is ready. Subsequent requests will continue to block event if the plan has been created. Failures to create the plan should be cleaned up with DeletePlan. - Optional
     bool blocking = 16;
 }
 
 message UpdatePlanResponse {
-    // The updated plan
-    //
-    // @OutputOnly
+    // The updated plan. - OutputOnly
     Plan plan = 1;
 }
 
 message DeletePlanRequest {
-    // The plan to delete
-    //
-    // @Required
+    // The plan to delete. - Required
     Plan plan = 1;
 }
 
 message DeletePlanResponse {
-    // The plan deleted
-    //
-    // @Required
+    // The plan deleted. - Required
     Plan plan = 1;
 }

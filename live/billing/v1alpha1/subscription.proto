@@ -25,48 +25,40 @@ option java_multiple_files = true;
 option java_outer_classname = "SubscriptionProto";
 option java_package = "com.ddev.live.billing.v1alpha1";
 
+
+enum State {
+  READY = 0;
+
+  NOTREADY = 1;
+
+  UNKOWN = 2;
+} 
+
 message Subscription {
 
-    // Full path to the Instance resource in the API.
-    //
-    // @Required
+    // Full path to the Instance resource in the API. - Required
     string name = 1;
 
-    // Relative name of the instance within the version.
-    // Example: `instance-1`.
-    //
-    // @OutputOnly
+    // Relative name of the instance within the version. - Required
     string id = 2;
 
-    // The workspace the subscription belongs to
-    //
-    // @Required
+    // The workspace the subscription belongs to. - Required
     Workspace workspace = 3;
 
-    // The UNIX timestamp for the billing period start
-    //
-    // @OutputOnly
+    // The UNIX timestamp for the billing period start. - OutputOnly
     int64 CurrentPeriodStart = 4;
 
-    // The UNIX timestamp for the billing period end
-    //
-    // @OutputOnly
+    // The UNIX timestamp for the billing period end. - OutputOnly
     int64 CurrentPeriodEnd = 5;
 
-    // If the subscription is currently active
-    //
+    // If the subscription is currently active - Required
     bool Active = 6;
 
-    // Indicators about the state of the subscription internally to the platform
-    //
-    // @OutputOnly
-    enum State {
-        READY = 0;
-    
-        NOTREADY = 1;
-    
-        UNKOWN = 2;
-      }
+    // The subscription items this subscription shall contain. - Required
+    repeated SubscriptionItem items = 7;
+
+    // Indicators about the state of the subscription internally to the platform. - OutputOnly
+    State state = 16;
 }
 
 //
@@ -76,96 +68,73 @@ message Subscription {
 
 message CreateSubscriptionRequest {
 
-  // The subscription to create
-  //
-  // @Required
+  // The subscription to create. - Required
   Subscription subscription = 1;
 
-  // The customer the subscription belongs to
-  //
-  // @Required
+  // The customer the subscription belongs to. - Required
   Customer customer = 2;
 
-  // The subscription items this subscription shall contain
-  //
-  // @Required
-  repeated SubscriptionItem items = 3;
-
-  // blocking indicates that this call should block until the subscription is ready.
-  // Subsequent requests will continue to block event if the subscription has been created.
-  // Failures to create the subscription should be cleaned up with DeleteSubscription.
-  //
+  // blocking indicates that this call should block until the subscription is ready. Subsequent requests will continue to block event if the subscription has been created. Failures to create the subscription should be cleaned up with DeleteSubscription. - Optional
   bool blocking = 16;
 }
 
 //
 message CreateSubscriptionResponse {
-  // The subscription created
-  //
-  // @Required
+  // The subscription created. - Required
   Subscription subscription = 1;
 }
 
 //
 message GetSubscriptionRequest {
-  // The name of the subscription
-  //
-  // @Required
+  // The name of the subscription. - Required
   string name = 1;
   
-  // The workspace of the subscription
-  //
-  // @Required
+  // The workspace of the subscription. - Required
   string workspace = 2;
 }
 
 //
 message GetSubscriptionResponse {
+  // The subscription matching this name - OutputOnly
   Subscription subscription = 1;
 }
 
 // Request message for `Billing.ListSubscriptions`.
 message ListSubscriptionRequest {
+  // The workspace under which to list all subscriptions - Required
   Workspace workspace = 1;
 }
 
 // Response message for `Billing.ListSubscriptions`.
 message ListSubscriptionResponse {
 
-  // The subscriptions belonging to the customer account.
-  //
-  // @Required
+  // The subscriptions belonging to the customer account. - OutputOnly
   repeated Subscription subscriptions = 1;
 }
 
-//
+
 message UpdateSubscriptionRequest {
 
-  // The subscription to update
-  //
-  // @Required
+  // The subscription to update - Required
   Subscription subscription = 1;
+
+  // The customer the subscription belongs to - Required
+  Customer customer = 2;
   
   bool blocking = 16;
 }
 
 message UpdateSubscriptionResponse {
-  // The subscription updated
-  //
-  // @OutputOnly
+  // The subscription updated - OutputOnly
   Subscription subscription = 1;
 }
 
 message DeleteSubscriptionRequest {
-  // The subscription to delete
-  //
-  // @Required
+  // The subscription to delete - Required
   Subscription subscription = 1;
 }
 
 message DeleteSubscriptionResponse {
-  // The subscription deleted
-  //
-  // @Required
+  // The subscription deleted - Required
   Subscription subscription = 1;
 }
