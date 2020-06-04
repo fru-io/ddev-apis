@@ -17,7 +17,6 @@ syntax = "proto3";
 package ddev.billing.v1alpha1;
 
 import "live/billing/v1alpha1/workspace.proto";
-import "live/billing/v1alpha1/customer.proto";
 import "live/billing/v1alpha1/subscriptionitem.proto";
 
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
@@ -36,28 +35,28 @@ enum State {
 
 message Subscription {
 
-    // Full path to the Instance resource in the API. - Required
+    // Full path to the Instance resource in the API. - `OutputOnly`
     string name = 1;
 
-    // Relative name of the instance within the version. - Required
+    // Relative name of the instance within the version. - `OutputOnly`
     string id = 2;
 
-    // The workspace the subscription belongs to. - Required
+    // The workspace the subscription belongs to. - `OutputOnly`
     Workspace workspace = 3;
 
-    // The UNIX timestamp for the billing period start. - OutputOnly
+    // The UNIX timestamp for the billing period start. - `OutputOnly`
     int64 CurrentPeriodStart = 4;
 
-    // The UNIX timestamp for the billing period end. - OutputOnly
+    // The UNIX timestamp for the billing period end. - `OutputOnly`
     int64 CurrentPeriodEnd = 5;
 
-    // If the subscription is currently active - Required
+    // If the subscription is currently active - `OutputOnly`
     bool Active = 6;
 
-    // The subscription items this subscription shall contain. - Required
+    // The subscription items this subscription shall contain. - `OutputOnly`
     repeated SubscriptionItem items = 7;
 
-    // Indicators about the state of the subscription internally to the platform. - OutputOnly
+    // Indicators about the state of the subscription internally to the platform. - `OutputOnly`
     State state = 16;
 }
 
@@ -68,73 +67,111 @@ message Subscription {
 
 message CreateSubscriptionRequest {
 
-  // The subscription to create. - Required
-  Subscription subscription = 1;
+  // The identifier of the customer to subscribe. `Required`
+  string Customer = 1;
 
-  // The customer the subscription belongs to. - Required
-  Customer customer = 2;
+  // A list of up to 20 subscription items, each with an attached plan. `Required`
+  repeated SubscriptionItem items = 2;
 
-  // blocking indicates that this call should block until the subscription is ready. Subsequent requests will continue to block event if the subscription has been created. Failures to create the subscription should be cleaned up with DeleteSubscription. - Optional
-  bool blocking = 16;
+  // The workspace which this subscription belongs. `Required`
+  Workspace workspace = 3;
+
+  // Boolean indicating whether this subscription should cancel at the end of the current period. `Optional`
+  bool cancel_at_period_end = 17;
+  
+  
+  // ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer’s invoice settings. `Optional`
+  // string default_payment_method = 18
+  
+  // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+  map<string, string> metadata = 19;
+
+  // Unix timestamp representing the end of the trial period the customer will get before being charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. If set, trial_end will override the default trial period of the plan the customer is being subscribed to. The special value now can be provided to end the customer’s trial immediately. Can be at most two years from billing_cycle_anchor. `Optional`
+  int64 trial_end = 20;
+
+  // Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. `Optional`
+  int32 trial_period_days = 21;
+
 }
 
 //
 message CreateSubscriptionResponse {
-  // The subscription created. - Required
+  // The subscription created. - `Required`
   Subscription subscription = 1;
 }
 
 //
 message GetSubscriptionRequest {
-  // The name of the subscription. - Required
+  // The name of the subscription. - `Required`
   string name = 1;
   
-  // The workspace of the subscription. - Required
-  string workspace = 2;
+  // The workspace of the subscription. - `Required`
+  Workspace workspace = 2;
 }
 
 //
 message GetSubscriptionResponse {
-  // The subscription matching this name - OutputOnly
+  // The subscription matching this name - `OutputOnly`
   Subscription subscription = 1;
 }
 
 // Request message for `Billing.ListSubscriptions`.
 message ListSubscriptionRequest {
-  // The workspace under which to list all subscriptions - Required
+  // The workspace under which to list all subscriptions - `Required`
   Workspace workspace = 1;
 }
 
 // Response message for `Billing.ListSubscriptions`.
 message ListSubscriptionResponse {
 
-  // The subscriptions belonging to the customer account. - OutputOnly
+  // The subscriptions belonging to the customer account. - `OutputOnly`
   repeated Subscription subscriptions = 1;
 }
 
 
 message UpdateSubscriptionRequest {
 
-  // The subscription to update - Required
-  Subscription subscription = 1;
+  // The ID of the subscription. `Required`
+  string id = 1;
 
-  // The customer the subscription belongs to - Required
-  Customer customer = 2;
+  // The workspace which this subscription belongs. `Required`
+  Workspace workspace = 2;
+
+  // Boolean indicating whether this subscription should cancel at the end of the current period. `Optional`
+  bool cancel_at_period_end = 17;
   
-  bool blocking = 16;
+  // ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer’s invoice settings. `Optional`
+  string default_payment_method = 18;
+  
+  // List of subscription items, each with an attached plan. `Optional`
+  repeated SubscriptionItem items = 19;
+  
+  // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+  map<string, string> metadata = 20;
+  
 }
 
 message UpdateSubscriptionResponse {
-  // The subscription updated - OutputOnly
+  // The subscription updated. `OutputOnly`
+  Subscription subscription = 1;
+}
+
+message CancelSubscriptionRequest {
+  // The subscription to cancel. `Required`
+  string id = 1;
+}
+
+message CancelSubscriptionResponse {
+  // The cancelled subscription. `OutputOnly`
   Subscription subscription = 1;
 }
 
 message DeleteSubscriptionRequest {
-  // The subscription to delete - Required
-  Subscription subscription = 1;
+  // The id of the subscription to delete. `Required`
+  string id = 1;
 }
 
 message DeleteSubscriptionResponse {
-  // The subscription deleted - Required
+  // The subscription deleted. `OutputOnly`
   Subscription subscription = 1;
 }

@@ -23,56 +23,85 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 message Plan {
 
-    // Whether the plan can be used for new purchases. - Required
+    // Whether the plan can be used for new purchases. - `OutputOnly`
     string id = 1;
 
-    // Whether the plan can be used for new purchases. - OutputOnly
+    // Whether the plan can be used for new purchases. - `OutputOnly`
     bool active = 2;
 
-    // positive integer or zero. - Required
+    // positive integer or zero. - `OutputOnly`
     int64 amount = 3;
 
-    // Three-letter ISO currency code, in lowercase. Must be a supported currency. - Required
+    // Three-letter ISO currency code, in lowercase. Must be a supported currency. - `OutputOnly`
     string currency = 4;
 
-    // The frequency at which a subscription is billed. One of day, week, month or year. - Required
+    // The frequency at which a subscription is billed. One of day, week, month or year. - `OutputOnly`
     string interval = 5;
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. - Optional
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. - `OutputOnly`
     map<string, string>  metadata = 6;
 
-    // A brief description of the plan, hidden from customers - Optional
+    // A brief description of the plan, hidden from customers - `OutputOnly`
     string nickname = 7;
 
-    // The Product whose pricing this plan determines. - Required
+    // The Product whose pricing this plan determines. - `OutputOnly`
     string product = 8;
 
+}
+
+// Supported currencies for ddev-live
+enum Currency {
+    USD = 0;
+}
+
+enum Interval {
+    DAY = 0;
+    WEEK = 1;
+    MONTH = 2;
+    YEAR = 3;
 }
 
 // Message Types
 
 message CreatePlanRequest {
-    // The plan to create. - Required
-    Plan plan = 1;
 
-    // Blocking indicates that this call should block until the plan is ready. Subsequent requests will continue to block event if the plan has been created. Failures to create the plan should be cleaned up with DeletePlan. - Optional
-    bool blocking = 16;
+    // A positive integer in cents (or 0 for a free plan) representing how much to charge on a recurring basis. `Required for PER_UNIT plans only`
+    uint32 amount = 1;
+
+    // The currency for this plan. `Required`
+    Currency currency = 2;
+
+    // The billing period frequency. `Required`
+    Interval interval = 3;
+
+    // The product whose pricing the created plan will represent. This can either be the ID of an existing product, or a dictionary containing fields used to create a service product. `Required`
+    string product = 4;
+
+    // Whether the plan is currently available for new subscriptions. Defaults to true. `Optional`
+    bool active = 17;
+
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+    map<string, string> metadata = 18;
+
+    // A brief description of the plan, hidden from customers. `Optional`
+    string nickname = 19;
+
 }
 
 message CreatePlanResponse {
-    // The plan created. - OutputOnly
+    // The plan created. - `OutputOnly`
     Plan plan = 1;
 }
   
 //
 message GetPlanRequest {
-    // The name of the plan. - Required
-    string name = 1;
+    // The id of the plan. `Required`
+    string id = 1;
 }
 
 //
 message GetPlanResponse {
-    // The plan. - OutputOnly
+    // The plan. `OutputOnly`
     Plan plan = 1;
 }
 
@@ -82,30 +111,37 @@ message ListPlanRequest {
 
 // Response message for `Billing.ListPlans`.
 message ListPlanResponse {
-    // The list of available plans. - OutputOnly
+    // The list of available plans. `OutputOnly`
     repeated Plan plans = 1;
 }
 
 //
 message UpdatePlanRequest {
-    // The updated plan. - Required
-    Plan plan = 1;
+    // The id of the plan plan. `Required`
+    string id = 1; 
 
-    // Blocking indicates that this call should block until the plan is ready. Subsequent requests will continue to block event if the plan has been created. Failures to create the plan should be cleaned up with DeletePlan. - Optional
-    bool blocking = 16;
+    // Whether the plan is currently available for new subscriptions. `Optional`
+    bool active = 17;
+
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+    map<string, string> metadata = 18;
+
+    // A brief description of the plan, hidden from customers. `Optional`
+    string nickname = 19;
+
 }
 
 message UpdatePlanResponse {
-    // The updated plan. - OutputOnly
+    // The updated plan. `OutputOnly`
     Plan plan = 1;
 }
 
 message DeletePlanRequest {
-    // The plan to delete. - Required
-    Plan plan = 1;
+    // The id of the plan to delete. `Required`
+    string id = 1;
 }
 
 message DeletePlanResponse {
-    // The plan deleted. - Required
+    // The plan deleted. `OutputOnly`
     Plan plan = 1;
 }

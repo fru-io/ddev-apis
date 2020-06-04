@@ -24,18 +24,142 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 // A customer on ddev-live
 message Customer {
     
-    // The ID of the customer. - Required
+    // The ID of the customer. - `OutputOnly`
     string id = 1; 
 
-    // The name of the customer. - Required
+    // The name of the customer. - `OutputOnly`
     string name = 2;
 
-    // A description for this customer. - Optional
+    // A description for this customer. - `OutputOnly`
     string description = 3;
 
-    // The primary email address for this customer. - Required
+    // The primary email address for this customer. - `OutputOnly`
     string email = 4;
 
-    // Address associated with thiis customer. - Optional
+    // Address associated with thiis customer. - `OutputOnly`
     string address = 5;
+
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. - `OutputOnly`
+    map<string, string> metadata = 6;
+
+    // The customer’s phone number. - `OutputOnly`
+    string phone = 7;
+
+}
+
+message Address {
+    // Address line 1 (e.g., street, PO Box, or company name). `Required`
+    string line1 = 1; 
+
+    // City, district, suburb, town, or village. `Optional`
+    string City = 17;
+
+    // Two-letter country code (ISO 3166-1 alpha-2). `Optional`
+    string country = 18;
+
+    // Address line 2 (e.g., apartment, suite, unit, or building). `Optional`
+    string line2 = 19;
+
+    // ZIP or postal code. `Optional`
+    string postal_code = 20;
+
+    // State, county, province, or region. `Optional`
+    string state = 21;
+}
+
+// Message Types
+
+message CreateCustomerRequest {
+
+    // The customer’s address. `Optional`
+    Address address = 17;
+
+    // An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard. `Optional`
+    string description = 18;
+
+    // Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters. `Optional`
+    string email = 19;
+
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+    map<string, string> metadata = 20;
+
+    // The customer’s full name or business name. `Optional`
+    string name = 21;
+
+    // The ID of the PaymentMethod to attach to the customer. `Optional`
+    string payment_method = 22;
+
+    // The customer’s phone number. `Optional`
+    string phone = 23;
+
+}
+
+message CreateCustomerResponse {
+
+    // The customer created. `OutputOnly`
+    Customer customer = 1;
+}
+  
+//
+message GetCustomerRequest {
+
+    // The id of the customr to retrieve. `Required`
+    string id = 1;
+}
+
+//
+message GetCustomerResponse {
+
+    // The customer with the provided ID. `OutputOnly`
+    Customer customer = 1;
+}
+
+// Request message for `Billing.ListCustomers`.
+message ListCustomerRequest {
+}
+
+// Response message for `Billing.ListCustomers`.
+message ListCustomerResponse {
+
+    // The list of available Customers. - `OutputOnly`
+    repeated Customer Customers = 1;
+}
+
+//
+message UpdateCustomerRequest {
+
+    // The ID of the customer to update
+    string id = 1;
+
+    // The customer’s address. `Optional`
+    Address address = 17;
+
+    // An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard. `Optional`
+    string description = 18;
+
+    // Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters. `Optional`
+    string email = 19;
+
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+    map<string, string> metadata = 20;
+
+    // The customer’s full name or business name. `Optional`
+    string name = 21;
+
+    // The customer’s phone number. `Optional`
+    string phone = 22;
+}
+
+message UpdateCustomerResponse {
+    // The updated customer. `OutputOnly`
+    Customer customer = 1;
+}
+
+message DeleteCustomerRequest {
+
+    // The id of the customer to delete. `Required`
+    string id = 1;
+}
+
+message DeleteCustomerResponse {
 }

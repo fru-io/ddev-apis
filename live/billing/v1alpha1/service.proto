@@ -16,6 +16,7 @@ syntax = "proto3";
 
 package ddev.billing.v1alpha1;
 
+import "live/billing/v1alpha1/customer.proto";
 import "live/billing/v1alpha1/subscription.proto";
 import "live/billing/v1alpha1/plan.proto";
 import "live/billing/v1alpha1/product.proto";
@@ -35,6 +36,23 @@ service Billing {
     // REF: https://github.com/dexidp/dex/blob/master/api/api.proto
 
 
+    // CUSTOMERS
+
+    //
+    rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerResponse) {
+    }
+
+    //
+    rpc GetCustomer(GetCustomerRequest) returns (GetCustomerResponse) {
+    }
+
+    rpc ListCustomers(ListCustomerRequest) returns (ListCustomerResponse) {
+    }
+
+    //
+    rpc UpdateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse) {
+    }
+
     // SUBSCRIPTIONS
 
     //
@@ -50,6 +68,10 @@ service Billing {
 
     //
     rpc UpdateSubscription(UpdateSubscriptionRequest) returns (UpdateSubscriptionResponse) {
+    }
+
+    //
+    rpc CancelSubscription(CancelSubscriptionRequest) returns (CancelSubscriptionResponse) {
     }
 
     //
