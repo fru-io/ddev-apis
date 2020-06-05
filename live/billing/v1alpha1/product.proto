@@ -114,8 +114,8 @@ message UpdateProductResponse {
 }
 
 message DeleteProductRequest {
-    // The ID of the product to delete. - `Required`
-    string id = 1;
+    // The name of the product to delete. - `Required`
+    string name = 1;
 }
 
 message DeleteProductResponse {

@@ -23,22 +23,22 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 message SubscriptionItem {
 
-    // Unique identifier for the object. - Required
+    // Unique identifier for the object. `OutputOnly`
     string id = 1;
-    
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. - Optional
-    map<string, string> metadata = 2;
 
-    // Hash describing the plan the customer is subscribed to. - Required
-    string plan = 3;
+    // The subscription this subscription_item belongs to. `Required`
+    string subscription = 2;
     
-    // The price the customer is subscribed to. - Required
-    string price = 4;
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. `Optional`
+    map<string, string> metadata = 17;
+
+    // Hash describing the plan the customer is subscribed to. `Optional`
+    string plan = 18;
     
-    // The quantity of the plan to which the customer should be subscribed. - Required
-    uint32 quantity = 5;
+    // The price the customer is subscribed to. `Optional`
+    string price = 19;
     
-    // The subscription this subscription_item belongs to. - Required
-    string subscription = 6;
+    // The quantity of the plan to which the customer should be subscribed. `Optional`
+    uint32 quantity = 20;
     
 }

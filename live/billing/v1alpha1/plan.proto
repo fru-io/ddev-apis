@@ -76,6 +76,9 @@ message CreatePlanRequest {
 
     // The product whose pricing the created plan will represent. This can either be the ID of an existing product, or a dictionary containing fields used to create a service product. `Required`
     string product = 4;
+    
+    // A unique name for this plan. `Required`
+    string name = 5;
 
     // Whether the plan is currently available for new subscriptions. Defaults to true. `Optional`
     bool active = 17;
@@ -95,8 +98,8 @@ message CreatePlanResponse {
   
 //
 message GetPlanRequest {
-    // The id of the plan. `Required`
-    string id = 1;
+    // The name of the plan. `Required`
+    string name = 1;
 }
 
 //
@@ -117,8 +120,8 @@ message ListPlanResponse {
 
 //
 message UpdatePlanRequest {
-    // The id of the plan plan. `Required`
-    string id = 1; 
+    // The name of the plan. `Required`
+    string name = 1; 
 
     // Whether the plan is currently available for new subscriptions. `Optional`
     bool active = 17;
@@ -129,6 +132,9 @@ message UpdatePlanRequest {
     // A brief description of the plan, hidden from customers. `Optional`
     string nickname = 19;
 
+    // The product the plan belongs to. Note that after updating, statement descriptors and line items of the plan in active subscriptions will be affected. `Optional`
+    string product = 20;
+
 }
 
 message UpdatePlanResponse {
@@ -137,8 +143,8 @@ message UpdatePlanResponse {
 }
 
 message DeletePlanRequest {
-    // The id of the plan to delete. `Required`
-    string id = 1;
+    // The name of the plan to delete. `Required`
+    string name = 1;
 }
 
 message DeletePlanResponse {

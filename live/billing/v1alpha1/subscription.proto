@@ -68,17 +68,16 @@ message Subscription {
 message CreateSubscriptionRequest {
 
   // The identifier of the customer to subscribe. `Required`
-  string Customer = 1;
+  string CustomerID = 2;
 
   // A list of up to 20 subscription items, each with an attached plan. `Required`
-  repeated SubscriptionItem items = 2;
+  repeated SubscriptionItem items = 3;
 
   // The workspace which this subscription belongs. `Required`
-  Workspace workspace = 3;
+  Workspace workspace = 4;
 
   // Boolean indicating whether this subscription should cancel at the end of the current period. `Optional`
   bool cancel_at_period_end = 17;
-  
   
   // ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer’s invoice settings. `Optional`
   // string default_payment_method = 18
@@ -92,6 +91,8 @@ message CreateSubscriptionRequest {
   // Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. `Optional`
   int32 trial_period_days = 21;
 
+  // ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If not set, defaults to the customer’s default source. `Optional`
+  string default_source = 22;
 }
 
 //
@@ -131,8 +132,8 @@ message ListSubscriptionResponse {
 
 message UpdateSubscriptionRequest {
 
-  // The ID of the subscription. `Required`
-  string id = 1;
+  // The name of the subscription. `Required`
+  string name = 1;
 
   // The workspace which this subscription belongs. `Required`
   Workspace workspace = 2;
@@ -157,8 +158,15 @@ message UpdateSubscriptionResponse {
 }
 
 message CancelSubscriptionRequest {
-  // The subscription to cancel. `Required`
-  string id = 1;
+  // The name of the subscription to cancel. `Required`
+  string name = 1;
+
+  // Will generate a final invoice that invoices for any un-invoiced metered usage and new/pending proration invoice items.
+  bool invoice_now = 17;
+  
+  // Will generate a proration invoice item that credits remaining unused time until the subscription period end.
+  bool prorate = 18;
+  
 }
 
 message CancelSubscriptionResponse {
@@ -167,8 +175,8 @@ message CancelSubscriptionResponse {
 }
 
 message DeleteSubscriptionRequest {
-  // The id of the subscription to delete. `Required`
-  string id = 1;
+  // The name of the subscription to delete. `Required`
+  string name = 1;
 }
 
 message DeleteSubscriptionResponse {

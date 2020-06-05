@@ -70,10 +70,12 @@ service Billing {
     rpc UpdateSubscription(UpdateSubscriptionRequest) returns (UpdateSubscriptionResponse) {
     }
 
-    //
+    // Deprecated.  Cancel a subscription in stripe
     rpc CancelSubscription(CancelSubscriptionRequest) returns (CancelSubscriptionResponse) {
     }
 
+    // TODO: Implement customer and subscription in cluster and sync their state to stripe
+    
     //
     rpc DeleteSubscription(DeleteSubscriptionRequest) returns (DeleteSubscriptionResponse) {
     }
