@@ -1,3 +1,8 @@
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+USER_ID:=$(shell id -u)
+
+BILLING_PROTOS:=$(shell find live/billing/v1alpha1/ -name *.proto)
+
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
 GOBIN=$(shell go env GOPATH)/bin
@@ -24,8 +29,7 @@ build-go:
 	--go_out=plugins=grpc:build/go \
 	--swagger_out=allow_delete_body=true:build/go \
 	--grpc-gateway_out=allow_delete_body=true:build/go \
-	live/billing/v1alpha1/subscription.proto \
-	live/billing/v1alpha1/service.proto
+	${BILLING_PROTOS}
 
 release-go: build-go
 	tar -zcvf build/release/go/go-gen-source.tar.gz build/go
@@ -36,8 +40,7 @@ build-js:
 	--proto_path=. \
 	--js_out=import_style=commonjs:build/js \
 	--grpc-web_out=import_style=commonjs,mode=grpcwebtext:build/js \
-	live/billing/v1alpha1/subscription.proto \
-	live/billing/v1alpha1/service.proto
+	${BILLING_PROTOS}
 
 release-js: build-js
 	tar -zcvf build/release/js/javascript-gen-source.tar.gz build/js
@@ -47,16 +50,20 @@ build-ts:
 	--proto_path=. \
 	--js_out=import_style=commonjs:build/ts \
 	--grpc-web_out=import_style=typescript,mode=grpcwebtext:build/ts \
-	live/billing/v1alpha1/subscription.proto \
-	live/billing/v1alpha1/service.proto \
-	live/billing/v1alpha1/common.proto \
-	live/billing/v1alpha1/workspace.proto \
-	live/billing/v1alpha1/subscriptionitem.proto \
-	live/billing/v1alpha1/customer.proto \
-	live/billing/v1alpha1/plan.proto \
-	live/billing/v1alpha1/product.proto
+	${BILLING_PROTOS}
 
 release-ts: build-ts
 	tar -zcvf build/release/ts/typescript-gen-source.tar.gz build/ts
 
-release: prepare-release release-ts release-js release-go
+release: prepare-release doc release-ts release-js release-go
+
+billing-doc:
+	docker run --rm \
+	--user ${USER_ID} \
+	-v ${ROOT_DIR}/doc/api:/out \
+	-v ${ROOT_DIR}/:/protos \
+	pseudomuto/protoc-gen-doc --doc_opt=markdown,billing-api.md \
+	${BILLING_PROTOS}
+
+.PHONY: doc
+doc: billing-doc
