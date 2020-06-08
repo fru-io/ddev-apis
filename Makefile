@@ -44,12 +44,17 @@ release-js: build-js
 
 build-ts:
 	protoc \
-	--proto_path=build/dep/googleapis \
 	--proto_path=. \
 	--js_out=import_style=commonjs:build/ts \
-	--grpc-web_out=import_style=commonjs,mode=grpcwebtext:build/ts \
+	--grpc-web_out=import_style=typescript,mode=grpcwebtext:build/ts \
 	live/billing/v1alpha1/subscription.proto \
-	live/billing/v1alpha1/service.proto
+	live/billing/v1alpha1/service.proto \
+	live/billing/v1alpha1/common.proto \
+	live/billing/v1alpha1/workspace.proto \
+	live/billing/v1alpha1/subscriptionitem.proto \
+	live/billing/v1alpha1/customer.proto \
+	live/billing/v1alpha1/plan.proto \
+	live/billing/v1alpha1/product.proto
 
 release-ts: build-ts
 	tar -zcvf build/release/ts/typescript-gen-source.tar.gz build/ts

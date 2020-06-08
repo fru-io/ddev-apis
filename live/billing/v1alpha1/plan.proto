@@ -16,6 +16,8 @@ syntax = "proto3";
 
 package ddev.billing.v1alpha1;
 
+import "live/billing/v1alpha1/common.proto";
+
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
 option java_multiple_files = true;
 option java_outer_classname = "PlanProto";
@@ -47,18 +49,6 @@ message Plan {
     // The Product whose pricing this plan determines. - `OutputOnly`
     string product = 8;
 
-}
-
-// Supported currencies for ddev-live
-enum Currency {
-    USD = 0;
-}
-
-enum Interval {
-    DAY = 0;
-    WEEK = 1;
-    MONTH = 2;
-    YEAR = 3;
 }
 
 // Message Types

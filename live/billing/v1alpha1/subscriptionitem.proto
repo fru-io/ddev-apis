@@ -16,6 +16,8 @@ syntax = "proto3";
 
 package ddev.billing.v1alpha1;
 
+import "live/billing/v1alpha1/common.proto";
+
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
 option java_multiple_files = true;
 option java_outer_classname = "SubscriptionItemProto";
@@ -36,9 +38,43 @@ message SubscriptionItem {
     string plan = 18;
     
     // The price the customer is subscribed to. `Optional`
-    string price = 19;
+    Price price = 19;
     
     // The quantity of the plan to which the customer should be subscribed. `Optional`
     uint32 quantity = 20;
     
+}
+
+enum PriceType {
+    RECURRING = 0;
+    ONE_TIME = 1;
+}
+
+message Price {
+    // Unique identifier for the object.
+    string id = 1;
+
+    // Whether the price can be used for new purchases. `Optional`
+    bool active = 17;
+
+    // The ISO Currency. `Optional`
+    Currency currency = 18; 
+
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. `Optional`
+    map<string, string> metadata = 19;
+
+    // A brief description of the plan, hidden from customers. `Optional`
+    string nickname = 20;
+
+    // The ID of the product this price is associated with. `Optional`
+    string product = 21;
+
+    // The recurring components of a price such as interval and usage_type. `Optional`
+    Recurring recurring = 22;
+
+    // One of one_time or recurring depending on whether the price is for a one-time purchase or a recurring (subscription) purchase. `Optional`
+    PriceType type = 23;
+
+    // The unit amount in cents to be charged, represented as a whole integer if possible. `Optional`
+    int64 amount = 24;
 }

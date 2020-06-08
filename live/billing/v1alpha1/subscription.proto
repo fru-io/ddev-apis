@@ -35,28 +35,28 @@ enum State {
 
 message Subscription {
 
-    // Full path to the Instance resource in the API. - `OutputOnly`
+    // Name of the subscription. `OutputOnly`
     string name = 1;
 
-    // Relative name of the instance within the version. - `OutputOnly`
+    // ID of the subscription. `OutputOnly`
     string id = 2;
 
-    // The workspace the subscription belongs to. - `OutputOnly`
+    // The workspace the subscription belongs to. `OutputOnly`
     Workspace workspace = 3;
 
-    // The UNIX timestamp for the billing period start. - `OutputOnly`
+    // The UNIX timestamp for the billing period start. `OutputOnly`
     int64 CurrentPeriodStart = 4;
 
-    // The UNIX timestamp for the billing period end. - `OutputOnly`
+    // The UNIX timestamp for the billing period end. `OutputOnly`
     int64 CurrentPeriodEnd = 5;
 
-    // If the subscription is currently active - `OutputOnly`
+    // If the subscription is currently active. `OutputOnly`
     bool Active = 6;
 
-    // The subscription items this subscription shall contain. - `OutputOnly`
+    // The subscription items this subscription shall contain. `OutputOnly`
     repeated SubscriptionItem items = 7;
 
-    // Indicators about the state of the subscription internally to the platform. - `OutputOnly`
+    // Indicators about the state of the subscription internally to the platform. `OutputOnly`
     State state = 16;
 }
 
@@ -132,8 +132,8 @@ message ListSubscriptionResponse {
 
 message UpdateSubscriptionRequest {
 
-  // The name of the subscription. `Required`
-  string name = 1;
+  // The id of the subscription. `Required`
+  string id = 1;
 
   // The workspace which this subscription belongs. `Required`
   Workspace workspace = 2;
@@ -158,8 +158,11 @@ message UpdateSubscriptionResponse {
 }
 
 message CancelSubscriptionRequest {
-  // The name of the subscription to cancel. `Required`
-  string name = 1;
+  // The id of the subscription to cancel. `Required`
+  string id = 1;
+
+  // The workspace which this subscription belongs. `Required`
+  Workspace workspace = 2;
 
   // Will generate a final invoice that invoices for any un-invoiced metered usage and new/pending proration invoice items.
   bool invoice_now = 17;
@@ -177,6 +180,9 @@ message CancelSubscriptionResponse {
 message DeleteSubscriptionRequest {
   // The name of the subscription to delete. `Required`
   string name = 1;
+
+  // The workspace which this subscription belongs. `Required`
+  Workspace workspace = 2;
 }
 
 message DeleteSubscriptionResponse {

@@ -1,0 +1,60 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.billing.v1alpha1;
+
+option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "PlanProto";
+option java_package = "com.ddev.live.billing.v1alpha1";
+
+// Supported currencies for ddev-live
+enum Currency {
+    USD = 0;
+}
+
+enum Interval {
+    MONTH = 0;
+    YEAR = 1;
+    DAY = 2;
+    WEEK = 3;
+}
+
+enum AgggregateUsage {
+    SUM = 0;
+    LAST_DURING_PERIOD = 1;
+    LAST_EVER = 2;
+}
+
+enum UsageType {
+    LICENSED = 0;
+    METERED = 1;
+}
+
+message Recurring {
+    
+    // Specifies a usage aggregation strategy for prices of usage_type=metered. Allowed values are sum for summing up all usage during a period, last_during_period for using the last usage record reported within a period, last_ever for using the last usage record ever (across period bounds) or max which uses the usage record with the maximum reported usage during a period. Defaults to sum. `Optional`
+    AgggregateUsage aggregate_usage = 17;
+    
+    // The frequency at which a subscription is billed. One of day, week, month or year. `Optional`
+    Interval interval = 18;
+
+    // The number of intervals (specified in the interval attribute) between subscription billings. For example, interval=month and interval_count=3 bills every 3 months. `Optional`
+    uint32 interval_count = 19;
+
+    // Configures how the quantity per period should be determined. Can be either metered or licensed. licensed automatically bills the quantity set when adding it to a subscription. metered aggregates the total usage based on usage records. Defaults to licensed. `Optional`
+    UsageType usage_type = 20;
+}
