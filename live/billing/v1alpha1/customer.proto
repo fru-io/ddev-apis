@@ -24,54 +24,54 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 // A customer on ddev-live
 message Customer {
     
-    // The ID of the customer. `OutputOnly`
+    // `OutputOnly` - The ID of the customer.
     string id = 1; 
 
-    // The name of the customer. `OutputOnly`
+    // `OutputOnly` - The name of the customer.
     string name = 2;
 
-    // A description for this customer. `OutputOnly`
+    // `OutputOnly` - A description for this customer.
     string description = 3;
 
-    // The primary email address for this customer. `OutputOnly`
+    // `OutputOnly` - The primary email address for this customer.
     string email = 4;
 
-    // Address associated with thiis customer. `OutputOnly`
+    // `OutputOnly` - Address associated with thiis customer.
     Address address = 5;
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. `OutputOnly`
+    // `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
     map<string, string> metadata = 6;
 
-    // The customer’s phone number. `OutputOnly`
+    // `OutputOnly` - The customer’s phone number.
     string phone = 7;
 
-    // The default payment source. `OutputOnly`
+    // `OutputOnly` - The default payment source.
     string defaultSource = 9;
 
 }
 
 message Address {
-    // Address line 1 (e.g., street, PO Box, or company name). `Required`
+    // `Required` - Address line 1 (e.g., street, PO Box, or company name).
     string line1 = 1; 
 
-    // City, district, suburb, town, or village. `Optional`
+    // `Optional` - City, district, suburb, town, or village.
     string City = 17;
 
-    // Two-letter country code (ISO 3166-1 alpha-2). `Optional`
+    // `Optional` - Two-letter country code (ISO 3166-1 alpha-2).
     string country = 18;
 
-    // Address line 2 (e.g., apartment, suite, unit, or building). `Optional`
+    // `Optional` - Address line 2 (e.g., apartment, suite, unit, or building).
     string line2 = 19;
 
-    // ZIP or postal code. `Optional`
+    // `Optional` - ZIP or postal code.
     string postal_code = 20;
 
-    // State, county, province, or region. `Optional`
+    // `Optional` - State, county, province, or region.
     string state = 21;
 }
 
 message Source {
-    // Unique identifier for the object. `Required`
+    // `Required` - Unique identifier for the object.
     string token = 1;
 }
 
@@ -79,48 +79,48 @@ message Source {
 
 message CreateCustomerRequest {
 
-    // The customer’s address. `Optional`
+    // `Optional` - The customer’s address.
     Address address = 17;
 
-    // An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard. `Optional`
+    // `Optional` - An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
     string description = 18;
 
-    // Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters. `Optional`
+    // `Optional` - Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters.
     string email = 19;
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+    // `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata.
     map<string, string> metadata = 20;
 
-    // The customer’s full name or business name. `Optional`
+    // `Optional` - The customer’s full name or business name.
     string name = 21;
 
-    // The ID of the PaymentMethod to attach to the customer. `Optional`
+    // `Optional` - The ID of the PaymentMethod to attach to the customer.
     string payment_method = 22;
 
-    // The customer’s phone number. `Optional`
+    // `Optional` - The customer’s phone number.
     string phone = 23;
 
-    // The customer’s payment sources, if any. This is only a reference to existing sources.  Will not trigger the creation of a source. `Optional`
+    // `Optional` - The customer’s payment sources, if any. This is only a reference to existing sources.  Will not trigger the creation of a source.
     Source source = 24;
 }
 
 message CreateCustomerResponse {
 
-    // The customer created. `OutputOnly`
+    // `OutputOnly` - The customer created.
     Customer customer = 1;
 }
   
 //
 message GetCustomerRequest {
 
-    // The id of the customr to retrieve. `Required`
+    // `Required` - The id of the customr to retrieve.
     string id = 1;
 }
 
 //
 message GetCustomerResponse {
 
-    // The customer with the provided ID. `OutputOnly`
+    // `OutputOnly` - The customer with the provided ID.
     Customer customer = 1;
 }
 
@@ -131,50 +131,50 @@ message ListCustomerRequest {
 // Response message for `Billing.ListCustomers`.
 message ListCustomerResponse {
 
-    // The list of available Customers. - `OutputOnly`
+    // `OutputOnly` - The list of available Customers.
     repeated Customer Customers = 1;
 }
 
 //
 message UpdateCustomerRequest {
 
-    // The ID of the customer to update
+    // `Required` - The ID of the customer to update
     string id = 1;
 
-    // The customer’s address. `Optional`
+    // `Optional` - The customer’s address.
     Address address = 17;
 
-    // An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard. `Optional`
+    // `Optional` - An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
     string description = 18;
 
-    // Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters. `Optional`
+    // `Optional` - Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters.
     string email = 19;
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+    // `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata.
     map<string, string> metadata = 20;
 
-    // The customer’s full name or business name. `Optional`
+    // `Optional` - The customer’s full name or business name.
     string name = 21;
 
-    // The customer’s phone number. `Optional`
+    // `Optional` - The customer’s phone number.
     string phone = 22;
 
-    // The default payment source. `Optional`
+    // `Optional` - The default payment source.
     string defaultSource = 9;
 }
 
 message UpdateCustomerResponse {
-    // The updated customer. `OutputOnly`
+    // `OutputOnly` - The updated customer.
     Customer customer = 1;
 }
 
 message DeleteCustomerRequest {
 
-    // The id of the customer to delete. `Required`
+    // `Required` - The id of the customer to delete.
     string id = 1;
 }
 
 message DeleteCustomerResponse {
-    // The deleted customer. `OutputOnly`
+    // `OutputOnly` - The deleted customer.
     Customer customer = 1;
 }

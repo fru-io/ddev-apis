@@ -73,7 +73,7 @@
     - [UpdateSubscriptionRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateSubscriptionRequest.MetadataEntry)
     - [UpdateSubscriptionResponse](#ddev.billing.v1alpha1.UpdateSubscriptionResponse)
   
-    - [State](#ddev.billing.v1alpha1.State)
+    - [SubscriptionState](#ddev.billing.v1alpha1.SubscriptionState)
   
 - [live/billing/v1alpha1/product.proto](#live/billing/v1alpha1/product.proto)
     - [CreateProductRequest](#ddev.billing.v1alpha1.CreateProductRequest)
@@ -113,12 +113,12 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| line1 | [string](#string) |  | Address line 1 (e.g., street, PO Box, or company name). `Required` |
-| City | [string](#string) |  | City, district, suburb, town, or village. `Optional` |
-| country | [string](#string) |  | Two-letter country code (ISO 3166-1 alpha-2). `Optional` |
-| line2 | [string](#string) |  | Address line 2 (e.g., apartment, suite, unit, or building). `Optional` |
-| postal_code | [string](#string) |  | ZIP or postal code. `Optional` |
-| state | [string](#string) |  | State, county, province, or region. `Optional` |
+| line1 | [string](#string) |  | `Required` - Address line 1 (e.g., street, PO Box, or company name). |
+| City | [string](#string) |  | `Optional` - City, district, suburb, town, or village. |
+| country | [string](#string) |  | `Optional` - Two-letter country code (ISO 3166-1 alpha-2). |
+| line2 | [string](#string) |  | `Optional` - Address line 2 (e.g., apartment, suite, unit, or building). |
+| postal_code | [string](#string) |  | `Optional` - ZIP or postal code. |
+| state | [string](#string) |  | `Optional` - State, county, province, or region. |
 
 
 
@@ -133,14 +133,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| address | [Address](#ddev.billing.v1alpha1.Address) |  | The customer’s address. `Optional` |
-| description | [string](#string) |  | An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard. `Optional` |
-| email | [string](#string) |  | Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters. `Optional` |
-| metadata | [CreateCustomerRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateCustomerRequest.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
-| name | [string](#string) |  | The customer’s full name or business name. `Optional` |
-| payment_method | [string](#string) |  | The ID of the PaymentMethod to attach to the customer. `Optional` |
-| phone | [string](#string) |  | The customer’s phone number. `Optional` |
-| source | [Source](#ddev.billing.v1alpha1.Source) |  | The customer’s payment sources, if any. This is only a reference to existing sources. Will not trigger the creation of a source. `Optional` |
+| address | [Address](#ddev.billing.v1alpha1.Address) |  | `Optional` - The customer’s address. |
+| description | [string](#string) |  | `Optional` - An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard. |
+| email | [string](#string) |  | `Optional` - Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters. |
+| metadata | [CreateCustomerRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateCustomerRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| name | [string](#string) |  | `Optional` - The customer’s full name or business name. |
+| payment_method | [string](#string) |  | `Optional` - The ID of the PaymentMethod to attach to the customer. |
+| phone | [string](#string) |  | `Optional` - The customer’s phone number. |
+| source | [Source](#ddev.billing.v1alpha1.Source) |  | `Optional` - The customer’s payment sources, if any. This is only a reference to existing sources. Will not trigger the creation of a source. |
 
 
 
@@ -171,7 +171,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| customer | [Customer](#ddev.billing.v1alpha1.Customer) |  | The customer created. `OutputOnly` |
+| customer | [Customer](#ddev.billing.v1alpha1.Customer) |  | `OutputOnly` - The customer created. |
 
 
 
@@ -186,14 +186,14 @@ A customer on ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | The ID of the customer. `OutputOnly` |
-| name | [string](#string) |  | The name of the customer. `OutputOnly` |
-| description | [string](#string) |  | A description for this customer. `OutputOnly` |
-| email | [string](#string) |  | The primary email address for this customer. `OutputOnly` |
-| address | [Address](#ddev.billing.v1alpha1.Address) |  | Address associated with thiis customer. `OutputOnly` |
-| metadata | [Customer.MetadataEntry](#ddev.billing.v1alpha1.Customer.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. `OutputOnly` |
-| phone | [string](#string) |  | The customer’s phone number. `OutputOnly` |
-| defaultSource | [string](#string) |  | The default payment source. `OutputOnly` |
+| id | [string](#string) |  | `OutputOnly` - The ID of the customer. |
+| name | [string](#string) |  | `OutputOnly` - The name of the customer. |
+| description | [string](#string) |  | `OutputOnly` - A description for this customer. |
+| email | [string](#string) |  | `OutputOnly` - The primary email address for this customer. |
+| address | [Address](#ddev.billing.v1alpha1.Address) |  | `OutputOnly` - Address associated with thiis customer. |
+| metadata | [Customer.MetadataEntry](#ddev.billing.v1alpha1.Customer.MetadataEntry) | repeated | `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. |
+| phone | [string](#string) |  | `OutputOnly` - The customer’s phone number. |
+| defaultSource | [string](#string) |  | `OutputOnly` - The default payment source. |
 
 
 
@@ -224,7 +224,7 @@ A customer on ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | The id of the customer to delete. `Required` |
+| id | [string](#string) |  | `Required` - The id of the customer to delete. |
 
 
 
@@ -239,7 +239,7 @@ A customer on ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| customer | [Customer](#ddev.billing.v1alpha1.Customer) |  | The deleted customer. `OutputOnly` |
+| customer | [Customer](#ddev.billing.v1alpha1.Customer) |  | `OutputOnly` - The deleted customer. |
 
 
 
@@ -254,7 +254,7 @@ A customer on ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | The id of the customr to retrieve. `Required` |
+| id | [string](#string) |  | `Required` - The id of the customr to retrieve. |
 
 
 
@@ -269,7 +269,7 @@ A customer on ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| customer | [Customer](#ddev.billing.v1alpha1.Customer) |  | The customer with the provided ID. `OutputOnly` |
+| customer | [Customer](#ddev.billing.v1alpha1.Customer) |  | `OutputOnly` - The customer with the provided ID. |
 
 
 
@@ -294,7 +294,7 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| Customers | [Customer](#ddev.billing.v1alpha1.Customer) | repeated | The list of available Customers. - `OutputOnly` |
+| Customers | [Customer](#ddev.billing.v1alpha1.Customer) | repeated | `OutputOnly` - The list of available Customers. |
 
 
 
@@ -309,7 +309,7 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| token | [string](#string) |  | Unique identifier for the object. `Required` |
+| token | [string](#string) |  | `Required` - Unique identifier for the object. |
 
 
 
@@ -324,14 +324,14 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | The ID of the customer to update |
-| address | [Address](#ddev.billing.v1alpha1.Address) |  | The customer’s address. `Optional` |
-| description | [string](#string) |  | An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard. `Optional` |
-| email | [string](#string) |  | Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters. `Optional` |
-| metadata | [UpdateCustomerRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateCustomerRequest.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
-| name | [string](#string) |  | The customer’s full name or business name. `Optional` |
-| phone | [string](#string) |  | The customer’s phone number. `Optional` |
-| defaultSource | [string](#string) |  | The default payment source. `Optional` |
+| id | [string](#string) |  | `Required` - The ID of the customer to update |
+| address | [Address](#ddev.billing.v1alpha1.Address) |  | `Optional` - The customer’s address. |
+| description | [string](#string) |  | `Optional` - An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard. |
+| email | [string](#string) |  | `Optional` - Customer’s email address. It’s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to 512 characters. |
+| metadata | [UpdateCustomerRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateCustomerRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| name | [string](#string) |  | `Optional` - The customer’s full name or business name. |
+| phone | [string](#string) |  | `Optional` - The customer’s phone number. |
+| defaultSource | [string](#string) |  | `Optional` - The default payment source. |
 
 
 
@@ -362,7 +362,7 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| customer | [Customer](#ddev.billing.v1alpha1.Customer) |  | The updated customer. `OutputOnly` |
+| customer | [Customer](#ddev.billing.v1alpha1.Customer) |  | `OutputOnly` - The updated customer. |
 
 
 
@@ -393,14 +393,14 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| amount | [uint32](#uint32) |  | A positive integer in cents (or 0 for a free plan) representing how much to charge on a recurring basis. `Required for PER_UNIT plans only` |
-| currency | [Currency](#ddev.billing.v1alpha1.Currency) |  | The currency for this plan. `Required` |
-| interval | [Interval](#ddev.billing.v1alpha1.Interval) |  | The billing period frequency. `Required` |
-| product | [string](#string) |  | The product whose pricing the created plan will represent. This can either be the ID of an existing product, or a dictionary containing fields used to create a service product. `Required` |
-| name | [string](#string) |  | A unique name for this plan. `Required` |
-| active | [bool](#bool) |  | Whether the plan is currently available for new subscriptions. Defaults to true. `Optional` |
-| metadata | [CreatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.CreatePlanRequest.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
-| nickname | [string](#string) |  | A brief description of the plan, hidden from customers. `Optional` |
+| amount | [uint32](#uint32) |  | `Required for PER_UNIT plans` - A positive integer in cents (or 0 for a free plan) representing how much to charge on a recurring basis. |
+| currency | [Currency](#ddev.billing.v1alpha1.Currency) |  | `Required` - The currency for this plan. |
+| interval | [Interval](#ddev.billing.v1alpha1.Interval) |  | `Required` - The billing period frequency. |
+| product | [string](#string) |  | `Required` - The product whose pricing the created plan will represent. This can either be the ID of an existing product, or a dictionary containing fields used to create a service product. |
+| name | [string](#string) |  | `Required` - A unique name for this plan. |
+| active | [bool](#bool) |  | `Optional` - Whether the plan is currently available for new subscriptions. Defaults to true. |
+| metadata | [CreatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.CreatePlanRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| nickname | [string](#string) |  | `Optional` - A brief description of the plan, hidden from customers. |
 
 
 
@@ -431,7 +431,7 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | The plan created. - `OutputOnly` |
+| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan created. |
 
 
 
@@ -446,7 +446,7 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the plan to delete. `Required` |
+| name | [string](#string) |  | `Required` - The name of the plan to delete. |
 
 
 
@@ -461,7 +461,7 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | The plan deleted. `OutputOnly` |
+| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan deleted. |
 
 
 
@@ -476,7 +476,7 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the plan. `Required` |
+| name | [string](#string) |  | `Required` - The name of the plan. |
 
 
 
@@ -491,7 +491,7 @@ Response message for `Billing.ListCustomers`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | The plan. `OutputOnly` |
+| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan. |
 
 
 
@@ -516,7 +516,7 @@ Response message for `Billing.ListPlans`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| plans | [Plan](#ddev.billing.v1alpha1.Plan) | repeated | The list of available plans. `OutputOnly` |
+| plans | [Plan](#ddev.billing.v1alpha1.Plan) | repeated | `OutputOnly` - The list of available plans. |
 
 
 
@@ -531,14 +531,14 @@ Response message for `Billing.ListPlans`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | Whether the plan can be used for new purchases. - `OutputOnly` |
-| active | [bool](#bool) |  | Whether the plan can be used for new purchases. - `OutputOnly` |
-| amount | [int64](#int64) |  | positive integer or zero. - `OutputOnly` |
-| currency | [string](#string) |  | Three-letter ISO currency code, in lowercase. Must be a supported currency. - `OutputOnly` |
-| interval | [string](#string) |  | The frequency at which a subscription is billed. One of day, week, month or year. - `OutputOnly` |
-| metadata | [Plan.MetadataEntry](#ddev.billing.v1alpha1.Plan.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. - `OutputOnly` |
-| nickname | [string](#string) |  | A brief description of the plan, hidden from customers - `OutputOnly` |
-| product | [string](#string) |  | The Product whose pricing this plan determines. - `OutputOnly` |
+| id | [string](#string) |  | `OutputOnly` - Whether the plan can be used for new purchases. |
+| active | [bool](#bool) |  | `OutputOnly` - Whether the plan can be used for new purchases. |
+| amount | [int64](#int64) |  | `OutputOnly` - Positive integer or zero. |
+| currency | [string](#string) |  | `OutputOnly` - Three-letter ISO currency code, in lowercase. Must be a supported currency. |
+| interval | [string](#string) |  | `OutputOnly` - The frequency at which a subscription is billed. One of day, week, month or year. |
+| metadata | [Plan.MetadataEntry](#ddev.billing.v1alpha1.Plan.MetadataEntry) | repeated | `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. |
+| nickname | [string](#string) |  | `OutputOnly` - A brief description of the plan, hidden from customers. |
+| product | [string](#string) |  | `OutputOnly` - The Product whose pricing this plan determines. |
 
 
 
@@ -569,11 +569,11 @@ Response message for `Billing.ListPlans`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the plan. `Required` |
-| active | [bool](#bool) |  | Whether the plan is currently available for new subscriptions. `Optional` |
-| metadata | [UpdatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdatePlanRequest.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
-| nickname | [string](#string) |  | A brief description of the plan, hidden from customers. `Optional` |
-| product | [string](#string) |  | The product the plan belongs to. Note that after updating, statement descriptors and line items of the plan in active subscriptions will be affected. `Optional` |
+| name | [string](#string) |  | `Required` - The name of the plan. |
+| active | [bool](#bool) |  | `Optional` - Whether the plan is currently available for new subscriptions. |
+| metadata | [UpdatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdatePlanRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| nickname | [string](#string) |  | `Optional` - A brief description of the plan, hidden from customers. |
+| product | [string](#string) |  | `Optional` - The product the plan belongs to. Note that after updating, statement descriptors and line items of the plan in active subscriptions will be affected. |
 
 
 
@@ -604,7 +604,7 @@ Response message for `Billing.ListPlans`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | The updated plan. `OutputOnly` |
+| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The updated plan. |
 
 
 
@@ -636,14 +636,14 @@ Response message for `Billing.ListPlans`.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | Unique identifier for the object. |
-| active | [bool](#bool) |  | Whether the price can be used for new purchases. `Optional` |
-| currency | [Currency](#ddev.billing.v1alpha1.Currency) |  | The ISO Currency. `Optional` |
-| metadata | [Price.MetadataEntry](#ddev.billing.v1alpha1.Price.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. `Optional` |
-| nickname | [string](#string) |  | A brief description of the plan, hidden from customers. `Optional` |
-| product | [string](#string) |  | The ID of the product this price is associated with. `Optional` |
-| recurring | [Recurring](#ddev.billing.v1alpha1.Recurring) |  | The recurring components of a price such as interval and usage_type. `Optional` |
-| type | [PriceType](#ddev.billing.v1alpha1.PriceType) |  | One of one_time or recurring depending on whether the price is for a one-time purchase or a recurring (subscription) purchase. `Optional` |
-| amount | [int64](#int64) |  | The unit amount in cents to be charged, represented as a whole integer if possible. `Optional` |
+| active | [bool](#bool) |  | `Optional` - Whether the price can be used for new purchases. |
+| currency | [Currency](#ddev.billing.v1alpha1.Currency) |  | `Optional` - The ISO Currency. |
+| metadata | [Price.MetadataEntry](#ddev.billing.v1alpha1.Price.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. |
+| nickname | [string](#string) |  | `Optional` - A brief description of the plan, hidden from customers. |
+| product | [string](#string) |  | `Optional` - The ID of the product this price is associated with. |
+| recurring | [Recurring](#ddev.billing.v1alpha1.Recurring) |  | `Optional` - The recurring components of a price such as interval and usage_type. |
+| type | [PriceType](#ddev.billing.v1alpha1.PriceType) |  | `Optional` - One of one_time or recurring depending on whether the price is for a one-time purchase or a recurring (subscription) purchase. |
+| amount | [int64](#int64) |  | `Optional` - The unit amount in cents to be charged, represented as a whole integer if possible. |
 
 
 
@@ -674,12 +674,12 @@ Response message for `Billing.ListPlans`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | Unique identifier for the object. `OutputOnly` |
-| subscription | [string](#string) |  | The subscription this subscription_item belongs to. `Required` |
-| metadata | [SubscriptionItem.MetadataEntry](#ddev.billing.v1alpha1.SubscriptionItem.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. `Optional` |
-| plan | [string](#string) |  | Hash describing the plan the customer is subscribed to. `Optional` |
-| price | [Price](#ddev.billing.v1alpha1.Price) |  | The price the customer is subscribed to. `Optional` |
-| quantity | [uint32](#uint32) |  | The quantity of the plan to which the customer should be subscribed. `Optional` |
+| id | [string](#string) |  | `Required` -Unique identifier for the object. |
+| subscription | [string](#string) |  | `Required` -The subscription this subscription_item belongs to. |
+| metadata | [SubscriptionItem.MetadataEntry](#ddev.billing.v1alpha1.SubscriptionItem.MetadataEntry) | repeated | `Optional` -Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. |
+| plan | [string](#string) |  | `Optional` - Hash describing the plan the customer is subscribed to. |
+| price | [Price](#ddev.billing.v1alpha1.Price) |  | `Optional` - The price the customer is subscribed to. |
+| quantity | [uint32](#uint32) |  | `Optional` - The quantity of the plan to which the customer should be subscribed. |
 
 
 
@@ -738,8 +738,7 @@ Response message for `Billing.ListPlans`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Workspace Name - Required |
-| id | [string](#string) |  | Workspace ID - OutputOnly |
+| name | [string](#string) |  | `Required` - Workspace Name. |
 
 
 
@@ -770,10 +769,10 @@ Response message for `Billing.ListPlans`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| aggregate_usage | [AgggregateUsage](#ddev.billing.v1alpha1.AgggregateUsage) |  | Specifies a usage aggregation strategy for prices of usage_type=metered. Allowed values are sum for summing up all usage during a period, last_during_period for using the last usage record reported within a period, last_ever for using the last usage record ever (across period bounds) or max which uses the usage record with the maximum reported usage during a period. Defaults to sum. `Optional` |
-| interval | [Interval](#ddev.billing.v1alpha1.Interval) |  | The frequency at which a subscription is billed. One of day, week, month or year. `Optional` |
-| interval_count | [uint32](#uint32) |  | The number of intervals (specified in the interval attribute) between subscription billings. For example, interval=month and interval_count=3 bills every 3 months. `Optional` |
-| usage_type | [UsageType](#ddev.billing.v1alpha1.UsageType) |  | Configures how the quantity per period should be determined. Can be either metered or licensed. licensed automatically bills the quantity set when adding it to a subscription. metered aggregates the total usage based on usage records. Defaults to licensed. `Optional` |
+| aggregate_usage | [AgggregateUsage](#ddev.billing.v1alpha1.AgggregateUsage) |  | `Optional` - Specifies a usage aggregation strategy for prices of usage_type=metered. Allowed values are sum for summing up all usage during a period, last_during_period for using the last usage record reported within a period, last_ever for using the last usage record ever (across period bounds) or max which uses the usage record with the maximum reported usage during a period. Defaults to sum. |
+| interval | [Interval](#ddev.billing.v1alpha1.Interval) |  | `Optional` - The frequency at which a subscription is billed. One of day, week, month or year. |
+| interval_count | [uint32](#uint32) |  | `Optional` - The number of intervals (specified in the interval attribute) between subscription billings. For example, interval=month and interval_count=3 bills every 3 months. |
+| usage_type | [UsageType](#ddev.billing.v1alpha1.UsageType) |  | `Optional` - Configures how the quantity per period should be determined. Can be either metered or licensed. licensed automatically bills the quantity set when adding it to a subscription. metered aggregates the total usage based on usage records. Defaults to licensed. |
 
 
 
@@ -854,10 +853,10 @@ Supported currencies for ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | The id of the subscription to cancel. `Required` |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | The workspace which this subscription belongs. `Required` |
-| invoice_now | [bool](#bool) |  | Will generate a final invoice that invoices for any un-invoiced metered usage and new/pending proration invoice items. |
-| prorate | [bool](#bool) |  | Will generate a proration invoice item that credits remaining unused time until the subscription period end. |
+| id | [string](#string) |  | `Required` - The id of the subscription to cancel. |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace which this subscription belongs. |
+| invoice_now | [bool](#bool) |  | `Optional` - Will generate a final invoice that invoices for any un-invoiced metered usage and new/pending proration invoice items. |
+| prorate | [bool](#bool) |  | `Optional` - Will generate a proration invoice item that credits remaining unused time until the subscription period end. |
 
 
 
@@ -872,7 +871,7 @@ Supported currencies for ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | The cancelled subscription. `OutputOnly` |
+| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | `Optional` - The cancelled subscription. |
 
 
 
@@ -887,14 +886,14 @@ Supported currencies for ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| CustomerID | [string](#string) |  | The identifier of the customer to subscribe. `Required` |
-| items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | A list of up to 20 subscription items, each with an attached plan. `Required` |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | The workspace which this subscription belongs. `Required` |
-| cancel_at_period_end | [bool](#bool) |  | Boolean indicating whether this subscription should cancel at the end of the current period. `Optional` |
-| metadata | [CreateSubscriptionRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateSubscriptionRequest.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
-| trial_end | [int64](#int64) |  | Unix timestamp representing the end of the trial period the customer will get before being charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. If set, trial_end will override the default trial period of the plan the customer is being subscribed to. The special value now can be provided to end the customer’s trial immediately. Can be at most two years from billing_cycle_anchor. `Optional` |
-| trial_period_days | [int32](#int32) |  | Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. `Optional` |
-| default_source | [string](#string) |  | ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If not set, defaults to the customer’s default source. `Optional` |
+| CustomerID | [string](#string) |  | `Required` - The identifier of the customer to subscribe. |
+| items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | `Required` - A list of up to 20 subscription items, each with an attached plan. |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace which this subscription belongs. |
+| cancel_at_period_end | [bool](#bool) |  | `Optional` - Boolean indicating whether this subscription should cancel at the end of the current period. |
+| metadata | [CreateSubscriptionRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateSubscriptionRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| trial_end | [int64](#int64) |  | `Optional` - Unix timestamp representing the end of the trial period the customer will get before being charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. If set, trial_end will override the default trial period of the plan the customer is being subscribed to. The special value now can be provided to end the customer’s trial immediately. Can be at most two years from billing_cycle_anchor. |
+| trial_period_days | [int32](#int32) |  | `Optional` - Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. |
+| default_source | [string](#string) |  | `Optional` - ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If not set, defaults to the customer’s default source. |
 
 
 
@@ -925,7 +924,7 @@ Supported currencies for ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | The subscription created. - `Required` |
+| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | `Required` - The subscription created. |
 
 
 
@@ -940,8 +939,8 @@ Supported currencies for ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the subscription to delete. `Required` |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | The workspace which this subscription belongs. `Required` |
+| name | [string](#string) |  | `Required` - The name of the subscription to delete. |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace which this subscription belongs. |
 
 
 
@@ -956,7 +955,7 @@ Supported currencies for ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | The subscription deleted. `OutputOnly` |
+| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | `OutputOnly` - The subscription deleted. |
 
 
 
@@ -971,8 +970,8 @@ Supported currencies for ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the subscription. - `Required` |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | The workspace of the subscription. - `Required` |
+| name | [string](#string) |  | `Required` - The name of the subscription. |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace of the subscription. |
 
 
 
@@ -987,7 +986,7 @@ Supported currencies for ddev-live
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | The subscription matching this name - `OutputOnly` |
+| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | `OutputOnly` - The subscription matching this name. |
 
 
 
@@ -1002,7 +1001,7 @@ Request message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | The workspace under which to list all subscriptions - `Required` |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace under which to list all subscriptions. |
 
 
 
@@ -1017,7 +1016,7 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| subscriptions | [Subscription](#ddev.billing.v1alpha1.Subscription) | repeated | The subscriptions belonging to the customer account. - `OutputOnly` |
+| subscriptions | [Subscription](#ddev.billing.v1alpha1.Subscription) | repeated | `OutputOnly` - The subscriptions belonging to the customer account. |
 
 
 
@@ -1032,14 +1031,14 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Name of the subscription. `OutputOnly` |
-| id | [string](#string) |  | ID of the subscription. `OutputOnly` |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | The workspace the subscription belongs to. `OutputOnly` |
-| CurrentPeriodStart | [int64](#int64) |  | The UNIX timestamp for the billing period start. `OutputOnly` |
-| CurrentPeriodEnd | [int64](#int64) |  | The UNIX timestamp for the billing period end. `OutputOnly` |
-| Active | [bool](#bool) |  | If the subscription is currently active. `OutputOnly` |
-| items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | The subscription items this subscription shall contain. `OutputOnly` |
-| state | [State](#ddev.billing.v1alpha1.State) |  | Indicators about the state of the subscription internally to the platform. `OutputOnly` |
+| name | [string](#string) |  | `OutputOnly` - Name of the subscription. |
+| id | [string](#string) |  | `OutputOnly` - ID of the subscription. |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `OutputOnly` - The workspace the subscription belongs to. |
+| CurrentPeriodStart | [int64](#int64) |  | `OutputOnly` - The UNIX timestamp for the billing period start. |
+| CurrentPeriodEnd | [int64](#int64) |  | `OutputOnly` - The UNIX timestamp for the billing period end. |
+| Active | [bool](#bool) |  | `OutputOnly` - If the subscription is currently active. |
+| items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | `OutputOnly` - The subscription items this subscription shall contain. |
+| state | [SubscriptionState](#ddev.billing.v1alpha1.SubscriptionState) |  | `OutputOnly` - Indicators about the state of the object internally to the platform. |
 
 
 
@@ -1054,12 +1053,12 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | The id of the subscription. `Required` |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | The workspace which this subscription belongs. `Required` |
-| cancel_at_period_end | [bool](#bool) |  | Boolean indicating whether this subscription should cancel at the end of the current period. `Optional` |
-| default_payment_method | [string](#string) |  | ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer’s invoice settings. `Optional` |
-| items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | List of subscription items, each with an attached plan. `Optional` |
-| metadata | [UpdateSubscriptionRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateSubscriptionRequest.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
+| id | [string](#string) |  | `Required` - The id of the subscription. |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace which this subscription belongs. |
+| cancel_at_period_end | [bool](#bool) |  | `Optional` - Boolean indicating whether this subscription should cancel at the end of the current period. |
+| default_payment_method | [string](#string) |  | `Optional` - ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer’s invoice settings. |
+| items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | `Optional` - List of subscription items, each with an attached plan. |
+| metadata | [UpdateSubscriptionRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateSubscriptionRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
 
 
 
@@ -1090,7 +1089,7 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | The subscription updated. `OutputOnly` |
+| subscription | [Subscription](#ddev.billing.v1alpha1.Subscription) |  | `OutputOnly` - The subscription updated. |
 
 
 
@@ -1099,9 +1098,9 @@ Response message for `Billing.ListSubscriptions`.
  
 
 
-<a name="ddev.billing.v1alpha1.State"></a>
+<a name="ddev.billing.v1alpha1.SubscriptionState"></a>
 
-### State
+### SubscriptionState
 
 
 | Name | Number | Description |
@@ -1134,10 +1133,10 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. `Required` |
-| active | [bool](#bool) |  | Whether the product is currently available for purchase. Defaults to true. |
-| description | [string](#string) |  | The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. `Optional` |
-| metadata | [CreateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateProductRequest.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
+| name | [string](#string) |  | `Required` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
+| active | [bool](#bool) |  | `Optional` - Whether the product is currently available for purchase. Defaults to true. |
+| description | [string](#string) |  | `Optional` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. `Optional` |
+| metadata | [CreateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateProductRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
 
 
 
@@ -1168,7 +1167,7 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| product | [Product](#ddev.billing.v1alpha1.Product) |  | The product created. - `OutputOnly` |
+| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product created. |
 
 
 
@@ -1183,7 +1182,7 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the product to delete. - `Required` |
+| name | [string](#string) |  | `Required` - The name of the product to delete. |
 
 
 
@@ -1198,7 +1197,7 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| product | [Product](#ddev.billing.v1alpha1.Product) |  | The product deleted. - `OutputOnly` |
+| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product deleted. |
 
 
 
@@ -1213,7 +1212,7 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the product. - `Required` |
+| name | [string](#string) |  | `Required` - The name of the product. |
 
 
 
@@ -1228,7 +1227,7 @@ Response message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| product | [Product](#ddev.billing.v1alpha1.Product) |  | The product. - `OutputOnly` |
+| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product. |
 
 
 
@@ -1253,7 +1252,7 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| products | [Product](#ddev.billing.v1alpha1.Product) | repeated | The list of available products. - `OutputOnly` |
+| products | [Product](#ddev.billing.v1alpha1.Product) | repeated | `OutputOnly` - The list of available products. |
 
 
 
@@ -1268,11 +1267,11 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | An identifier will be randomly generated by Stripe. You can optionally override this ID, but the ID must be unique across all products in your Stripe account. - `OutputOnly` |
-| name | [string](#string) |  | The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. - `OutputOnly` |
-| active | [bool](#bool) |  | Whether the product is currently available for purchase. Defaults to true. = `OutputOnly` |
-| description | [string](#string) |  | The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. - `OutputOnly` |
-| metadata | [Product.MetadataEntry](#ddev.billing.v1alpha1.Product.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. - `OutputOnly` |
+| id | [string](#string) |  | `OutputOnly` - An identifier will be randomly generated by Stripe. You can optionally override this ID, but the ID must be unique across all products in your Stripe account. |
+| name | [string](#string) |  | `OutputOnly` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
+| active | [bool](#bool) |  | `OutputOnly` - Whether the product is currently available for purchase. Defaults to true. |
+| description | [string](#string) |  | `OutputOnly` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. |
+| metadata | [Product.MetadataEntry](#ddev.billing.v1alpha1.Product.MetadataEntry) | repeated | `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
 
 
 
@@ -1303,11 +1302,11 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | The name of the product. - `Required` |
-| active | [bool](#bool) |  | Whether the product is currently available for purchase. Defaults to true. `Optional` |
-| description | [string](#string) |  | The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. `Optional` |
-| metadata | [UpdateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry) | repeated | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
-| name | [string](#string) |  | The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. `Optional` |
+| id | [string](#string) |  | `Required` - The name of the product. |
+| active | [bool](#bool) |  | `Optional` - Whether the product is currently available for purchase. Defaults to true. |
+| description | [string](#string) |  | `Optional` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. |
+| metadata | [UpdateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| name | [string](#string) |  | `Optional` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
 
 
 
@@ -1338,7 +1337,7 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| product | [Product](#ddev.billing.v1alpha1.Product) |  | The updated product. - `OutputOnly` |
+| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The updated product. |
 
 
 

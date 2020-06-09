@@ -25,28 +25,28 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 message Plan {
 
-    // Whether the plan can be used for new purchases. - `OutputOnly`
+    // `OutputOnly` - Whether the plan can be used for new purchases.
     string id = 1;
 
-    // Whether the plan can be used for new purchases. - `OutputOnly`
+    // `OutputOnly` - Whether the plan can be used for new purchases.
     bool active = 2;
 
-    // positive integer or zero. - `OutputOnly`
+    // `OutputOnly` - Positive integer or zero.
     int64 amount = 3;
 
-    // Three-letter ISO currency code, in lowercase. Must be a supported currency. - `OutputOnly`
+    // `OutputOnly` - Three-letter ISO currency code, in lowercase. Must be a supported currency.
     string currency = 4;
 
-    // The frequency at which a subscription is billed. One of day, week, month or year. - `OutputOnly`
+    // `OutputOnly` - The frequency at which a subscription is billed. One of day, week, month or year.
     string interval = 5;
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. - `OutputOnly`
+    // `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
     map<string, string>  metadata = 6;
 
-    // A brief description of the plan, hidden from customers - `OutputOnly`
+    // `OutputOnly` - A brief description of the plan, hidden from customers.
     string nickname = 7;
 
-    // The Product whose pricing this plan determines. - `OutputOnly`
+    // `OutputOnly` - The Product whose pricing this plan determines.
     string product = 8;
 
 }
@@ -55,46 +55,46 @@ message Plan {
 
 message CreatePlanRequest {
 
-    // A positive integer in cents (or 0 for a free plan) representing how much to charge on a recurring basis. `Required for PER_UNIT plans only`
+    //  `Required for PER_UNIT plans` - A positive integer in cents (or 0 for a free plan) representing how much to charge on a recurring basis.
     uint32 amount = 1;
 
-    // The currency for this plan. `Required`
+    // `Required` - The currency for this plan.
     Currency currency = 2;
 
-    // The billing period frequency. `Required`
+    // `Required` - The billing period frequency.
     Interval interval = 3;
 
-    // The product whose pricing the created plan will represent. This can either be the ID of an existing product, or a dictionary containing fields used to create a service product. `Required`
+    // `Required` - The product whose pricing the created plan will represent. This can either be the ID of an existing product, or a dictionary containing fields used to create a service product.
     string product = 4;
     
-    // A unique name for this plan. `Required`
+    // `Required` - A unique name for this plan.
     string name = 5;
 
-    // Whether the plan is currently available for new subscriptions. Defaults to true. `Optional`
+    // `Optional` - Whether the plan is currently available for new subscriptions. Defaults to true.
     bool active = 17;
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+    // `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata.
     map<string, string> metadata = 18;
 
-    // A brief description of the plan, hidden from customers. `Optional`
+    // `Optional` - A brief description of the plan, hidden from customers.
     string nickname = 19;
 
 }
 
 message CreatePlanResponse {
-    // The plan created. - `OutputOnly`
+    // `OutputOnly` - The plan created.
     Plan plan = 1;
 }
   
 //
 message GetPlanRequest {
-    // The name of the plan. `Required`
+    // `Required` - The name of the plan.
     string name = 1;
 }
 
 //
 message GetPlanResponse {
-    // The plan. `OutputOnly`
+    // `OutputOnly` - The plan.
     Plan plan = 1;
 }
 
@@ -104,40 +104,40 @@ message ListPlanRequest {
 
 // Response message for `Billing.ListPlans`.
 message ListPlanResponse {
-    // The list of available plans. `OutputOnly`
+    // `OutputOnly` - The list of available plans.
     repeated Plan plans = 1;
 }
 
 //
 message UpdatePlanRequest {
-    // The name of the plan. `Required`
+    // `Required` - The name of the plan.
     string name = 1; 
 
-    // Whether the plan is currently available for new subscriptions. `Optional`
+    // `Optional` - Whether the plan is currently available for new subscriptions.
     bool active = 17;
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional`
+    // `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata.
     map<string, string> metadata = 18;
 
-    // A brief description of the plan, hidden from customers. `Optional`
+    // `Optional` - A brief description of the plan, hidden from customers.
     string nickname = 19;
 
-    // The product the plan belongs to. Note that after updating, statement descriptors and line items of the plan in active subscriptions will be affected. `Optional`
+    // `Optional` - The product the plan belongs to. Note that after updating, statement descriptors and line items of the plan in active subscriptions will be affected.
     string product = 20;
 
 }
 
 message UpdatePlanResponse {
-    // The updated plan. `OutputOnly`
+    // `OutputOnly` - The updated plan.
     Plan plan = 1;
 }
 
 message DeletePlanRequest {
-    // The name of the plan to delete. `Required`
+    // `Required` - The name of the plan to delete.
     string name = 1;
 }
 
 message DeletePlanResponse {
-    // The plan deleted. `OutputOnly`
+    // `OutputOnly` - The plan deleted.
     Plan plan = 1;
 }

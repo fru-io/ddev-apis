@@ -25,22 +25,22 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 message SubscriptionItem {
 
-    // Unique identifier for the object. `OutputOnly`
+    // `Required` -Unique identifier for the object.
     string id = 1;
 
-    // The subscription this subscription_item belongs to. `Required`
+    // `Required` -The subscription this subscription_item belongs to.
     string subscription = 2;
     
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. `Optional`
+    // `Optional` -Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
     map<string, string> metadata = 17;
 
-    // Hash describing the plan the customer is subscribed to. `Optional`
+    // `Optional` - Hash describing the plan the customer is subscribed to.
     string plan = 18;
     
-    // The price the customer is subscribed to. `Optional`
+    // `Optional` - The price the customer is subscribed to.
     Price price = 19;
     
-    // The quantity of the plan to which the customer should be subscribed. `Optional`
+    // `Optional` - The quantity of the plan to which the customer should be subscribed.
     uint32 quantity = 20;
     
 }
@@ -54,27 +54,27 @@ message Price {
     // Unique identifier for the object.
     string id = 1;
 
-    // Whether the price can be used for new purchases. `Optional`
+    // `Optional` - Whether the price can be used for new purchases.
     bool active = 17;
 
-    // The ISO Currency. `Optional`
+    // `Optional` - The ISO Currency.
     Currency currency = 18; 
 
-    // Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. `Optional`
+    // `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
     map<string, string> metadata = 19;
 
-    // A brief description of the plan, hidden from customers. `Optional`
+    // `Optional` - A brief description of the plan, hidden from customers.
     string nickname = 20;
 
-    // The ID of the product this price is associated with. `Optional`
+    // `Optional` - The ID of the product this price is associated with.
     string product = 21;
 
-    // The recurring components of a price such as interval and usage_type. `Optional`
+    //  `Optional` - The recurring components of a price such as interval and usage_type.
     Recurring recurring = 22;
 
-    // One of one_time or recurring depending on whether the price is for a one-time purchase or a recurring (subscription) purchase. `Optional`
+    // `Optional` - One of one_time or recurring depending on whether the price is for a one-time purchase or a recurring (subscription) purchase.
     PriceType type = 23;
 
-    // The unit amount in cents to be charged, represented as a whole integer if possible. `Optional`
+    // `Optional` - The unit amount in cents to be charged, represented as a whole integer if possible.
     int64 amount = 24;
 }

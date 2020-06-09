@@ -25,9 +25,9 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 message Workspace {
 
-    // Workspace Name - Required
+    // `Required` - Workspace Name.
     string name = 1;
 
-    // Workspace ID - OutputOnly
-    string id = 2;
+    // `OutputOnly` - Workspace ID.
+    // string id = 2;
 }
