@@ -1105,9 +1105,9 @@ Response message for `Billing.ListSubscriptions`.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| READY | 0 |  |
+| UNKOWN | 0 |  |
 | NOTREADY | 1 |  |
-| UNKOWN | 2 |  |
+| READY | 2 |  |
 
 
  

@@ -26,11 +26,11 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 
 enum SubscriptionState {
-  READY = 0;
+  UNKOWN = 0;
 
   NOTREADY = 1;
 
-  UNKOWN = 2;
+  READY = 2;
 } 
 
 message Subscription {
