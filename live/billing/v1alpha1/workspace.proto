@@ -31,3 +31,18 @@ message Workspace {
     // `OutputOnly` - Workspace ID.
     // string id = 2;
 }
+
+
+message ListWorkspaceRequest {
+    enum ListWorkspaceScope {
+        DEVELOPER = 0;
+        ADMIN = 1;
+    }
+    ListWorkspaceScope Scope = 1;
+}
+
+message ListWorkspaceResponse {
+    
+    // `OutputOnly` - A workspace for the current user
+    repeated Workspace workspaces = 1;
+}
