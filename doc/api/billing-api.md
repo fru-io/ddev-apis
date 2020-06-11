@@ -46,7 +46,11 @@
     - [PriceType](#ddev.billing.v1alpha1.PriceType)
   
 - [live/billing/v1alpha1/workspace.proto](#live/billing/v1alpha1/workspace.proto)
+    - [ListWorkspaceRequest](#ddev.billing.v1alpha1.ListWorkspaceRequest)
+    - [ListWorkspaceResponse](#ddev.billing.v1alpha1.ListWorkspaceResponse)
     - [Workspace](#ddev.billing.v1alpha1.Workspace)
+  
+    - [ListWorkspaceRequest.ListWorkspaceScope](#ddev.billing.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope)
   
 - [live/billing/v1alpha1/common.proto](#live/billing/v1alpha1/common.proto)
     - [Recurring](#ddev.billing.v1alpha1.Recurring)
@@ -730,6 +734,36 @@ Response message for `Billing.ListPlans`.
 
 
 
+<a name="ddev.billing.v1alpha1.ListWorkspaceRequest"></a>
+
+### ListWorkspaceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| Scope | [ListWorkspaceRequest.ListWorkspaceScope](#ddev.billing.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.ListWorkspaceResponse"></a>
+
+### ListWorkspaceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspaces | [Workspace](#ddev.billing.v1alpha1.Workspace) | repeated | `OutputOnly` - A workspace for the current user |
+
+
+
+
+
+
 <a name="ddev.billing.v1alpha1.Workspace"></a>
 
 ### Workspace
@@ -745,6 +779,18 @@ Response message for `Billing.ListPlans`.
 
 
  
+
+
+<a name="ddev.billing.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope"></a>
+
+### ListWorkspaceRequest.ListWorkspaceScope
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DEVELOPER | 0 |  |
+| ADMIN | 1 |  |
+
 
  
 
@@ -1393,6 +1439,7 @@ Response message for `Billing.ListProducts`.
 | ListPlan | [ListPlanRequest](#ddev.billing.v1alpha1.ListPlanRequest) | [ListPlanResponse](#ddev.billing.v1alpha1.ListPlanResponse) |  |
 | UpdatePlan | [UpdatePlanRequest](#ddev.billing.v1alpha1.UpdatePlanRequest) | [UpdatePlanResponse](#ddev.billing.v1alpha1.UpdatePlanResponse) |  |
 | DeletePlan | [DeletePlanRequest](#ddev.billing.v1alpha1.DeletePlanRequest) | [DeletePlanResponse](#ddev.billing.v1alpha1.DeletePlanResponse) |  |
+| ListWorkspaces | [ListWorkspaceRequest](#ddev.billing.v1alpha1.ListWorkspaceRequest) | [ListWorkspaceResponse](#ddev.billing.v1alpha1.ListWorkspaceResponse) | List workspaces will return a list of workspaces the user has authorization for |
 
  
 
