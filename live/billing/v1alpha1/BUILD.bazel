@@ -1,6 +1,6 @@
 proto_library(
     name = "common_proto",
-    src = [
+    srcs = [
         "common.proto",
     ],
     visibility = [
@@ -11,7 +11,7 @@ proto_library(
 
 proto_library(
     name = "customer_proto",
-    src = [
+    srcs = [
         "customer.proto",
     ],
     visibility = [
@@ -22,7 +22,7 @@ proto_library(
 
 proto_library(
     name = "plan_proto",
-    src = [
+    srcs = [
         "plan.proto",
     ],
     visibility = [
@@ -36,7 +36,7 @@ proto_library(
 
 proto_library(
     name = "product_proto",
-    src = [
+    srcs = [
         "product.proto",
     ],
     visibility = [
@@ -47,7 +47,7 @@ proto_library(
 
 proto_library(
     name = "service_proto",
-    src = [
+    srcs = [
         "service.proto",
     ],
     visibility = [
@@ -65,7 +65,7 @@ proto_library(
 
 proto_library(
     name = "subscription_proto",
-    src = [
+    srcs = [
         "subscription.proto",
     ],
     visibility = [
@@ -80,7 +80,7 @@ proto_library(
 
 proto_library(
     name = "subscriptionitem_proto",
-    src = [
+    srcs = [
         "subscriptionitem.proto",
     ],
     visibility = [
@@ -94,7 +94,7 @@ proto_library(
 
 proto_library(
     name = "workspace_proto",
-    src = [
+    srcs = [
         "workspace.proto",
     ],
     visibility = [
