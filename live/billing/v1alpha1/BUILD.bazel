@@ -13,4 +13,5 @@ proto_library(
     visibility = [
         "//visibility:public",
     ],
+    import_prefix = "live/billing/v1alpha1"
 )
