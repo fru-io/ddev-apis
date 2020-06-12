@@ -1,17 +1,104 @@
 proto_library(
-    name = "billing_grpc",
-    srcs = [
+    name = "common_proto",
+    src = [
         "common.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    import_prefix = "live/billing/v1alpha1",
+)
+
+proto_library(
+    name = "customer_proto",
+    src = [
         "customer.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    import_prefix = "live/billing/v1alpha1",
+)
+
+proto_library(
+    name = "plan_proto",
+    src = [
         "plan.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "common_proto",
+    ],
+    import_prefix = "live/billing/v1alpha1",
+)
+
+proto_library(
+    name = "product_proto",
+    src = [
         "product.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    import_prefix = "live/billing/v1alpha1",
+)
+
+proto_library(
+    name = "service_proto",
+    src = [
         "service.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "customer_proto",
+        "subscription_proto",
+        "plan_proto",
+        "product_proto",
+        "workspace_proto",
+    ],
+    import_prefix = "live/billing/v1alpha1",
+)
+
+proto_library(
+    name = "subscription_proto",
+    src = [
         "subscription.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "subscriptionitem_proto",
+        "workspace_proto",
+    ],
+    import_prefix = "live/billing/v1alpha1",
+)
+
+proto_library(
+    name = "subscriptionitem_proto",
+    src = [
         "subscriptionitem.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "common_proto",
+    ],
+    import_prefix = "live/billing/v1alpha1",
+)
+
+proto_library(
+    name = "workspace_proto",
+    src = [
         "workspace.proto",
     ],
     visibility = [
         "//visibility:public",
     ],
-    import_prefix = "live/billing/v1alpha1"
+    import_prefix = "live/billing/v1alpha1",
 )
