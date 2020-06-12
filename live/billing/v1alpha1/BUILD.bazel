@@ -1,23 +1,16 @@
 proto_library(
-    name = "subscription_proto",
+    name = "billing_grpc",
     srcs = [
-        "subscription.proto",
-    ],
-    visibility = [
-        "//visibility:public",
-    ],
-    
-)
-
-proto_library(
-    name = "service_grpc",
-    srcs = [
+        "common.proto",
+        "customer.proto",
+        "plan.proto",
+        "product.proto",
         "service.proto",
+        "subscription.proto",
+        "subscriptionitem.proto",
+        "workspace.proto",
     ],
     visibility = [
         "//visibility:public",
-    ],
-    deps = [
-        ":subscription_proto",
     ],
 )
