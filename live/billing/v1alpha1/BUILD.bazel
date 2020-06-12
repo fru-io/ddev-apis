@@ -6,7 +6,7 @@ proto_library(
     visibility = [
         "//visibility:public",
     ],
-    import_prefix = "live/billing/v1alpha1",
+    strip_import_prefix = "live/billing/v1alpha1/apis",
 )
 
 proto_library(
@@ -17,7 +17,7 @@ proto_library(
     visibility = [
         "//visibility:public",
     ],
-    import_prefix = "live/billing/v1alpha1",
+    strip_import_prefix = "live/billing/v1alpha1/apis",
 )
 
 proto_library(
@@ -31,7 +31,7 @@ proto_library(
     deps = [
         ":common_proto",
     ],
-    import_prefix = "live/billing/v1alpha1",
+    strip_import_prefix = "live/billing/v1alpha1/apis",
 )
 
 proto_library(
@@ -42,7 +42,7 @@ proto_library(
     visibility = [
         "//visibility:public",
     ],
-    import_prefix = "live/billing/v1alpha1",
+    strip_import_prefix = "live/billing/v1alpha1/apis",
 )
 
 proto_library(
@@ -60,7 +60,7 @@ proto_library(
         ":product_proto",
         ":workspace_proto",
     ],
-    import_prefix = "live/billing/v1alpha1",
+    strip_import_prefix = "live/billing/v1alpha1/apis",
 )
 
 proto_library(
@@ -75,7 +75,7 @@ proto_library(
         ":subscriptionitem_proto",
         ":workspace_proto",
     ],
-    import_prefix = "live/billing/v1alpha1",
+    strip_import_prefix = "live/billing/v1alpha1/apis",
 )
 
 proto_library(
@@ -89,7 +89,7 @@ proto_library(
     deps = [
         ":common_proto",
     ],
-    import_prefix = "live/billing/v1alpha1",
+    strip_import_prefix = "live/billing/v1alpha1/apis",
 )
 
 proto_library(
@@ -100,5 +100,5 @@ proto_library(
     visibility = [
         "//visibility:public",
     ],
-    import_prefix = "live/billing/v1alpha1",
+    strip_import_prefix = "live/billing/v1alpha1/apis",
 )
