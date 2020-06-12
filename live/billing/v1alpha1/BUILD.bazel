@@ -29,7 +29,7 @@ proto_library(
         "//visibility:public",
     ],
     deps = [
-        "common_proto",
+        ":common_proto",
     ],
     import_prefix = "live/billing/v1alpha1",
 )
@@ -54,11 +54,11 @@ proto_library(
         "//visibility:public",
     ],
     deps = [
-        "customer_proto",
-        "subscription_proto",
-        "plan_proto",
-        "product_proto",
-        "workspace_proto",
+        ":customer_proto",
+        ":subscription_proto",
+        ":plan_proto",
+        ":product_proto",
+        ":workspace_proto",
     ],
     import_prefix = "live/billing/v1alpha1",
 )
@@ -72,8 +72,8 @@ proto_library(
         "//visibility:public",
     ],
     deps = [
-        "subscriptionitem_proto",
-        "workspace_proto",
+        ":subscriptionitem_proto",
+        ":workspace_proto",
     ],
     import_prefix = "live/billing/v1alpha1",
 )
@@ -87,7 +87,7 @@ proto_library(
         "//visibility:public",
     ],
     deps = [
-        "common_proto",
+        ":common_proto",
     ],
     import_prefix = "live/billing/v1alpha1",
 )
