@@ -1,3 +1,5 @@
+package(default_visibility = ["//visibility:public"])
+
 proto_library(
     name = "common_proto",
     srcs = [
@@ -102,3 +104,5 @@ proto_library(
     ],
     strip_import_prefix = "live/billing/v1alpha1/apis",
 )
+
+exports_files(["live/billing/v1alpha1/workspace.proto"])
