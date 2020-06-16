@@ -1,4 +1,4 @@
- workspace(
+workspace(
     name = "com_ddev_apis",
     # This tells Bazel that the node_modules directory is special and
     # is managed by the package manager.
