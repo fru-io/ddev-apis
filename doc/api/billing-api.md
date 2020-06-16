@@ -21,21 +21,21 @@
     - [UpdateCustomerRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateCustomerRequest.MetadataEntry)
     - [UpdateCustomerResponse](#ddev.billing.v1alpha1.UpdateCustomerResponse)
   
-- [live/billing/v1alpha1/plan.proto](#live/billing/v1alpha1/plan.proto)
-    - [CreatePlanRequest](#ddev.billing.v1alpha1.CreatePlanRequest)
-    - [CreatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.CreatePlanRequest.MetadataEntry)
-    - [CreatePlanResponse](#ddev.billing.v1alpha1.CreatePlanResponse)
-    - [DeletePlanRequest](#ddev.billing.v1alpha1.DeletePlanRequest)
-    - [DeletePlanResponse](#ddev.billing.v1alpha1.DeletePlanResponse)
-    - [GetPlanRequest](#ddev.billing.v1alpha1.GetPlanRequest)
-    - [GetPlanResponse](#ddev.billing.v1alpha1.GetPlanResponse)
-    - [ListPlanRequest](#ddev.billing.v1alpha1.ListPlanRequest)
-    - [ListPlanResponse](#ddev.billing.v1alpha1.ListPlanResponse)
-    - [Plan](#ddev.billing.v1alpha1.Plan)
-    - [Plan.MetadataEntry](#ddev.billing.v1alpha1.Plan.MetadataEntry)
-    - [UpdatePlanRequest](#ddev.billing.v1alpha1.UpdatePlanRequest)
-    - [UpdatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdatePlanRequest.MetadataEntry)
-    - [UpdatePlanResponse](#ddev.billing.v1alpha1.UpdatePlanResponse)
+- [live/billing/v1alpha1/product.proto](#live/billing/v1alpha1/product.proto)
+    - [CreateProductRequest](#ddev.billing.v1alpha1.CreateProductRequest)
+    - [CreateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateProductRequest.MetadataEntry)
+    - [CreateProductResponse](#ddev.billing.v1alpha1.CreateProductResponse)
+    - [DeleteProductRequest](#ddev.billing.v1alpha1.DeleteProductRequest)
+    - [DeleteProductResponse](#ddev.billing.v1alpha1.DeleteProductResponse)
+    - [GetProductRequest](#ddev.billing.v1alpha1.GetProductRequest)
+    - [GetProductResponse](#ddev.billing.v1alpha1.GetProductResponse)
+    - [ListProductRequest](#ddev.billing.v1alpha1.ListProductRequest)
+    - [ListProductResponse](#ddev.billing.v1alpha1.ListProductResponse)
+    - [Product](#ddev.billing.v1alpha1.Product)
+    - [Product.MetadataEntry](#ddev.billing.v1alpha1.Product.MetadataEntry)
+    - [UpdateProductRequest](#ddev.billing.v1alpha1.UpdateProductRequest)
+    - [UpdateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry)
+    - [UpdateProductResponse](#ddev.billing.v1alpha1.UpdateProductResponse)
   
 - [live/billing/v1alpha1/subscriptionitem.proto](#live/billing/v1alpha1/subscriptionitem.proto)
     - [Price](#ddev.billing.v1alpha1.Price)
@@ -45,7 +45,14 @@
   
     - [PriceType](#ddev.billing.v1alpha1.PriceType)
   
+- [live/billing/v1alpha1/service.proto](#live/billing/v1alpha1/service.proto)
+    - [Billing](#ddev.billing.v1alpha1.Billing)
+  
 - [live/billing/v1alpha1/workspace.proto](#live/billing/v1alpha1/workspace.proto)
+    - [AddWorkspaceAdminRequest](#ddev.billing.v1alpha1.AddWorkspaceAdminRequest)
+    - [AddWorkspaceAdminResponse](#ddev.billing.v1alpha1.AddWorkspaceAdminResponse)
+    - [AddWorkspaceDeveloperRequest](#ddev.billing.v1alpha1.AddWorkspaceDeveloperRequest)
+    - [AddWorkspaceDeveloperResponse](#ddev.billing.v1alpha1.AddWorkspaceDeveloperResponse)
     - [ListWorkspaceRequest](#ddev.billing.v1alpha1.ListWorkspaceRequest)
     - [ListWorkspaceResponse](#ddev.billing.v1alpha1.ListWorkspaceResponse)
     - [Workspace](#ddev.billing.v1alpha1.Workspace)
@@ -79,24 +86,21 @@
   
     - [SubscriptionState](#ddev.billing.v1alpha1.SubscriptionState)
   
-- [live/billing/v1alpha1/product.proto](#live/billing/v1alpha1/product.proto)
-    - [CreateProductRequest](#ddev.billing.v1alpha1.CreateProductRequest)
-    - [CreateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateProductRequest.MetadataEntry)
-    - [CreateProductResponse](#ddev.billing.v1alpha1.CreateProductResponse)
-    - [DeleteProductRequest](#ddev.billing.v1alpha1.DeleteProductRequest)
-    - [DeleteProductResponse](#ddev.billing.v1alpha1.DeleteProductResponse)
-    - [GetProductRequest](#ddev.billing.v1alpha1.GetProductRequest)
-    - [GetProductResponse](#ddev.billing.v1alpha1.GetProductResponse)
-    - [ListProductRequest](#ddev.billing.v1alpha1.ListProductRequest)
-    - [ListProductResponse](#ddev.billing.v1alpha1.ListProductResponse)
-    - [Product](#ddev.billing.v1alpha1.Product)
-    - [Product.MetadataEntry](#ddev.billing.v1alpha1.Product.MetadataEntry)
-    - [UpdateProductRequest](#ddev.billing.v1alpha1.UpdateProductRequest)
-    - [UpdateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry)
-    - [UpdateProductResponse](#ddev.billing.v1alpha1.UpdateProductResponse)
-  
-- [live/billing/v1alpha1/service.proto](#live/billing/v1alpha1/service.proto)
-    - [Billing](#ddev.billing.v1alpha1.Billing)
+- [live/billing/v1alpha1/plan.proto](#live/billing/v1alpha1/plan.proto)
+    - [CreatePlanRequest](#ddev.billing.v1alpha1.CreatePlanRequest)
+    - [CreatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.CreatePlanRequest.MetadataEntry)
+    - [CreatePlanResponse](#ddev.billing.v1alpha1.CreatePlanResponse)
+    - [DeletePlanRequest](#ddev.billing.v1alpha1.DeletePlanRequest)
+    - [DeletePlanResponse](#ddev.billing.v1alpha1.DeletePlanResponse)
+    - [GetPlanRequest](#ddev.billing.v1alpha1.GetPlanRequest)
+    - [GetPlanResponse](#ddev.billing.v1alpha1.GetPlanResponse)
+    - [ListPlanRequest](#ddev.billing.v1alpha1.ListPlanRequest)
+    - [ListPlanResponse](#ddev.billing.v1alpha1.ListPlanResponse)
+    - [Plan](#ddev.billing.v1alpha1.Plan)
+    - [Plan.MetadataEntry](#ddev.billing.v1alpha1.Plan.MetadataEntry)
+    - [UpdatePlanRequest](#ddev.billing.v1alpha1.UpdatePlanRequest)
+    - [UpdatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdatePlanRequest.MetadataEntry)
+    - [UpdatePlanResponse](#ddev.billing.v1alpha1.UpdatePlanResponse)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -382,38 +386,34 @@ Response message for `Billing.ListCustomers`.
 
 
 
-<a name="live/billing/v1alpha1/plan.proto"></a>
+<a name="live/billing/v1alpha1/product.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## live/billing/v1alpha1/plan.proto
+## live/billing/v1alpha1/product.proto
 
 
 
-<a name="ddev.billing.v1alpha1.CreatePlanRequest"></a>
+<a name="ddev.billing.v1alpha1.CreateProductRequest"></a>
 
-### CreatePlanRequest
+### CreateProductRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| amount | [uint32](#uint32) |  | `Required for PER_UNIT plans` - A positive integer in cents (or 0 for a free plan) representing how much to charge on a recurring basis. |
-| currency | [Currency](#ddev.billing.v1alpha1.Currency) |  | `Required` - The currency for this plan. |
-| interval | [Interval](#ddev.billing.v1alpha1.Interval) |  | `Required` - The billing period frequency. |
-| product | [string](#string) |  | `Required` - The product whose pricing the created plan will represent. This can either be the ID of an existing product, or a dictionary containing fields used to create a service product. |
-| name | [string](#string) |  | `Required` - A unique name for this plan. |
-| active | [bool](#bool) |  | `Optional` - Whether the plan is currently available for new subscriptions. Defaults to true. |
-| metadata | [CreatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.CreatePlanRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
-| nickname | [string](#string) |  | `Optional` - A brief description of the plan, hidden from customers. |
+| name | [string](#string) |  | `Required` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
+| active | [bool](#bool) |  | `Optional` - Whether the product is currently available for purchase. Defaults to true. |
+| description | [string](#string) |  | `Optional` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. `Optional` |
+| metadata | [CreateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateProductRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.CreatePlanRequest.MetadataEntry"></a>
+<a name="ddev.billing.v1alpha1.CreateProductRequest.MetadataEntry"></a>
 
-### CreatePlanRequest.MetadataEntry
+### CreateProductRequest.MetadataEntry
 
 
 
@@ -427,131 +427,128 @@ Response message for `Billing.ListCustomers`.
 
 
 
-<a name="ddev.billing.v1alpha1.CreatePlanResponse"></a>
+<a name="ddev.billing.v1alpha1.CreateProductResponse"></a>
 
-### CreatePlanResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan created. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.DeletePlanRequest"></a>
-
-### DeletePlanRequest
+### CreateProductResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` - The name of the plan to delete. |
+| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product created. |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.DeletePlanResponse"></a>
+<a name="ddev.billing.v1alpha1.DeleteProductRequest"></a>
 
-### DeletePlanResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan deleted. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.GetPlanRequest"></a>
-
-### GetPlanRequest
+### DeleteProductRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` - The name of the plan. |
+| name | [string](#string) |  | `Required` - The name of the product to delete. |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.GetPlanResponse"></a>
+<a name="ddev.billing.v1alpha1.DeleteProductResponse"></a>
 
-### GetPlanResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.ListPlanRequest"></a>
-
-### ListPlanRequest
-Request message for `Billing.ListPlans`.
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.ListPlanResponse"></a>
-
-### ListPlanResponse
-Response message for `Billing.ListPlans`.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| plans | [Plan](#ddev.billing.v1alpha1.Plan) | repeated | `OutputOnly` - The list of available plans. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.Plan"></a>
-
-### Plan
+### DeleteProductResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | `OutputOnly` - Whether the plan can be used for new purchases. |
-| active | [bool](#bool) |  | `OutputOnly` - Whether the plan can be used for new purchases. |
-| amount | [int64](#int64) |  | `OutputOnly` - Positive integer or zero. |
-| currency | [string](#string) |  | `OutputOnly` - Three-letter ISO currency code, in lowercase. Must be a supported currency. |
-| interval | [string](#string) |  | `OutputOnly` - The frequency at which a subscription is billed. One of day, week, month or year. |
-| metadata | [Plan.MetadataEntry](#ddev.billing.v1alpha1.Plan.MetadataEntry) | repeated | `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. |
-| nickname | [string](#string) |  | `OutputOnly` - A brief description of the plan, hidden from customers. |
-| product | [string](#string) |  | `OutputOnly` - The Product whose pricing this plan determines. |
+| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product deleted. |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.Plan.MetadataEntry"></a>
+<a name="ddev.billing.v1alpha1.GetProductRequest"></a>
 
-### Plan.MetadataEntry
+### GetProductRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` - The name of the product. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.GetProductResponse"></a>
+
+### GetProductResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.ListProductRequest"></a>
+
+### ListProductRequest
+Request message for `Billing.ListProducts`.
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.ListProductResponse"></a>
+
+### ListProductResponse
+Response message for `Billing.ListProducts`.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| products | [Product](#ddev.billing.v1alpha1.Product) | repeated | `OutputOnly` - The list of available products. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.Product"></a>
+
+### Product
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `OutputOnly` - An identifier will be randomly generated by Stripe. You can optionally override this ID, but the ID must be unique across all products in your Stripe account. |
+| name | [string](#string) |  | `OutputOnly` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
+| active | [bool](#bool) |  | `OutputOnly` - Whether the product is currently available for purchase. Defaults to true. |
+| description | [string](#string) |  | `OutputOnly` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. |
+| metadata | [Product.MetadataEntry](#ddev.billing.v1alpha1.Product.MetadataEntry) | repeated | `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.Product.MetadataEntry"></a>
+
+### Product.MetadataEntry
 
 
 
@@ -565,28 +562,28 @@ Response message for `Billing.ListPlans`.
 
 
 
-<a name="ddev.billing.v1alpha1.UpdatePlanRequest"></a>
+<a name="ddev.billing.v1alpha1.UpdateProductRequest"></a>
 
-### UpdatePlanRequest
+### UpdateProductRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` - The name of the plan. |
-| active | [bool](#bool) |  | `Optional` - Whether the plan is currently available for new subscriptions. |
-| metadata | [UpdatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdatePlanRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
-| nickname | [string](#string) |  | `Optional` - A brief description of the plan, hidden from customers. |
-| product | [string](#string) |  | `Optional` - The product the plan belongs to. Note that after updating, statement descriptors and line items of the plan in active subscriptions will be affected. |
+| id | [string](#string) |  | `Required` - The name of the product. |
+| active | [bool](#bool) |  | `Optional` - Whether the product is currently available for purchase. Defaults to true. |
+| description | [string](#string) |  | `Optional` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. |
+| metadata | [UpdateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| name | [string](#string) |  | `Optional` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.UpdatePlanRequest.MetadataEntry"></a>
+<a name="ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry"></a>
 
-### UpdatePlanRequest.MetadataEntry
+### UpdateProductRequest.MetadataEntry
 
 
 
@@ -600,15 +597,15 @@ Response message for `Billing.ListPlans`.
 
 
 
-<a name="ddev.billing.v1alpha1.UpdatePlanResponse"></a>
+<a name="ddev.billing.v1alpha1.UpdateProductResponse"></a>
 
-### UpdatePlanResponse
+### UpdateProductResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The updated plan. |
+| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The updated product. |
 
 
 
@@ -727,10 +724,120 @@ Response message for `Billing.ListPlans`.
 
 
 
+<a name="live/billing/v1alpha1/service.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/billing/v1alpha1/service.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="ddev.billing.v1alpha1.Billing"></a>
+
+### Billing
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateCustomer | [CreateCustomerRequest](#ddev.billing.v1alpha1.CreateCustomerRequest) | [CreateCustomerResponse](#ddev.billing.v1alpha1.CreateCustomerResponse) |  |
+| GetCustomer | [GetCustomerRequest](#ddev.billing.v1alpha1.GetCustomerRequest) | [GetCustomerResponse](#ddev.billing.v1alpha1.GetCustomerResponse) |  |
+| ListCustomers | [ListCustomerRequest](#ddev.billing.v1alpha1.ListCustomerRequest) | [ListCustomerResponse](#ddev.billing.v1alpha1.ListCustomerResponse) |  |
+| UpdateCustomer | [UpdateCustomerRequest](#ddev.billing.v1alpha1.UpdateCustomerRequest) | [UpdateCustomerResponse](#ddev.billing.v1alpha1.UpdateCustomerResponse) |  |
+| CreateSubscription | [CreateSubscriptionRequest](#ddev.billing.v1alpha1.CreateSubscriptionRequest) | [CreateSubscriptionResponse](#ddev.billing.v1alpha1.CreateSubscriptionResponse) |  |
+| GetSubscription | [GetSubscriptionRequest](#ddev.billing.v1alpha1.GetSubscriptionRequest) | [GetSubscriptionResponse](#ddev.billing.v1alpha1.GetSubscriptionResponse) |  |
+| ListSubscriptions | [ListSubscriptionRequest](#ddev.billing.v1alpha1.ListSubscriptionRequest) | [ListSubscriptionResponse](#ddev.billing.v1alpha1.ListSubscriptionResponse) |  |
+| UpdateSubscription | [UpdateSubscriptionRequest](#ddev.billing.v1alpha1.UpdateSubscriptionRequest) | [UpdateSubscriptionResponse](#ddev.billing.v1alpha1.UpdateSubscriptionResponse) |  |
+| CancelSubscription | [CancelSubscriptionRequest](#ddev.billing.v1alpha1.CancelSubscriptionRequest) | [CancelSubscriptionResponse](#ddev.billing.v1alpha1.CancelSubscriptionResponse) | Deprecated. Cancel a subscription in stripe |
+| DeleteSubscription | [DeleteSubscriptionRequest](#ddev.billing.v1alpha1.DeleteSubscriptionRequest) | [DeleteSubscriptionResponse](#ddev.billing.v1alpha1.DeleteSubscriptionResponse) |  |
+| CreateProduct | [CreateProductRequest](#ddev.billing.v1alpha1.CreateProductRequest) | [CreateProductResponse](#ddev.billing.v1alpha1.CreateProductResponse) |  |
+| GetProduct | [GetProductRequest](#ddev.billing.v1alpha1.GetProductRequest) | [GetProductResponse](#ddev.billing.v1alpha1.GetProductResponse) |  |
+| ListProduct | [ListProductRequest](#ddev.billing.v1alpha1.ListProductRequest) | [ListProductResponse](#ddev.billing.v1alpha1.ListProductResponse) |  |
+| UpdateProduct | [UpdateProductRequest](#ddev.billing.v1alpha1.UpdateProductRequest) | [UpdateProductResponse](#ddev.billing.v1alpha1.UpdateProductResponse) |  |
+| DeleteProduct | [DeleteProductRequest](#ddev.billing.v1alpha1.DeleteProductRequest) | [DeleteProductResponse](#ddev.billing.v1alpha1.DeleteProductResponse) |  |
+| CreatePlan | [CreatePlanRequest](#ddev.billing.v1alpha1.CreatePlanRequest) | [CreatePlanResponse](#ddev.billing.v1alpha1.CreatePlanResponse) |  |
+| GetPlan | [GetPlanRequest](#ddev.billing.v1alpha1.GetPlanRequest) | [GetPlanResponse](#ddev.billing.v1alpha1.GetPlanResponse) |  |
+| ListPlan | [ListPlanRequest](#ddev.billing.v1alpha1.ListPlanRequest) | [ListPlanResponse](#ddev.billing.v1alpha1.ListPlanResponse) |  |
+| UpdatePlan | [UpdatePlanRequest](#ddev.billing.v1alpha1.UpdatePlanRequest) | [UpdatePlanResponse](#ddev.billing.v1alpha1.UpdatePlanResponse) |  |
+| DeletePlan | [DeletePlanRequest](#ddev.billing.v1alpha1.DeletePlanRequest) | [DeletePlanResponse](#ddev.billing.v1alpha1.DeletePlanResponse) |  |
+| ListWorkspaces | [ListWorkspaceRequest](#ddev.billing.v1alpha1.ListWorkspaceRequest) | [ListWorkspaceResponse](#ddev.billing.v1alpha1.ListWorkspaceResponse) | ListWorkspaces will return a list of workspaces the user has authorization for |
+| AddWorkspaceAdmin | [AddWorkspaceAdminRequest](#ddev.billing.v1alpha1.AddWorkspaceAdminRequest) | [AddWorkspaceAdminResponse](#ddev.billing.v1alpha1.AddWorkspaceAdminResponse) | Add an administrator to an organization |
+| AddWorkspaceDeveloper | [AddWorkspaceDeveloperRequest](#ddev.billing.v1alpha1.AddWorkspaceDeveloperRequest) | [AddWorkspaceDeveloperResponse](#ddev.billing.v1alpha1.AddWorkspaceDeveloperResponse) | Add a developer to an organization |
+
+ 
+
+
+
 <a name="live/billing/v1alpha1/workspace.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## live/billing/v1alpha1/workspace.proto
+
+
+
+<a name="ddev.billing.v1alpha1.AddWorkspaceAdminRequest"></a>
+
+### AddWorkspaceAdminRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspaceName | [string](#string) |  |  |
+| email | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.AddWorkspaceAdminResponse"></a>
+
+### AddWorkspaceAdminResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.AddWorkspaceDeveloperRequest"></a>
+
+### AddWorkspaceDeveloperRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspaceName | [string](#string) |  |  |
+| email | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.AddWorkspaceDeveloperResponse"></a>
+
+### AddWorkspaceDeveloperResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  |  |
+
+
+
 
 
 
@@ -773,6 +880,8 @@ Response message for `Billing.ListPlans`.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | `Required` - Workspace Name. |
+| admins | [string](#string) | repeated |  |
+| developers | [string](#string) | repeated |  |
 
 
 
@@ -1164,169 +1273,38 @@ Response message for `Billing.ListSubscriptions`.
 
 
 
-<a name="live/billing/v1alpha1/product.proto"></a>
+<a name="live/billing/v1alpha1/plan.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## live/billing/v1alpha1/product.proto
+## live/billing/v1alpha1/plan.proto
 
 
 
-<a name="ddev.billing.v1alpha1.CreateProductRequest"></a>
+<a name="ddev.billing.v1alpha1.CreatePlanRequest"></a>
 
-### CreateProductRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
-| active | [bool](#bool) |  | `Optional` - Whether the product is currently available for purchase. Defaults to true. |
-| description | [string](#string) |  | `Optional` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. `Optional` |
-| metadata | [CreateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateProductRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. `Optional` |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.CreateProductRequest.MetadataEntry"></a>
-
-### CreateProductRequest.MetadataEntry
+### CreatePlanRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
+| amount | [uint32](#uint32) |  | `Required for PER_UNIT plans` - A positive integer in cents (or 0 for a free plan) representing how much to charge on a recurring basis. |
+| currency | [Currency](#ddev.billing.v1alpha1.Currency) |  | `Required` - The currency for this plan. |
+| interval | [Interval](#ddev.billing.v1alpha1.Interval) |  | `Required` - The billing period frequency. |
+| product | [string](#string) |  | `Required` - The product whose pricing the created plan will represent. This can either be the ID of an existing product, or a dictionary containing fields used to create a service product. |
+| name | [string](#string) |  | `Required` - A unique name for this plan. |
+| active | [bool](#bool) |  | `Optional` - Whether the plan is currently available for new subscriptions. Defaults to true. |
+| metadata | [CreatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.CreatePlanRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| nickname | [string](#string) |  | `Optional` - A brief description of the plan, hidden from customers. |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.CreateProductResponse"></a>
+<a name="ddev.billing.v1alpha1.CreatePlanRequest.MetadataEntry"></a>
 
-### CreateProductResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product created. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.DeleteProductRequest"></a>
-
-### DeleteProductRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` - The name of the product to delete. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.DeleteProductResponse"></a>
-
-### DeleteProductResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product deleted. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.GetProductRequest"></a>
-
-### GetProductRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` - The name of the product. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.GetProductResponse"></a>
-
-### GetProductResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The product. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.ListProductRequest"></a>
-
-### ListProductRequest
-Request message for `Billing.ListProducts`.
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.ListProductResponse"></a>
-
-### ListProductResponse
-Response message for `Billing.ListProducts`.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| products | [Product](#ddev.billing.v1alpha1.Product) | repeated | `OutputOnly` - The list of available products. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.Product"></a>
-
-### Product
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | `OutputOnly` - An identifier will be randomly generated by Stripe. You can optionally override this ID, but the ID must be unique across all products in your Stripe account. |
-| name | [string](#string) |  | `OutputOnly` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
-| active | [bool](#bool) |  | `OutputOnly` - Whether the product is currently available for purchase. Defaults to true. |
-| description | [string](#string) |  | `OutputOnly` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. |
-| metadata | [Product.MetadataEntry](#ddev.billing.v1alpha1.Product.MetadataEntry) | repeated | `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
-
-
-
-
-
-
-<a name="ddev.billing.v1alpha1.Product.MetadataEntry"></a>
-
-### Product.MetadataEntry
+### CreatePlanRequest.MetadataEntry
 
 
 
@@ -1340,28 +1318,131 @@ Response message for `Billing.ListProducts`.
 
 
 
-<a name="ddev.billing.v1alpha1.UpdateProductRequest"></a>
+<a name="ddev.billing.v1alpha1.CreatePlanResponse"></a>
 
-### UpdateProductRequest
+### CreatePlanResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | `Required` - The name of the product. |
-| active | [bool](#bool) |  | `Optional` - Whether the product is currently available for purchase. Defaults to true. |
-| description | [string](#string) |  | `Optional` - The product’s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes. |
-| metadata | [UpdateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
-| name | [string](#string) |  | `Optional` - The product’s name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions. |
+| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan created. |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry"></a>
+<a name="ddev.billing.v1alpha1.DeletePlanRequest"></a>
 
-### UpdateProductRequest.MetadataEntry
+### DeletePlanRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` - The name of the plan to delete. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.DeletePlanResponse"></a>
+
+### DeletePlanResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan deleted. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.GetPlanRequest"></a>
+
+### GetPlanRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` - The name of the plan. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.GetPlanResponse"></a>
+
+### GetPlanResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The plan. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.ListPlanRequest"></a>
+
+### ListPlanRequest
+Request message for `Billing.ListPlans`.
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.ListPlanResponse"></a>
+
+### ListPlanResponse
+Response message for `Billing.ListPlans`.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| plans | [Plan](#ddev.billing.v1alpha1.Plan) | repeated | `OutputOnly` - The list of available plans. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.Plan"></a>
+
+### Plan
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `OutputOnly` - Whether the plan can be used for new purchases. |
+| active | [bool](#bool) |  | `OutputOnly` - Whether the plan can be used for new purchases. |
+| amount | [int64](#int64) |  | `OutputOnly` - Positive integer or zero. |
+| currency | [string](#string) |  | `OutputOnly` - Three-letter ISO currency code, in lowercase. Must be a supported currency. |
+| interval | [string](#string) |  | `OutputOnly` - The frequency at which a subscription is billed. One of day, week, month or year. |
+| metadata | [Plan.MetadataEntry](#ddev.billing.v1alpha1.Plan.MetadataEntry) | repeated | `OutputOnly` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. |
+| nickname | [string](#string) |  | `OutputOnly` - A brief description of the plan, hidden from customers. |
+| product | [string](#string) |  | `OutputOnly` - The Product whose pricing this plan determines. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.Plan.MetadataEntry"></a>
+
+### Plan.MetadataEntry
 
 
 
@@ -1375,15 +1456,50 @@ Response message for `Billing.ListProducts`.
 
 
 
-<a name="ddev.billing.v1alpha1.UpdateProductResponse"></a>
+<a name="ddev.billing.v1alpha1.UpdatePlanRequest"></a>
 
-### UpdateProductResponse
+### UpdatePlanRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| product | [Product](#ddev.billing.v1alpha1.Product) |  | `OutputOnly` - The updated product. |
+| name | [string](#string) |  | `Required` - The name of the plan. |
+| active | [bool](#bool) |  | `Optional` - Whether the plan is currently available for new subscriptions. |
+| metadata | [UpdatePlanRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdatePlanRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
+| nickname | [string](#string) |  | `Optional` - A brief description of the plan, hidden from customers. |
+| product | [string](#string) |  | `Optional` - The product the plan belongs to. Note that after updating, statement descriptors and line items of the plan in active subscriptions will be affected. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.UpdatePlanRequest.MetadataEntry"></a>
+
+### UpdatePlanRequest.MetadataEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.UpdatePlanResponse"></a>
+
+### UpdatePlanResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| plan | [Plan](#ddev.billing.v1alpha1.Plan) |  | `OutputOnly` - The updated plan. |
 
 
 
@@ -1394,52 +1510,6 @@ Response message for `Billing.ListProducts`.
  
 
  
-
- 
-
-
-
-<a name="live/billing/v1alpha1/service.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/billing/v1alpha1/service.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="ddev.billing.v1alpha1.Billing"></a>
-
-### Billing
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateCustomer | [CreateCustomerRequest](#ddev.billing.v1alpha1.CreateCustomerRequest) | [CreateCustomerResponse](#ddev.billing.v1alpha1.CreateCustomerResponse) |  |
-| GetCustomer | [GetCustomerRequest](#ddev.billing.v1alpha1.GetCustomerRequest) | [GetCustomerResponse](#ddev.billing.v1alpha1.GetCustomerResponse) |  |
-| ListCustomers | [ListCustomerRequest](#ddev.billing.v1alpha1.ListCustomerRequest) | [ListCustomerResponse](#ddev.billing.v1alpha1.ListCustomerResponse) |  |
-| UpdateCustomer | [UpdateCustomerRequest](#ddev.billing.v1alpha1.UpdateCustomerRequest) | [UpdateCustomerResponse](#ddev.billing.v1alpha1.UpdateCustomerResponse) |  |
-| CreateSubscription | [CreateSubscriptionRequest](#ddev.billing.v1alpha1.CreateSubscriptionRequest) | [CreateSubscriptionResponse](#ddev.billing.v1alpha1.CreateSubscriptionResponse) |  |
-| GetSubscription | [GetSubscriptionRequest](#ddev.billing.v1alpha1.GetSubscriptionRequest) | [GetSubscriptionResponse](#ddev.billing.v1alpha1.GetSubscriptionResponse) |  |
-| ListSubscriptions | [ListSubscriptionRequest](#ddev.billing.v1alpha1.ListSubscriptionRequest) | [ListSubscriptionResponse](#ddev.billing.v1alpha1.ListSubscriptionResponse) |  |
-| UpdateSubscription | [UpdateSubscriptionRequest](#ddev.billing.v1alpha1.UpdateSubscriptionRequest) | [UpdateSubscriptionResponse](#ddev.billing.v1alpha1.UpdateSubscriptionResponse) |  |
-| CancelSubscription | [CancelSubscriptionRequest](#ddev.billing.v1alpha1.CancelSubscriptionRequest) | [CancelSubscriptionResponse](#ddev.billing.v1alpha1.CancelSubscriptionResponse) | Deprecated. Cancel a subscription in stripe |
-| DeleteSubscription | [DeleteSubscriptionRequest](#ddev.billing.v1alpha1.DeleteSubscriptionRequest) | [DeleteSubscriptionResponse](#ddev.billing.v1alpha1.DeleteSubscriptionResponse) |  |
-| CreateProduct | [CreateProductRequest](#ddev.billing.v1alpha1.CreateProductRequest) | [CreateProductResponse](#ddev.billing.v1alpha1.CreateProductResponse) |  |
-| GetProduct | [GetProductRequest](#ddev.billing.v1alpha1.GetProductRequest) | [GetProductResponse](#ddev.billing.v1alpha1.GetProductResponse) |  |
-| ListProduct | [ListProductRequest](#ddev.billing.v1alpha1.ListProductRequest) | [ListProductResponse](#ddev.billing.v1alpha1.ListProductResponse) |  |
-| UpdateProduct | [UpdateProductRequest](#ddev.billing.v1alpha1.UpdateProductRequest) | [UpdateProductResponse](#ddev.billing.v1alpha1.UpdateProductResponse) |  |
-| DeleteProduct | [DeleteProductRequest](#ddev.billing.v1alpha1.DeleteProductRequest) | [DeleteProductResponse](#ddev.billing.v1alpha1.DeleteProductResponse) |  |
-| CreatePlan | [CreatePlanRequest](#ddev.billing.v1alpha1.CreatePlanRequest) | [CreatePlanResponse](#ddev.billing.v1alpha1.CreatePlanResponse) |  |
-| GetPlan | [GetPlanRequest](#ddev.billing.v1alpha1.GetPlanRequest) | [GetPlanResponse](#ddev.billing.v1alpha1.GetPlanResponse) |  |
-| ListPlan | [ListPlanRequest](#ddev.billing.v1alpha1.ListPlanRequest) | [ListPlanResponse](#ddev.billing.v1alpha1.ListPlanResponse) |  |
-| UpdatePlan | [UpdatePlanRequest](#ddev.billing.v1alpha1.UpdatePlanRequest) | [UpdatePlanResponse](#ddev.billing.v1alpha1.UpdatePlanResponse) |  |
-| DeletePlan | [DeletePlanRequest](#ddev.billing.v1alpha1.DeletePlanRequest) | [DeletePlanResponse](#ddev.billing.v1alpha1.DeletePlanResponse) |  |
-| ListWorkspaces | [ListWorkspaceRequest](#ddev.billing.v1alpha1.ListWorkspaceRequest) | [ListWorkspaceResponse](#ddev.billing.v1alpha1.ListWorkspaceResponse) | List workspaces will return a list of workspaces the user has authorization for |
 
  
 

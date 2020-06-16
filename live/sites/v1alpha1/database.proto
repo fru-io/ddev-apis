@@ -1,0 +1,174 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.billing.v1alpha1;
+
+option go_package = "github.com/drud/site-api/gen/live/billing/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "SubscriptionProto";
+option java_package = "com.ddev.live.site.v1alpha1";
+
+
+/*
+TODO
+*/
+message Database {
+  /*
+  `OutputOnly`
+  The name of the file
+  */
+  string name = 1;
+}
+
+enum BackupState {
+  FINISHED = 0;
+  DELETED = 1;
+}
+
+message BackupStatus {
+  BackupState state = 1;
+  int64 time = 2;
+}
+
+/*
+TODO
+*/
+message Backup {
+  string name = 1;
+  string databaseReference = 2;
+}
+
+
+//
+// Message Types
+//
+
+/*
+*/
+message BackupDatabaseRequest {
+
+  /*
+  `Required`
+  The workspace of the database to be backed up.
+  */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the database to backup.
+  */
+  string name = 2;
+}
+
+/*
+*/
+message BackupDatabaseResponse {
+
+  /*
+  The state of the backup
+  */
+  Backup backup = 1;
+}
+
+/*
+*/
+message RestoreDatabaseRequest {
+
+  /*
+  `Required`
+  The workspace of the database to be backed up.
+  */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the database to backup.
+  */
+  string name = 2;
+}
+
+/*
+*/
+message RestoreDatabaseResponse {
+
+  /*
+  The state of the backup
+  */
+  Backup backup = 1;
+}
+
+/*
+Push a single database to a site
+*/
+message PushDatabaseRequest {
+
+  /*
+  `Required`
+  The workspace name for this request.
+  */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the database to push to.
+  */
+  string name = 2;
+
+  /*
+  The raw bytes the the content to pass.
+  Supported MIME Types: `gz`
+  */
+  bytes content = 3;
+}
+
+/*
+*/
+message PushDatabaseResponse {
+
+  /*
+  `OutputOnly`
+  The SHA 256 sum of the recieved content
+  */
+  string sha256 = 1;
+}
+
+/*
+*/
+message PullDatabaseRequest {
+
+  /*
+  `Required`
+  The workspace name for this request.
+  */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the database to push to.
+  */
+  string name = 2;
+}
+
+/*
+*/
+message PullDatabaseResponse {
+
+  /*
+  `OutputOnly`
+  The raw bytes the the content with the first 512 bytes expressing the ContentType.
+  */
+  bytes content = 1;
+}

@@ -1,0 +1,187 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.billing.v1alpha1;
+
+option go_package = "github.com/drud/site-api/gen/live/billing/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "SubscriptionProto";
+option java_package = "com.ddev.live.site.v1alpha1";
+
+
+enum SiteType {
+    DRUPAL = 0;
+    TYPO3 = 1;
+    WORDPRESS = 2;
+}
+
+/*
+A site of SiteType.DRUPAL
+*/
+message DrupalSite {
+  /*
+  `OutputOnly`
+  The name of the site
+  */
+  string name = 1;
+}
+
+/*
+A site of SiteType.WORDPRESS
+*/
+message WordpressSite {
+  /*
+  `OutputOnly`
+  The name of the site
+  */
+  string name = 1;
+}
+
+/*
+A site of SiteType.TYPO3
+*/
+message Typo3Site {
+  /*
+  `OutputOnly`
+  The name of the site
+  */
+  string name = 1;
+}
+
+message Site {
+
+  // because you cannot use repeated oneof we must wrap oneof in a repeatable message
+
+  oneof properties {
+    DrupalSite drupal = 3;
+    Typo3Site typo3 = 4;
+    WordpressSite wordpress = 5;
+  }
+}
+
+//
+// Message Types
+//
+
+/*
+*/
+message CreateSiteRequest {
+
+  /*
+  `Required`
+  The name of the workspace this site should belong to
+  */
+  string workspaceName = 1;
+
+  oneof properties {
+    DrupalSite drupal = 2;
+    Typo3Site typo3 = 3;
+    WordpressSite wordpress = 4;
+  }
+
+}
+
+/*
+*/
+message CreateSiteResponse {
+
+  /*
+  `OutputOnly`
+  The properties of the site which was created.
+  */
+  Site site = 1;
+}
+
+/*
+*/
+message GetSiteRequest {
+
+  /*
+  */
+}
+
+/*
+*/
+message GetSiteResponse {
+
+  /*
+  */
+}
+
+/*
+*/
+message ListSiteRequest {
+
+  /*
+  */
+}
+
+/*
+*/
+message ListSiteResponse {
+
+  /*
+  */
+}
+
+/*
+*/
+message UpdateSiteRequest {
+
+  /*
+  */
+}
+
+/*
+*/
+message UpdateSiteResponse {
+
+  /*
+  */
+}
+
+/*
+*/
+message SiteLogsRequest {
+
+  /*
+  */
+}
+
+/*
+*/
+message SiteLogsResponse {
+
+  /*
+  */
+}
+
+/*
+*/
+message SiteExecRequest {
+
+  /*
+  */
+}
+
+/*
+TODO:
+*/
+message SiteExecResponse {
+
+  /*
+  */
+}

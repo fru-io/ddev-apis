@@ -1,0 +1,714 @@
+# Protocol Documentation
+<a name="top"></a>
+
+## Table of Contents
+
+- [live/sites/v1alpha1/file.proto](#live/sites/v1alpha1/file.proto)
+    - [BackupFilesRequest](#ddev.billing.v1alpha1.BackupFilesRequest)
+    - [BackupFilesResponse](#ddev.billing.v1alpha1.BackupFilesResponse)
+    - [File](#ddev.billing.v1alpha1.File)
+    - [FileChecksum](#ddev.billing.v1alpha1.FileChecksum)
+    - [PullFilesRequest](#ddev.billing.v1alpha1.PullFilesRequest)
+    - [PullFilesResponse](#ddev.billing.v1alpha1.PullFilesResponse)
+    - [PushFilesRequest](#ddev.billing.v1alpha1.PushFilesRequest)
+    - [PushFilesResponse](#ddev.billing.v1alpha1.PushFilesResponse)
+    - [RestoreFilesRequest](#ddev.billing.v1alpha1.RestoreFilesRequest)
+    - [RestoreFilesResponse](#ddev.billing.v1alpha1.RestoreFilesResponse)
+  
+- [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
+    - [Sites](#ddev.billing.v1alpha1.Sites)
+  
+- [live/sites/v1alpha1/database.proto](#live/sites/v1alpha1/database.proto)
+    - [Backup](#ddev.billing.v1alpha1.Backup)
+    - [BackupDatabaseRequest](#ddev.billing.v1alpha1.BackupDatabaseRequest)
+    - [BackupDatabaseResponse](#ddev.billing.v1alpha1.BackupDatabaseResponse)
+    - [BackupStatus](#ddev.billing.v1alpha1.BackupStatus)
+    - [Database](#ddev.billing.v1alpha1.Database)
+    - [PullDatabaseRequest](#ddev.billing.v1alpha1.PullDatabaseRequest)
+    - [PullDatabaseResponse](#ddev.billing.v1alpha1.PullDatabaseResponse)
+    - [PushDatabaseRequest](#ddev.billing.v1alpha1.PushDatabaseRequest)
+    - [PushDatabaseResponse](#ddev.billing.v1alpha1.PushDatabaseResponse)
+    - [RestoreDatabaseRequest](#ddev.billing.v1alpha1.RestoreDatabaseRequest)
+    - [RestoreDatabaseResponse](#ddev.billing.v1alpha1.RestoreDatabaseResponse)
+  
+    - [BackupState](#ddev.billing.v1alpha1.BackupState)
+  
+- [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
+    - [CreateSiteRequest](#ddev.billing.v1alpha1.CreateSiteRequest)
+    - [CreateSiteResponse](#ddev.billing.v1alpha1.CreateSiteResponse)
+    - [DrupalSite](#ddev.billing.v1alpha1.DrupalSite)
+    - [GetSiteRequest](#ddev.billing.v1alpha1.GetSiteRequest)
+    - [GetSiteResponse](#ddev.billing.v1alpha1.GetSiteResponse)
+    - [ListSiteRequest](#ddev.billing.v1alpha1.ListSiteRequest)
+    - [ListSiteResponse](#ddev.billing.v1alpha1.ListSiteResponse)
+    - [Site](#ddev.billing.v1alpha1.Site)
+    - [SiteExecRequest](#ddev.billing.v1alpha1.SiteExecRequest)
+    - [SiteExecResponse](#ddev.billing.v1alpha1.SiteExecResponse)
+    - [SiteLogsRequest](#ddev.billing.v1alpha1.SiteLogsRequest)
+    - [SiteLogsResponse](#ddev.billing.v1alpha1.SiteLogsResponse)
+    - [Typo3Site](#ddev.billing.v1alpha1.Typo3Site)
+    - [UpdateSiteRequest](#ddev.billing.v1alpha1.UpdateSiteRequest)
+    - [UpdateSiteResponse](#ddev.billing.v1alpha1.UpdateSiteResponse)
+    - [WordpressSite](#ddev.billing.v1alpha1.WordpressSite)
+  
+    - [SiteType](#ddev.billing.v1alpha1.SiteType)
+  
+- [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="live/sites/v1alpha1/file.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/file.proto
+
+
+
+<a name="ddev.billing.v1alpha1.BackupFilesRequest"></a>
+
+### BackupFilesRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace name for this request. |
+| name | [string](#string) |  | `Required` The name of the backup. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.BackupFilesResponse"></a>
+
+### BackupFilesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| checksums | [FileChecksum](#ddev.billing.v1alpha1.FileChecksum) | repeated | The list of files and their checksums restored server side |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.File"></a>
+
+### File
+TODO
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the file. |
+| content | [bytes](#bytes) |  | The content of the file expressed in bytes. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.FileChecksum"></a>
+
+### FileChecksum
+TODO
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the file. |
+| sha256 | [string](#string) |  | The sha checksum of this file |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.PullFilesRequest"></a>
+
+### PullFilesRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace name for this request. |
+| name | [string](#string) |  | `Required` The name of the database to push to. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.PullFilesResponse"></a>
+
+### PullFilesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | `OutputOnly` The raw bytes the the content with the first 512 bytes expressing the ContentType. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.PushFilesRequest"></a>
+
+### PushFilesRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace name for this request. |
+| file | [File](#ddev.billing.v1alpha1.File) | repeated | `Required` The name of the database to push to. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.PushFilesResponse"></a>
+
+### PushFilesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| checksums | [FileChecksum](#ddev.billing.v1alpha1.FileChecksum) | repeated | The list of files and their checksums recieved server side |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.RestoreFilesRequest"></a>
+
+### RestoreFilesRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace name for this request. |
+| backup | [string](#string) |  | `Required` The name of the backup to restore files from. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.RestoreFilesResponse"></a>
+
+### RestoreFilesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| checksums | [FileChecksum](#ddev.billing.v1alpha1.FileChecksum) | repeated | The list of files and their checksums restored server side |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="live/sites/v1alpha1/service.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/service.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="ddev.billing.v1alpha1.Sites"></a>
+
+### Sites
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateSite | [CreateSiteRequest](#ddev.billing.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.billing.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
+| GetSite | [GetSiteRequest](#ddev.billing.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.billing.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
+| ListSites | [ListSiteRequest](#ddev.billing.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.billing.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
+| UpdateSite | [UpdateSiteRequest](#ddev.billing.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.billing.v1alpha1.UpdateSiteResponse) |  |
+| SiteLogs | [SiteLogsRequest](#ddev.billing.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.billing.v1alpha1.SiteLogsResponse) stream | SiteLogs returns a stream of logs for a site |
+| SiteExec | [SiteExecRequest](#ddev.billing.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.billing.v1alpha1.SiteExecResponse) stream | SiteExec allows for the streaming execution of commands inside a site container |
+| BackupDatabase | [BackupDatabaseRequest](#ddev.billing.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.billing.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
+| RestoreDatabase | [RestoreDatabaseRequest](#ddev.billing.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.billing.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
+| BackupFiles | [BackupFilesRequest](#ddev.billing.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.billing.v1alpha1.BackupFilesResponse) | BackupFiles backs up files associated with a site |
+| RestoreFiles | [RestoreFilesRequest](#ddev.billing.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.billing.v1alpha1.RestoreFilesResponse) | RestoreFiles restores a sites files to a known backup |
+| PushFiles | [PushFilesRequest](#ddev.billing.v1alpha1.PushFilesRequest) | [PushFilesResponse](#ddev.billing.v1alpha1.PushFilesResponse) | PushFiles pushes local files to a running site |
+| PullFiles | [PullFilesRequest](#ddev.billing.v1alpha1.PullFilesRequest) | [PullFilesResponse](#ddev.billing.v1alpha1.PullFilesResponse) | PullFiles pulls down files locally |
+| PushDatabase | [PushDatabaseRequest](#ddev.billing.v1alpha1.PushDatabaseRequest) | [PushDatabaseResponse](#ddev.billing.v1alpha1.PushDatabaseResponse) | PushDatabase pushes a database to a running site |
+| PullDatabase | [PullDatabaseRequest](#ddev.billing.v1alpha1.PullDatabaseRequest) | [PullDatabaseResponse](#ddev.billing.v1alpha1.PullDatabaseResponse) | PullDatabase pulls down a database locally |
+
+ 
+
+
+
+<a name="live/sites/v1alpha1/database.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/database.proto
+
+
+
+<a name="ddev.billing.v1alpha1.Backup"></a>
+
+### Backup
+TODO
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| databaseReference | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.BackupDatabaseRequest"></a>
+
+### BackupDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace of the database to be backed up. |
+| name | [string](#string) |  | `Required` The name of the database to backup. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.BackupDatabaseResponse"></a>
+
+### BackupDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [Backup](#ddev.billing.v1alpha1.Backup) |  | The state of the backup |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.BackupStatus"></a>
+
+### BackupStatus
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| state | [BackupState](#ddev.billing.v1alpha1.BackupState) |  |  |
+| time | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.Database"></a>
+
+### Database
+TODO
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` The name of the file |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.PullDatabaseRequest"></a>
+
+### PullDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace name for this request. |
+| name | [string](#string) |  | `Required` The name of the database to push to. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.PullDatabaseResponse"></a>
+
+### PullDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | `OutputOnly` The raw bytes the the content with the first 512 bytes expressing the ContentType. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.PushDatabaseRequest"></a>
+
+### PushDatabaseRequest
+Push a single database to a site
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace name for this request. |
+| name | [string](#string) |  | `Required` The name of the database to push to. |
+| content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.PushDatabaseResponse"></a>
+
+### PushDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sha256 | [string](#string) |  | `OutputOnly` The SHA 256 sum of the recieved content |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.RestoreDatabaseRequest"></a>
+
+### RestoreDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace of the database to be backed up. |
+| name | [string](#string) |  | `Required` The name of the database to backup. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.RestoreDatabaseResponse"></a>
+
+### RestoreDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [Backup](#ddev.billing.v1alpha1.Backup) |  | The state of the backup |
+
+
+
+
+
+ 
+
+
+<a name="ddev.billing.v1alpha1.BackupState"></a>
+
+### BackupState
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FINISHED | 0 |  |
+| DELETED | 1 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="live/sites/v1alpha1/site.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/site.proto
+
+
+
+<a name="ddev.billing.v1alpha1.CreateSiteRequest"></a>
+
+### CreateSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspaceName | [string](#string) |  | `Required` The name of the workspace this site should belong to |
+| drupal | [DrupalSite](#ddev.billing.v1alpha1.DrupalSite) |  |  |
+| typo3 | [Typo3Site](#ddev.billing.v1alpha1.Typo3Site) |  |  |
+| wordpress | [WordpressSite](#ddev.billing.v1alpha1.WordpressSite) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.CreateSiteResponse"></a>
+
+### CreateSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [Site](#ddev.billing.v1alpha1.Site) |  | `OutputOnly` The properties of the site which was created. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.DrupalSite"></a>
+
+### DrupalSite
+A site of SiteType.DRUPAL
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` The name of the site |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.GetSiteRequest"></a>
+
+### GetSiteRequest
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.GetSiteResponse"></a>
+
+### GetSiteResponse
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.ListSiteRequest"></a>
+
+### ListSiteRequest
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.ListSiteResponse"></a>
+
+### ListSiteResponse
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.Site"></a>
+
+### Site
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| drupal | [DrupalSite](#ddev.billing.v1alpha1.DrupalSite) |  |  |
+| typo3 | [Typo3Site](#ddev.billing.v1alpha1.Typo3Site) |  |  |
+| wordpress | [WordpressSite](#ddev.billing.v1alpha1.WordpressSite) |  |  |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.SiteExecRequest"></a>
+
+### SiteExecRequest
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.SiteExecResponse"></a>
+
+### SiteExecResponse
+TODO:
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.SiteLogsRequest"></a>
+
+### SiteLogsRequest
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.SiteLogsResponse"></a>
+
+### SiteLogsResponse
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.Typo3Site"></a>
+
+### Typo3Site
+A site of SiteType.TYPO3
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` The name of the site |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.UpdateSiteRequest"></a>
+
+### UpdateSiteRequest
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.UpdateSiteResponse"></a>
+
+### UpdateSiteResponse
+
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.WordpressSite"></a>
+
+### WordpressSite
+A site of SiteType.WORDPRESS
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` The name of the site |
+
+
+
+
+
+ 
+
+
+<a name="ddev.billing.v1alpha1.SiteType"></a>
+
+### SiteType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DRUPAL | 0 |  |
+| TYPO3 | 1 |  |
+| WORDPRESS | 2 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+## Scalar Value Types
+
+| .proto Type | Notes | C++ | Java | Python | Go | C# | PHP | Ruby |
+| ----------- | ----- | --- | ---- | ------ | -- | -- | --- | ---- |
+| <a name="double" /> double |  | double | double | float | float64 | double | float | Float |
+| <a name="float" /> float |  | float | float | float | float32 | float | float | Float |
+| <a name="int32" /> int32 | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
+| <a name="int64" /> int64 | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead. | int64 | long | int/long | int64 | long | integer/string | Bignum |
+| <a name="uint32" /> uint32 | Uses variable-length encoding. | uint32 | int | int/long | uint32 | uint | integer | Bignum or Fixnum (as required) |
+| <a name="uint64" /> uint64 | Uses variable-length encoding. | uint64 | long | int/long | uint64 | ulong | integer/string | Bignum or Fixnum (as required) |
+| <a name="sint32" /> sint32 | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
+| <a name="sint64" /> sint64 | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s. | int64 | long | int/long | int64 | long | integer/string | Bignum |
+| <a name="fixed32" /> fixed32 | Always four bytes. More efficient than uint32 if values are often greater than 2^28. | uint32 | int | int | uint32 | uint | integer | Bignum or Fixnum (as required) |
+| <a name="fixed64" /> fixed64 | Always eight bytes. More efficient than uint64 if values are often greater than 2^56. | uint64 | long | int/long | uint64 | ulong | integer/string | Bignum |
+| <a name="sfixed32" /> sfixed32 | Always four bytes. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
+| <a name="sfixed64" /> sfixed64 | Always eight bytes. | int64 | long | int/long | int64 | long | integer/string | Bignum |
+| <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
+| <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
+| <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
+

@@ -107,9 +107,18 @@ service Billing {
     rpc DeletePlan(DeletePlanRequest) returns (DeletePlanResponse) {
     }
 
-    // List workspaces will return a list of workspaces the user has authorization for
+    // Workspaces
+    
+    // ListWorkspaces will return a list of workspaces the user has authorization for
     rpc ListWorkspaces(ListWorkspaceRequest) returns (ListWorkspaceResponse) {
+    }
 
+    // Add an administrator to an organization
+    rpc AddWorkspaceAdmin(AddWorkspaceAdminRequest) returns (AddWorkspaceAdminResponse) {       
+    }
+
+    // Add a developer to an organization
+    rpc AddWorkspaceDeveloper(AddWorkspaceDeveloperRequest) returns (AddWorkspaceDeveloperResponse) {       
     }
 
 }
