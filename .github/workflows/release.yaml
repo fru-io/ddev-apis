@@ -27,7 +27,7 @@ jobs:
           wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
           tar -xzf go1.14.4.linux-amd64.tar.gz
           cp -r go /usr/local/go
-          ln -sf /usr/local/go/bin/go /usr/local/bin/go
+          sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
       - name: prep protoc
         run: |
           wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-x86_64.zip
