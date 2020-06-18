@@ -11,13 +11,6 @@ jobs:
       - name: tagger
         uses: drud/action-tagger@v1
         id: tagger
-      - name: Authenticate
-        env:
-          GITHUB_AUTH_TOKEN: ${{ secrets.GIT_BUILD_TOKEN }}
-        run: |
-          if [[ ! -z ${GITHUB_AUTH_TOKEN+x} ]]; then
-              git config --global url."https://${GITHUB_AUTH_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
-          fi
       - name: prep npm
         run: |
           sudo apt install -y npm
@@ -34,6 +27,9 @@ jobs:
           unzip protoc-3.12.3-linux-x86_64.zip
           sudo cp bin/protoc /usr/local/bin/protoc
 
+          export GOPATH="$HOME/go"
+          mkdir -p $GOPATH
+          
           # Fetch necessary protoc modules
           go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
           go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
