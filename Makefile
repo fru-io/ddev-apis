@@ -52,6 +52,9 @@ build-ts:
 	--grpc-web_out=import_style=typescript,mode=grpcwebtext:build/ts \
 	${BILLING_PROTOS}
 
+	#TODO: I do not want to manage this file, and eventually want to move the build to bazel for both proto and NPM, so I am doing this here
+	cp package.json build/ts/package.json
+
 release-ts: build-ts
 	tar -zcvf build/release/ts/typescript-gen-source.tar.gz build/ts
 

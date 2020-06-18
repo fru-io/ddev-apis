@@ -1,0 +1,63 @@
+name: Release
+on: 
+  push:
+    tags:
+      - v*
+env:
+  KUBEBUILDER_CONTROLPLANE_START_TIMEOUT: 120s
+  KUBEBUILDER_CONTROLPLANE_STOP_TIMEOUT: 120s
+  PROJECT_ID: ddev-live
+  APPLICATION_NAME: billing-api
+  PROJECT_PATH: /go/src/github.com/drud/billing-api
+  GITHUB_AUTH_TOKEN: "${{ secrets.GIT_BUILD_TOKEN }}"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: tagger
+        uses: drud/action-tagger@v1
+        id: tagger
+      - name: Authenticate
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.GIT_BUILD_TOKEN }}
+        run: |
+          if [[ ! -z ${GITHUB_AUTH_TOKEN+x} ]]; then
+              git config --global url."https://${GITHUB_AUTH_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+          fi
+      - name: prep npm
+        run: |
+          sudo apt install -y npm
+      # TODO: Replace with bazel builds
+      - name: prep protoc
+        run: |
+          wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-x86_64.zip
+          unzip protoc-3.12.3-linux-x86_64.zip
+          sudo cp bin/protoc /usr/local/bin/protoc
+
+          # Install go for simple dependency retrieval
+          sudo apt install -y golang
+
+          # Fetch necessary protoc modules
+          go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+          go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+          go get github.com/golang/protobuf/protoc-gen-go
+
+          # ensure these binaries are on the path
+          sudo cp $GOPATH/bin/protoc-gen-grpc-gateway /usr/local/bin
+          sudo cp $GOPATH/bin/protoc-gen-swagger /usr/local/bin
+          sudo cp $GOPATH/bin/protoc-gen-go /usr/local/bin
+
+          # manually retrieve the grpc-web binary
+          wget https://github.com/grpc/grpc-web/releases/download/1.1.0/protoc-gen-grpc-web-1.1.0-linux-x86_64
+          sudo mv protoc-gen-grpc-web-1.1.0-linux-x86_64 /usr/local/bin/protoc-gen-grpc-web
+      - name: release-ts
+        run: |
+          make build-ts
+          cd build/ts
+          npm login --registry=https://npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}
+          # Also just initialize the npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
+          # Set the version for this release
+          sed -ri 's%version: .*%version: "${{steps.tagger.outputs.tag}}"%' package.json
+          npm publish
