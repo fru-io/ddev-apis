@@ -54,5 +54,5 @@ jobs:
           npm config set registry  "https://npm.pkg.github.com/"
 
           # Set the version for this release
-          sed -ri 's%version: .*%version: "${{steps.tagger.outputs.tag}}"%' package.json
+          npm version ${{steps.tagger.outputs.tag}}
           npm publish
