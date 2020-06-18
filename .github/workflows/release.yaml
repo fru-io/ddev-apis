@@ -2,7 +2,7 @@ name: Release
 on: 
   push:
     tags:
-      - v*
+      - "*"
 env:
   KUBEBUILDER_CONTROLPLANE_START_TIMEOUT: 120s
   KUBEBUILDER_CONTROLPLANE_STOP_TIMEOUT: 120s
@@ -58,6 +58,7 @@ jobs:
           npm login --registry=https://npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}
           # Also just initialize the npmrc
           echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
+
           # Set the version for this release
           sed -ri 's%version: .*%version: "${{steps.tagger.outputs.tag}}"%' package.json
           npm publish
