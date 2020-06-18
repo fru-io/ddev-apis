@@ -20,9 +20,10 @@ prepare-release:
 	mkdir -p build/js
 	mkdir -p build/ts
 	mkdir -p build/dep
+	# TODO: Bazel
 	if [ ! -d build/dep/googleapis ];then git clone https://github.com/googleapis/googleapis.git build/dep/googleapis; fi
 
-build-go:
+build-go: prepare-release
 	protoc \
 	--proto_path=build/dep/googleapis \
 	--proto_path=. \
@@ -34,7 +35,7 @@ build-go:
 release-go: build-go
 	tar -zcvf build/release/go/go-gen-source.tar.gz build/go
 
-build-js:
+build-js: prepare-release
 	protoc \
 	--proto_path=build/dep/googleapis \
 	--proto_path=. \
@@ -45,7 +46,7 @@ build-js:
 release-js: build-js
 	tar -zcvf build/release/js/javascript-gen-source.tar.gz build/js
 
-build-ts:
+build-ts: prepare-release
 	protoc \
 	--proto_path=. \
 	--js_out=import_style=commonjs:build/ts \
