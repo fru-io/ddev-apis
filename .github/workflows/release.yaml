@@ -3,15 +3,8 @@ on:
   push:
     tags:
       - "*"
-env:
-  KUBEBUILDER_CONTROLPLANE_START_TIMEOUT: 120s
-  KUBEBUILDER_CONTROLPLANE_STOP_TIMEOUT: 120s
-  PROJECT_ID: ddev-live
-  APPLICATION_NAME: billing-api
-  PROJECT_PATH: /go/src/github.com/drud/billing-api
-  GITHUB_AUTH_TOKEN: "${{ secrets.GIT_BUILD_TOKEN }}"
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -29,14 +22,17 @@ jobs:
         run: |
           sudo apt install -y npm
       # TODO: Replace with bazel builds
+      - name: prep go
+        run: |
+          wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
+          tar -xzf go1.14.4.linux-amd64.tar.gz
+          cp -r go /usr/local/go
+          ln -sf /usr/local/go/bin/go /usr/local/bin/go
       - name: prep protoc
         run: |
           wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-x86_64.zip
           unzip protoc-3.12.3-linux-x86_64.zip
           sudo cp bin/protoc /usr/local/bin/protoc
-
-          # Install go for simple dependency retrieval
-          sudo apt install -y golang
 
           # Fetch necessary protoc modules
           go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
