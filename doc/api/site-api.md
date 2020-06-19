@@ -559,6 +559,11 @@ A site of SiteType.DRUPAL
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sites | [Site](#ddev.sites.v1alpha1.Site) | repeated | `OutputOnly` A list of sites. |
+
+
 
 
 

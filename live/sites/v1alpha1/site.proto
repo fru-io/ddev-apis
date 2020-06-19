@@ -134,7 +134,10 @@ message ListSiteRequest {
 message ListSiteResponse {
 
   /*
+  `OutputOnly`
+  A list of sites.
   */
+  repeated Site sites = 1;
 }
 
 /*
