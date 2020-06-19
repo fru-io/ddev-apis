@@ -1,0 +1,120 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.billing.v1alpha1;
+
+import "live/sites/v1alpha1/database.proto";
+import "live/sites/v1alpha1/file.proto";
+import "live/sites/v1alpha1/site.proto";
+
+option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "ServiceProto";
+option java_package = "com.ddev.live.billing.v1alpha1";
+
+service Sites {
+
+    // Sites
+
+    /*
+    CreateSite creates one of the supported site types
+    */
+    rpc CreateSite(CreateSiteRequest) returns (CreateSiteResponse) {
+    }
+
+    /*
+    GetSite returns the state of a site by name
+    */
+    rpc GetSite(GetSiteRequest) returns (GetSiteResponse) {
+    }
+
+    /*
+    ListSites returns all sites within a workspace
+    */
+    rpc ListSites(ListSiteRequest) returns (ListSiteResponse) {
+    }
+
+    /*
+    
+    */
+    rpc UpdateSite(UpdateSiteRequest) returns (UpdateSiteResponse) {
+    }
+
+    /*
+    SiteLogs returns a stream of logs for a site
+    */
+    rpc SiteLogs(SiteLogsRequest) returns (stream SiteLogsResponse) {
+
+    }
+
+    /*
+    SiteExec allows for the streaming execution of commands inside a site container
+    */
+    rpc SiteExec(stream SiteExecRequest) returns (stream SiteExecResponse) {
+
+    }
+
+    // Databases
+
+    /*
+    BackupDatabase backs up a database associated with a site
+    */
+    rpc BackupDatabase(BackupDatabaseRequest) returns (BackupDatabaseResponse) {
+    }
+
+    /*
+    RestoreDatabase restores a sites databases to a known backup
+    */
+    rpc RestoreDatabase(RestoreDatabaseRequest) returns (RestoreDatabaseResponse) {
+    }
+
+    /*
+    BackupFiles backs up files associated with a site
+    */
+    rpc BackupFiles(BackupFilesRequest) returns (BackupFilesResponse) {
+    }
+
+    /*
+    RestoreFiles restores a sites files to a known backup
+    */
+    rpc RestoreFiles(RestoreFilesRequest) returns (RestoreFilesResponse) {
+    }
+
+    /*
+    PushFiles pushes local files to a running site
+    */
+    rpc PushFiles(PushFilesRequest) returns (PushFilesResponse) {
+    }    
+
+    /*
+    PullFiles pulls down files locally
+    */
+    rpc PullFiles(PullFilesRequest) returns (PullFilesResponse) {
+    }  
+
+    /*
+    PushDatabase pushes a database to a running site
+    */
+    rpc PushDatabase(PushDatabaseRequest) returns (PushDatabaseResponse) {
+    }
+
+    /*
+    PullDatabase pulls down a database locally
+    */
+    rpc PullDatabase(PullDatabaseRequest) returns (PullDatabaseResponse) {
+    }  
+
+}

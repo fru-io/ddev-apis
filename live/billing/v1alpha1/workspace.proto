@@ -30,6 +30,10 @@ message Workspace {
 
     // `OutputOnly` - Workspace ID.
     // string id = 2;
+
+    repeated string admins = 2;
+    
+    repeated string developers = 3;
 }
 
 
@@ -45,4 +49,22 @@ message ListWorkspaceResponse {
     
     // `OutputOnly` - A workspace for the current user
     repeated Workspace workspaces = 1;
+}
+
+message AddWorkspaceAdminRequest {
+    string workspaceName = 1;
+    string email = 2;
+}
+
+message AddWorkspaceAdminResponse {
+    Workspace workspace = 1;
+}
+
+message AddWorkspaceDeveloperRequest {
+    string workspaceName = 1;
+    string email = 2;
+}
+
+message AddWorkspaceDeveloperResponse {
+    Workspace workspace = 1;
 }

@@ -2,6 +2,7 @@ ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 USER_ID:=$(shell id -u)
 
 BILLING_PROTOS:=$(shell find live/billing/v1alpha1/ -name *.proto)
+SITE_PROTOS:=$(shell find live/sites/v1alpha1/ -name *.proto)
 
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
@@ -69,5 +70,13 @@ billing-doc:
 	pseudomuto/protoc-gen-doc --doc_opt=markdown,billing-api.md \
 	${BILLING_PROTOS}
 
+site-doc:
+	docker run --rm \
+	--user ${USER_ID} \
+	-v ${ROOT_DIR}/doc/api:/out \
+	-v ${ROOT_DIR}/:/protos \
+	pseudomuto/protoc-gen-doc --doc_opt=markdown,site-api.md \
+	${SITE_PROTOS}
+
 .PHONY: doc
-doc: billing-doc
+doc: billing-doc site-doc
