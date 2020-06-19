@@ -34,8 +34,9 @@
     - [BackupState](#ddev.sites.v1alpha1.BackupState)
   
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
-    - [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest)
-    - [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse)
+    - [CreateDrupalSiteRequest](#ddev.sites.v1alpha1.CreateDrupalSiteRequest)
+    - [CreateDrupalSiteResponse](#ddev.sites.v1alpha1.CreateDrupalSiteResponse)
+    - [Cron](#ddev.sites.v1alpha1.Cron)
     - [DrupalSite](#ddev.sites.v1alpha1.DrupalSite)
     - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
     - [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse)
@@ -249,7 +250,7 @@ TODO
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
+| CreateDrupalSite | [CreateDrupalSiteRequest](#ddev.sites.v1alpha1.CreateDrupalSiteRequest) | [CreateDrupalSiteResponse](#ddev.sites.v1alpha1.CreateDrupalSiteResponse) | CreateSite creates one of the supported site types |
 | GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
 | ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
 | UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
@@ -475,33 +476,54 @@ Push a single database to a site
 
 
 
-<a name="ddev.sites.v1alpha1.CreateSiteRequest"></a>
+<a name="ddev.sites.v1alpha1.CreateDrupalSiteRequest"></a>
 
-### CreateSiteRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspaceName | [string](#string) |  | `Required` The name of the workspace this site should belong to |
-| drupal | [DrupalSite](#ddev.sites.v1alpha1.DrupalSite) |  |  |
-| typo3 | [Typo3Site](#ddev.sites.v1alpha1.Typo3Site) |  |  |
-| wordpress | [WordpressSite](#ddev.sites.v1alpha1.WordpressSite) |  |  |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.CreateSiteResponse"></a>
-
-### CreateSiteResponse
+### CreateDrupalSiteRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The properties of the site which was created. |
+| workspace | [string](#string) |  | `Required` The name of the site |
+| name | [string](#string) |  | `Required` The name of the site |
+| githubRepo | [string](#string) |  | `Required` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
+| branch | [string](#string) |  | `Optional` |
+| version | [string](#string) |  | `Optional` |
+| composerInstall | [bool](#bool) |  | `Optional` |
+| composerArgs | [string](#string) |  | `Optional` |
+| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
+| DocRoot | [string](#string) |  | `Optional` |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CreateDrupalSiteResponse"></a>
+
+### CreateDrupalSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [DrupalSite](#ddev.sites.v1alpha1.DrupalSite) |  | `OutputOnly` The properties of the site which was created. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.Cron"></a>
+
+### Cron
+Cron manages if and when the CMS cron executes
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| disabled | [bool](#bool) |  | `Optional` Disabled will stop the CMS cron from executing. Default true. |
+| schedule | [string](#string) |  | Schedule specifies when this process will execute using CronTab notation. |
 
 
 
@@ -516,7 +538,15 @@ A site of SiteType.DRUPAL
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `OutputOnly` The name of the site |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
+| githubRepo | [string](#string) |  | `OutputOnly` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
+| branch | [string](#string) |  | `OutputOnly` |
+| version | [string](#string) |  | `OutputOnly` |
+| composerInstall | [bool](#bool) |  | `OutputOnly` |
+| composerArgs | [string](#string) |  | `OutputOnly` |
+| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `OutputOnly` |
+| DocRoot | [string](#string) |  | `OutputOnly` |
 
 
 
@@ -529,6 +559,12 @@ A site of SiteType.DRUPAL
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace in which the site is contained |
+| name | [string](#string) |  | `Required` The name of the site |
+
+
 
 
 
@@ -539,6 +575,11 @@ A site of SiteType.DRUPAL
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sites | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The requested site. |
+
+
 
 
 
@@ -547,6 +588,11 @@ A site of SiteType.DRUPAL
 
 ### ListSiteRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The workspace in which to list sites |
 
 
 

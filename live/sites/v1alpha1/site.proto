@@ -28,15 +28,75 @@ enum SiteType {
     WORDPRESS = 2;
 }
 
+
+// Cron manages if and when the CMS cron executes
+message Cron {
+
+  /*
+  `Optional`
+  Disabled will stop the CMS cron from executing.  Default true.
+  */
+  bool disabled = 1;
+ 
+  /*
+  Schedule specifies when this process will execute using CronTab notation.
+  */
+  string schedule = 2;
+}
+
 /*
 A site of SiteType.DRUPAL
 */
 message DrupalSite {
+
   /*
   `OutputOnly`
   The name of the site
   */
-  string name = 1;
+  string workspace = 1;
+
+  /*
+  `OutputOnly`
+  The name of the site
+  */
+  string name = 2;
+
+  /*
+  `OutputOnly`
+  Github repository to target in the <org>/<name> format
+  */
+  string githubRepo = 3;
+
+  /*
+  `OutputOnly`
+  */
+  string branch = 17;
+  
+  /*
+  `OutputOnly`
+  */
+  string version = 18;
+
+  /*
+  `OutputOnly`
+  */
+  bool composerInstall = 19;
+
+  /*
+  `OutputOnly`
+  */
+  string composerArgs = 20;
+
+  /*
+  `OutputOnly`
+  */
+  Cron cron = 21;
+
+  /*
+  `OutputOnly`
+  */
+  string DocRoot = 22;
+
 }
 
 /*
@@ -78,31 +138,66 @@ message Site {
 
 /*
 */
-message CreateSiteRequest {
+message CreateDrupalSiteRequest {
 
   /*
   `Required`
-  The name of the workspace this site should belong to
+  The name of the site
   */
-  string workspaceName = 1;
+  string workspace = 1;
 
-  oneof properties {
-    DrupalSite drupal = 2;
-    Typo3Site typo3 = 3;
-    WordpressSite wordpress = 4;
-  }
+  /*
+  `Required`
+  The name of the site
+  */
+  string name = 2;
 
+  /*
+  `Required`
+  Github repository to target in the <org>/<name> format
+  */
+  string githubRepo = 3;
+
+  /*
+  `Optional`
+  */
+  string branch = 17;
+  
+  /*
+  `Optional`
+  */
+  string version = 18;
+
+  /*
+  `Optional`
+  */
+  bool composerInstall = 19;
+
+  /*
+  `Optional`
+  */
+  string composerArgs = 20;
+
+  /*
+  `Optional`
+  */
+  Cron cron = 21;
+
+  /*
+  `Optional`
+  */
+  string DocRoot = 22;
 }
 
 /*
 */
-message CreateSiteResponse {
+message CreateDrupalSiteResponse {
 
   /*
   `OutputOnly`
   The properties of the site which was created.
   */
-  Site site = 1;
+  DrupalSite site = 1;
 }
 
 /*
@@ -110,7 +205,16 @@ message CreateSiteResponse {
 message GetSiteRequest {
 
   /*
+  `Required`
+  The workspace in which the site is contained
   */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string name = 2;
 }
 
 /*
@@ -118,7 +222,10 @@ message GetSiteRequest {
 message GetSiteResponse {
 
   /*
+  `OutputOnly`
+  The requested site.
   */
+  Site sites = 1;
 }
 
 /*
@@ -126,7 +233,10 @@ message GetSiteResponse {
 message ListSiteRequest {
 
   /*
+  `Required`
+  The workspace in which to list sites
   */
+  string workspace = 1;
 }
 
 /*
@@ -154,6 +264,34 @@ message UpdateSiteResponse {
 
   /*
   */
+}
+
+/*
+*/
+message DeleteDrupalSiteRequest {
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string name = 2;
+}
+
+/*
+*/
+message DeleteDrupalSiteResponse {
+
+  /*
+  `OutputOnly`
+  The name of the site
+  */
+  DrupalSite site = 1;
 }
 
 /*
