@@ -1078,7 +1078,7 @@ Supported currencies for ddev-live
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | `Required` - The id of the subscription to cancel. |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace which this subscription belongs. |
+| workspace | [string](#string) |  | `Required` - The workspace which this subscription belongs. |
 | invoice_now | [bool](#bool) |  | `Optional` - Will generate a final invoice that invoices for any un-invoiced metered usage and new/pending proration invoice items. |
 | prorate | [bool](#bool) |  | `Optional` - Will generate a proration invoice item that credits remaining unused time until the subscription period end. |
 
@@ -1112,7 +1112,7 @@ Supported currencies for ddev-live
 | ----- | ---- | ----- | ----------- |
 | CustomerID | [string](#string) |  | `Required` - The identifier of the customer to subscribe. |
 | items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | `Required` - A list of up to 20 subscription items, each with an attached plan. |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace which this subscription belongs. |
+| workspace | [string](#string) |  | `Required` - The workspace which this subscription belongs. |
 | cancel_at_period_end | [bool](#bool) |  | `Optional` - Boolean indicating whether this subscription should cancel at the end of the current period. |
 | metadata | [CreateSubscriptionRequest.MetadataEntry](#ddev.billing.v1alpha1.CreateSubscriptionRequest.MetadataEntry) | repeated | `Optional` - Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata. |
 | trial_end | [int64](#int64) |  | `Optional` - Unix timestamp representing the end of the trial period the customer will get before being charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. If set, trial_end will override the default trial period of the plan the customer is being subscribed to. The special value now can be provided to end the customer’s trial immediately. Can be at most two years from billing_cycle_anchor. |
@@ -1164,7 +1164,7 @@ Supported currencies for ddev-live
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | `Required` - The name of the subscription to delete. |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace which this subscription belongs. |
+| workspace | [string](#string) |  | `Required` - The workspace which this subscription belongs. |
 
 
 
@@ -1195,7 +1195,7 @@ Supported currencies for ddev-live
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | `Required` - The name of the subscription. |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace of the subscription. |
+| workspace | [string](#string) |  | `Required` - The workspace of the subscription. |
 
 
 
@@ -1225,7 +1225,7 @@ Request message for `Billing.ListSubscriptions`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace under which to list all subscriptions. |
+| workspace | [string](#string) |  | `Required` - The workspace under which to list all subscriptions. |
 
 
 
@@ -1278,7 +1278,7 @@ Response message for `Billing.ListSubscriptions`.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | `Required` - The id of the subscription. |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `Required` - The workspace which this subscription belongs. |
+| workspace | [string](#string) |  | `Required` - The workspace which this subscription belongs. |
 | cancel_at_period_end | [bool](#bool) |  | `Optional` - Boolean indicating whether this subscription should cancel at the end of the current period. |
 | default_payment_method | [string](#string) |  | `Optional` - ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer’s invoice settings. |
 | items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | `Optional` - List of subscription items, each with an attached plan. |

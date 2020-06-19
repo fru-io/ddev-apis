@@ -74,7 +74,7 @@ message CreateSubscriptionRequest {
   repeated SubscriptionItem items = 3;
 
   // `Required` - The workspace which this subscription belongs.
-  Workspace workspace = 4;
+  string workspace = 4;
 
   // `Optional` - Boolean indicating whether this subscription should cancel at the end of the current period.
   bool cancel_at_period_end = 17;
@@ -107,7 +107,7 @@ message GetSubscriptionRequest {
   string name = 1;
   
   // `Required` - The workspace of the subscription.
-  Workspace workspace = 2;
+  string workspace = 2;
 }
 
 //
@@ -119,7 +119,7 @@ message GetSubscriptionResponse {
 // Request message for `Billing.ListSubscriptions`.
 message ListSubscriptionRequest {
   // `Required` - The workspace under which to list all subscriptions.
-  Workspace workspace = 1;
+  string workspace = 1;
 }
 
 // Response message for `Billing.ListSubscriptions`.
@@ -136,7 +136,7 @@ message UpdateSubscriptionRequest {
   string id = 1;
 
   // `Required` - The workspace which this subscription belongs.
-  Workspace workspace = 2;
+  string workspace = 2;
 
   // `Optional` - Boolean indicating whether this subscription should cancel at the end of the current period.
   bool cancel_at_period_end = 17;
@@ -162,7 +162,7 @@ message CancelSubscriptionRequest {
   string id = 1;
 
   // `Required` - The workspace which this subscription belongs.
-  Workspace workspace = 2;
+  string workspace = 2;
 
   // `Optional` - Will generate a final invoice that invoices for any un-invoiced metered usage and new/pending proration invoice items.
   bool invoice_now = 17;
@@ -182,7 +182,7 @@ message DeleteSubscriptionRequest {
   string name = 1;
 
   // `Required` - The workspace which this subscription belongs.
-  Workspace workspace = 2;
+  string workspace = 2;
 }
 
 message DeleteSubscriptionResponse {
