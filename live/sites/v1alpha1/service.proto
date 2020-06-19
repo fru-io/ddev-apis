@@ -14,16 +14,16 @@
 
 syntax = "proto3";
 
-package ddev.billing.v1alpha1;
+package ddev.sites.v1alpha1;
 
 import "live/sites/v1alpha1/database.proto";
 import "live/sites/v1alpha1/file.proto";
 import "live/sites/v1alpha1/site.proto";
 
-option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
+option go_package = "github.com/drud/site-api/gen/live/sites/v1alpha1";
 option java_multiple_files = true;
 option java_outer_classname = "ServiceProto";
-option java_package = "com.ddev.live.billing.v1alpha1";
+option java_package = "com.ddev.live.sites.v1alpha1";
 
 service Sites {
 

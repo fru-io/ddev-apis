@@ -4,54 +4,54 @@
 ## Table of Contents
 
 - [live/sites/v1alpha1/file.proto](#live/sites/v1alpha1/file.proto)
-    - [BackupFilesRequest](#ddev.billing.v1alpha1.BackupFilesRequest)
-    - [BackupFilesResponse](#ddev.billing.v1alpha1.BackupFilesResponse)
-    - [File](#ddev.billing.v1alpha1.File)
-    - [FileChecksum](#ddev.billing.v1alpha1.FileChecksum)
-    - [PullFilesRequest](#ddev.billing.v1alpha1.PullFilesRequest)
-    - [PullFilesResponse](#ddev.billing.v1alpha1.PullFilesResponse)
-    - [PushFilesRequest](#ddev.billing.v1alpha1.PushFilesRequest)
-    - [PushFilesResponse](#ddev.billing.v1alpha1.PushFilesResponse)
-    - [RestoreFilesRequest](#ddev.billing.v1alpha1.RestoreFilesRequest)
-    - [RestoreFilesResponse](#ddev.billing.v1alpha1.RestoreFilesResponse)
+    - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
+    - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
+    - [File](#ddev.sites.v1alpha1.File)
+    - [FileChecksum](#ddev.sites.v1alpha1.FileChecksum)
+    - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
+    - [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse)
+    - [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest)
+    - [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse)
+    - [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest)
+    - [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse)
   
 - [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
-    - [Sites](#ddev.billing.v1alpha1.Sites)
+    - [Sites](#ddev.sites.v1alpha1.Sites)
   
 - [live/sites/v1alpha1/database.proto](#live/sites/v1alpha1/database.proto)
-    - [Backup](#ddev.billing.v1alpha1.Backup)
-    - [BackupDatabaseRequest](#ddev.billing.v1alpha1.BackupDatabaseRequest)
-    - [BackupDatabaseResponse](#ddev.billing.v1alpha1.BackupDatabaseResponse)
-    - [BackupStatus](#ddev.billing.v1alpha1.BackupStatus)
-    - [Database](#ddev.billing.v1alpha1.Database)
-    - [PullDatabaseRequest](#ddev.billing.v1alpha1.PullDatabaseRequest)
-    - [PullDatabaseResponse](#ddev.billing.v1alpha1.PullDatabaseResponse)
-    - [PushDatabaseRequest](#ddev.billing.v1alpha1.PushDatabaseRequest)
-    - [PushDatabaseResponse](#ddev.billing.v1alpha1.PushDatabaseResponse)
-    - [RestoreDatabaseRequest](#ddev.billing.v1alpha1.RestoreDatabaseRequest)
-    - [RestoreDatabaseResponse](#ddev.billing.v1alpha1.RestoreDatabaseResponse)
+    - [Backup](#ddev.sites.v1alpha1.Backup)
+    - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
+    - [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse)
+    - [BackupStatus](#ddev.sites.v1alpha1.BackupStatus)
+    - [Database](#ddev.sites.v1alpha1.Database)
+    - [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest)
+    - [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse)
+    - [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest)
+    - [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse)
+    - [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest)
+    - [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse)
   
-    - [BackupState](#ddev.billing.v1alpha1.BackupState)
+    - [BackupState](#ddev.sites.v1alpha1.BackupState)
   
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
-    - [CreateSiteRequest](#ddev.billing.v1alpha1.CreateSiteRequest)
-    - [CreateSiteResponse](#ddev.billing.v1alpha1.CreateSiteResponse)
-    - [DrupalSite](#ddev.billing.v1alpha1.DrupalSite)
-    - [GetSiteRequest](#ddev.billing.v1alpha1.GetSiteRequest)
-    - [GetSiteResponse](#ddev.billing.v1alpha1.GetSiteResponse)
-    - [ListSiteRequest](#ddev.billing.v1alpha1.ListSiteRequest)
-    - [ListSiteResponse](#ddev.billing.v1alpha1.ListSiteResponse)
-    - [Site](#ddev.billing.v1alpha1.Site)
-    - [SiteExecRequest](#ddev.billing.v1alpha1.SiteExecRequest)
-    - [SiteExecResponse](#ddev.billing.v1alpha1.SiteExecResponse)
-    - [SiteLogsRequest](#ddev.billing.v1alpha1.SiteLogsRequest)
-    - [SiteLogsResponse](#ddev.billing.v1alpha1.SiteLogsResponse)
-    - [Typo3Site](#ddev.billing.v1alpha1.Typo3Site)
-    - [UpdateSiteRequest](#ddev.billing.v1alpha1.UpdateSiteRequest)
-    - [UpdateSiteResponse](#ddev.billing.v1alpha1.UpdateSiteResponse)
-    - [WordpressSite](#ddev.billing.v1alpha1.WordpressSite)
+    - [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest)
+    - [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse)
+    - [DrupalSite](#ddev.sites.v1alpha1.DrupalSite)
+    - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
+    - [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse)
+    - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
+    - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
+    - [Site](#ddev.sites.v1alpha1.Site)
+    - [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest)
+    - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
+    - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
+    - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
+    - [Typo3Site](#ddev.sites.v1alpha1.Typo3Site)
+    - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
+    - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
+    - [WordpressSite](#ddev.sites.v1alpha1.WordpressSite)
   
-    - [SiteType](#ddev.billing.v1alpha1.SiteType)
+    - [SiteType](#ddev.sites.v1alpha1.SiteType)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -64,7 +64,7 @@
 
 
 
-<a name="ddev.billing.v1alpha1.BackupFilesRequest"></a>
+<a name="ddev.sites.v1alpha1.BackupFilesRequest"></a>
 
 ### BackupFilesRequest
 
@@ -80,7 +80,7 @@
 
 
 
-<a name="ddev.billing.v1alpha1.BackupFilesResponse"></a>
+<a name="ddev.sites.v1alpha1.BackupFilesResponse"></a>
 
 ### BackupFilesResponse
 
@@ -88,14 +88,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| checksums | [FileChecksum](#ddev.billing.v1alpha1.FileChecksum) | repeated | The list of files and their checksums restored server side |
+| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | The list of files and their checksums restored server side |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.File"></a>
+<a name="ddev.sites.v1alpha1.File"></a>
 
 ### File
 TODO
@@ -111,7 +111,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.FileChecksum"></a>
+<a name="ddev.sites.v1alpha1.FileChecksum"></a>
 
 ### FileChecksum
 TODO
@@ -127,7 +127,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.PullFilesRequest"></a>
+<a name="ddev.sites.v1alpha1.PullFilesRequest"></a>
 
 ### PullFilesRequest
 
@@ -143,7 +143,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.PullFilesResponse"></a>
+<a name="ddev.sites.v1alpha1.PullFilesResponse"></a>
 
 ### PullFilesResponse
 
@@ -158,7 +158,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.PushFilesRequest"></a>
+<a name="ddev.sites.v1alpha1.PushFilesRequest"></a>
 
 ### PushFilesRequest
 
@@ -167,14 +167,14 @@ TODO
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | workspace | [string](#string) |  | `Required` The workspace name for this request. |
-| file | [File](#ddev.billing.v1alpha1.File) | repeated | `Required` The name of the database to push to. |
+| file | [File](#ddev.sites.v1alpha1.File) | repeated | `Required` The name of the database to push to. |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.PushFilesResponse"></a>
+<a name="ddev.sites.v1alpha1.PushFilesResponse"></a>
 
 ### PushFilesResponse
 
@@ -182,14 +182,14 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| checksums | [FileChecksum](#ddev.billing.v1alpha1.FileChecksum) | repeated | The list of files and their checksums recieved server side |
+| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | The list of files and their checksums recieved server side |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.RestoreFilesRequest"></a>
+<a name="ddev.sites.v1alpha1.RestoreFilesRequest"></a>
 
 ### RestoreFilesRequest
 
@@ -205,7 +205,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.RestoreFilesResponse"></a>
+<a name="ddev.sites.v1alpha1.RestoreFilesResponse"></a>
 
 ### RestoreFilesResponse
 
@@ -213,7 +213,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| checksums | [FileChecksum](#ddev.billing.v1alpha1.FileChecksum) | repeated | The list of files and their checksums restored server side |
+| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | The list of files and their checksums restored server side |
 
 
 
@@ -242,27 +242,27 @@ TODO
  
 
 
-<a name="ddev.billing.v1alpha1.Sites"></a>
+<a name="ddev.sites.v1alpha1.Sites"></a>
 
 ### Sites
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateSite | [CreateSiteRequest](#ddev.billing.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.billing.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
-| GetSite | [GetSiteRequest](#ddev.billing.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.billing.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
-| ListSites | [ListSiteRequest](#ddev.billing.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.billing.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
-| UpdateSite | [UpdateSiteRequest](#ddev.billing.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.billing.v1alpha1.UpdateSiteResponse) |  |
-| SiteLogs | [SiteLogsRequest](#ddev.billing.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.billing.v1alpha1.SiteLogsResponse) stream | SiteLogs returns a stream of logs for a site |
-| SiteExec | [SiteExecRequest](#ddev.billing.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.billing.v1alpha1.SiteExecResponse) stream | SiteExec allows for the streaming execution of commands inside a site container |
-| BackupDatabase | [BackupDatabaseRequest](#ddev.billing.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.billing.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
-| RestoreDatabase | [RestoreDatabaseRequest](#ddev.billing.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.billing.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
-| BackupFiles | [BackupFilesRequest](#ddev.billing.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.billing.v1alpha1.BackupFilesResponse) | BackupFiles backs up files associated with a site |
-| RestoreFiles | [RestoreFilesRequest](#ddev.billing.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.billing.v1alpha1.RestoreFilesResponse) | RestoreFiles restores a sites files to a known backup |
-| PushFiles | [PushFilesRequest](#ddev.billing.v1alpha1.PushFilesRequest) | [PushFilesResponse](#ddev.billing.v1alpha1.PushFilesResponse) | PushFiles pushes local files to a running site |
-| PullFiles | [PullFilesRequest](#ddev.billing.v1alpha1.PullFilesRequest) | [PullFilesResponse](#ddev.billing.v1alpha1.PullFilesResponse) | PullFiles pulls down files locally |
-| PushDatabase | [PushDatabaseRequest](#ddev.billing.v1alpha1.PushDatabaseRequest) | [PushDatabaseResponse](#ddev.billing.v1alpha1.PushDatabaseResponse) | PushDatabase pushes a database to a running site |
-| PullDatabase | [PullDatabaseRequest](#ddev.billing.v1alpha1.PullDatabaseRequest) | [PullDatabaseResponse](#ddev.billing.v1alpha1.PullDatabaseResponse) | PullDatabase pulls down a database locally |
+| CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
+| GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
+| ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
+| UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
+| SiteLogs | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogs returns a stream of logs for a site |
+| SiteExec | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExec allows for the streaming execution of commands inside a site container |
+| BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
+| RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
+| BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backs up files associated with a site |
+| RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores a sites files to a known backup |
+| PushFiles | [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest) | [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse) | PushFiles pushes local files to a running site |
+| PullFiles | [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest) | [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse) | PullFiles pulls down files locally |
+| PushDatabase | [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest) | [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse) | PushDatabase pushes a database to a running site |
+| PullDatabase | [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest) | [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse) | PullDatabase pulls down a database locally |
 
  
 
@@ -275,7 +275,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.Backup"></a>
+<a name="ddev.sites.v1alpha1.Backup"></a>
 
 ### Backup
 TODO
@@ -291,7 +291,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.BackupDatabaseRequest"></a>
+<a name="ddev.sites.v1alpha1.BackupDatabaseRequest"></a>
 
 ### BackupDatabaseRequest
 
@@ -307,7 +307,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.BackupDatabaseResponse"></a>
+<a name="ddev.sites.v1alpha1.BackupDatabaseResponse"></a>
 
 ### BackupDatabaseResponse
 
@@ -315,14 +315,14 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [Backup](#ddev.billing.v1alpha1.Backup) |  | The state of the backup |
+| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | The state of the backup |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.BackupStatus"></a>
+<a name="ddev.sites.v1alpha1.BackupStatus"></a>
 
 ### BackupStatus
 
@@ -330,7 +330,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| state | [BackupState](#ddev.billing.v1alpha1.BackupState) |  |  |
+| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  |  |
 | time | [int64](#int64) |  |  |
 
 
@@ -338,7 +338,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.Database"></a>
+<a name="ddev.sites.v1alpha1.Database"></a>
 
 ### Database
 TODO
@@ -353,7 +353,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.PullDatabaseRequest"></a>
+<a name="ddev.sites.v1alpha1.PullDatabaseRequest"></a>
 
 ### PullDatabaseRequest
 
@@ -369,7 +369,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.PullDatabaseResponse"></a>
+<a name="ddev.sites.v1alpha1.PullDatabaseResponse"></a>
 
 ### PullDatabaseResponse
 
@@ -384,7 +384,7 @@ TODO
 
 
 
-<a name="ddev.billing.v1alpha1.PushDatabaseRequest"></a>
+<a name="ddev.sites.v1alpha1.PushDatabaseRequest"></a>
 
 ### PushDatabaseRequest
 Push a single database to a site
@@ -401,7 +401,7 @@ Push a single database to a site
 
 
 
-<a name="ddev.billing.v1alpha1.PushDatabaseResponse"></a>
+<a name="ddev.sites.v1alpha1.PushDatabaseResponse"></a>
 
 ### PushDatabaseResponse
 
@@ -416,7 +416,7 @@ Push a single database to a site
 
 
 
-<a name="ddev.billing.v1alpha1.RestoreDatabaseRequest"></a>
+<a name="ddev.sites.v1alpha1.RestoreDatabaseRequest"></a>
 
 ### RestoreDatabaseRequest
 
@@ -432,7 +432,7 @@ Push a single database to a site
 
 
 
-<a name="ddev.billing.v1alpha1.RestoreDatabaseResponse"></a>
+<a name="ddev.sites.v1alpha1.RestoreDatabaseResponse"></a>
 
 ### RestoreDatabaseResponse
 
@@ -440,7 +440,7 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [Backup](#ddev.billing.v1alpha1.Backup) |  | The state of the backup |
+| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | The state of the backup |
 
 
 
@@ -449,7 +449,7 @@ Push a single database to a site
  
 
 
-<a name="ddev.billing.v1alpha1.BackupState"></a>
+<a name="ddev.sites.v1alpha1.BackupState"></a>
 
 ### BackupState
 
@@ -475,7 +475,7 @@ Push a single database to a site
 
 
 
-<a name="ddev.billing.v1alpha1.CreateSiteRequest"></a>
+<a name="ddev.sites.v1alpha1.CreateSiteRequest"></a>
 
 ### CreateSiteRequest
 
@@ -484,16 +484,16 @@ Push a single database to a site
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | workspaceName | [string](#string) |  | `Required` The name of the workspace this site should belong to |
-| drupal | [DrupalSite](#ddev.billing.v1alpha1.DrupalSite) |  |  |
-| typo3 | [Typo3Site](#ddev.billing.v1alpha1.Typo3Site) |  |  |
-| wordpress | [WordpressSite](#ddev.billing.v1alpha1.WordpressSite) |  |  |
+| drupal | [DrupalSite](#ddev.sites.v1alpha1.DrupalSite) |  |  |
+| typo3 | [Typo3Site](#ddev.sites.v1alpha1.Typo3Site) |  |  |
+| wordpress | [WordpressSite](#ddev.sites.v1alpha1.WordpressSite) |  |  |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.CreateSiteResponse"></a>
+<a name="ddev.sites.v1alpha1.CreateSiteResponse"></a>
 
 ### CreateSiteResponse
 
@@ -501,14 +501,14 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| site | [Site](#ddev.billing.v1alpha1.Site) |  | `OutputOnly` The properties of the site which was created. |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The properties of the site which was created. |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.DrupalSite"></a>
+<a name="ddev.sites.v1alpha1.DrupalSite"></a>
 
 ### DrupalSite
 A site of SiteType.DRUPAL
@@ -523,7 +523,7 @@ A site of SiteType.DRUPAL
 
 
 
-<a name="ddev.billing.v1alpha1.GetSiteRequest"></a>
+<a name="ddev.sites.v1alpha1.GetSiteRequest"></a>
 
 ### GetSiteRequest
 
@@ -533,7 +533,7 @@ A site of SiteType.DRUPAL
 
 
 
-<a name="ddev.billing.v1alpha1.GetSiteResponse"></a>
+<a name="ddev.sites.v1alpha1.GetSiteResponse"></a>
 
 ### GetSiteResponse
 
@@ -543,7 +543,7 @@ A site of SiteType.DRUPAL
 
 
 
-<a name="ddev.billing.v1alpha1.ListSiteRequest"></a>
+<a name="ddev.sites.v1alpha1.ListSiteRequest"></a>
 
 ### ListSiteRequest
 
@@ -553,7 +553,7 @@ A site of SiteType.DRUPAL
 
 
 
-<a name="ddev.billing.v1alpha1.ListSiteResponse"></a>
+<a name="ddev.sites.v1alpha1.ListSiteResponse"></a>
 
 ### ListSiteResponse
 
@@ -563,7 +563,7 @@ A site of SiteType.DRUPAL
 
 
 
-<a name="ddev.billing.v1alpha1.Site"></a>
+<a name="ddev.sites.v1alpha1.Site"></a>
 
 ### Site
 
@@ -571,16 +571,16 @@ A site of SiteType.DRUPAL
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| drupal | [DrupalSite](#ddev.billing.v1alpha1.DrupalSite) |  |  |
-| typo3 | [Typo3Site](#ddev.billing.v1alpha1.Typo3Site) |  |  |
-| wordpress | [WordpressSite](#ddev.billing.v1alpha1.WordpressSite) |  |  |
+| drupal | [DrupalSite](#ddev.sites.v1alpha1.DrupalSite) |  |  |
+| typo3 | [Typo3Site](#ddev.sites.v1alpha1.Typo3Site) |  |  |
+| wordpress | [WordpressSite](#ddev.sites.v1alpha1.WordpressSite) |  |  |
 
 
 
 
 
 
-<a name="ddev.billing.v1alpha1.SiteExecRequest"></a>
+<a name="ddev.sites.v1alpha1.SiteExecRequest"></a>
 
 ### SiteExecRequest
 
@@ -590,7 +590,7 @@ A site of SiteType.DRUPAL
 
 
 
-<a name="ddev.billing.v1alpha1.SiteExecResponse"></a>
+<a name="ddev.sites.v1alpha1.SiteExecResponse"></a>
 
 ### SiteExecResponse
 TODO:
@@ -600,7 +600,7 @@ TODO:
 
 
 
-<a name="ddev.billing.v1alpha1.SiteLogsRequest"></a>
+<a name="ddev.sites.v1alpha1.SiteLogsRequest"></a>
 
 ### SiteLogsRequest
 
@@ -610,7 +610,7 @@ TODO:
 
 
 
-<a name="ddev.billing.v1alpha1.SiteLogsResponse"></a>
+<a name="ddev.sites.v1alpha1.SiteLogsResponse"></a>
 
 ### SiteLogsResponse
 
@@ -620,7 +620,7 @@ TODO:
 
 
 
-<a name="ddev.billing.v1alpha1.Typo3Site"></a>
+<a name="ddev.sites.v1alpha1.Typo3Site"></a>
 
 ### Typo3Site
 A site of SiteType.TYPO3
@@ -635,7 +635,7 @@ A site of SiteType.TYPO3
 
 
 
-<a name="ddev.billing.v1alpha1.UpdateSiteRequest"></a>
+<a name="ddev.sites.v1alpha1.UpdateSiteRequest"></a>
 
 ### UpdateSiteRequest
 
@@ -645,7 +645,7 @@ A site of SiteType.TYPO3
 
 
 
-<a name="ddev.billing.v1alpha1.UpdateSiteResponse"></a>
+<a name="ddev.sites.v1alpha1.UpdateSiteResponse"></a>
 
 ### UpdateSiteResponse
 
@@ -655,7 +655,7 @@ A site of SiteType.TYPO3
 
 
 
-<a name="ddev.billing.v1alpha1.WordpressSite"></a>
+<a name="ddev.sites.v1alpha1.WordpressSite"></a>
 
 ### WordpressSite
 A site of SiteType.WORDPRESS
@@ -672,7 +672,7 @@ A site of SiteType.WORDPRESS
  
 
 
-<a name="ddev.billing.v1alpha1.SiteType"></a>
+<a name="ddev.sites.v1alpha1.SiteType"></a>
 
 ### SiteType
 
