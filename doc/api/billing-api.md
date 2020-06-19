@@ -53,6 +53,10 @@
     - [AddWorkspaceAdminResponse](#ddev.billing.v1alpha1.AddWorkspaceAdminResponse)
     - [AddWorkspaceDeveloperRequest](#ddev.billing.v1alpha1.AddWorkspaceDeveloperRequest)
     - [AddWorkspaceDeveloperResponse](#ddev.billing.v1alpha1.AddWorkspaceDeveloperResponse)
+    - [DeleteWorkspaceAdminRequest](#ddev.billing.v1alpha1.DeleteWorkspaceAdminRequest)
+    - [DeleteWorkspaceAdminResponse](#ddev.billing.v1alpha1.DeleteWorkspaceAdminResponse)
+    - [DeleteWorkspaceDeveloperRequest](#ddev.billing.v1alpha1.DeleteWorkspaceDeveloperRequest)
+    - [DeleteWorkspaceDeveloperResponse](#ddev.billing.v1alpha1.DeleteWorkspaceDeveloperResponse)
     - [ListWorkspaceRequest](#ddev.billing.v1alpha1.ListWorkspaceRequest)
     - [ListWorkspaceResponse](#ddev.billing.v1alpha1.ListWorkspaceResponse)
     - [Workspace](#ddev.billing.v1alpha1.Workspace)
@@ -765,8 +769,10 @@ Response message for `Billing.ListProducts`.
 | UpdatePlan | [UpdatePlanRequest](#ddev.billing.v1alpha1.UpdatePlanRequest) | [UpdatePlanResponse](#ddev.billing.v1alpha1.UpdatePlanResponse) |  |
 | DeletePlan | [DeletePlanRequest](#ddev.billing.v1alpha1.DeletePlanRequest) | [DeletePlanResponse](#ddev.billing.v1alpha1.DeletePlanResponse) |  |
 | ListWorkspaces | [ListWorkspaceRequest](#ddev.billing.v1alpha1.ListWorkspaceRequest) | [ListWorkspaceResponse](#ddev.billing.v1alpha1.ListWorkspaceResponse) | ListWorkspaces will return a list of workspaces the user has authorization for |
-| AddWorkspaceAdmin | [AddWorkspaceAdminRequest](#ddev.billing.v1alpha1.AddWorkspaceAdminRequest) | [AddWorkspaceAdminResponse](#ddev.billing.v1alpha1.AddWorkspaceAdminResponse) | Add an administrator to an organization |
-| AddWorkspaceDeveloper | [AddWorkspaceDeveloperRequest](#ddev.billing.v1alpha1.AddWorkspaceDeveloperRequest) | [AddWorkspaceDeveloperResponse](#ddev.billing.v1alpha1.AddWorkspaceDeveloperResponse) | Add a developer to an organization |
+| AddWorkspaceAdmin | [AddWorkspaceAdminRequest](#ddev.billing.v1alpha1.AddWorkspaceAdminRequest) | [AddWorkspaceAdminResponse](#ddev.billing.v1alpha1.AddWorkspaceAdminResponse) | Add an administrator to a workspace. Requires a workspace administrator token. |
+| AddWorkspaceDeveloper | [AddWorkspaceDeveloperRequest](#ddev.billing.v1alpha1.AddWorkspaceDeveloperRequest) | [AddWorkspaceDeveloperResponse](#ddev.billing.v1alpha1.AddWorkspaceDeveloperResponse) | Add a developer to a workspace. Requires a workspace administrator token. |
+| DeleteWorkspaceAdmin | [DeleteWorkspaceAdminRequest](#ddev.billing.v1alpha1.DeleteWorkspaceAdminRequest) | [DeleteWorkspaceAdminResponse](#ddev.billing.v1alpha1.DeleteWorkspaceAdminResponse) | Remove an administrator from a workspace. Requires a workspace administrator token. An administrator cannot remove themselves. |
+| DeleteWorkspaceDeveloper | [DeleteWorkspaceDeveloperRequest](#ddev.billing.v1alpha1.DeleteWorkspaceDeveloperRequest) | [DeleteWorkspaceDeveloperResponse](#ddev.billing.v1alpha1.DeleteWorkspaceDeveloperResponse) | Remove a developer from a workspace. Requires a workspace administrator token. |
 
  
 
@@ -787,8 +793,8 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspaceName | [string](#string) |  |  |
-| email | [string](#string) |  |  |
+| workspace | [string](#string) |  | `Required` The name of the workspace to add this administrator to. |
+| email | [string](#string) |  | `Required` The email of the workspace administrator |
 
 
 
@@ -803,7 +809,7 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  |  |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
 
 
 
@@ -818,8 +824,8 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspaceName | [string](#string) |  |  |
-| email | [string](#string) |  |  |
+| workspace | [string](#string) |  | `Required` The name of the workspace to add this developer to. |
+| email | [string](#string) |  | `Required` The email of the workspace developer. |
 
 
 
@@ -834,7 +840,69 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  |  |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.DeleteWorkspaceAdminRequest"></a>
+
+### DeleteWorkspaceAdminRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to remove this administrator from. |
+| email | [string](#string) |  | `Required` The email of the workspace administrator. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.DeleteWorkspaceAdminResponse"></a>
+
+### DeleteWorkspaceAdminResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.DeleteWorkspaceDeveloperRequest"></a>
+
+### DeleteWorkspaceDeveloperRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to remove this developer from. |
+| email | [string](#string) |  | `Required` The email of the workspace developer. |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.DeleteWorkspaceDeveloperResponse"></a>
+
+### DeleteWorkspaceDeveloperResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.billing.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
 
 
 
@@ -849,7 +917,7 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| Scope | [ListWorkspaceRequest.ListWorkspaceScope](#ddev.billing.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope) |  |  |
+| Scope | [ListWorkspaceRequest.ListWorkspaceScope](#ddev.billing.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope) |  | `Optional` The scope of the list request. Defaults to `ListWorkspaceScope.DEVELOPER`. |
 
 
 
@@ -879,9 +947,9 @@ Response message for `Billing.ListProducts`.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` - Workspace Name. |
-| admins | [string](#string) | repeated |  |
-| developers | [string](#string) | repeated |  |
+| name | [string](#string) |  | `OutputOnly` Workspace Name. |
+| admins | [string](#string) | repeated | `OutputOnly` Administrators of the workspace |
+| developers | [string](#string) | repeated | `OutputOnly` Developers in the workspace |
 
 
 
@@ -893,7 +961,8 @@ Response message for `Billing.ListProducts`.
 <a name="ddev.billing.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope"></a>
 
 ### ListWorkspaceRequest.ListWorkspaceScope
-
+Defines the scope of the request.  If the scope is set to ADMIN the response will contain only workspaces where the provided token user is an administrator.
+If the request is set to DEVELOPER the response will contain any workspace where the provided token user is an administrator or a developer.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |

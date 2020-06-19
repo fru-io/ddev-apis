@@ -113,12 +113,28 @@ service Billing {
     rpc ListWorkspaces(ListWorkspaceRequest) returns (ListWorkspaceResponse) {
     }
 
-    // Add an administrator to an organization
+    /* 
+    Add an administrator to a workspace.  Requires a workspace administrator token.
+    */
     rpc AddWorkspaceAdmin(AddWorkspaceAdminRequest) returns (AddWorkspaceAdminResponse) {       
     }
 
-    // Add a developer to an organization
+    /*
+    Add a developer to a workspace.   Requires a workspace administrator token.
+    */
     rpc AddWorkspaceDeveloper(AddWorkspaceDeveloperRequest) returns (AddWorkspaceDeveloperResponse) {       
+    }
+
+    /* 
+    Remove an administrator from a workspace.  Requires a workspace administrator token.  An administrator cannot remove themselves.
+    */
+    rpc DeleteWorkspaceAdmin(DeleteWorkspaceAdminRequest) returns (DeleteWorkspaceAdminResponse) {       
+    }
+
+    /* 
+    Remove a developer from a workspace.  Requires a workspace administrator token.
+    */
+    rpc DeleteWorkspaceDeveloper(DeleteWorkspaceDeveloperRequest) returns (DeleteWorkspaceDeveloperResponse) {       
     }
 
 }

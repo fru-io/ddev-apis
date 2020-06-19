@@ -25,23 +25,44 @@ option java_package = "com.ddev.live.billing.v1alpha1";
 
 message Workspace {
 
-    // `Required` - Workspace Name.
+    /*
+    `OutputOnly`
+    Workspace Name.
+    */
     string name = 1;
 
     // `OutputOnly` - Workspace ID.
     // string id = 2;
 
+    /*
+    `OutputOnly`
+    Administrators of the workspace
+    */
     repeated string admins = 2;
     
+    /*
+    `OutputOnly`
+    Developers in the workspace
+    */
     repeated string developers = 3;
 }
 
 
 message ListWorkspaceRequest {
+    
+    /*
+    Defines the scope of the request.  If the scope is set to ADMIN the response will contain only workspaces where the provided token user is an administrator.
+    If the request is set to DEVELOPER the response will contain any workspace where the provided token user is an administrator or a developer.
+    */
     enum ListWorkspaceScope {
         DEVELOPER = 0;
         ADMIN = 1;
     }
+
+    /*
+    `Optional`
+    The scope of the list request.  Defaults to `ListWorkspaceScope.DEVELOPER`.
+    */
     ListWorkspaceScope Scope = 1;
 }
 
@@ -52,19 +73,95 @@ message ListWorkspaceResponse {
 }
 
 message AddWorkspaceAdminRequest {
-    string workspaceName = 1;
+
+    /*
+    `Required`
+    The name of the workspace to add this administrator to.
+    */
+    string workspace = 1;
+
+    /*
+    `Required`
+    The email of the workspace administrator
+    */
     string email = 2;
 }
 
 message AddWorkspaceAdminResponse {
+    /*
+    `OutputOnly`
+    The updated workspace resource.
+    */
     Workspace workspace = 1;
 }
 
 message AddWorkspaceDeveloperRequest {
-    string workspaceName = 1;
+
+    /*
+    `Required`
+    The name of the workspace to add this developer to.
+    */
+    string workspace = 1;
+
+    /*
+    `Required`
+    The email of the workspace developer.
+    */
     string email = 2;
 }
 
 message AddWorkspaceDeveloperResponse {
+    /*
+    `OutputOnly`
+    The updated workspace resource.
+    */
+    Workspace workspace = 1;
+}
+
+message DeleteWorkspaceAdminRequest {
+
+    /*
+    `Required`
+    The name of the workspace to remove this administrator from.
+    */
+    string workspace = 1;
+
+    /*
+    `Required`
+    The email of the workspace administrator.
+    */
+    string email = 2;
+}
+
+message DeleteWorkspaceAdminResponse {
+
+    /*
+    `OutputOnly`
+    The updated workspace resource.
+    */
+    Workspace workspace = 1;
+}
+
+message DeleteWorkspaceDeveloperRequest {
+
+    /*
+    `Required`
+    The name of the workspace to remove this developer from.
+    */
+    string workspace = 1;
+    
+    /*
+    `Required`
+    The email of the workspace developer.
+    */
+    string email = 2;
+}
+
+message DeleteWorkspaceDeveloperResponse {
+
+    /*
+    `OutputOnly`
+    The updated workspace resource.
+    */
     Workspace workspace = 1;
 }
