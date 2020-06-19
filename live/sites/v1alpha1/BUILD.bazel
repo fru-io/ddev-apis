@@ -1,0 +1,46 @@
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+    name = "database_proto",
+    srcs = [
+        "database.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
+
+proto_library(
+    name = "file_proto",
+    srcs = [
+        "file.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
+
+proto_library(
+    name = "service_proto",
+    srcs = [
+        "service.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":database_proto",
+        ":file_proto",
+        ":site_proto",
+    ],
+)
+
+proto_library(
+    name = "site_proto",
+    srcs = [
+        "site.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
