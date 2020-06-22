@@ -34,10 +34,13 @@
     - [BackupState](#ddev.sites.v1alpha1.BackupState)
   
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
-    - [CreateDrupalSiteRequest](#ddev.sites.v1alpha1.CreateDrupalSiteRequest)
-    - [CreateDrupalSiteResponse](#ddev.sites.v1alpha1.CreateDrupalSiteResponse)
+    - [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest)
+    - [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse)
     - [Cron](#ddev.sites.v1alpha1.Cron)
+    - [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest)
+    - [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse)
     - [DrupalSite](#ddev.sites.v1alpha1.DrupalSite)
+    - [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions)
     - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
     - [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse)
     - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
@@ -48,9 +51,11 @@
     - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
     - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
     - [Typo3Site](#ddev.sites.v1alpha1.Typo3Site)
+    - [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions)
     - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
     - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
     - [WordpressSite](#ddev.sites.v1alpha1.WordpressSite)
+    - [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions)
   
     - [SiteType](#ddev.sites.v1alpha1.SiteType)
   
@@ -250,10 +255,11 @@ TODO
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateDrupalSite | [CreateDrupalSiteRequest](#ddev.sites.v1alpha1.CreateDrupalSiteRequest) | [CreateDrupalSiteResponse](#ddev.sites.v1alpha1.CreateDrupalSiteResponse) | CreateSite creates one of the supported site types |
+| CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
 | GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
 | ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
 | UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
+| DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
 | SiteLogs | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogs returns a stream of logs for a site |
 | SiteExec | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExec allows for the streaming execution of commands inside a site container |
 | BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
@@ -476,9 +482,9 @@ Push a single database to a site
 
 
 
-<a name="ddev.sites.v1alpha1.CreateDrupalSiteRequest"></a>
+<a name="ddev.sites.v1alpha1.CreateSiteRequest"></a>
 
-### CreateDrupalSiteRequest
+### CreateSiteRequest
 
 
 
@@ -487,27 +493,24 @@ Push a single database to a site
 | workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | githubRepo | [string](#string) |  | `Required` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
-| branch | [string](#string) |  | `Optional` |
-| version | [string](#string) |  | `Optional` |
-| composerInstall | [bool](#bool) |  | `Optional` |
-| composerArgs | [string](#string) |  | `Optional` |
-| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
-| DocRoot | [string](#string) |  | `Optional` |
+| drupal | [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions) |  |  |
+| wordpress | [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions) |  |  |
+| typo3 | [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions) |  |  |
 
 
 
 
 
 
-<a name="ddev.sites.v1alpha1.CreateDrupalSiteResponse"></a>
+<a name="ddev.sites.v1alpha1.CreateSiteResponse"></a>
 
-### CreateDrupalSiteResponse
+### CreateSiteResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| site | [DrupalSite](#ddev.sites.v1alpha1.DrupalSite) |  | `OutputOnly` The properties of the site which was created. |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The properties of the site which was created. |
 
 
 
@@ -530,6 +533,38 @@ Cron manages if and when the CMS cron executes
 
 
 
+<a name="ddev.sites.v1alpha1.DeleteSiteRequest"></a>
+
+### DeleteSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the site |
+| name | [string](#string) |  | `Required` The name of the site |
+| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DeleteSiteResponse"></a>
+
+### DeleteSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The name of the site |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.DrupalSite"></a>
 
 ### DrupalSite
@@ -538,15 +573,30 @@ A site of SiteType.DRUPAL
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `OutputOnly` The name of the site |
+| workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
 | githubRepo | [string](#string) |  | `OutputOnly` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
-| branch | [string](#string) |  | `OutputOnly` |
-| version | [string](#string) |  | `OutputOnly` |
-| composerInstall | [bool](#bool) |  | `OutputOnly` |
-| composerArgs | [string](#string) |  | `OutputOnly` |
-| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `OutputOnly` |
-| DocRoot | [string](#string) |  | `OutputOnly` |
+| options | [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions) |  | `OutputOnly` |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DrupalSiteOptions"></a>
+
+### DrupalSiteOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
+| version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
+| composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
+| composerArgs | [string](#string) |  | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
+| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
+| DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
 
 
 
@@ -680,6 +730,28 @@ A site of SiteType.TYPO3
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
+| workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
+| options | [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions) |  | `OutputOnly` |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.Typo3SiteOptions"></a>
+
+### Typo3SiteOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
+| version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
+| composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
+| composerArgs | [string](#string) |  | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
+| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
+| DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
 
 
 
@@ -714,7 +786,31 @@ A site of SiteType.WORDPRESS
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
+| options | [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions) |  | `OutputOnly` |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.WordpressSiteOptions"></a>
+
+### WordpressSiteOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
+| version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
+| composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
+| composerArgs | [string](#string) |  | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
+| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
+| DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
+| persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads) |
+| ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
 
 
 

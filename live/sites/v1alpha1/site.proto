@@ -51,7 +51,7 @@ message DrupalSite {
 
   /*
   `OutputOnly`
-  The name of the site
+  The workspace of the site
   */
   string workspace = 1;
 
@@ -70,44 +70,30 @@ message DrupalSite {
   /*
   `OutputOnly`
   */
-  string branch = 17;
-  
-  /*
-  `OutputOnly`
-  */
-  string version = 18;
-
-  /*
-  `OutputOnly`
-  */
-  bool composerInstall = 19;
-
-  /*
-  `OutputOnly`
-  */
-  string composerArgs = 20;
-
-  /*
-  `OutputOnly`
-  */
-  Cron cron = 21;
-
-  /*
-  `OutputOnly`
-  */
-  string DocRoot = 22;
-
+  DrupalSiteOptions options = 17;
 }
 
 /*
 A site of SiteType.WORDPRESS
 */
 message WordpressSite {
+
+  /*
+  `OutputOnly`
+  The workspace of the site
+  */
+  string workspace = 1;
+
   /*
   `OutputOnly`
   The name of the site
   */
-  string name = 1;
+  string name = 2;
+
+  /*
+  `OutputOnly`
+  */
+  WordpressSiteOptions options = 17;
 }
 
 /*
@@ -119,6 +105,17 @@ message Typo3Site {
   The name of the site
   */
   string name = 1;
+
+  /*
+  `OutputOnly`
+  The workspace of the site
+  */
+  string workspace = 2;
+
+  /*
+  `OutputOnly`
+  */
+  Typo3SiteOptions options = 17;
 }
 
 message Site {
@@ -132,13 +129,7 @@ message Site {
   }
 }
 
-//
-// Message Types
-//
-
-/*
-*/
-message CreateDrupalSiteRequest {
+message CreateSiteRequest {
 
   /*
   `Required`
@@ -158,23 +149,36 @@ message CreateDrupalSiteRequest {
   */
   string githubRepo = 3;
 
+  oneof options {
+    DrupalSiteOptions drupal = 17;
+    WordpressSiteOptions wordpress = 18;
+    Typo3SiteOptions typo3 = 19;
+  }
+}
+
+message DrupalSiteOptions {
+
   /*
   `Optional`
+  Repository git branch to target (default "master")
   */
   string branch = 17;
   
   /*
   `Optional`
+  Specify the version of TYPO3 used for the site (default "9")
   */
   string version = 18;
 
   /*
   `Optional`
+  Whether to run composer install when creating the site image
   */
   bool composerInstall = 19;
 
   /*
   `Optional`
+  If `composerInstall` is set, use this flags to specify which args are passed to composer install
   */
   string composerArgs = 20;
 
@@ -185,19 +189,108 @@ message CreateDrupalSiteRequest {
 
   /*
   `Optional`
+  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
+  */
+  string DocRoot = 22;
+}
+
+message WordpressSiteOptions {
+
+  /*
+  `Optional`
+  Repository git branch to target (default "master")
+  */
+  string branch = 17;
+  
+  /*
+  `Optional`
+  Specify the version of TYPO3 used for the site (default "9")
+  */
+  string version = 18;
+
+  /*
+  `Optional`
+  Whether to run composer install when creating the site image
+  */
+  bool composerInstall = 19;
+
+  /*
+  `Optional`
+  If `composerInstall` is set, use this flags to specify which args are passed to composer install
+  */
+  string composerArgs = 20;
+
+  /*
+  `Optional`
+  */
+  Cron cron = 21;
+
+  /*
+  `Optional`
+  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
+  */
+  string DocRoot = 22;
+  
+  /*
+  `Optional`
+  A list of persistent mount paths relative to docroot (ex. content/uploads)
+  */
+  repeated string persistentPaths = 23;
+
+  /*
+  `Optional`
+  A list of ephemeral mount paths relative to docroot
+  */
+  repeated string ephemeralPaths = 24;
+}
+
+message Typo3SiteOptions {
+
+  /*
+  `Optional`
+  Repository git branch to target (default "master")
+  */
+  string branch = 17;
+  
+  /*
+  `Optional`
+  Specify the version of TYPO3 used for the site (default "9")
+  */
+  string version = 18;
+
+  /*
+  `Optional`
+  Whether to run composer install when creating the site image
+  */
+  bool composerInstall = 19;
+
+  /*
+  `Optional`
+  If `composerInstall` is set, use this flags to specify which args are passed to composer install
+  */
+  string composerArgs = 20;
+
+  /*
+  `Optional`
+  */
+  Cron cron = 21;
+
+  /*
+  `Optional`
+  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
   */
   string DocRoot = 22;
 }
 
 /*
 */
-message CreateDrupalSiteResponse {
+message CreateSiteResponse {
 
   /*
   `OutputOnly`
   The properties of the site which was created.
   */
-  DrupalSite site = 1;
+  Site site = 1;
 }
 
 /*
@@ -268,7 +361,7 @@ message UpdateSiteResponse {
 
 /*
 */
-message DeleteDrupalSiteRequest {
+message DeleteSiteRequest {
 
   /*
   `Required`
@@ -281,17 +374,23 @@ message DeleteDrupalSiteRequest {
   The name of the site
   */
   string name = 2;
+
+  /*
+  `Required`
+  The type of site being deleted
+  */
+  SiteType type = 3;
 }
 
 /*
 */
-message DeleteDrupalSiteResponse {
+message DeleteSiteResponse {
 
   /*
   `OutputOnly`
   The name of the site
   */
-  DrupalSite site = 1;
+  Site site = 1;
 }
 
 /*

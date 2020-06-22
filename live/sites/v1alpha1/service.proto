@@ -32,7 +32,7 @@ service Sites {
     /*
     CreateSite creates one of the supported site types
     */
-    rpc CreateDrupalSite(CreateDrupalSiteRequest) returns (CreateDrupalSiteResponse) {
+    rpc CreateSite(CreateSiteRequest) returns (CreateSiteResponse) {
     }
 
     /*
@@ -54,7 +54,7 @@ service Sites {
 
     /*
     */
-    rpc DeleteDrupalSite(DeleteDrupalSiteRequest) returns (DeleteDrupalSiteResponse) {
+    rpc DeleteSite(DeleteSiteRequest) returns (DeleteSiteResponse) {
     }
 
     /*
