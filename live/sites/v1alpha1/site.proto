@@ -180,7 +180,7 @@ message DrupalSiteOptions {
   `Optional`
   If `composerInstall` is set, use this flags to specify which args are passed to composer install
   */
-  string composerArgs = 20;
+  repeated string composerArgs = 20;
 
   /*
   `Optional`
@@ -218,7 +218,7 @@ message WordpressSiteOptions {
   `Optional`
   If `composerInstall` is set, use this flags to specify which args are passed to composer install
   */
-  string composerArgs = 20;
+  repeated string composerArgs = 20;
 
   /*
   `Optional`
@@ -268,7 +268,7 @@ message Typo3SiteOptions {
   `Optional`
   If `composerInstall` is set, use this flags to specify which args are passed to composer install
   */
-  string composerArgs = 20;
+  repeated string composerArgs = 20;
 
   /*
   `Optional`

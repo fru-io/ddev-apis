@@ -594,7 +594,7 @@ A site of SiteType.DRUPAL
 | branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
 | version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
 | composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
-| composerArgs | [string](#string) |  | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
+| composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
 | cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
 | DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
 
@@ -749,7 +749,7 @@ A site of SiteType.TYPO3
 | branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
 | version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
 | composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
-| composerArgs | [string](#string) |  | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
+| composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
 | cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
 | DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
 
@@ -806,7 +806,7 @@ A site of SiteType.WORDPRESS
 | branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
 | version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
 | composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
-| composerArgs | [string](#string) |  | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
+| composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
 | cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
 | DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
 | persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads) |
