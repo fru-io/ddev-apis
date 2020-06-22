@@ -731,6 +731,7 @@ A site of SiteType.TYPO3
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
 | workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
+| githubRepo | [string](#string) |  | `OutputOnly` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
 | options | [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions) |  | `OutputOnly` |
 
 
@@ -788,6 +789,7 @@ A site of SiteType.WORDPRESS
 | ----- | ---- | ----- | ----------- |
 | workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
+| githubRepo | [string](#string) |  | `OutputOnly` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
 | options | [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions) |  | `OutputOnly` |
 
 
