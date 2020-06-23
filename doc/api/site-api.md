@@ -613,6 +613,7 @@ A site of SiteType.DRUPAL
 | ----- | ---- | ----- | ----------- |
 | workspace | [string](#string) |  | `Required` The workspace in which the site is contained |
 | name | [string](#string) |  | `Required` The name of the site |
+| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being retrieved |
 
 
 
@@ -627,7 +628,7 @@ A site of SiteType.DRUPAL
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sites | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The requested site. |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The requested site. |
 
 
 

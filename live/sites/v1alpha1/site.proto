@@ -319,6 +319,12 @@ message GetSiteRequest {
   The name of the site
   */
   string name = 2;
+  
+  /*
+  `Required`
+  The type of site being retrieved
+  */
+  SiteType type = 3;
 }
 
 /*
@@ -329,7 +335,7 @@ message GetSiteResponse {
   `OutputOnly`
   The requested site.
   */
-  Site sites = 1;
+  Site site = 1;
 }
 
 /*
