@@ -724,6 +724,13 @@ TODO:
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the site |
+| name | [string](#string) |  | `Required` The name of the site |
+| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
+
+
 
 
 

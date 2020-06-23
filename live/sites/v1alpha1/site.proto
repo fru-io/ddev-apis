@@ -413,9 +413,24 @@ message DeleteSiteResponse {
 /*
 */
 message SiteLogsRequest {
+  
+  /*
+  `Required`
+  The name of the site
+  */
+  string workspace = 1;
 
   /*
+  `Required`
+  The name of the site
   */
+  string name = 2;
+
+  /*
+  `Required`
+  The type of site being deleted
+  */
+  SiteType type = 3;
 }
 
 /*
