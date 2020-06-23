@@ -157,33 +157,6 @@ message Site {
   }
 }
 
-message CreateSiteRequest {
-
-  /*
-  `Required`
-  The name of the site
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
-  The name of the site
-  */
-  string name = 2;
-
-  /*
-  `Required`
-  Github repository to target in the <org>/<name> format
-  */
-  string githubRepo = 3;
-
-  oneof options {
-    DrupalSiteOptions drupal = 17;
-    WordpressSiteOptions wordpress = 18;
-    Typo3SiteOptions typo3 = 19;
-  }
-}
-
 message DrupalSiteOptions {
   
   /*
@@ -290,6 +263,34 @@ message Typo3SiteOptions {
   The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
   */
   string DocRoot = 22;
+}
+
+message CreateSiteRequest {
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string name = 2;
+
+  /*
+  `Required`
+  */
+  oneof Repository {
+    GitRepository git = 3;
+  }
+
+  oneof options {
+    DrupalSiteOptions drupal = 17;
+    WordpressSiteOptions wordpress = 18;
+    Typo3SiteOptions typo3 = 19;
+  }
 }
 
 /*

@@ -493,7 +493,7 @@ Push a single database to a site
 | ----- | ---- | ----- | ----------- |
 | workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
-| githubRepo | [string](#string) |  | `Required` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
+| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | drupal | [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions) |  |  |
 | wordpress | [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions) |  |  |
 | typo3 | [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions) |  |  |
