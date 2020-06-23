@@ -438,7 +438,9 @@ message SiteLogsRequest {
 message SiteLogsResponse {
 
   /*
+  TODO
   */
+  bytes content = 1;
 }
 
 /*
