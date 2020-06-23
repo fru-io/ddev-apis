@@ -43,6 +43,7 @@
     - [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions)
     - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
     - [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse)
+    - [GitRepository](#ddev.sites.v1alpha1.GitRepository)
     - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
     - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
     - [Site](#ddev.sites.v1alpha1.Site)
@@ -575,7 +576,7 @@ A site of SiteType.DRUPAL
 | ----- | ---- | ----- | ----------- |
 | workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
-| githubRepo | [string](#string) |  | `OutputOnly` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
+| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | options | [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions) |  | `OutputOnly` |
 
 
@@ -591,7 +592,6 @@ A site of SiteType.DRUPAL
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
 | version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
 | composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
 | composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
@@ -628,6 +628,22 @@ A site of SiteType.DRUPAL
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sites | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The requested site. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.GitRepository"></a>
+
+### GitRepository
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| url | [string](#string) |  | `Required` The URL of the repository |
+| ref | [string](#string) |  | `Required` The branch, tag, or commit. Default: `master`. |
 
 
 
@@ -731,7 +747,7 @@ A site of SiteType.TYPO3
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
 | workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
-| githubRepo | [string](#string) |  | `OutputOnly` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
+| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | options | [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions) |  | `OutputOnly` |
 
 
@@ -747,7 +763,6 @@ A site of SiteType.TYPO3
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
 | version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
 | composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
 | composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
@@ -789,7 +804,7 @@ A site of SiteType.WORDPRESS
 | ----- | ---- | ----- | ----------- |
 | workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
 | name | [string](#string) |  | `OutputOnly` The name of the site |
-| githubRepo | [string](#string) |  | `OutputOnly` Github repository to target in the &lt;org&gt;/&lt;name&gt; format |
+| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | options | [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions) |  | `OutputOnly` |
 
 
@@ -805,7 +820,6 @@ A site of SiteType.WORDPRESS
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| branch | [string](#string) |  | `Optional` Repository git branch to target (default &#34;master&#34;) |
 | version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
 | composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
 | composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |

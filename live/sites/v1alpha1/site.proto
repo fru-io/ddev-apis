@@ -28,6 +28,19 @@ enum SiteType {
     WORDPRESS = 2;
 }
 
+message GitRepository {
+  /*
+  `Required`
+  The URL of the repository
+  */
+  string url = 1;
+
+  /*
+  `Required`
+  The branch, tag, or commit.  Default: `master`.
+  */
+  string ref = 2;
+}
 
 // Cron manages if and when the CMS cron executes
 message Cron {
@@ -63,9 +76,10 @@ message DrupalSite {
 
   /*
   `OutputOnly`
-  Github repository to target in the <org>/<name> format
   */
-  string githubRepo = 3;
+  oneof Repository {
+    GitRepository git = 3;
+  }
 
   /*
   `OutputOnly`
@@ -92,9 +106,10 @@ message WordpressSite {
 
   /*
   `OutputOnly`
-  Github repository to target in the <org>/<name> format
   */
-  string githubRepo = 3;
+  oneof Repository {
+    GitRepository git = 3;
+  }
 
   /*
   `OutputOnly`
@@ -120,9 +135,10 @@ message Typo3Site {
 
   /*
   `OutputOnly`
-  Github repository to target in the <org>/<name> format
   */
-  string githubRepo = 3;
+  oneof Repository {
+    GitRepository git = 3;
+  }
 
   /*
   `OutputOnly`
@@ -169,12 +185,6 @@ message CreateSiteRequest {
 }
 
 message DrupalSiteOptions {
-
-  /*
-  `Optional`
-  Repository git branch to target (default "master")
-  */
-  string branch = 17;
   
   /*
   `Optional`
@@ -207,12 +217,6 @@ message DrupalSiteOptions {
 }
 
 message WordpressSiteOptions {
-
-  /*
-  `Optional`
-  Repository git branch to target (default "master")
-  */
-  string branch = 17;
   
   /*
   `Optional`
@@ -257,12 +261,6 @@ message WordpressSiteOptions {
 }
 
 message Typo3SiteOptions {
-
-  /*
-  `Optional`
-  Repository git branch to target (default "master")
-  */
-  string branch = 17;
   
   /*
   `Optional`
