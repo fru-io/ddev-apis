@@ -65,6 +65,20 @@ service Sites {
     }
 
     /*
+    AccessLogs returns a stream of access logs for a site
+    */
+    rpc AccessLogs(AccessLogsRequest) returns (stream AccessLogsResponse) {
+
+    }
+
+    /*
+    MysqlLogs returns a stream of access logs for a site
+    */
+    rpc MysqlLogs(MysqlLogsRequest) returns (stream MysqlLogsResponse) {
+
+    }
+
+    /*
     SiteExec allows for the streaming execution of commands inside a site container
     */
     rpc SiteExec(stream SiteExecRequest) returns (stream SiteExecResponse) {

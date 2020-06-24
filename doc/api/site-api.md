@@ -34,6 +34,8 @@
     - [BackupState](#ddev.sites.v1alpha1.BackupState)
   
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
+    - [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest)
+    - [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse)
     - [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest)
     - [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse)
     - [Cron](#ddev.sites.v1alpha1.Cron)
@@ -46,6 +48,8 @@
     - [GitRepository](#ddev.sites.v1alpha1.GitRepository)
     - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
     - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
+    - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
+    - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
     - [Site](#ddev.sites.v1alpha1.Site)
     - [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest)
     - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
@@ -262,6 +266,8 @@ TODO
 | UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
 | DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
 | SiteLogs | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogs returns a stream of logs for a site |
+| AccessLogs | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogs returns a stream of access logs for a site |
+| MysqlLogs | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogs returns a stream of access logs for a site |
 | SiteExec | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExec allows for the streaming execution of commands inside a site container |
 | BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
 | RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
@@ -483,6 +489,39 @@ Push a single database to a site
 
 
 
+<a name="ddev.sites.v1alpha1.AccessLogsRequest"></a>
+
+### AccessLogsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the site |
+| name | [string](#string) |  | `Required` The name of the site |
+| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
+| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.AccessLogsResponse"></a>
+
+### AccessLogsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.CreateSiteRequest"></a>
 
 ### CreateSiteRequest
@@ -681,6 +720,39 @@ A site of SiteType.DRUPAL
 
 
 
+<a name="ddev.sites.v1alpha1.MysqlLogsRequest"></a>
+
+### MysqlLogsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the site |
+| name | [string](#string) |  | `Required` The name of the site |
+| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
+| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.MysqlLogsResponse"></a>
+
+### MysqlLogsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.Site"></a>
 
 ### Site
@@ -729,6 +801,7 @@ TODO:
 | workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
+| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached |
 
 
 

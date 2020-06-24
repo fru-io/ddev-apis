@@ -431,11 +431,95 @@ message SiteLogsRequest {
   The type of site being deleted
   */
   SiteType type = 3;
+
+  /*
+  `Optional`
+  Continues to follow and send logs until the maximum allotted connection time has been reached
+  */
+  bool follow = 17;
 }
 
 /*
 */
 message SiteLogsResponse {
+
+  /*
+  TODO
+  */
+  bytes content = 1;
+}
+
+/*
+*/
+message AccessLogsRequest {
+  
+  /*
+  `Required`
+  The name of the site
+  */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string name = 2;
+
+  /*
+  `Required`
+  The type of site being deleted
+  */
+  SiteType type = 3;
+
+  /*
+  `Optional`
+  Continues to follow and send logs until the maximum allotted connection time has been reached
+  */
+  bool follow = 17;
+}
+
+/*
+*/
+message AccessLogsResponse {
+
+  /*
+  TODO
+  */
+  bytes content = 1;
+}
+
+/*
+*/
+message MysqlLogsRequest {
+  
+  /*
+  `Required`
+  The name of the site
+  */
+  string workspace = 1;
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string name = 2;
+
+  /*
+  `Required`
+  The type of site being deleted
+  */
+  SiteType type = 3;
+
+  /*
+  `Optional`
+  Continues to follow and send logs until the maximum allotted connection time has been reached
+  */
+  bool follow = 17;
+}
+
+/*
+*/
+message MysqlLogsResponse {
 
   /*
   TODO
