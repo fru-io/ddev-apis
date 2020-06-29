@@ -636,6 +636,8 @@ A site of SiteType.DRUPAL
 | composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
 | cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
 | DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
+| persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads). Defaults to &#34;sites/default/files&#34;,&#34;/var/www/drupal-private/&#34;,&#34;sites/default/files/config/sync&#34; |
+| ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
 
 
 
@@ -854,6 +856,8 @@ A site of SiteType.TYPO3
 | composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
 | cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
 | DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
+| persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads). |
+| ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
 
 
 

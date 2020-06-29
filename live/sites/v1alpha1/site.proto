@@ -187,6 +187,19 @@ message DrupalSiteOptions {
   The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
   */
   string DocRoot = 22;
+  
+  /*
+  `Optional`
+  A list of persistent mount paths relative to docroot (ex. content/uploads). 
+  Defaults to "sites/default/files","/var/www/drupal-private/","sites/default/files/config/sync"
+  */
+  repeated string persistentPaths = 23;
+
+  /*
+  `Optional`
+  A list of ephemeral mount paths relative to docroot
+  */
+  repeated string ephemeralPaths = 24;
 }
 
 message WordpressSiteOptions {
@@ -263,6 +276,18 @@ message Typo3SiteOptions {
   The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
   */
   string DocRoot = 22;
+  
+  /*
+  `Optional`
+  A list of persistent mount paths relative to docroot (ex. content/uploads). 
+  */
+  repeated string persistentPaths = 23;
+
+  /*
+  `Optional`
+  A list of ephemeral mount paths relative to docroot
+  */
+  repeated string ephemeralPaths = 24;
 }
 
 message CreateSiteRequest {
