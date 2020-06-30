@@ -612,7 +612,7 @@ message SiteExecRequest {
 
   /*
   */
-  string command = 3;
+  repeated string command = 3;
 
   /*
   */
@@ -627,6 +627,10 @@ message SiteExecResponse {
   /*
   TODO
   */
-  bytes content = 1;
+  bytes stdout = 1;
 
+  /*
+  TODO
+  */
+  bytes stderr = 2;
 }

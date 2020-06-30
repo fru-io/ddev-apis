@@ -804,7 +804,7 @@ A site of SiteType.DRUPAL
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  |  |
 | workspace | [string](#string) |  |  |
-| command | [string](#string) |  |  |
+| command | [string](#string) | repeated |  |
 | quiet | [bool](#bool) |  |  |
 
 
@@ -820,7 +820,8 @@ TODO:
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| content | [bytes](#bytes) |  | TODO |
+| stdout | [bytes](#bytes) |  | TODO |
+| stderr | [bytes](#bytes) |  | TODO |
 
 
 
