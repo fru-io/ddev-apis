@@ -800,6 +800,14 @@ A site of SiteType.DRUPAL
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| workspace | [string](#string) |  |  |
+| command | [string](#string) |  |  |
+| quiet | [bool](#bool) |  |  |
+
+
 
 
 
@@ -808,6 +816,11 @@ A site of SiteType.DRUPAL
 
 ### SiteExecResponse
 TODO:
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | TODO |
 
 
 

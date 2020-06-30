@@ -604,6 +604,19 @@ message SiteExecRequest {
 
   /*
   */
+  string name = 1;
+
+  /*
+  */
+  string workspace = 2;
+
+  /*
+  */
+  string command = 3;
+
+  /*
+  */
+  bool quiet = 17;
 }
 
 /*
@@ -612,5 +625,8 @@ TODO:
 message SiteExecResponse {
 
   /*
+  TODO
   */
+  bytes content = 1;
+
 }
