@@ -48,6 +48,7 @@
     - [GitRepository](#ddev.sites.v1alpha1.GitRepository)
     - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
     - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
+    - [LogOptions](#ddev.sites.v1alpha1.LogOptions)
     - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
     - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
     - [Site](#ddev.sites.v1alpha1.Site)
@@ -500,7 +501,7 @@ Push a single database to a site
 | workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
-| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached |
+| options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
 
 
 
@@ -722,6 +723,27 @@ A site of SiteType.DRUPAL
 
 
 
+<a name="ddev.sites.v1alpha1.LogOptions"></a>
+
+### LogOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached. Defaults to false. |
+| limitBytes | [int64](#int64) |  | `Optional` The approximate number of bytes to return from the message. |
+| previous | [bool](#bool) |  | `Optional` Retrieves the logs for a previously terminated run of the site |
+| sinceSeconds | [int64](#int64) |  | `Optional` The number of seconds from now to retrieve logs |
+| sinceTime | [string](#string) |  | `Optional` An RFC3999 formatted timestamp to start retrieving logs from |
+| taillines | [int64](#int64) |  | `Optional` The number of lines to retrieve at the tail end of a log |
+| timestamps | [bool](#bool) |  | `Optional` Will prepend RFC3999 timestamps at the beginning of each log line |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.MysqlLogsRequest"></a>
 
 ### MysqlLogsRequest
@@ -803,7 +825,7 @@ TODO:
 | workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
-| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached |
+| options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
 
 
 

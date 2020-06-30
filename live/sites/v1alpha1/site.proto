@@ -435,6 +435,51 @@ message DeleteSiteResponse {
   Site site = 1;
 }
 
+message LogOptions {
+  /*
+  `Optional`
+  Continues to follow and send logs until the maximum allotted connection time has been reached.
+  Defaults to false.
+  */
+  bool follow = 1;
+
+  /*
+  `Optional`
+  The approximate number of bytes to return from the message.
+  */
+  int64 limitBytes = 2;
+
+  /*
+  `Optional`
+  Retrieves the logs for a previously terminated run of the site
+  */
+  bool previous = 3;
+
+  /*
+  `Optional`
+  The number of seconds from now to retrieve logs
+  */
+  int64 sinceSeconds = 4;
+
+  /*
+  `Optional`
+  An RFC3999 formatted timestamp to start retrieving logs from
+  */
+  string sinceTime = 5;
+
+  /*
+  `Optional`
+  The number of lines to retrieve at the tail end of a log
+  */
+  int64 taillines = 6;
+
+  /*
+  `Optional`
+  Will prepend RFC3999 timestamps at the beginning of each log line
+  */
+  bool timestamps = 7;
+}
+
 /*
 */
 message SiteLogsRequest {
@@ -459,9 +504,10 @@ message SiteLogsRequest {
 
   /*
   `Optional`
-  Continues to follow and send logs until the maximum allotted connection time has been reached
+  Additional options for logging
   */
-  bool follow = 17;
+  LogOptions options = 17;
+
 }
 
 /*
@@ -498,9 +544,9 @@ message AccessLogsRequest {
 
   /*
   `Optional`
-  Continues to follow and send logs until the maximum allotted connection time has been reached
+  Additional options for logging
   */
-  bool follow = 17;
+  LogOptions options = 17;
 }
 
 /*
