@@ -1,6 +1,16 @@
 package(default_visibility = ["//visibility:public"])
 
 proto_library(
+    name = "auth_proto",
+    srcs = [
+        "auth.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
+
+proto_library(
     name = "common_proto",
     srcs = [
         "common.proto",
@@ -52,6 +62,7 @@ proto_library(
         "//visibility:public",
     ],
     deps = [
+        ":auth_proto",
         ":customer_proto",
         ":subscription_proto",
         ":plan_proto",

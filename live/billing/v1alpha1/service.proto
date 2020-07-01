@@ -16,11 +16,11 @@ syntax = "proto3";
 
 package ddev.billing.v1alpha1;
 
+import "live/billing/v1alpha1/auth.proto";
 import "live/billing/v1alpha1/customer.proto";
 import "live/billing/v1alpha1/plan.proto";
 import "live/billing/v1alpha1/product.proto";
 import "live/billing/v1alpha1/subscription.proto";
-import "live/billing/v1alpha1/auth.proto";
 import "live/billing/v1alpha1/workspace.proto";
 
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
