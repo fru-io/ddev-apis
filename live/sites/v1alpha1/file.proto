@@ -65,15 +65,9 @@ message BackupFilesRequest {
 
   /*
   `Required`
-  The workspace name for this request.
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the backup.
   */
-  string name = 2;
+  string name = 1;
 }
 
 /*
@@ -92,15 +86,9 @@ message RestoreFilesRequest {
 
   /*
   `Required`
-  The workspace name for this request.
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the backup to restore files from.
   */
-  string backup = 2;
+  string backup = 1;
 }
 
 /*
@@ -120,15 +108,9 @@ message PushFilesRequest {
 
   /*
   `Required`
-  The workspace name for this request.
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the database to push to.
   */
-  repeated File file = 2;
+  repeated File file = 1;
 }
 
 /*
@@ -147,15 +129,9 @@ message PullFilesRequest {
 
   /*
   `Required`
-  The workspace name for this request.
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the database to push to.
   */
-  string name = 2;
+  string name = 1;
 }
 
 /*

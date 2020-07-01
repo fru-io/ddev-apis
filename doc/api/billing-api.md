@@ -37,6 +37,10 @@
     - [UpdateProductRequest.MetadataEntry](#ddev.billing.v1alpha1.UpdateProductRequest.MetadataEntry)
     - [UpdateProductResponse](#ddev.billing.v1alpha1.UpdateProductResponse)
   
+- [live/billing/v1alpha1/auth.proto](#live/billing/v1alpha1/auth.proto)
+    - [CreateTokenRequest](#ddev.billing.v1alpha1.CreateTokenRequest)
+    - [CreateTokenResponse](#ddev.billing.v1alpha1.CreateTokenResponse)
+  
 - [live/billing/v1alpha1/subscriptionitem.proto](#live/billing/v1alpha1/subscriptionitem.proto)
     - [Price](#ddev.billing.v1alpha1.Price)
     - [Price.MetadataEntry](#ddev.billing.v1alpha1.Price.MetadataEntry)
@@ -625,6 +629,52 @@ Response message for `Billing.ListProducts`.
 
 
 
+<a name="live/billing/v1alpha1/auth.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/billing/v1alpha1/auth.proto
+
+
+
+<a name="ddev.billing.v1alpha1.CreateTokenRequest"></a>
+
+### CreateTokenRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| apiToken | [string](#string) |  | The long lived token provided by the ddev-live dashboard |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.CreateTokenResponse"></a>
+
+### CreateTokenResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| token | [string](#string) |  | A generated short lived token to be provided to scoped clients |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
 <a name="live/billing/v1alpha1/subscriptionitem.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -744,20 +794,28 @@ Response message for `Billing.ListProducts`.
 <a name="ddev.billing.v1alpha1.Billing"></a>
 
 ### Billing
+The Billing service provides administrative functions over a users ddev-live account.
+To access the billing service consumers will have to initialize an authenticated client.  This requires
+several metadata to be passed to the client.
 
+`x-auth-token` which is a authentication token for the call.  In most cases this will be a temporary token 
+issued by the API.  This can be the integration token provided on the dashboard when retrieving temporary tokens.
+
+`x-ddev-workspace` which is the workspace for all workspace scoped procedures.  For example a client request `ListSubscriptions` will list all subscriptions in the workspace whose value is derived from the key `x-ddev-workspace`.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| CreateToken | [CreateTokenRequest](#ddev.billing.v1alpha1.CreateTokenRequest) | [CreateTokenResponse](#ddev.billing.v1alpha1.CreateTokenResponse) | AUTH |
 | CreateCustomer | [CreateCustomerRequest](#ddev.billing.v1alpha1.CreateCustomerRequest) | [CreateCustomerResponse](#ddev.billing.v1alpha1.CreateCustomerResponse) |  |
 | GetCustomer | [GetCustomerRequest](#ddev.billing.v1alpha1.GetCustomerRequest) | [GetCustomerResponse](#ddev.billing.v1alpha1.GetCustomerResponse) |  |
 | ListCustomers | [ListCustomerRequest](#ddev.billing.v1alpha1.ListCustomerRequest) | [ListCustomerResponse](#ddev.billing.v1alpha1.ListCustomerResponse) |  |
 | UpdateCustomer | [UpdateCustomerRequest](#ddev.billing.v1alpha1.UpdateCustomerRequest) | [UpdateCustomerResponse](#ddev.billing.v1alpha1.UpdateCustomerResponse) |  |
-| CreateSubscription | [CreateSubscriptionRequest](#ddev.billing.v1alpha1.CreateSubscriptionRequest) | [CreateSubscriptionResponse](#ddev.billing.v1alpha1.CreateSubscriptionResponse) |  |
-| GetSubscription | [GetSubscriptionRequest](#ddev.billing.v1alpha1.GetSubscriptionRequest) | [GetSubscriptionResponse](#ddev.billing.v1alpha1.GetSubscriptionResponse) |  |
-| ListSubscriptions | [ListSubscriptionRequest](#ddev.billing.v1alpha1.ListSubscriptionRequest) | [ListSubscriptionResponse](#ddev.billing.v1alpha1.ListSubscriptionResponse) |  |
+| CreateSubscription | [CreateSubscriptionRequest](#ddev.billing.v1alpha1.CreateSubscriptionRequest) | [CreateSubscriptionResponse](#ddev.billing.v1alpha1.CreateSubscriptionResponse) | Create a subscription in the client workspace. Requires client metadata `x-ddev-workspace` to be set. |
+| GetSubscription | [GetSubscriptionRequest](#ddev.billing.v1alpha1.GetSubscriptionRequest) | [GetSubscriptionResponse](#ddev.billing.v1alpha1.GetSubscriptionResponse) | Get a subscription in the client workspace. Requires client metadata `x-ddev-workspace` to be set. |
+| ListSubscriptions | [ListSubscriptionRequest](#ddev.billing.v1alpha1.ListSubscriptionRequest) | [ListSubscriptionResponse](#ddev.billing.v1alpha1.ListSubscriptionResponse) | List all subscriptions in the client workspace. Requires client metadata `x-ddev-workspace` to be set. |
 | UpdateSubscription | [UpdateSubscriptionRequest](#ddev.billing.v1alpha1.UpdateSubscriptionRequest) | [UpdateSubscriptionResponse](#ddev.billing.v1alpha1.UpdateSubscriptionResponse) |  |
-| CancelSubscription | [CancelSubscriptionRequest](#ddev.billing.v1alpha1.CancelSubscriptionRequest) | [CancelSubscriptionResponse](#ddev.billing.v1alpha1.CancelSubscriptionResponse) | Deprecated. Cancel a subscription in stripe |
-| DeleteSubscription | [DeleteSubscriptionRequest](#ddev.billing.v1alpha1.DeleteSubscriptionRequest) | [DeleteSubscriptionResponse](#ddev.billing.v1alpha1.DeleteSubscriptionResponse) |  |
+| CancelSubscription | [CancelSubscriptionRequest](#ddev.billing.v1alpha1.CancelSubscriptionRequest) | [CancelSubscriptionResponse](#ddev.billing.v1alpha1.CancelSubscriptionResponse) | `Deprecated` Update a subscription in the client workspace. Requires client metadata `x-ddev-workspace` to be set. |
+| DeleteSubscription | [DeleteSubscriptionRequest](#ddev.billing.v1alpha1.DeleteSubscriptionRequest) | [DeleteSubscriptionResponse](#ddev.billing.v1alpha1.DeleteSubscriptionResponse) | Delete a subscription in the client workspace. Requires client metadata `x-ddev-workspace` to be set. |
 | CreateProduct | [CreateProductRequest](#ddev.billing.v1alpha1.CreateProductRequest) | [CreateProductResponse](#ddev.billing.v1alpha1.CreateProductResponse) |  |
 | GetProduct | [GetProductRequest](#ddev.billing.v1alpha1.GetProductRequest) | [GetProductResponse](#ddev.billing.v1alpha1.GetProductResponse) |  |
 | ListProduct | [ListProductRequest](#ddev.billing.v1alpha1.ListProductRequest) | [ListProductResponse](#ddev.billing.v1alpha1.ListProductResponse) |  |
@@ -1078,7 +1136,6 @@ Supported currencies for ddev-live
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | `Required` - The id of the subscription to cancel. |
-| workspace | [string](#string) |  | `Required` - The workspace which this subscription belongs. |
 | invoice_now | [bool](#bool) |  | `Optional` - Will generate a final invoice that invoices for any un-invoiced metered usage and new/pending proration invoice items. |
 | prorate | [bool](#bool) |  | `Optional` - Will generate a proration invoice item that credits remaining unused time until the subscription period end. |
 
@@ -1164,7 +1221,6 @@ Supported currencies for ddev-live
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | `Required` - The name of the subscription to delete. |
-| workspace | [string](#string) |  | `Required` - The workspace which this subscription belongs. |
 
 
 
@@ -1223,11 +1279,6 @@ Supported currencies for ddev-live
 Request message for `Billing.ListSubscriptions`.
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` - The workspace under which to list all subscriptions. |
-
-
 
 
 
@@ -1278,7 +1329,6 @@ Response message for `Billing.ListSubscriptions`.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | `Required` - The id of the subscription. |
-| workspace | [string](#string) |  | `Required` - The workspace which this subscription belongs. |
 | cancel_at_period_end | [bool](#bool) |  | `Optional` - Boolean indicating whether this subscription should cancel at the end of the current period. |
 | default_payment_method | [string](#string) |  | `Optional` - ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer’s invoice settings. |
 | items | [SubscriptionItem](#ddev.billing.v1alpha1.SubscriptionItem) | repeated | `Optional` - List of subscription items, each with an attached plan. |

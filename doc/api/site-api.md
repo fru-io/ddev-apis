@@ -84,7 +84,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace name for this request. |
 | name | [string](#string) |  | `Required` The name of the backup. |
 
 
@@ -147,7 +146,6 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace name for this request. |
 | name | [string](#string) |  | `Required` The name of the database to push to. |
 
 
@@ -178,7 +176,6 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace name for this request. |
 | file | [File](#ddev.sites.v1alpha1.File) | repeated | `Required` The name of the database to push to. |
 
 
@@ -209,7 +206,6 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace name for this request. |
 | backup | [string](#string) |  | `Required` The name of the backup to restore files from. |
 
 
@@ -257,7 +253,13 @@ TODO
 <a name="ddev.sites.v1alpha1.Sites"></a>
 
 ### Sites
+The Sites service provides site level functions inside a users ddev-live workspace.
+To access the sites service consumers will have to initialize an authenticated client.  This requires
+several metadata to be passed to the client.
 
+`x-auth-token` which is a authentication token for the call.  This will be required to be a temporary token issued by the BillingAPI.
+
+`x-ddev-workspace` which is the workspace for all procedures.  For example a client request `ListSites` will list all sites in the workspace whose value is derived from the key `x-ddev-workspace`.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
@@ -266,10 +268,10 @@ TODO
 | ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
 | UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
 | DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
-| SiteLogs | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogs returns a stream of logs for a site |
-| AccessLogs | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogs returns a stream of access logs for a site |
-| MysqlLogs | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogs returns a stream of access logs for a site |
-| SiteExec | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExec allows for the streaming execution of commands inside a site container |
+| SiteLogStream | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogStream returns a stream of logs for a site |
+| AccessLogStream | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogStream returns a stream of access logs for a site |
+| MysqlLogStream | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogStream returns a stream of access logs for a site |
+| SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
 | BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
 | RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
 | BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backs up files associated with a site |
@@ -314,7 +316,6 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace of the database to be backed up. |
 | name | [string](#string) |  | `Required` The name of the database to backup. |
 
 
@@ -376,7 +377,6 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace name for this request. |
 | name | [string](#string) |  | `Required` The name of the database to push to. |
 
 
@@ -407,7 +407,6 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace name for this request. |
 | name | [string](#string) |  | `Required` The name of the database to push to. |
 | content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
 
@@ -439,7 +438,6 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace of the database to be backed up. |
 | name | [string](#string) |  | `Required` The name of the database to backup. |
 
 
@@ -498,7 +496,6 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
 | options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
@@ -531,7 +528,6 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | drupal | [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions) |  |  |
@@ -582,7 +578,6 @@ Cron manages if and when the CMS cron executes
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
 
@@ -653,7 +648,6 @@ A site of SiteType.DRUPAL
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace in which the site is contained |
 | name | [string](#string) |  | `Required` The name of the site |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being retrieved |
 
@@ -697,11 +691,6 @@ A site of SiteType.DRUPAL
 
 ### ListSiteRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The workspace in which to list sites |
 
 
 
@@ -752,7 +741,6 @@ A site of SiteType.DRUPAL
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
 | follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached |
@@ -803,7 +791,6 @@ A site of SiteType.DRUPAL
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  |  |
-| workspace | [string](#string) |  |  |
 | command | [string](#string) | repeated |  |
 | quiet | [bool](#bool) |  |  |
 
@@ -836,7 +823,6 @@ TODO:
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the site |
 | name | [string](#string) |  | `Required` The name of the site |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
 | options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
@@ -869,8 +855,8 @@ A site of SiteType.TYPO3
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `OutputOnly` The name of the site |
 | workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
+| name | [string](#string) |  | `OutputOnly` The name of the site |
 | git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | options | [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions) |  | `OutputOnly` |
 

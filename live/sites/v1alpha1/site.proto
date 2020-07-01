@@ -121,17 +121,18 @@ message WordpressSite {
 A site of SiteType.TYPO3
 */
 message Typo3Site {
-  /*
-  `OutputOnly`
-  The name of the site
-  */
-  string name = 1;
 
   /*
   `OutputOnly`
   The workspace of the site
   */
-  string workspace = 2;
+  string workspace = 1;
+
+  /*
+  `OutputOnly`
+  The name of the site
+  */
+  string name = 2;
 
   /*
   `OutputOnly`
@@ -151,9 +152,9 @@ message Site {
   // because you cannot use repeated oneof we must wrap oneof in a repeatable message
 
   oneof properties {
-    DrupalSite drupal = 3;
-    Typo3Site typo3 = 4;
-    WordpressSite wordpress = 5;
+    DrupalSite drupal = 1;
+    Typo3Site typo3 = 2;
+    WordpressSite wordpress = 3;
   }
 }
 
@@ -296,19 +297,13 @@ message CreateSiteRequest {
   `Required`
   The name of the site
   */
-  string workspace = 1;
-
-  /*
-  `Required`
-  The name of the site
-  */
-  string name = 2;
+  string name = 1;
 
   /*
   `Required`
   */
   oneof Repository {
-    GitRepository git = 3;
+    GitRepository git = 2;
   }
 
   oneof options {
@@ -335,21 +330,15 @@ message GetSiteRequest {
 
   /*
   `Required`
-  The workspace in which the site is contained
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the site
   */
-  string name = 2;
+  string name = 1;
   
   /*
   `Required`
   The type of site being retrieved
   */
-  SiteType type = 3;
+  SiteType type = 2;
 }
 
 /*
@@ -366,12 +355,6 @@ message GetSiteResponse {
 /*
 */
 message ListSiteRequest {
-
-  /*
-  `Required`
-  The workspace in which to list sites
-  */
-  string workspace = 1;
 }
 
 /*
@@ -409,19 +392,13 @@ message DeleteSiteRequest {
   `Required`
   The name of the site
   */
-  string workspace = 1;
-
-  /*
-  `Required`
-  The name of the site
-  */
-  string name = 2;
+  string name = 1;
 
   /*
   `Required`
   The type of site being deleted
   */
-  SiteType type = 3;
+  SiteType type = 2;
 }
 
 /*
@@ -483,24 +460,18 @@ message LogOptions {
 /*
 */
 message SiteLogsRequest {
-  
-  /*
-  `Required`
-  The name of the site
-  */
-  string workspace = 1;
 
   /*
   `Required`
   The name of the site
   */
-  string name = 2;
+  string name = 1;
 
   /*
   `Required`
   The type of site being deleted
   */
-  SiteType type = 3;
+  SiteType type = 2;
 
   /*
   `Optional`
@@ -523,24 +494,18 @@ message SiteLogsResponse {
 /*
 */
 message AccessLogsRequest {
-  
-  /*
-  `Required`
-  The name of the site
-  */
-  string workspace = 1;
 
   /*
   `Required`
   The name of the site
   */
-  string name = 2;
+  string name = 1;
 
   /*
   `Required`
   The type of site being deleted
   */
-  SiteType type = 3;
+  SiteType type = 2;
 
   /*
   `Optional`
@@ -562,24 +527,18 @@ message AccessLogsResponse {
 /*
 */
 message MysqlLogsRequest {
-  
-  /*
-  `Required`
-  The name of the site
-  */
-  string workspace = 1;
 
   /*
   `Required`
   The name of the site
   */
-  string name = 2;
+  string name = 1;
 
   /*
   `Required`
   The type of site being deleted
   */
-  SiteType type = 3;
+  SiteType type = 2;
 
   /*
   `Optional`
@@ -608,11 +567,7 @@ message SiteExecRequest {
 
   /*
   */
-  string workspace = 2;
-
-  /*
-  */
-  repeated string command = 3;
+  repeated string command = 2;
 
   /*
   */

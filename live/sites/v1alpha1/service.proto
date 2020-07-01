@@ -25,6 +25,15 @@ option java_multiple_files = true;
 option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
+/*
+The Sites service provides site level functions inside a users ddev-live workspace.
+To access the sites service consumers will have to initialize an authenticated client.  This requires
+several metadata to be passed to the client.
+
+`x-auth-token` which is a authentication token for the call.  This will be required to be a temporary token issued by the BillingAPI.
+
+`x-ddev-workspace` which is the workspace for all procedures.  For example a client request `ListSites` will list all sites in the workspace whose value is derived from the key `x-ddev-workspace`.
+*/
 service Sites {
 
     // Sites
@@ -58,30 +67,30 @@ service Sites {
     }
 
     /*
-    SiteLogs returns a stream of logs for a site
+    SiteLogStream returns a stream of logs for a site
     */
-    rpc SiteLogs(SiteLogsRequest) returns (stream SiteLogsResponse) {
+    rpc SiteLogStream(SiteLogsRequest) returns (stream SiteLogsResponse) {
 
     }
 
     /*
-    AccessLogs returns a stream of access logs for a site
+    AccessLogStream returns a stream of access logs for a site
     */
-    rpc AccessLogs(AccessLogsRequest) returns (stream AccessLogsResponse) {
+    rpc AccessLogStream(AccessLogsRequest) returns (stream AccessLogsResponse) {
 
     }
 
     /*
-    MysqlLogs returns a stream of access logs for a site
+    MysqlLogStream returns a stream of access logs for a site
     */
-    rpc MysqlLogs(MysqlLogsRequest) returns (stream MysqlLogsResponse) {
+    rpc MysqlLogStream(MysqlLogsRequest) returns (stream MysqlLogsResponse) {
 
     }
 
     /*
-    SiteExec allows for the streaming execution of commands inside a site container
+    SiteExecStream allows for the streaming execution of commands inside a site container
     */
-    rpc SiteExec(stream SiteExecRequest) returns (stream SiteExecResponse) {
+    rpc SiteExecStream(stream SiteExecRequest) returns (stream SiteExecResponse) {
 
     }
 

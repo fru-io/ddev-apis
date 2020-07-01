@@ -1,0 +1,36 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.billing.v1alpha1;
+
+option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "AuthProto";
+option java_package = "com.ddev.live.billing.v1alpha1";
+
+message CreateTokenRequest {
+    /*
+    The long lived token provided by the ddev-live dashboard
+    */
+    string apiToken = 1;
+}
+
+message CreateTokenResponse {
+    /*
+    A generated short lived token to be provided to scoped clients
+    */
+    string token = 1;
+}

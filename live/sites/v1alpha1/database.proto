@@ -62,15 +62,9 @@ message BackupDatabaseRequest {
 
   /*
   `Required`
-  The workspace of the database to be backed up.
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the database to backup.
   */
-  string name = 2;
+  string name = 1;
 }
 
 /*
@@ -89,15 +83,9 @@ message RestoreDatabaseRequest {
 
   /*
   `Required`
-  The workspace of the database to be backed up.
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the database to backup.
   */
-  string name = 2;
+  string name = 1;
 }
 
 /*
@@ -117,21 +105,15 @@ message PushDatabaseRequest {
 
   /*
   `Required`
-  The workspace name for this request.
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the database to push to.
   */
-  string name = 2;
+  string name = 1;
 
   /*
   The raw bytes the the content to pass.
   Supported MIME Types: `gz`
   */
-  bytes content = 3;
+  bytes content = 2;
 }
 
 /*
@@ -151,15 +133,9 @@ message PullDatabaseRequest {
 
   /*
   `Required`
-  The workspace name for this request.
-  */
-  string workspace = 1;
-
-  /*
-  `Required`
   The name of the database to push to.
   */
-  string name = 2;
+  string name = 1;
 }
 
 /*
