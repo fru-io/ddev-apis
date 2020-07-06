@@ -27,7 +27,9 @@ message CreateTokenRequest {
     */
     string apiToken = 1;
 
-    repeated Scope scopes = 2;
+    string email = 2;
+
+    repeated Scope scopes = 3;
 }
 
 message CreateTokenResponse {
