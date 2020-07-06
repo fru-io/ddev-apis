@@ -1701,7 +1701,7 @@
 
       
         <h3 id="ddev.billing.v1alpha1.Scope">Scope</h3>
-        <p></p>
+        <p>Describes a set of access policies for a user</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -1711,37 +1711,31 @@
               <tr>
                 <td>AuthTokenRead</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>Describes a user whom can read the API scopes a user has.</p></td>
               </tr>
             
               <tr>
                 <td>AuthTokenWrite</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>Describes a user whom can issue different API access scopes within an organization</p></td>
               </tr>
             
               <tr>
-                <td>BillingViewer</td>
+                <td>BillingInvoiceViewer</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>Describes a user whom can access billing artifacts such as invoices</p></td>
               </tr>
             
               <tr>
-                <td>BillingAdmin</td>
+                <td>BillingSubscriptionEditor</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>Describes a user whom can modify elements of their subscription</p></td>
               </tr>
             
               <tr>
-                <td>WorkspaceAdmin</td>
+                <td>WorkspaceRoleAssign</td>
                 <td>4</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WorkspaceDeveloper</td>
-                <td>5</td>
-                <td><p></p></td>
+                <td><p>Describes a user who is an admin of a workspace</p></td>
               </tr>
             
           </tbody>
