@@ -67,7 +67,7 @@ billing-doc:
 	--user ${USER_ID} \
 	-v ${ROOT_DIR}/doc/api:/out \
 	-v ${ROOT_DIR}/:/protos \
-	pseudomuto/protoc-gen-doc --doc_opt=markdown,billing-api.md \
+	pseudomuto/protoc-gen-doc --doc_opt=html,billing-api.html \
 	${BILLING_PROTOS}
 
 site-doc:
@@ -75,7 +75,7 @@ site-doc:
 	--user ${USER_ID} \
 	-v ${ROOT_DIR}/doc/api:/out \
 	-v ${ROOT_DIR}/:/protos \
-	pseudomuto/protoc-gen-doc --doc_opt=markdown,site-api.md \
+	pseudomuto/protoc-gen-doc --doc_opt=html,site-api.html \
 	${SITE_PROTOS}
 
 .PHONY: doc

@@ -26,6 +26,8 @@ message CreateTokenRequest {
     The long lived token provided by the ddev-live dashboard
     */
     string apiToken = 1;
+
+    repeated Scope scopes = 2;
 }
 
 message CreateTokenResponse {
@@ -33,4 +35,34 @@ message CreateTokenResponse {
     A generated short lived token to be provided to scoped clients
     */
     string token = 1;
+}
+
+/*
+Describes a set of access policies for a user
+*/
+enum Scope {
+    /*
+    Describes a user whom can read the API scopes a user has.
+    */
+    AuthTokenRead = 0;
+
+    /*
+    Describes a user whom can issue different API access scopes within an organization
+    */
+    AuthTokenWrite = 1;
+
+    /*
+    Describes a user whom can access billing artifacts such as invoices
+    */
+    BillingInvoiceViewer = 2;
+
+    /*
+    Describes a user whom can modify elements of their subscription
+    */
+    BillingSubscriptionEditor = 3;
+
+    /*
+    Describes a user who is an admin of a workspace
+    */
+    WorkspaceRoleAssign = 4;
 }
