@@ -40,8 +40,24 @@ issued by the API.  This can be the integration token provided on the dashboard 
 */
 service Billing {
 
-    // AUTH
+    /*
+    Creates an ID token from a refresh token
+    */
     rpc CreateToken(CreateTokenRequest) returns (CreateTokenResponse) {
+
+    }
+
+    /*
+    Updates a users API capabilities.  Will requre a refresh of their token through CreateToken.
+    */
+    rpc SetUserCapabilities(SetCapabilitiesRequest) returns (SetCapabilitiesResponse) {
+
+    }
+
+    /*
+    Lists a users API capabilities.
+    */
+    rpc ListCapabilities(ListCapabilitiesRequest) returns (ListCapabilitiesResponse) {
 
     }
 

@@ -22,54 +22,101 @@ option java_outer_classname = "AuthProto";
 option java_package = "com.ddev.live.billing.v1alpha1";
 
 message CreateTokenRequest {
+
     /*
     The long lived token provided by the ddev-live dashboard
     */
     string apiToken = 1;
-
-    string email = 2;
-
-    repeated Scope scopes = 3;
 }
 
 message CreateTokenResponse {
+
     /*
     A generated short lived token to be provided to scoped clients
     */
     string token = 1;
 }
 
+message SetCapabilitiesRequest {
+
+    /*
+    The user email to update capabilities for
+    */
+    string email = 1;
+
+    /*
+    The capabilities to grant the user
+    */
+    repeated Capability capabilities = 3;
+
+}
+
+message SetCapabilitiesResponse {
+
+    /*
+    The user email capabilties have been set for
+    */
+    string email = 1;
+
+    /*
+    The capabilties granted to this user
+    */
+    repeated Capability capabilities = 2;
+}
+
+message ListCapabilitiesRequest {
+
+    /*
+    The user email to list capabilties for
+    */
+    string email = 1;
+}
+
+message ListCapabilitiesResponse {
+    
+    /*
+    The capabilties of the requested user
+    */
+    repeated Capability capabilities = 1;
+}
+
 /*
 Describes a set of access policies for a user
 */
-enum Scope {
-    /*
-    Describes a user whom can read the API scopes a user has.
-    */
-    AuthTokenRead = 0;
+enum Capability {
 
     /*
-    Describes a user whom can issue different API access scopes within an organization
+    Describes a permission which can read the API scopes a user has.
     */
-    AuthTokenWrite = 1;
+    AuthTokenViewer = 0;
 
     /*
-    Describes a user whom can access billing artifacts such as invoices
+    Describes a permission which can issue different API access scopes within an organization
     */
-    BillingInvoiceViewer = 2;
+    AuthTokenEditor = 1;
 
     /*
-    Describes a user whom can modify elements of their subscription
+    Describes a permission which can access billing artifacts such as invoices
     */
-    BillingSubscriptionEditor = 3;
+    BillingViewer = 2;
 
     /*
-    Describes a user who is an admin of a workspace
+    Describes a permission which can modify elements such as their subscription
     */
-    WorkspaceRoleAssign = 4;
+    BillingEditor = 3;
 
     /*
-
+    Describes a permission which is an admin of a workspace
     */
-    SiteWrite = 5;
+    WorkspaceAdmin = 4;
+
+    /*
+    Describes a permission which has read capability for workspace objects
+    */
+    WorkspaceViewer = 5;
+
+    /*
+    Describes a permission which is capable of creating or modifying a site
+    */
+    SiteEditor = 6;
 }

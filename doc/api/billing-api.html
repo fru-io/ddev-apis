@@ -328,9 +328,25 @@
                   <a href="#ddev.billing.v1alpha1.CreateTokenResponse"><span class="badge">M</span>CreateTokenResponse</a>
                 </li>
               
+                <li>
+                  <a href="#ddev.billing.v1alpha1.ListCapabilitiesRequest"><span class="badge">M</span>ListCapabilitiesRequest</a>
+                </li>
               
                 <li>
-                  <a href="#ddev.billing.v1alpha1.Scope"><span class="badge">E</span>Scope</a>
+                  <a href="#ddev.billing.v1alpha1.ListCapabilitiesResponse"><span class="badge">M</span>ListCapabilitiesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#ddev.billing.v1alpha1.SetCapabilitiesRequest"><span class="badge">M</span>SetCapabilitiesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#ddev.billing.v1alpha1.SetCapabilitiesResponse"><span class="badge">M</span>SetCapabilitiesResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#ddev.billing.v1alpha1.Capability"><span class="badge">E</span>Capability</a>
                 </li>
               
               
@@ -1660,20 +1676,6 @@
                   <td><p>The long lived token provided by the ddev-live dashboard </p></td>
                 </tr>
               
-                <tr>
-                  <td>email</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scopes</td>
-                  <td><a href="#ddev.billing.v1alpha1.Scope">Scope</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -1705,9 +1707,119 @@
 
         
       
+        <h3 id="ddev.billing.v1alpha1.ListCapabilitiesRequest">ListCapabilitiesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The user email to list capabilties for </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ddev.billing.v1alpha1.ListCapabilitiesResponse">ListCapabilitiesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>capabilities</td>
+                  <td><a href="#ddev.billing.v1alpha1.Capability">Capability</a></td>
+                  <td>repeated</td>
+                  <td><p>The capabilties of the requested user </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ddev.billing.v1alpha1.SetCapabilitiesRequest">SetCapabilitiesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The user email to update capabilities for </p></td>
+                </tr>
+              
+                <tr>
+                  <td>capabilities</td>
+                  <td><a href="#ddev.billing.v1alpha1.Capability">Capability</a></td>
+                  <td>repeated</td>
+                  <td><p>The capabilities to grant the user </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ddev.billing.v1alpha1.SetCapabilitiesResponse">SetCapabilitiesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The user email capabilties have been set for </p></td>
+                </tr>
+              
+                <tr>
+                  <td>capabilities</td>
+                  <td><a href="#ddev.billing.v1alpha1.Capability">Capability</a></td>
+                  <td>repeated</td>
+                  <td><p>The capabilties granted to this user </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
-        <h3 id="ddev.billing.v1alpha1.Scope">Scope</h3>
+        <h3 id="ddev.billing.v1alpha1.Capability">Capability</h3>
         <p>Describes a set of access policies for a user</p>
         <table class="enum-table">
           <thead>
@@ -1716,33 +1828,45 @@
           <tbody>
             
               <tr>
-                <td>AuthTokenRead</td>
+                <td>AuthTokenViewer</td>
                 <td>0</td>
-                <td><p>Describes a user whom can read the API scopes a user has.</p></td>
+                <td><p>Describes a permission which can read the API scopes a user has.</p></td>
               </tr>
             
               <tr>
-                <td>AuthTokenWrite</td>
+                <td>AuthTokenEditor</td>
                 <td>1</td>
-                <td><p>Describes a user whom can issue different API access scopes within an organization</p></td>
+                <td><p>Describes a permission which can issue different API access scopes within an organization</p></td>
               </tr>
             
               <tr>
-                <td>BillingInvoiceViewer</td>
+                <td>BillingViewer</td>
                 <td>2</td>
-                <td><p>Describes a user whom can access billing artifacts such as invoices</p></td>
+                <td><p>Describes a permission which can access billing artifacts such as invoices</p></td>
               </tr>
             
               <tr>
-                <td>BillingSubscriptionEditor</td>
+                <td>BillingEditor</td>
                 <td>3</td>
-                <td><p>Describes a user whom can modify elements of their subscription</p></td>
+                <td><p>Describes a permission which can modify elements such as their subscription</p></td>
               </tr>
             
               <tr>
-                <td>WorkspaceRoleAssign</td>
+                <td>WorkspaceAdmin</td>
                 <td>4</td>
-                <td><p>Describes a user who is an admin of a workspace</p></td>
+                <td><p>Describes a permission which is an admin of a workspace</p></td>
+              </tr>
+            
+              <tr>
+                <td>WorkspaceViewer</td>
+                <td>5</td>
+                <td><p>Describes a permission which has read capability for workspace objects</p></td>
+              </tr>
+            
+              <tr>
+                <td>SiteEditor</td>
+                <td>6</td>
+                <td><p>Describes a permission which is capable of creating or modifying a site</p></td>
               </tr>
             
           </tbody>
@@ -2016,7 +2140,21 @@
                 <td>CreateToken</td>
                 <td><a href="#ddev.billing.v1alpha1.CreateTokenRequest">CreateTokenRequest</a></td>
                 <td><a href="#ddev.billing.v1alpha1.CreateTokenResponse">CreateTokenResponse</a></td>
-                <td><p>AUTH</p></td>
+                <td><p>Creates an ID token from a refresh token</p></td>
+              </tr>
+            
+              <tr>
+                <td>SetUserCapabilities</td>
+                <td><a href="#ddev.billing.v1alpha1.SetCapabilitiesRequest">SetCapabilitiesRequest</a></td>
+                <td><a href="#ddev.billing.v1alpha1.SetCapabilitiesResponse">SetCapabilitiesResponse</a></td>
+                <td><p>Updates a users API capabilities.  Will requre a refresh of their token through CreateToken.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListCapabilities</td>
+                <td><a href="#ddev.billing.v1alpha1.ListCapabilitiesRequest">ListCapabilitiesRequest</a></td>
+                <td><a href="#ddev.billing.v1alpha1.ListCapabilitiesResponse">ListCapabilitiesResponse</a></td>
+                <td><p>Lists a users API capabilities.</p></td>
               </tr>
             
               <tr>
