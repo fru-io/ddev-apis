@@ -67,4 +67,9 @@ enum Scope {
     Describes a user who is an admin of a workspace
     */
     WorkspaceRoleAssign = 4;
+
+    /*
+
+    */
+    SiteWrite = 5;
 }
