@@ -50,7 +50,7 @@ service Billing {
     /*
     Updates a users API capabilities.  Will requre a refresh of their token through CreateToken.
     */
-    rpc SetUserCapabilities(SetCapabilitiesRequest) returns (SetCapabilitiesResponse) {
+    rpc SetCapabilities(SetCapabilitiesRequest) returns (SetCapabilitiesResponse) {
 
     }
 
