@@ -40,6 +40,12 @@
 - [live/billing/v1alpha1/auth.proto](#live/billing/v1alpha1/auth.proto)
     - [CreateTokenRequest](#ddev.billing.v1alpha1.CreateTokenRequest)
     - [CreateTokenResponse](#ddev.billing.v1alpha1.CreateTokenResponse)
+    - [ListCapabilitiesRequest](#ddev.billing.v1alpha1.ListCapabilitiesRequest)
+    - [ListCapabilitiesResponse](#ddev.billing.v1alpha1.ListCapabilitiesResponse)
+    - [SetCapabilitiesRequest](#ddev.billing.v1alpha1.SetCapabilitiesRequest)
+    - [SetCapabilitiesResponse](#ddev.billing.v1alpha1.SetCapabilitiesResponse)
+  
+    - [Capability](#ddev.billing.v1alpha1.Capability)
   
 - [live/billing/v1alpha1/subscriptionitem.proto](#live/billing/v1alpha1/subscriptionitem.proto)
     - [Price](#ddev.billing.v1alpha1.Price)
@@ -665,7 +671,86 @@ Response message for `Billing.ListProducts`.
 
 
 
+
+<a name="ddev.billing.v1alpha1.ListCapabilitiesRequest"></a>
+
+### ListCapabilitiesRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| email | [string](#string) |  | The user email to list capabilties for |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.ListCapabilitiesResponse"></a>
+
+### ListCapabilitiesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| capabilities | [Capability](#ddev.billing.v1alpha1.Capability) | repeated | The capabilties of the requested user |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.SetCapabilitiesRequest"></a>
+
+### SetCapabilitiesRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| email | [string](#string) |  | The user email to update capabilities for |
+| capabilities | [Capability](#ddev.billing.v1alpha1.Capability) | repeated | The capabilities to grant the user |
+
+
+
+
+
+
+<a name="ddev.billing.v1alpha1.SetCapabilitiesResponse"></a>
+
+### SetCapabilitiesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| email | [string](#string) |  | The user email capabilties have been set for |
+| capabilities | [Capability](#ddev.billing.v1alpha1.Capability) | repeated | The capabilties granted to this user |
+
+
+
+
+
  
+
+
+<a name="ddev.billing.v1alpha1.Capability"></a>
+
+### Capability
+Describes a set of access policies for a user
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| AuthTokenViewer | 0 | Describes a permission which can read the API scopes a user has. |
+| AuthTokenEditor | 1 | Describes a permission which can issue different API access scopes within an organization |
+| BillingViewer | 2 | Describes a permission which can access billing artifacts such as invoices |
+| BillingEditor | 3 | Describes a permission which can modify elements such as their subscription |
+| WorkspaceAdmin | 4 | Describes a permission which is an admin of a workspace |
+| WorkspaceViewer | 5 | Describes a permission which has read capability for workspace objects |
+| SiteEditor | 6 | Describes a permission which is capable of creating or modifying a site |
+
 
  
 
@@ -805,7 +890,9 @@ issued by the API.  This can be the integration token provided on the dashboard 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateToken | [CreateTokenRequest](#ddev.billing.v1alpha1.CreateTokenRequest) | [CreateTokenResponse](#ddev.billing.v1alpha1.CreateTokenResponse) | AUTH |
+| CreateToken | [CreateTokenRequest](#ddev.billing.v1alpha1.CreateTokenRequest) | [CreateTokenResponse](#ddev.billing.v1alpha1.CreateTokenResponse) | Creates an ID token from a refresh token |
+| SetCapabilities | [SetCapabilitiesRequest](#ddev.billing.v1alpha1.SetCapabilitiesRequest) | [SetCapabilitiesResponse](#ddev.billing.v1alpha1.SetCapabilitiesResponse) | Updates a users API capabilities. Will requre a refresh of their token through CreateToken. |
+| ListCapabilities | [ListCapabilitiesRequest](#ddev.billing.v1alpha1.ListCapabilitiesRequest) | [ListCapabilitiesResponse](#ddev.billing.v1alpha1.ListCapabilitiesResponse) | Lists a users API capabilities. |
 | CreateCustomer | [CreateCustomerRequest](#ddev.billing.v1alpha1.CreateCustomerRequest) | [CreateCustomerResponse](#ddev.billing.v1alpha1.CreateCustomerResponse) |  |
 | GetCustomer | [GetCustomerRequest](#ddev.billing.v1alpha1.GetCustomerRequest) | [GetCustomerResponse](#ddev.billing.v1alpha1.GetCustomerResponse) |  |
 | ListCustomers | [ListCustomerRequest](#ddev.billing.v1alpha1.ListCustomerRequest) | [ListCustomerResponse](#ddev.billing.v1alpha1.ListCustomerResponse) |  |
