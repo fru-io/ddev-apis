@@ -16,7 +16,6 @@ syntax = "proto3";
 
 package ddev.billing.v1alpha1;
 
-import "live/billing/v1alpha1/workspace.proto";
 import "live/billing/v1alpha1/subscriptionitem.proto";
 
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
@@ -42,7 +41,7 @@ message Subscription {
     string id = 2;
 
     // `OutputOnly` - The workspace the subscription belongs to.
-    Workspace workspace = 3;
+    string workspace = 3;
 
     // `OutputOnly` - The UNIX timestamp for the billing period start.
     int64 CurrentPeriodStart = 4;

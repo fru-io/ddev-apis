@@ -16,12 +16,10 @@ syntax = "proto3";
 
 package ddev.billing.v1alpha1;
 
-import "live/billing/v1alpha1/auth.proto";
 import "live/billing/v1alpha1/customer.proto";
 import "live/billing/v1alpha1/plan.proto";
 import "live/billing/v1alpha1/product.proto";
 import "live/billing/v1alpha1/subscription.proto";
-import "live/billing/v1alpha1/workspace.proto";
 
 option go_package = "github.com/drud/billing-api/gen/live/billing/v1alpha1";
 option java_multiple_files = true;
@@ -39,27 +37,6 @@ issued by the API.  This can be the integration token provided on the dashboard 
 `x-ddev-workspace` which is the workspace for all workspace scoped procedures.  For example a client request `ListSubscriptions` will list all subscriptions in the workspace whose value is derived from the key `x-ddev-workspace`.
 */
 service Billing {
-
-    /*
-    Creates an ID token from a refresh token
-    */
-    rpc CreateToken(CreateTokenRequest) returns (CreateTokenResponse) {
-
-    }
-
-    /*
-    Updates a users API capabilities.  Will requre a refresh of their token through CreateToken.
-    */
-    rpc SetCapabilities(SetCapabilitiesRequest) returns (SetCapabilitiesResponse) {
-
-    }
-
-    /*
-    Lists a users API capabilities.
-    */
-    rpc ListCapabilities(ListCapabilitiesRequest) returns (ListCapabilitiesResponse) {
-
-    }
 
     // CUSTOMERS
 
@@ -143,36 +120,6 @@ service Billing {
     }
 
     rpc DeletePlan(DeletePlanRequest) returns (DeletePlanResponse) {
-    }
-
-    // Workspaces
-    
-    // ListWorkspaces will return a list of workspaces the user has authorization for
-    rpc ListWorkspaces(ListWorkspaceRequest) returns (ListWorkspaceResponse) {
-    }
-
-    /* 
-    Add an administrator to a workspace.  Requires a workspace administrator token.
-    */
-    rpc AddWorkspaceAdmin(AddWorkspaceAdminRequest) returns (AddWorkspaceAdminResponse) {       
-    }
-
-    /*
-    Add a developer to a workspace.   Requires a workspace administrator token.
-    */
-    rpc AddWorkspaceDeveloper(AddWorkspaceDeveloperRequest) returns (AddWorkspaceDeveloperResponse) {       
-    }
-
-    /* 
-    Remove an administrator from a workspace.  Requires a workspace administrator token.  An administrator cannot remove themselves.
-    */
-    rpc DeleteWorkspaceAdmin(DeleteWorkspaceAdminRequest) returns (DeleteWorkspaceAdminResponse) {       
-    }
-
-    /* 
-    Remove a developer from a workspace.  Requires a workspace administrator token.
-    */
-    rpc DeleteWorkspaceDeveloper(DeleteWorkspaceDeveloperRequest) returns (DeleteWorkspaceDeveloperResponse) {       
     }
 
 }
