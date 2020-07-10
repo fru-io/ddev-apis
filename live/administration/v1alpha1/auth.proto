@@ -21,6 +21,14 @@ option java_multiple_files = true;
 option java_outer_classname = "AuthProto";
 option java_package = "com.ddev.live.administration.v1alpha1";
 
+
+message Scope {
+
+    string workspace = 1;
+
+    repeated Capability capabilities = 2;
+}
+
 message CreateTokenRequest {
 
     /*
