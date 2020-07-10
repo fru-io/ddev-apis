@@ -1,16 +1,6 @@
 package(default_visibility = ["//visibility:public"])
 
 proto_library(
-    name = "auth_proto",
-    srcs = [
-        "auth.proto",
-    ],
-    visibility = [
-        "//visibility:public",
-    ],
-)
-
-proto_library(
     name = "common_proto",
     srcs = [
         "common.proto",
@@ -62,12 +52,10 @@ proto_library(
         "//visibility:public",
     ],
     deps = [
-        ":auth_proto",
         ":customer_proto",
         ":subscription_proto",
         ":plan_proto",
         ":product_proto",
-        ":workspace_proto",
     ],
 )
 
@@ -81,7 +69,6 @@ proto_library(
     ],
     deps = [
         ":subscriptionitem_proto",
-        ":workspace_proto",
     ],
 )
 
@@ -95,15 +82,5 @@ proto_library(
     ],
     deps = [
         ":common_proto",
-    ],
-)
-
-proto_library(
-    name = "workspace_proto",
-    srcs = [
-        "workspace.proto",
-    ],
-    visibility = [
-        "//visibility:public",
     ],
 )
