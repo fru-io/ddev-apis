@@ -44,6 +44,27 @@ service Administration {
     }
 
     /*
+    Creates a Role
+    */
+    rpc CreateRoles(CreateRoleRequest) returns (CreateRoleResponse) {
+
+    }
+
+    /*
+    Describes a named role
+    */
+    rpc DescribeRole(DescribeRoleRequest) returns (DescribeRoleResponse) {
+
+    }
+
+    /*
+    Lists all known roles
+    */
+    rpc ListRoles(ListRolesRequest) returns (ListRolesResponse) {
+
+    }
+
+    /*
     Updates a users API capabilities.  Will requre a refresh of their token through CreateToken.
     */
     rpc SetCapabilities(SetCapabilitiesRequest) returns (SetCapabilitiesResponse) {
@@ -86,5 +107,93 @@ service Administration {
     Remove a developer from a workspace.  Requires a workspace administrator token.
     */
     rpc DeleteWorkspaceDeveloper(DeleteWorkspaceDeveloperRequest) returns (DeleteWorkspaceDeveloperResponse) {       
+    }
+
+    /*
+    Helpers on parsing permissions from context metadata
+    */
+
+    /*
+    Describes a permission which can read the API scopes a user has.
+    */
+    rpc IsAuthTokenViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which can issue different API access scopes within an organization
+    */
+    rpc IsAuthTokenEditor(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which can access billing artifacts such as invoices
+    */
+    rpc IsBillingViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which can modify elements such as their subscription
+    */
+    rpc IsBillingEditor(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which is an admin of a workspace
+    */
+    rpc IsWorkspaceAdmin(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which has read capability for workspace objects
+    */
+    rpc IsWorkspaceViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which is capable of creating or modifying a site
+    */
+    rpc IsSiteEditor(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which is capable of viewing site specifications created in a workspace
+    */
+    rpc IsSiteViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows for the viewing of site logs
+    */
+    rpc IsLogsViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows for the execution of commands inside a running site container
+    */
+    rpc IsSiteExecutor(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows full control over site databases, which includes restore and push operations
+    */
+    rpc IsDatabaseAdmin(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows pull access for a sites database
+    */
+    rpc IsDatabaseViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows full control over site files, which includes restore and push operations
+    */
+    rpc IsFileAdmin(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Describes a permission which allows pull access for a sites files
+    */
+    rpc IsFileViewer(AuthorizationRequest) returns (AuthorizationResponse) {
     }
 }

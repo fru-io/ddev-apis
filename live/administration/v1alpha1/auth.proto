@@ -21,17 +21,116 @@ option java_multiple_files = true;
 option java_outer_classname = "AuthProto";
 option java_package = "com.ddev.live.administration.v1alpha1";
 
-
+/*
+Scope is a structure helpful in parsing user authorization in a workspace
+*/
 message Scope {
 
+    /*
+    `Required`
+    The workspace for user authorization
+    */
     string workspace = 1;
 
+    /*
+    `Optional`
+    The capabilities a user has in a workspace
+    */
+    repeated Capability capabilities = 2;
+
+    /*
+    `Optional`
+    The Role of the user.  Must be a known role.
+    */
+    string role = 3;
+}
+
+message Role {
+
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+
+    /*
+    `Optional`
+    The capabilities of the role
+    */
+    repeated Capability capabilities = 2;
+
+}
+
+message ListRolesRequest {
+
+}
+
+message ListRolesResponse {
+
+    /*
+    The roles known in this context
+    */
+    repeated Role roles = 1;
+}
+
+message DescribeRoleRequest {
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+}
+
+message DescribeRoleResponse {
+
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+
+    /*
+    `Optional`
+    The capabilities of the role
+    */
+    repeated Capability capabilities = 2;
+}
+
+message CreateRoleRequest {
+
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+
+    /*
+    `Optional`
+    The capabilities of the role
+    */
+    repeated Capability capabilities = 2;
+
+}
+
+message CreateRoleResponse {
+
+    /*
+    `Required`
+    The name for a user role
+    */
+    string name = 1;
+
+    /*
+    `Optional`
+    The capabilities of the role
+    */
     repeated Capability capabilities = 2;
 }
 
 message CreateTokenRequest {
 
     /*
+    `Required`
     The long lived token provided by the ddev-live dashboard
     */
     string apiToken = 1;
@@ -40,6 +139,7 @@ message CreateTokenRequest {
 message CreateTokenResponse {
 
     /*
+    `OutputOnly`
     A generated short lived token to be provided to scoped clients
     */
     string token = 1;
@@ -48,33 +148,67 @@ message CreateTokenResponse {
 message SetCapabilitiesRequest {
 
     /*
+    `Required`
     The user email to update capabilities for
     */
     string email = 1;
 
     /*
+    `Optional`
     The capabilities to grant the user
     */
-    repeated Capability capabilities = 3;
-
+    repeated Capability capabilities = 2;
 }
 
 message SetCapabilitiesResponse {
 
     /*
+    `OutputOnly`
     The user email capabilties have been set for
     */
     string email = 1;
 
     /*
+    `OutputOnly`
     The capabilties granted to this user
     */
     repeated Capability capabilities = 2;
 }
 
+message SetRolesRequest {
+
+    /*
+    `Required`
+    The user email to update roles for
+    */
+    string email = 1;
+
+    /*
+    `Optional`
+    The roles to assign to the user
+    */
+    repeated string roles = 2;
+}
+
+message SetRolesResponse {
+
+    /*
+    `OutputOnly`
+    The user email roles have been set for
+    */
+    string email = 1;
+
+    /*
+    `OutputOnly`
+    The roles assigned to this user
+    */
+    repeated Role roles = 2;
+}
+
 message ListCapabilitiesRequest {
 
     /*
+    `Required`
     The user email to list capabilties for
     */
     string email = 1;
@@ -83,9 +217,33 @@ message ListCapabilitiesRequest {
 message ListCapabilitiesResponse {
     
     /*
+    `OutputOnly`
     The capabilties of the requested user
     */
     repeated Capability capabilities = 1;
+}
+
+/*
+A request whose context can be used to validate user actions against the platform
+*/
+message AuthorizationRequest {
+
+}
+
+message AuthorizationResponse {
+
+    /*
+    If the user matched this authorization type
+    */
+    bool status = 1;
+
+    /*
+    The reason which may allow the behavior, for example if the request was for SiteViewer and the user contained SiteAdmin they may match however on a higher privileged capability or role
+    */
+    oneof matched {
+        Capability capability = 2;
+        string role = 3;
+    }
 }
 
 /*
