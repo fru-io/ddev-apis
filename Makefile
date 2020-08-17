@@ -44,6 +44,8 @@ build-js: prepare-release
 	--grpc-web_out=import_style=commonjs,mode=grpcwebtext:build/js \
 	${SITE_PROTOS} ${ADMIN_PROTOS}
 
+	cp package.json build/ts/package.json
+
 release-js: build-js
 	tar -zcvf build/release/js/javascript-gen-source.tar.gz build/js
 
