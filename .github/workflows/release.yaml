@@ -47,8 +47,8 @@ jobs:
           sudo chmod a+x /usr/local/bin/protoc-gen-grpc-web
       - name: release-ts
         run: |
-          make build-ts
-          cd build/ts
+          make build-js
+          cd build/js
           # initialize the npmrc
           echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
           npm config set registry  "https://npm.pkg.github.com/"
