@@ -53,11 +53,11 @@ build-ts: prepare-release
 	protoc \
 	--proto_path=. \
 	--js_out=import_style=commonjs:build/ts \
-	--grpc-web_out=import_style=typescript,mode=grpcwebtext:build/ts \
+	--grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:build/ts \
 	${SITE_PROTOS} ${ADMIN_PROTOS}
 
 	#TODO: I do not want to manage this file, and eventually want to move the build to bazel for both proto and NPM, so I am doing this here
-	cp package.json build/ts/package.json
+	cp package-web.json build/ts/package.json
 
 release-ts: build-ts
 	tar -zcvf build/release/ts/typescript-gen-source.tar.gz build/ts
