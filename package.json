@@ -3,7 +3,7 @@
   "author": "Derek Lemon",
   "license": "Apache-2.0",
   "version": "0.1.0",
-  "description": "ddev-live SDK",
+  "description": "ddev-live SDK for node applications",
   "dependencies": {
     "@types/google-protobuf": "^3.7.2",
     "google-protobuf": "^3.12.2"
