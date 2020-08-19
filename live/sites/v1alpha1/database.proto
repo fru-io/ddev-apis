@@ -61,13 +61,13 @@ message Backup {
   `Optional`
   CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch will result in an error on the receiver.
   */
-  bytes CRC32c = 17;
+  string CRC32c = 17;
 
   /*
   `Optional`
   MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver.
   */
-  bytes MD5 = 18;
+  string MD5 = 18;
 }
 
 
