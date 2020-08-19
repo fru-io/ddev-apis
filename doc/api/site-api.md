@@ -7,7 +7,6 @@
     - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
     - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
     - [File](#ddev.sites.v1alpha1.File)
-    - [FileChecksum](#ddev.sites.v1alpha1.FileChecksum)
     - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
     - [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse)
     - [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest)
@@ -22,8 +21,6 @@
     - [Backup](#ddev.sites.v1alpha1.Backup)
     - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
     - [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse)
-    - [BackupStatus](#ddev.sites.v1alpha1.BackupStatus)
-    - [Database](#ddev.sites.v1alpha1.Database)
     - [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest)
     - [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse)
     - [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest)
@@ -97,11 +94,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | The list of files and their checksums restored server side |
-
-
 
 
 
@@ -116,22 +108,8 @@ TODO
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | The name of the file. |
 | content | [bytes](#bytes) |  | The content of the file expressed in bytes. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.FileChecksum"></a>
-
-### FileChecksum
-TODO
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the file. |
-| sha256 | [string](#string) |  | The sha checksum of this file |
+| CRC32c | [bytes](#bytes) |  | CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch on the receiving end will result in an error. |
+| MD5 | [bytes](#bytes) |  | MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error. |
 
 
 
@@ -161,7 +139,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| content | [bytes](#bytes) |  | `OutputOnly` The raw bytes the the content with the first 512 bytes expressing the ContentType. |
+| files | [File](#ddev.sites.v1alpha1.File) | repeated | `OutputOnly` The staged files for the requested site |
 
 
 
@@ -176,7 +154,9 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| file | [File](#ddev.sites.v1alpha1.File) | repeated | `Required` The name of the database to push to. |
+| name | [string](#string) |  | `Required` The name of the site to stage files for |
+| files | [File](#ddev.sites.v1alpha1.File) | repeated | `Required` The files to stage for the site |
+| directory | [string](#string) |  | `Optional` Destination directory for the files |
 
 
 
@@ -187,11 +167,6 @@ TODO
 
 ### PushFilesResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | The list of files and their checksums recieved server side |
 
 
 
@@ -206,7 +181,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [string](#string) |  | `Required` The name of the backup to restore files from. |
+| name | [string](#string) |  | `Required` The name of the backup to restore files from. |
 
 
 
@@ -217,11 +192,6 @@ TODO
 
 ### RestoreFilesResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | The list of files and their checksums restored server side |
 
 
 
@@ -276,9 +246,9 @@ several metadata to be passed to the client.
 | RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
 | BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backs up files associated with a site |
 | RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores a sites files to a known backup |
-| PushFiles | [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest) | [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse) | PushFiles pushes local files to a running site |
+| PushFiles | [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest) | [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse) | PushFiles upload file assets to a site&#39;s environment |
 | PullFiles | [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest) | [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse) | PullFiles pulls down files locally |
-| PushDatabase | [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest) | [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse) | PushDatabase pushes a database to a running site |
+| PushDatabase | [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest) | [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse) | PushDatabase uploads a database asset to a site&#39;s environment |
 | PullDatabase | [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest) | [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse) | PullDatabase pulls down a database locally |
 
  
@@ -295,13 +265,18 @@ several metadata to be passed to the client.
 <a name="ddev.sites.v1alpha1.Backup"></a>
 
 ### Backup
-TODO
+The backup object
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| databaseReference | [string](#string) |  |  |
+| name | [string](#string) |  | The name of the backup |
+| databaseReference | [string](#string) |  | The database this backup references |
+| created | [int64](#int64) |  | The unix timestamp in which this backup was taken |
+| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  | The state of this backup |
+| content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
+| CRC32c | [bytes](#bytes) |  | `Optional` CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch will result in an error on the receiver. |
+| MD5 | [bytes](#bytes) |  | `Optional` MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver. |
 
 
 
@@ -316,7 +291,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to backup. |
+| name | [string](#string) |  | `Required` The name of the site to backup. |
 
 
 
@@ -338,46 +313,15 @@ TODO
 
 
 
-<a name="ddev.sites.v1alpha1.BackupStatus"></a>
-
-### BackupStatus
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  |  |
-| time | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.Database"></a>
-
-### Database
-TODO
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `OutputOnly` The name of the file |
-
-
-
-
-
-
 <a name="ddev.sites.v1alpha1.PullDatabaseRequest"></a>
 
 ### PullDatabaseRequest
-
+Pull database pulls the state of a specified database backup
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to push to. |
+| name | [string](#string) |  | `Required` The name of the backup to pull. |
 
 
 
@@ -392,7 +336,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| content | [bytes](#bytes) |  | `OutputOnly` The raw bytes the the content with the first 512 bytes expressing the ContentType. |
+| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | `OutputOnly` The backup object |
 
 
 
@@ -407,8 +351,8 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to push to. |
-| content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
+| name | [string](#string) |  | `Required` The name of the site to push to. |
+| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | `OutputOnly` The backup object |
 
 
 
@@ -419,11 +363,6 @@ Push a single database to a site
 
 ### PushDatabaseResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sha256 | [string](#string) |  | `OutputOnly` The SHA 256 sum of the recieved content |
 
 
 
@@ -438,7 +377,7 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to backup. |
+| name | [string](#string) |  | `Required` The name of the backup to restore. |
 
 
 

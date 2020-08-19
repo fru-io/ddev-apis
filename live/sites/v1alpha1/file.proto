@@ -26,6 +26,7 @@ option java_package = "com.ddev.live.sites.v1alpha1";
 TODO
 */
 message File {
+
   /*
   The name of the file.
   */
@@ -36,21 +37,15 @@ message File {
   */
   bytes content = 2;
 
-}
-
-/*
-TODO
-*/
-message FileChecksum {
   /*
-  The name of the file.
+  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch on the receiving end will result in an error.
   */
-  string name = 1;
+  bytes CRC32c = 17;
 
   /*
-  The sha checksum of this file
+  MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error.
   */
-  string sha256 = 2;
+  bytes MD5 = 18;
 
 }
 
@@ -73,11 +68,6 @@ message BackupFilesRequest {
 /*
 */
 message BackupFilesResponse {
-
-  /*
-  The list of files and their checksums restored server side
-  */
-  repeated FileChecksum checksums = 1;
 }
 
 /*
@@ -88,18 +78,12 @@ message RestoreFilesRequest {
   `Required`
   The name of the backup to restore files from.
   */
-  string backup = 1;
+  string name = 1;
 }
 
 /*
 */
 message RestoreFilesResponse {
-
-  /*
-  The list of files and their checksums restored server side
-  */
-  repeated FileChecksum checksums = 1;
-
 }
 
 /*
@@ -108,19 +92,26 @@ message PushFilesRequest {
 
   /*
   `Required`
-  The name of the database to push to.
+  The name of the site to stage files for
   */
-  repeated File file = 1;
+  string name = 1;
+
+  /*
+  `Required`
+  The files to stage for the site
+  */
+  repeated File files = 2;
+
+  /*
+  `Optional`
+  Destination directory for the files
+  */
+  string directory = 19;
 }
 
 /*
 */
 message PushFilesResponse {
-
-  /*
-  The list of files and their checksums recieved server side
-  */
-  repeated FileChecksum checksums = 1;
 }
 
 /*
@@ -140,7 +131,7 @@ message PullFilesResponse {
 
   /*
   `OutputOnly`
-  The raw bytes the the content with the first 512 bytes expressing the ContentType.
+  The staged files for the requested site
   */
-  bytes content = 1;
+  repeated File files = 1;
 }

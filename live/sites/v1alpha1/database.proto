@@ -21,34 +21,53 @@ option java_multiple_files = true;
 option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
-
-/*
-TODO
-*/
-message Database {
-  /*
-  `OutputOnly`
-  The name of the file
-  */
-  string name = 1;
-}
-
 enum BackupState {
   FINISHED = 0;
   DELETED = 1;
 }
 
-message BackupStatus {
-  BackupState state = 1;
-  int64 time = 2;
-}
-
 /*
-TODO
+The backup object
 */
 message Backup {
+  
+  /*
+  The name of the backup
+  */
   string name = 1;
+
+  /*
+  The database this backup references
+  */
   string databaseReference = 2;
+
+  /*
+  The unix timestamp in which this backup was taken
+  */
+  int64 created = 3;
+
+  /*
+  The state of this backup
+  */
+  BackupState state = 4;
+
+  /*
+  The raw bytes the the content to pass.
+  Supported MIME Types: `gz`
+  */
+  bytes content = 5;
+
+  /*
+  `Optional`
+  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch will result in an error on the receiver.
+  */
+  bytes CRC32c = 17;
+
+  /*
+  `Optional`
+  MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver.
+  */
+  bytes MD5 = 18;
 }
 
 
@@ -62,9 +81,12 @@ message BackupDatabaseRequest {
 
   /*
   `Required`
-  The name of the database to backup.
+  The name of the site to backup.
   */
   string name = 1;
+
+  //TODO: Locking should be an option
+
 }
 
 /*
@@ -83,7 +105,7 @@ message RestoreDatabaseRequest {
 
   /*
   `Required`
-  The name of the database to backup.
+  The name of the backup to restore.
   */
   string name = 1;
 }
@@ -105,35 +127,31 @@ message PushDatabaseRequest {
 
   /*
   `Required`
-  The name of the database to push to.
+  The name of the site to push to.
   */
   string name = 1;
 
   /*
-  The raw bytes the the content to pass.
-  Supported MIME Types: `gz`
+  `OutputOnly`
+  The backup object
   */
-  bytes content = 2;
+  Backup backup = 2;
 }
 
 /*
 */
 message PushDatabaseResponse {
 
-  /*
-  `OutputOnly`
-  The SHA 256 sum of the recieved content
-  */
-  string sha256 = 1;
 }
 
 /*
+Pull database pulls the state of a specified database backup
 */
 message PullDatabaseRequest {
 
   /*
   `Required`
-  The name of the database to push to.
+  The name of the backup to pull.
   */
   string name = 1;
 }
@@ -144,7 +162,7 @@ message PullDatabaseResponse {
 
   /*
   `OutputOnly`
-  The raw bytes the the content with the first 512 bytes expressing the ContentType.
+  The backup object
   */
-  bytes content = 1;
+  Backup backup = 1;
 }

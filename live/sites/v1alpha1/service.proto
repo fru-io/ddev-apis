@@ -121,7 +121,7 @@ service Sites {
     }
 
     /*
-    PushFiles pushes local files to a running site
+    PushFiles upload file assets to a site's environment
     */
     rpc PushFiles(PushFilesRequest) returns (PushFilesResponse) {
     }    
@@ -133,7 +133,7 @@ service Sites {
     }  
 
     /*
-    PushDatabase pushes a database to a running site
+    PushDatabase uploads a database asset to a site's environment
     */
     rpc PushDatabase(PushDatabaseRequest) returns (PushDatabaseResponse) {
     }
@@ -144,4 +144,5 @@ service Sites {
     rpc PullDatabase(PullDatabaseRequest) returns (PullDatabaseResponse) {
     }  
 
+    //TODO: Streaming RPC for push pull
 }
