@@ -40,12 +40,12 @@ message File {
   /*
   CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch on the receiving end will result in an error.
   */
-  bytes CRC32c = 17;
+  string CRC32c = 17;
 
   /*
   MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error.
   */
-  bytes MD5 = 18;
+  string MD5 = 18;
 
 }
 
