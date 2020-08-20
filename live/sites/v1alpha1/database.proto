@@ -22,14 +22,41 @@ option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
 enum BackupState {
-  FINISHED = 0;
-  DELETED = 1;
+  CREATED = 0;
+  FINISHED = 1;
+  DELETED = 2;
+}
+
+message DatabaseBackup {
+
+  /*
+  Metadata information about this backup
+  */
+  DatabaseBackupMetadata metadata = 1;
+
+  /*
+  The raw bytes the the content.
+  Supported MIME Types: `gz`
+  */
+  bytes content = 5;
+
+  /*
+  `Optional`
+  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch will result in an error on the receiver.
+  */
+  string CRC32c = 17;
+
+  /*
+  `Optional`
+  MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver.
+  */
+  string MD5 = 18;
 }
 
 /*
 The backup object
 */
-message DatabaseBackup {
+message DatabaseBackupMetadata {
   
   /*
   The name of the backup
@@ -50,24 +77,6 @@ message DatabaseBackup {
   The state of this backup
   */
   BackupState state = 4;
-
-  /*
-  The raw bytes the the content to pass.
-  Supported MIME Types: `gz`
-  */
-  bytes content = 5;
-
-  /*
-  `Optional`
-  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch will result in an error on the receiver.
-  */
-  string CRC32c = 17;
-
-  /*
-  `Optional`
-  MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver.
-  */
-  string MD5 = 18;
 }
 
 
@@ -85,8 +94,6 @@ message BackupDatabaseRequest {
   */
   string site = 1;
 
-  //TODO: Locking should be an option
-
 }
 
 /*
@@ -96,7 +103,7 @@ message BackupDatabaseResponse {
   /*
   The state of the backup
   */
-  DatabaseBackup backup = 1;
+  DatabaseBackupMetadata backup = 1;
 }
 
 /*
@@ -124,7 +131,7 @@ message RestoreDatabaseResponse {
   /*
   The state of the backup
   */
-  DatabaseBackup backup = 1;
+  DatabaseBackupMetadata backup = 1;
 }
 
 /*
@@ -139,7 +146,6 @@ message PushDatabaseRequest {
   string site = 1;
 
   /*
-  `OutputOnly`
   The backup object
   */
   DatabaseBackup backup = 2;
@@ -172,4 +178,26 @@ message PullDatabaseResponse {
   The backup object
   */
   DatabaseBackup backup = 1;
+}
+
+/*
+*/
+message ListDatabaseBackupsRequest {
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string site = 1;
+}
+
+/*
+*/
+message ListDatabaseBackupsResponse {
+  
+  /*
+  `OutputOnly`
+  The metadata for all backup objects.
+  */
+  repeated DatabaseBackupMetadata backup = 1;
 }

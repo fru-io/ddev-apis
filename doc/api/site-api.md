@@ -7,7 +7,10 @@
     - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
     - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
     - [File](#ddev.sites.v1alpha1.File)
-    - [FileChecksum](#ddev.sites.v1alpha1.FileChecksum)
+    - [FileBackup](#ddev.sites.v1alpha1.FileBackup)
+    - [FileBackupMetadata](#ddev.sites.v1alpha1.FileBackupMetadata)
+    - [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest)
+    - [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse)
     - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
     - [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse)
     - [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest)
@@ -22,6 +25,9 @@
     - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
     - [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse)
     - [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup)
+    - [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata)
+    - [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest)
+    - [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse)
     - [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest)
     - [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse)
     - [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest)
@@ -102,12 +108,12 @@
 <a name="ddev.sites.v1alpha1.File"></a>
 
 ### File
-TODO
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the file. |
+| name | [string](#string) |  | The name, including path, of this file |
 | content | [bytes](#bytes) |  | The content of the file expressed in bytes. |
 | CRC32c | [string](#string) |  | CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch on the receiving end will result in an error. |
 | MD5 | [string](#string) |  | MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error. |
@@ -117,17 +123,63 @@ TODO
 
 
 
-<a name="ddev.sites.v1alpha1.FileChecksum"></a>
+<a name="ddev.sites.v1alpha1.FileBackup"></a>
 
-### FileChecksum
+### FileBackup
+TODO
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [FileBackupMetadata](#ddev.sites.v1alpha1.FileBackupMetadata) |  |  |
+| files | [File](#ddev.sites.v1alpha1.File) | repeated |  |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.FileBackupMetadata"></a>
+
+### FileBackupMetadata
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the file. |
-| CRC32c | [string](#string) |  | CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch on the receiving end will result in an error. |
-| MD5 | [string](#string) |  | MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error. |
+| name | [string](#string) |  | The name of the backup |
+| databaseReference | [string](#string) |  | The database this backup references |
+| created | [int64](#int64) |  | The unix timestamp in which this backup was taken |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListFileBackupsRequest"></a>
+
+### ListFileBackupsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListFileBackupsResponse"></a>
+
+### ListFileBackupsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [FileBackupMetadata](#ddev.sites.v1alpha1.FileBackupMetadata) | repeated | `OutputOnly` The metadata for all backup objects. |
 
 
 
@@ -157,7 +209,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| files | [File](#ddev.sites.v1alpha1.File) | repeated | `OutputOnly` The staged files for the requested backup |
+| backup | [FileBackup](#ddev.sites.v1alpha1.FileBackup) |  | `OutputOnly` The staged files for the requested backup |
 
 
 
@@ -172,7 +224,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site to stage files for |
+| site | [string](#string) |  | `Required` The name of the site to stage files for |
 | files | [File](#ddev.sites.v1alpha1.File) | repeated | `Required` The files to stage for the site |
 | directory | [string](#string) |  | `Optional` Destination directory for the files |
 
@@ -185,11 +237,6 @@ TODO
 
 ### PushFilesResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | The file checksums that were received |
 
 
 
@@ -272,8 +319,10 @@ several metadata to be passed to the client.
 | RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores a sites files to a known backup |
 | PushFiles | [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest) | [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse) | PushFiles upload file assets to a site&#39;s environment |
 | PullFiles | [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest) | [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse) | PullFiles pulls down files locally |
+| ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
 | PushDatabase | [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest) | [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse) | PushDatabase uploads a database asset to a site&#39;s environment |
 | PullDatabase | [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest) | [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse) | PullDatabase pulls down a database locally |
+| ListDatabaseBackups | [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest) | [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse) | Lists database backups known for a provided site |
 
  
 
@@ -309,7 +358,7 @@ several metadata to be passed to the client.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | The state of the backup |
+| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | The state of the backup |
 
 
 
@@ -319,6 +368,24 @@ several metadata to be passed to the client.
 <a name="ddev.sites.v1alpha1.DatabaseBackup"></a>
 
 ### DatabaseBackup
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | Metadata information about this backup |
+| content | [bytes](#bytes) |  | The raw bytes the the content. Supported MIME Types: `gz` |
+| CRC32c | [string](#string) |  | `Optional` CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch will result in an error on the receiver. |
+| MD5 | [string](#string) |  | `Optional` MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DatabaseBackupMetadata"></a>
+
+### DatabaseBackupMetadata
 The backup object
 
 
@@ -328,9 +395,36 @@ The backup object
 | databaseReference | [string](#string) |  | The database this backup references |
 | created | [int64](#int64) |  | The unix timestamp in which this backup was taken |
 | state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  | The state of this backup |
-| content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
-| CRC32c | [string](#string) |  | `Optional` CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch will result in an error on the receiver. |
-| MD5 | [string](#string) |  | `Optional` MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListDatabaseBackupsRequest"></a>
+
+### ListDatabaseBackupsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListDatabaseBackupsResponse"></a>
+
+### ListDatabaseBackupsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) | repeated | `OutputOnly` The metadata for all backup objects. |
 
 
 
@@ -376,7 +470,7 @@ Push a single database to a site
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | site | [string](#string) |  | `Required` The name of the site to push to. |
-| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | `OutputOnly` The backup object |
+| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | The backup object |
 
 
 
@@ -417,7 +511,7 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | The state of the backup |
+| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | The state of the backup |
 
 
 
@@ -433,8 +527,9 @@ Push a single database to a site
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| FINISHED | 0 |  |
-| DELETED | 1 |  |
+| CREATED | 0 |  |
+| FINISHED | 1 |  |
+| DELETED | 2 |  |
 
 
  

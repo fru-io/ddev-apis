@@ -22,13 +22,28 @@ option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
 
-/*
-TODO
-*/
+message FileBackupMetadata {
+  
+  /*
+  The name of the backup
+  */
+  string name = 1;
+
+  /*
+  The database this backup references
+  */
+  string databaseReference = 2;
+
+  /*
+  The unix timestamp in which this backup was taken
+  */
+  int64 created = 3;
+}
+
 message File {
 
   /*
-  The name of the file.
+  The name, including path, of this file
   */
   string name = 1;
 
@@ -46,28 +61,17 @@ message File {
   MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error.
   */
   string MD5 = 18;
-
 }
 
-message FileChecksum {
+/*
+TODO
+*/
+message FileBackup {
 
-  /*
-  The name of the file.
-  */
-  string name = 1;
+  FileBackupMetadata metadata = 1;
 
-  /*
-  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch on the receiving end will result in an error.
-  */
-  string CRC32c = 17;
-
-  /*
-  MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error.
-  */
-  string MD5 = 18;
-
+  repeated File files = 2;
 }
-
 
 //
 // Message Types
@@ -119,7 +123,7 @@ message PushFilesRequest {
   `Required`
   The name of the site to stage files for
   */
-  string name = 1;
+  string site = 1;
 
   /*
   `Required`
@@ -137,11 +141,6 @@ message PushFilesRequest {
 /*
 */
 message PushFilesResponse {
-  
-  /*
-  The file checksums that were received
-  */
-  repeated FileChecksum checksums = 1;
 }
 
 /*
@@ -163,5 +162,28 @@ message PullFilesResponse {
   `OutputOnly`
   The staged files for the requested backup
   */
-  repeated File files = 1;
+  FileBackup backup = 1;
+}
+
+
+/*
+*/
+message ListFileBackupsRequest {
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string site = 1;
+}
+
+/*
+*/
+message ListFileBackupsResponse {
+  
+  /*
+  `OutputOnly`
+  The metadata for all backup objects.
+  */
+  repeated FileBackupMetadata metadata = 1;
 }
