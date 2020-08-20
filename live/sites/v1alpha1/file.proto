@@ -49,6 +49,25 @@ message File {
 
 }
 
+message FileChecksum {
+
+  /*
+  The name of the file.
+  */
+  string name = 1;
+
+  /*
+  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch on the receiving end will result in an error.
+  */
+  string CRC32c = 17;
+
+  /*
+  MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error.
+  */
+  string MD5 = 18;
+
+}
+
 
 //
 // Message Types
@@ -60,9 +79,9 @@ message BackupFilesRequest {
 
   /*
   `Required`
-  The name of the backup.
+  The name of the site.
   */
-  string name = 1;
+  string site = 1;
 }
 
 /*
@@ -76,9 +95,15 @@ message RestoreFilesRequest {
 
   /*
   `Required`
+  The name of the site to restore files to.
+  */
+  string site = 1;
+
+  /*
+  `Required`
   The name of the backup to restore files from.
   */
-  string name = 1;
+  string backup = 2;
 }
 
 /*
@@ -112,6 +137,11 @@ message PushFilesRequest {
 /*
 */
 message PushFilesResponse {
+  
+  /*
+  The file checksums that were received
+  */
+  repeated FileChecksum checksums = 1;
 }
 
 /*
@@ -120,9 +150,9 @@ message PullFilesRequest {
 
   /*
   `Required`
-  The name of the database to push to.
+  The name of the backup to pull.
   */
-  string name = 1;
+  string backup = 1;
 }
 
 /*
@@ -131,7 +161,7 @@ message PullFilesResponse {
 
   /*
   `OutputOnly`
-  The staged files for the requested site
+  The staged files for the requested backup
   */
   repeated File files = 1;
 }

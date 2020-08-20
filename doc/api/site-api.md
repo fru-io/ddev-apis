@@ -7,6 +7,7 @@
     - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
     - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
     - [File](#ddev.sites.v1alpha1.File)
+    - [FileChecksum](#ddev.sites.v1alpha1.FileChecksum)
     - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
     - [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse)
     - [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest)
@@ -18,9 +19,9 @@
     - [Sites](#ddev.sites.v1alpha1.Sites)
   
 - [live/sites/v1alpha1/database.proto](#live/sites/v1alpha1/database.proto)
-    - [Backup](#ddev.sites.v1alpha1.Backup)
     - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
     - [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse)
+    - [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup)
     - [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest)
     - [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse)
     - [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest)
@@ -81,7 +82,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the backup. |
+| site | [string](#string) |  | `Required` The name of the site. |
 
 
 
@@ -108,8 +109,25 @@ TODO
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | The name of the file. |
 | content | [bytes](#bytes) |  | The content of the file expressed in bytes. |
-| CRC32c | [bytes](#bytes) |  | CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch on the receiving end will result in an error. |
-| MD5 | [bytes](#bytes) |  | MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error. |
+| CRC32c | [string](#string) |  | CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch on the receiving end will result in an error. |
+| MD5 | [string](#string) |  | MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.FileChecksum"></a>
+
+### FileChecksum
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the file. |
+| CRC32c | [string](#string) |  | CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch on the receiving end will result in an error. |
+| MD5 | [string](#string) |  | MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error. |
 
 
 
@@ -124,7 +142,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to push to. |
+| backup | [string](#string) |  | `Required` The name of the backup to pull. |
 
 
 
@@ -139,7 +157,7 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| files | [File](#ddev.sites.v1alpha1.File) | repeated | `OutputOnly` The staged files for the requested site |
+| files | [File](#ddev.sites.v1alpha1.File) | repeated | `OutputOnly` The staged files for the requested backup |
 
 
 
@@ -169,6 +187,11 @@ TODO
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | The file checksums that were received |
+
+
 
 
 
@@ -181,7 +204,8 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the backup to restore files from. |
+| site | [string](#string) |  | `Required` The name of the site to restore files to. |
+| backup | [string](#string) |  | `Required` The name of the backup to restore files from. |
 
 
 
@@ -262,27 +286,6 @@ several metadata to be passed to the client.
 
 
 
-<a name="ddev.sites.v1alpha1.Backup"></a>
-
-### Backup
-The backup object
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the backup |
-| databaseReference | [string](#string) |  | The database this backup references |
-| created | [int64](#int64) |  | The unix timestamp in which this backup was taken |
-| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  | The state of this backup |
-| content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
-| CRC32c | [bytes](#bytes) |  | `Optional` CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch will result in an error on the receiver. |
-| MD5 | [bytes](#bytes) |  | `Optional` MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver. |
-
-
-
-
-
-
 <a name="ddev.sites.v1alpha1.BackupDatabaseRequest"></a>
 
 ### BackupDatabaseRequest
@@ -291,7 +294,7 @@ The backup object
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site to backup. |
+| site | [string](#string) |  | `Required` The name of the site to backup. |
 
 
 
@@ -306,7 +309,28 @@ The backup object
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | The state of the backup |
+| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | The state of the backup |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DatabaseBackup"></a>
+
+### DatabaseBackup
+The backup object
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the backup |
+| databaseReference | [string](#string) |  | The database this backup references |
+| created | [int64](#int64) |  | The unix timestamp in which this backup was taken |
+| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  | The state of this backup |
+| content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
+| CRC32c | [string](#string) |  | `Optional` CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch will result in an error on the receiver. |
+| MD5 | [string](#string) |  | `Optional` MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver. |
 
 
 
@@ -321,7 +345,7 @@ Pull database pulls the state of a specified database backup
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the backup to pull. |
+| backup | [string](#string) |  | `Required` The name of the backup to pull. |
 
 
 
@@ -336,7 +360,7 @@ Pull database pulls the state of a specified database backup
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | `OutputOnly` The backup object |
+| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | `OutputOnly` The backup object |
 
 
 
@@ -351,8 +375,8 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site to push to. |
-| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | `OutputOnly` The backup object |
+| site | [string](#string) |  | `Required` The name of the site to push to. |
+| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | `OutputOnly` The backup object |
 
 
 
@@ -377,7 +401,8 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the backup to restore. |
+| site | [string](#string) |  | `Required` The name of the site to restore. |
+| backup | [string](#string) |  | `Required` The name of the backup to restore the site to. |
 
 
 
@@ -392,7 +417,7 @@ Push a single database to a site
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | The state of the backup |
+| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | The state of the backup |
 
 
 
