@@ -29,7 +29,7 @@ enum BackupState {
 /*
 The backup object
 */
-message Backup {
+message DatabaseBackup {
   
   /*
   The name of the backup
@@ -83,7 +83,7 @@ message BackupDatabaseRequest {
   `Required`
   The name of the site to backup.
   */
-  string name = 1;
+  string site = 1;
 
   //TODO: Locking should be an option
 
@@ -96,7 +96,7 @@ message BackupDatabaseResponse {
   /*
   The state of the backup
   */
-  Backup backup = 1;
+  DatabaseBackup backup = 1;
 }
 
 /*
@@ -105,9 +105,16 @@ message RestoreDatabaseRequest {
 
   /*
   `Required`
-  The name of the backup to restore.
+  The name of the site to restore.
   */
-  string name = 1;
+  string site = 1;
+
+  /*
+  `Required`
+  The name of the backup to restore the site to.
+  */
+  string backup = 2;
+
 }
 
 /*
@@ -117,7 +124,7 @@ message RestoreDatabaseResponse {
   /*
   The state of the backup
   */
-  Backup backup = 1;
+  DatabaseBackup backup = 1;
 }
 
 /*
@@ -129,13 +136,13 @@ message PushDatabaseRequest {
   `Required`
   The name of the site to push to.
   */
-  string name = 1;
+  string site = 1;
 
   /*
   `OutputOnly`
   The backup object
   */
-  Backup backup = 2;
+  DatabaseBackup backup = 2;
 }
 
 /*
@@ -153,7 +160,7 @@ message PullDatabaseRequest {
   `Required`
   The name of the backup to pull.
   */
-  string name = 1;
+  string backup = 1;
 }
 
 /*
@@ -164,5 +171,5 @@ message PullDatabaseResponse {
   `OutputOnly`
   The backup object
   */
-  Backup backup = 1;
+  DatabaseBackup backup = 1;
 }
