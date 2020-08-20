@@ -133,6 +133,12 @@ service Sites {
     }  
 
     /*
+    Lists file backups known for a provided site
+    */
+    rpc ListFileBackups(ListFileBackupsRequest) returns (ListFileBackupsResponse) {
+    }
+
+    /*
     PushDatabase uploads a database asset to a site's environment
     */
     rpc PushDatabase(PushDatabaseRequest) returns (PushDatabaseResponse) {
@@ -142,7 +148,14 @@ service Sites {
     PullDatabase pulls down a database locally
     */
     rpc PullDatabase(PullDatabaseRequest) returns (PullDatabaseResponse) {
-    }  
+    }
+
+    /*
+    Lists database backups known for a provided site
+    */
+    rpc ListDatabaseBackups(ListDatabaseBackupsRequest) returns (ListDatabaseBackupsResponse) {
+    }
+
 
     //TODO: Streaming RPC for push pull
 }
