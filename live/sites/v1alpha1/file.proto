@@ -43,9 +43,9 @@ message FileBackupMetadata {
 message File {
 
   /*
-  The name, including path, of this file
+  The relative path, including the filename.
   */
-  string name = 1;
+  string path = 1;
 
   /*
   The content of the file expressed in bytes.
@@ -133,9 +133,9 @@ message PushFilesRequest {
 
   /*
   `Optional`
-  Destination directory for the files
+  Destination directory for the files.  If specified all files will be relative to this location.
   */
-  string directory = 19;
+  string directory = 17;
 }
 
 /*
@@ -149,9 +149,16 @@ message PullFilesRequest {
 
   /*
   `Required`
-  The name of the backup to pull.
+  The name of the site to pull files from.
   */
-  string backup = 1;
+  string site = 1;
+
+  /*
+  `Required`
+  The path to the files or directories to pull
+  */
+  repeated string paths = 2;
+
 }
 
 /*
@@ -162,7 +169,7 @@ message PullFilesResponse {
   `OutputOnly`
   The staged files for the requested backup
   */
-  FileBackup backup = 1;
+  repeated File files = 1;
 }
 
 
