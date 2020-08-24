@@ -121,16 +121,28 @@ service Sites {
     }
 
     /*
-    PushFiles upload file assets to a site's environment
+    PushFile upload file assets to a site's environment
     */
-    rpc PushFiles(PushFilesRequest) returns (PushFilesResponse) {
+    rpc PushFile(PushFilesRequest) returns (PushFilesResponse) {
     }    
 
     /*
-    PullFiles pulls down files locally
+    PushFileStream allows client side streaming of large files
     */
-    rpc PullFiles(PullFilesRequest) returns (PullFilesResponse) {
-    }  
+    rpc PushFileStream(stream PushFilesRequest) returns (PushFilesResponse) {
+    }    
+
+    /*
+    PullFileStream streams file from the server and pulls them down to a local source
+    */
+    rpc PullFileStream(PullFilesRequest) returns (stream PullFilesResponse) {
+    }
+
+    /*
+    DescribeFiles returns the metadata for current files staged for a restore operation
+    */
+    rpc DescribeFiles(DescribeFilesRequest) returns (DescribeFilesResponse) {
+    }
 
     /*
     Lists file backups known for a provided site

@@ -6,6 +6,8 @@
 - [live/sites/v1alpha1/file.proto](#live/sites/v1alpha1/file.proto)
     - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
     - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
+    - [DescribeFilesRequest](#ddev.sites.v1alpha1.DescribeFilesRequest)
+    - [DescribeFilesResponse](#ddev.sites.v1alpha1.DescribeFilesResponse)
     - [File](#ddev.sites.v1alpha1.File)
     - [FileBackup](#ddev.sites.v1alpha1.FileBackup)
     - [FileBackupMetadata](#ddev.sites.v1alpha1.FileBackupMetadata)
@@ -13,8 +15,12 @@
     - [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse)
     - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
     - [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse)
+    - [PullFilesStreamRequest](#ddev.sites.v1alpha1.PullFilesStreamRequest)
+    - [PullFilesStreamResponse](#ddev.sites.v1alpha1.PullFilesStreamResponse)
     - [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest)
     - [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse)
+    - [PushFilesStreamRequest](#ddev.sites.v1alpha1.PushFilesStreamRequest)
+    - [PushFilesStreamResponse](#ddev.sites.v1alpha1.PushFilesStreamResponse)
     - [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest)
     - [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse)
   
@@ -105,6 +111,37 @@
 
 
 
+<a name="ddev.sites.v1alpha1.DescribeFilesRequest"></a>
+
+### DescribeFilesRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site to describe files for. |
+| paths | [string](#string) | repeated | `Optional` A list of paths or directories to describe. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DescribeFilesResponse"></a>
+
+### DescribeFilesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [File](#ddev.sites.v1alpha1.File) | repeated | `OutputOnly` The metadata for files matching the request with content omitted. |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.File"></a>
 
 ### File
@@ -113,7 +150,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name, including path, of this file |
+| path | [string](#string) |  | The relative path, including the filename. |
 | content | [bytes](#bytes) |  | The content of the file expressed in bytes. |
 | CRC32c | [string](#string) |  | CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. If provided a checksum mismatch on the receiving end will result in an error. |
 | MD5 | [string](#string) |  | MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error. |
@@ -194,7 +231,8 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [string](#string) |  | `Required` The name of the backup to pull. |
+| site | [string](#string) |  | `Required` The name of the site to pull files from. |
+| paths | [string](#string) | repeated | `Required` The path to the files or directories to pull |
 
 
 
@@ -209,7 +247,38 @@ TODO
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backup | [FileBackup](#ddev.sites.v1alpha1.FileBackup) |  | `OutputOnly` The staged files for the requested backup |
+| file | [File](#ddev.sites.v1alpha1.File) |  | `OutputOnly` The staged files for the requested backup |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PullFilesStreamRequest"></a>
+
+### PullFilesStreamRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site to pull files from. |
+| paths | [string](#string) |  | `Required` The path to the files or directories to pull |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PullFilesStreamResponse"></a>
+
+### PullFilesStreamResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| file | [File](#ddev.sites.v1alpha1.File) |  | `OutputOnly` A file for the requested backup asset |
 
 
 
@@ -225,8 +294,8 @@ TODO
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | site | [string](#string) |  | `Required` The name of the site to stage files for |
-| files | [File](#ddev.sites.v1alpha1.File) | repeated | `Required` The files to stage for the site |
-| directory | [string](#string) |  | `Optional` Destination directory for the files |
+| file | [File](#ddev.sites.v1alpha1.File) |  | `Required` The file to stage for the site |
+| directory | [string](#string) |  | `Optional` Destination directory for the files. If specified all files will be relative to this location. |
 
 
 
@@ -237,6 +306,43 @@ TODO
 
 ### PushFilesResponse
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Optional` The name of the asset created for this backup |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PushFilesStreamRequest"></a>
+
+### PushFilesStreamRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site to stage files for |
+| files | [File](#ddev.sites.v1alpha1.File) |  | `Required` The files to stage for the site |
+| directory | [string](#string) |  | `Optional` Destination directory for the files. If specified all files will be relative to this location. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PushFilesStreamResponse"></a>
+
+### PushFilesStreamResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Optional` The name of the asset created for this backup |
 
 
 
@@ -317,8 +423,10 @@ several metadata to be passed to the client.
 | RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
 | BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backs up files associated with a site |
 | RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores a sites files to a known backup |
-| PushFiles | [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest) | [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse) | PushFiles upload file assets to a site&#39;s environment |
-| PullFiles | [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest) | [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse) | PullFiles pulls down files locally |
+| PushFile | [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest) | [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse) | PushFile upload file assets to a site&#39;s environment |
+| PushFileStream | [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest) stream | [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse) | PushFileStream allows client side streaming of large files |
+| PullFileStream | [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest) | [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse) stream | PullFileStream streams file from the server and pulls them down to a local source |
+| DescribeFiles | [DescribeFilesRequest](#ddev.sites.v1alpha1.DescribeFilesRequest) | [DescribeFilesResponse](#ddev.sites.v1alpha1.DescribeFilesResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
 | ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
 | PushDatabase | [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest) | [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse) | PushDatabase uploads a database asset to a site&#39;s environment |
 | PullDatabase | [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest) | [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse) | PullDatabase pulls down a database locally |
