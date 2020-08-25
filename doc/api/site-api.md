@@ -358,7 +358,6 @@ TODO
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | site | [string](#string) |  | `Required` The name of the site to restore files to. |
-| backup | [string](#string) |  | `Required` The name of the backup to restore files from. |
 
 
 
