@@ -103,11 +103,6 @@ message RestoreFilesRequest {
   */
   string site = 1;
 
-  /*
-  `Required`
-  The name of the backup to restore files from.
-  */
-  string backup = 2;
 }
 
 /*
