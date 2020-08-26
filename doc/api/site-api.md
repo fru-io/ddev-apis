@@ -15,12 +15,8 @@
     - [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse)
     - [PullFileResponse](#ddev.sites.v1alpha1.PullFileResponse)
     - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
-    - [PullFilesStreamRequest](#ddev.sites.v1alpha1.PullFilesStreamRequest)
-    - [PullFilesStreamResponse](#ddev.sites.v1alpha1.PullFilesStreamResponse)
     - [PushFileRequest](#ddev.sites.v1alpha1.PushFileRequest)
     - [PushFileResponse](#ddev.sites.v1alpha1.PushFileResponse)
-    - [PushFilesStreamRequest](#ddev.sites.v1alpha1.PushFilesStreamRequest)
-    - [PushFilesStreamResponse](#ddev.sites.v1alpha1.PushFilesStreamResponse)
     - [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest)
     - [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse)
   
@@ -259,37 +255,6 @@ TODO
 
 
 
-<a name="ddev.sites.v1alpha1.PullFilesStreamRequest"></a>
-
-### PullFilesStreamRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [string](#string) |  | `Required` The name of the site to pull files from. |
-| paths | [string](#string) |  | `Required` The path to the files or directories to pull |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PullFilesStreamResponse"></a>
-
-### PullFilesStreamResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| file | [File](#ddev.sites.v1alpha1.File) |  | `OutputOnly` A file for the requested backup asset |
-
-
-
-
-
-
 <a name="ddev.sites.v1alpha1.PushFileRequest"></a>
 
 ### PushFileRequest
@@ -310,38 +275,6 @@ TODO
 <a name="ddev.sites.v1alpha1.PushFileResponse"></a>
 
 ### PushFileResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Optional` The name of the asset created for this backup |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PushFilesStreamRequest"></a>
-
-### PushFilesStreamRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [string](#string) |  | `Required` The name of the site to stage files for |
-| file | [File](#ddev.sites.v1alpha1.File) |  | `Required` The files to stage for the site |
-| directory | [string](#string) |  | `Optional` Destination directory for the files. If specified all files will be relative to this location. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PushFilesStreamResponse"></a>
-
-### PushFilesStreamResponse
 
 
 

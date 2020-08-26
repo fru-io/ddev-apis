@@ -209,68 +209,6 @@ message DescribeFilesResponse {
   repeated File metadata = 1;
 }
 
-/*
-*/
-message PushFilesStreamRequest {
-
-  /*
-  `Required`
-  The name of the site to stage files for
-  */
-  string site = 1;
-
-  /*
-  `Required`
-  The files to stage for the site
-  */
-  File file = 2;
-
-  /*
-  `Optional`
-  Destination directory for the files.  If specified all files will be relative to this location.
-  */
-  string directory = 17;
-}
-
-/*
-*/
-message PushFilesStreamResponse {
-
-  /*
-  `Optional`
-  The name of the asset created for this backup
-  */
-  string name = 1;
-}
-
-/*
-*/
-message PullFilesStreamRequest {
-
-  /*
-  `Required`
-  The name of the site to pull files from.
-  */
-  string site = 1;
-
-  /*
-  `Required`
-  The path to the files or directories to pull
-  */
-  string paths = 2;
-}
-
-/*
-*/
-message PullFilesStreamResponse {
-
-  /*
-  `OutputOnly`
-  A file for the requested backup asset
-  */
-  File file = 1;
-}
-
 
 /*
 */
