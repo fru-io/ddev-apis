@@ -155,19 +155,19 @@ service Sites {
     /*
     PushFile upload file assets to a site's environment
     */
-    rpc PushFile(PushFilesRequest) returns (PushFilesResponse) {
+    rpc PushFile(PushFileRequest) returns (PushFileResponse) {
     }    
 
     /*
     PushFileStream allows client side streaming of large files
     */
-    rpc PushFileStream(stream PushFilesRequest) returns (PushFilesResponse) {
+    rpc PushFileStream(stream PushFileRequest) returns (PushFileResponse) {
     }    
 
     /*
     PullFileStream streams file from the server and pulls them down to a local source
     */
-    rpc PullFileStream(PullFilesRequest) returns (stream PullFilesResponse) {
+    rpc PullFileStream(PullFilesRequest) returns (stream PullFileResponse) {
     }
 
     /*

@@ -124,7 +124,7 @@ message RestoreFilesResponse {
 
 /*
 */
-message PushFilesRequest {
+message PushFileRequest {
 
   /*
   `Required`
@@ -147,7 +147,7 @@ message PushFilesRequest {
 
 /*
 */
-message PushFilesResponse {
+message PushFileResponse {
 
   /*
   `Optional`
@@ -168,15 +168,15 @@ message PullFilesRequest {
   string site = 1;
 
   /*
-  `Required`
-  The path to the files or directories to pull
+  `Optional`
+  The path to the files or directories to pull.  If unspecified all files will be pulled.
   */
-  repeated string paths = 2;
+  repeated string paths = 17;
 }
 
 /*
 */
-message PullFilesResponse {
+message PullFileResponse {
 
   /*
   `OutputOnly`
@@ -223,7 +223,7 @@ message PushFilesStreamRequest {
   `Required`
   The files to stage for the site
   */
-  File files = 2;
+  File file = 2;
 
   /*
   `Optional`
