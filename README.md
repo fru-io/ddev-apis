@@ -29,7 +29,7 @@ Download some dependencies needed to build the project
 
 ## Develop:
 
-This repository contains protobuf files which define and generate API's and documentation for API's. For more information about developing protobuf3 API's see the language guide here:
+This repository contains protobuf files which define and generate APIs and documentation for APIs. For more information about developing protobuf3 APIs see the language guide here:
 
 https://developers.google.com/protocol-buffers/docs/proto3
 
@@ -74,7 +74,7 @@ go_grpc_compile(
 bazel will then generate the libraries and place them in ./bazel-bin/site_grpc/live/...
 
 ### Direct generation
-Currently we officially support javascript/typescript web and golang API's.  To generate client libraries in these two languages you will require the dependencies listed in [build](##Build).  You may reference the `Makefile` or consider the examples below:
+Currently we officially support javascript/typescript web and golang APIs.  To generate client libraries in these two languages you will require the dependencies listed in [build](##Build).  You may reference the `Makefile` or consider the examples below:
 
 #### Javascript (web with typescript bindings)
 *from the repository root*
