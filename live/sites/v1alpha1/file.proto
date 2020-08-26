@@ -91,6 +91,12 @@ message BackupFilesRequest {
 /*
 */
 message BackupFilesResponse {
+
+  /*
+  `OutputOnly`
+  The name of the filebackup object.
+  */
+  string name = 1;
 }
 
 /*
@@ -108,6 +114,12 @@ message RestoreFilesRequest {
 /*
 */
 message RestoreFilesResponse {
+
+  /*
+  `OutputOnly`
+  The name of the filerestore object.
+  */
+  string name = 1;
 }
 
 /*

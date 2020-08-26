@@ -42,13 +42,13 @@ message DatabaseBackup {
 
   /*
   `Optional`
-  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch will result in an error on the receiver.
+  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  In the event of streaming requests the CRC32c shall represent the checksum of the entire file.  If provided a checksum mismatch will result in an error on the receiver.
   */
   string CRC32c = 17;
 
   /*
   `Optional`
-  MD5 hash of the data; encoded using base64. If provided a checksum mismatch will result in an error on the receiver.
+  MD5 hash of the data; encoded using base64.  In the event of streaming requests the MD5 shall represent the checksum of the entire file.   If provided a checksum mismatch will result in an error on the receiver.
   */
   string MD5 = 18;
 }
@@ -69,11 +69,13 @@ message DatabaseBackupMetadata {
   string databaseReference = 2;
 
   /*
+  `OutputOnly`
   The unix timestamp in which this backup was taken
   */
   int64 created = 3;
 
   /*
+  `OutputOnly`
   The state of this backup
   */
   BackupState state = 4;

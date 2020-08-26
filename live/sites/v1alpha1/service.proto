@@ -109,6 +109,38 @@ service Sites {
     }
 
     /*
+    PushDatabase uploads a database asset to a site's environment
+    */
+    rpc PushDatabase(PushDatabaseRequest) returns (PushDatabaseResponse) {
+    }
+
+    /*
+    PullDatabase pulls down a database locally
+    */
+    rpc PullDatabase(PullDatabaseRequest) returns (PullDatabaseResponse) {
+    }
+
+    /*
+    PushDatabase uploads a database asset to a site's environment
+    */
+    rpc PushDatabaseStream(stream PushDatabaseRequest) returns (PushDatabaseResponse) {
+    }
+
+    /*
+    PullDatabase pulls down a database locally
+    */
+    rpc PullDatabaseStream(PullDatabaseRequest) returns (stream PullDatabaseResponse) {
+    }
+
+    /*
+    Lists database backups known for a provided site
+    */
+    rpc ListDatabaseBackups(ListDatabaseBackupsRequest) returns (ListDatabaseBackupsResponse) {
+    }
+
+    // Files
+
+    /*
     BackupFiles backs up files associated with a site
     */
     rpc BackupFiles(BackupFilesRequest) returns (BackupFilesResponse) {
@@ -149,25 +181,4 @@ service Sites {
     */
     rpc ListFileBackups(ListFileBackupsRequest) returns (ListFileBackupsResponse) {
     }
-
-    /*
-    PushDatabase uploads a database asset to a site's environment
-    */
-    rpc PushDatabase(PushDatabaseRequest) returns (PushDatabaseResponse) {
-    }
-
-    /*
-    PullDatabase pulls down a database locally
-    */
-    rpc PullDatabase(PullDatabaseRequest) returns (PullDatabaseResponse) {
-    }
-
-    /*
-    Lists database backups known for a provided site
-    */
-    rpc ListDatabaseBackups(ListDatabaseBackupsRequest) returns (ListDatabaseBackupsResponse) {
-    }
-
-
-    //TODO: Streaming RPC for push pull
 }
