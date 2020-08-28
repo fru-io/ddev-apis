@@ -6,17 +6,17 @@
 - [live/sites/v1alpha1/file.proto](#live/sites/v1alpha1/file.proto)
     - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
     - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
-    - [DescribeFilesRequest](#ddev.sites.v1alpha1.DescribeFilesRequest)
-    - [DescribeFilesResponse](#ddev.sites.v1alpha1.DescribeFilesResponse)
+    - [DescribeFileBackupRequest](#ddev.sites.v1alpha1.DescribeFileBackupRequest)
+    - [DescribeFileBackupResponse](#ddev.sites.v1alpha1.DescribeFileBackupResponse)
     - [File](#ddev.sites.v1alpha1.File)
     - [FileBackup](#ddev.sites.v1alpha1.FileBackup)
     - [FileBackupMetadata](#ddev.sites.v1alpha1.FileBackupMetadata)
     - [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest)
     - [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse)
-    - [PullFileResponse](#ddev.sites.v1alpha1.PullFileResponse)
-    - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
-    - [PushFileRequest](#ddev.sites.v1alpha1.PushFileRequest)
-    - [PushFileResponse](#ddev.sites.v1alpha1.PushFileResponse)
+    - [PullFileBackupRequest](#ddev.sites.v1alpha1.PullFileBackupRequest)
+    - [PullFileBackupResponse](#ddev.sites.v1alpha1.PullFileBackupResponse)
+    - [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest)
+    - [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse)
     - [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest)
     - [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse)
   
@@ -30,10 +30,10 @@
     - [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata)
     - [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest)
     - [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse)
-    - [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest)
-    - [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse)
-    - [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest)
-    - [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse)
+    - [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest)
+    - [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse)
+    - [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest)
+    - [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse)
     - [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest)
     - [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse)
   
@@ -112,9 +112,9 @@
 
 
 
-<a name="ddev.sites.v1alpha1.DescribeFilesRequest"></a>
+<a name="ddev.sites.v1alpha1.DescribeFileBackupRequest"></a>
 
-### DescribeFilesRequest
+### DescribeFileBackupRequest
 
 
 
@@ -128,9 +128,9 @@
 
 
 
-<a name="ddev.sites.v1alpha1.DescribeFilesResponse"></a>
+<a name="ddev.sites.v1alpha1.DescribeFileBackupResponse"></a>
 
-### DescribeFilesResponse
+### DescribeFileBackupResponse
 
 
 
@@ -224,24 +224,9 @@ TODO
 
 
 
-<a name="ddev.sites.v1alpha1.PullFileResponse"></a>
+<a name="ddev.sites.v1alpha1.PullFileBackupRequest"></a>
 
-### PullFileResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| file | [File](#ddev.sites.v1alpha1.File) |  | `OutputOnly` The staged files for the requested backup |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PullFilesRequest"></a>
-
-### PullFilesRequest
+### PullFileBackupRequest
 
 
 
@@ -255,9 +240,24 @@ TODO
 
 
 
-<a name="ddev.sites.v1alpha1.PushFileRequest"></a>
+<a name="ddev.sites.v1alpha1.PullFileBackupResponse"></a>
 
-### PushFileRequest
+### PullFileBackupResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| file | [File](#ddev.sites.v1alpha1.File) |  | `OutputOnly` The staged files for the requested backup |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PushFileBackupRequest"></a>
+
+### PushFileBackupRequest
 
 
 
@@ -272,9 +272,9 @@ TODO
 
 
 
-<a name="ddev.sites.v1alpha1.PushFileResponse"></a>
+<a name="ddev.sites.v1alpha1.PushFileBackupResponse"></a>
 
-### PushFileResponse
+### PushFileBackupResponse
 
 
 
@@ -363,17 +363,17 @@ several metadata to be passed to the client.
 | SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
 | BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
 | RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
-| PushDatabase | [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest) | [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse) | PushDatabase uploads a database asset to a site&#39;s environment |
-| PullDatabase | [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest) | [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse) | PullDatabase pulls down a database locally |
-| PushDatabaseStream | [PushDatabaseRequest](#ddev.sites.v1alpha1.PushDatabaseRequest) stream | [PushDatabaseResponse](#ddev.sites.v1alpha1.PushDatabaseResponse) | PushDatabase uploads a database asset to a site&#39;s environment |
-| PullDatabaseStream | [PullDatabaseRequest](#ddev.sites.v1alpha1.PullDatabaseRequest) | [PullDatabaseResponse](#ddev.sites.v1alpha1.PullDatabaseResponse) stream | PullDatabase pulls down a database locally |
+| PushDatabaseBackup | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackup creates a new backup for a site and attempts to restore the site to that backup |
+| PushDatabaseBackupStream | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) stream | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackupStream creates a new backup for a site and attempts to restore the site to that backup |
+| PullDatabaseBackup | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) | PullDatabase pulls down a database backup locally |
+| PullDatabaseBackupStream | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) stream | PullDatabaseBackupStream pulls down a database backup locally |
 | ListDatabaseBackups | [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest) | [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse) | Lists database backups known for a provided site |
-| BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backs up files associated with a site |
-| RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores a sites files to a known backup |
-| PushFile | [PushFileRequest](#ddev.sites.v1alpha1.PushFileRequest) | [PushFileResponse](#ddev.sites.v1alpha1.PushFileResponse) | PushFile upload file assets to a site&#39;s environment |
-| PushFileStream | [PushFileRequest](#ddev.sites.v1alpha1.PushFileRequest) stream | [PushFileResponse](#ddev.sites.v1alpha1.PushFileResponse) | PushFileStream allows client side streaming of large files |
-| PullFileStream | [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest) | [PullFileResponse](#ddev.sites.v1alpha1.PullFileResponse) stream | PullFileStream streams file from the server and pulls them down to a local source |
-| DescribeFiles | [DescribeFilesRequest](#ddev.sites.v1alpha1.DescribeFilesRequest) | [DescribeFilesResponse](#ddev.sites.v1alpha1.DescribeFilesResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
+| BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backups up a currently running site environment to the staging area |
+| RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores the current staging area to a sites environment |
+| PushFileBackup | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFile upload file assets to a sites backup staging area |
+| PushFileBackupStream | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) stream | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFileStream allows client side streaming of large files to a staged backup area |
+| PullFileBackupStream | [PullFileBackupRequest](#ddev.sites.v1alpha1.PullFileBackupRequest) | [PullFileBackupResponse](#ddev.sites.v1alpha1.PullFileBackupResponse) stream | PullFileStream streams currently staged file[s] from the server and pulls them down to a local source |
+| DescribeFileBackup | [DescribeFileBackupRequest](#ddev.sites.v1alpha1.DescribeFileBackupRequest) | [DescribeFileBackupResponse](#ddev.sites.v1alpha1.DescribeFileBackupResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
 | ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
 
  
@@ -483,9 +483,9 @@ The backup object
 
 
 
-<a name="ddev.sites.v1alpha1.PullDatabaseRequest"></a>
+<a name="ddev.sites.v1alpha1.PullDatabaseBackupRequest"></a>
 
-### PullDatabaseRequest
+### PullDatabaseBackupRequest
 Pull database pulls the state of a specified database backup
 
 
@@ -498,9 +498,9 @@ Pull database pulls the state of a specified database backup
 
 
 
-<a name="ddev.sites.v1alpha1.PullDatabaseResponse"></a>
+<a name="ddev.sites.v1alpha1.PullDatabaseBackupResponse"></a>
 
-### PullDatabaseResponse
+### PullDatabaseBackupResponse
 
 
 
@@ -513,9 +513,9 @@ Pull database pulls the state of a specified database backup
 
 
 
-<a name="ddev.sites.v1alpha1.PushDatabaseRequest"></a>
+<a name="ddev.sites.v1alpha1.PushDatabaseBackupRequest"></a>
 
-### PushDatabaseRequest
+### PushDatabaseBackupRequest
 Push a single database to a site
 
 
@@ -529,9 +529,9 @@ Push a single database to a site
 
 
 
-<a name="ddev.sites.v1alpha1.PushDatabaseResponse"></a>
+<a name="ddev.sites.v1alpha1.PushDatabaseBackupResponse"></a>
 
-### PushDatabaseResponse
+### PushDatabaseBackupResponse
 
 
 

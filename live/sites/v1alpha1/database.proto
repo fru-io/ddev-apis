@@ -139,7 +139,7 @@ message RestoreDatabaseResponse {
 /*
 Push a single database to a site
 */
-message PushDatabaseRequest {
+message PushDatabaseBackupRequest {
 
   /*
   `Required`
@@ -155,14 +155,14 @@ message PushDatabaseRequest {
 
 /*
 */
-message PushDatabaseResponse {
+message PushDatabaseBackupResponse {
 
 }
 
 /*
 Pull database pulls the state of a specified database backup
 */
-message PullDatabaseRequest {
+message PullDatabaseBackupRequest {
 
   /*
   `Required`
@@ -173,7 +173,7 @@ message PullDatabaseRequest {
 
 /*
 */
-message PullDatabaseResponse {
+message PullDatabaseBackupResponse {
 
   /*
   `OutputOnly`

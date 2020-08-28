@@ -124,7 +124,7 @@ message RestoreFilesResponse {
 
 /*
 */
-message PushFileRequest {
+message PushFileBackupRequest {
 
   /*
   `Required`
@@ -147,7 +147,7 @@ message PushFileRequest {
 
 /*
 */
-message PushFileResponse {
+message PushFileBackupResponse {
 
   /*
   `Optional`
@@ -159,7 +159,7 @@ message PushFileResponse {
 
 /*
 */
-message PullFilesRequest {
+message PullFileBackupRequest {
 
   /*
   `Required`
@@ -176,7 +176,7 @@ message PullFilesRequest {
 
 /*
 */
-message PullFileResponse {
+message PullFileBackupResponse {
 
   /*
   `OutputOnly`
@@ -185,7 +185,7 @@ message PullFileResponse {
   File file = 1;
 }
 
-message DescribeFilesRequest {
+message DescribeFileBackupRequest {
 
   /*
   `Required`
@@ -200,7 +200,7 @@ message DescribeFilesRequest {
   repeated string paths = 17;
 }
 
-message DescribeFilesResponse {
+message DescribeFileBackupResponse {
 
   /*
   `OutputOnly`

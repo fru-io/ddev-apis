@@ -109,27 +109,27 @@ service Sites {
     }
 
     /*
-    PushDatabase uploads a database asset to a site's environment
+    PushDatabaseBackup creates a new backup for a site and attempts to restore the site to that backup
     */
-    rpc PushDatabase(PushDatabaseRequest) returns (PushDatabaseResponse) {
+    rpc PushDatabaseBackup(PushDatabaseBackupRequest) returns (PushDatabaseBackupResponse) {
     }
 
     /*
-    PullDatabase pulls down a database locally
+    PushDatabaseBackupStream creates a new backup for a site and attempts to restore the site to that backup
     */
-    rpc PullDatabase(PullDatabaseRequest) returns (PullDatabaseResponse) {
+    rpc PushDatabaseBackupStream(stream PushDatabaseBackupRequest) returns (PushDatabaseBackupResponse) {
     }
 
     /*
-    PushDatabase uploads a database asset to a site's environment
+    PullDatabase pulls down a database backup locally
     */
-    rpc PushDatabaseStream(stream PushDatabaseRequest) returns (PushDatabaseResponse) {
+    rpc PullDatabaseBackup(PullDatabaseBackupRequest) returns (PullDatabaseBackupResponse) {
     }
 
     /*
-    PullDatabase pulls down a database locally
+    PullDatabaseBackupStream pulls down a database backup locally
     */
-    rpc PullDatabaseStream(PullDatabaseRequest) returns (stream PullDatabaseResponse) {
+    rpc PullDatabaseBackupStream(PullDatabaseBackupRequest) returns (stream PullDatabaseBackupResponse) {
     }
 
     /*
@@ -141,39 +141,39 @@ service Sites {
     // Files
 
     /*
-    BackupFiles backs up files associated with a site
+    BackupFiles backups up a currently running site environment to the staging area 
     */
     rpc BackupFiles(BackupFilesRequest) returns (BackupFilesResponse) {
     }
 
     /*
-    RestoreFiles restores a sites files to a known backup
+    RestoreFiles restores the current staging area to a sites environment
     */
     rpc RestoreFiles(RestoreFilesRequest) returns (RestoreFilesResponse) {
     }
 
     /*
-    PushFile upload file assets to a site's environment
+    PushFile upload file assets to a sites backup staging area
     */
-    rpc PushFile(PushFileRequest) returns (PushFileResponse) {
+    rpc PushFileBackup(PushFileBackupRequest) returns (PushFileBackupResponse) {
     }    
 
     /*
-    PushFileStream allows client side streaming of large files
+    PushFileStream allows client side streaming of large files to a staged backup area
     */
-    rpc PushFileStream(stream PushFileRequest) returns (PushFileResponse) {
+    rpc PushFileBackupStream(stream PushFileBackupRequest) returns (PushFileBackupResponse) {
     }    
 
     /*
-    PullFileStream streams file from the server and pulls them down to a local source
+    PullFileStream streams currently staged file[s] from the server and pulls them down to a local source
     */
-    rpc PullFileStream(PullFilesRequest) returns (stream PullFileResponse) {
+    rpc PullFileBackupStream(PullFileBackupRequest) returns (stream PullFileBackupResponse) {
     }
 
     /*
     DescribeFiles returns the metadata for current files staged for a restore operation
     */
-    rpc DescribeFiles(DescribeFilesRequest) returns (DescribeFilesResponse) {
+    rpc DescribeFileBackup(DescribeFileBackupRequest) returns (DescribeFileBackupResponse) {
     }
 
     /*
