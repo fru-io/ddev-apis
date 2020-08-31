@@ -21,34 +21,64 @@ option java_multiple_files = true;
 option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
+enum BackupState {
+  CREATED = 0;
+  FINISHED = 1;
+  DELETED = 2;
+}
+
+message DatabaseBackup {
+
+  /*
+  Metadata information about this backup
+  */
+  DatabaseBackupMetadata metadata = 1;
+
+  /*
+  The raw bytes the the content.
+  Supported MIME Types: `gz`
+  */
+  bytes content = 5;
+
+  /*
+  `Optional`
+  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  In the event of streaming requests the CRC32c shall represent the checksum of the entire file.  If provided a checksum mismatch will result in an error on the receiver.
+  */
+  string CRC32c = 17;
+
+  /*
+  `Optional`
+  MD5 hash of the data; encoded using base64.  In the event of streaming requests the MD5 shall represent the checksum of the entire file.   If provided a checksum mismatch will result in an error on the receiver.
+  */
+  string MD5 = 18;
+}
 
 /*
-TODO
+The backup object
 */
-message Database {
+message DatabaseBackupMetadata {
+  
   /*
-  `OutputOnly`
-  The name of the file
+  The name of the backup
   */
   string name = 1;
-}
 
-enum BackupState {
-  FINISHED = 0;
-  DELETED = 1;
-}
-
-message BackupStatus {
-  BackupState state = 1;
-  int64 time = 2;
-}
-
-/*
-TODO
-*/
-message Backup {
-  string name = 1;
+  /*
+  The database this backup references
+  */
   string databaseReference = 2;
+
+  /*
+  `OutputOnly`
+  The unix timestamp in which this backup was taken
+  */
+  int64 created = 3;
+
+  /*
+  `OutputOnly`
+  The state of this backup
+  */
+  BackupState state = 4;
 }
 
 
@@ -62,9 +92,10 @@ message BackupDatabaseRequest {
 
   /*
   `Required`
-  The name of the database to backup.
+  The name of the site to backup.
   */
-  string name = 1;
+  string site = 1;
+
 }
 
 /*
@@ -74,7 +105,7 @@ message BackupDatabaseResponse {
   /*
   The state of the backup
   */
-  Backup backup = 1;
+  DatabaseBackupMetadata backup = 1;
 }
 
 /*
@@ -83,9 +114,16 @@ message RestoreDatabaseRequest {
 
   /*
   `Required`
-  The name of the database to backup.
+  The name of the site to restore.
   */
-  string name = 1;
+  string site = 1;
+
+  /*
+  `Required`
+  The name of the backup to restore the site to.
+  */
+  string backup = 2;
+
 }
 
 /*
@@ -95,56 +133,73 @@ message RestoreDatabaseResponse {
   /*
   The state of the backup
   */
-  Backup backup = 1;
+  DatabaseBackupMetadata backup = 1;
 }
 
 /*
 Push a single database to a site
 */
-message PushDatabaseRequest {
+message PushDatabaseBackupRequest {
 
   /*
   `Required`
-  The name of the database to push to.
+  The name of the site to push to.
   */
-  string name = 1;
+  string site = 1;
 
   /*
-  The raw bytes the the content to pass.
-  Supported MIME Types: `gz`
+  The backup object
   */
-  bytes content = 2;
+  DatabaseBackup backup = 2;
 }
 
 /*
 */
-message PushDatabaseResponse {
+message PushDatabaseBackupResponse {
 
-  /*
-  `OutputOnly`
-  The SHA 256 sum of the recieved content
-  */
-  string sha256 = 1;
 }
 
 /*
+Pull database pulls the state of a specified database backup
 */
-message PullDatabaseRequest {
+message PullDatabaseBackupRequest {
 
   /*
   `Required`
-  The name of the database to push to.
+  The name of the backup to pull.
   */
-  string name = 1;
+  string backup = 1;
 }
 
 /*
 */
-message PullDatabaseResponse {
+message PullDatabaseBackupResponse {
 
   /*
   `OutputOnly`
-  The raw bytes the the content with the first 512 bytes expressing the ContentType.
+  The backup object
   */
-  bytes content = 1;
+  DatabaseBackup backup = 1;
+}
+
+/*
+*/
+message ListDatabaseBackupsRequest {
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string site = 1;
+}
+
+/*
+*/
+message ListDatabaseBackupsResponse {
+  
+  /*
+  `OutputOnly`
+  The metadata for all backup objects.
+  */
+  repeated DatabaseBackupMetadata backup = 1;
 }
