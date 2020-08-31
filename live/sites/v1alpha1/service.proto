@@ -94,6 +94,26 @@ service Sites {
 
     }
 
+    // Site Clones
+
+    /*
+    CloneSite creates a clone of already existing site 
+    */
+    rpc CloneSite(CloneSiteRequest) returns (CloneSiteResponse) {
+    }
+    
+    /*
+    ListCloneSiteOperations lists all currently pending clone site operations
+    */
+    rpc ListCloneSiteOperations(ListCloneSiteOperationsRequest) returns (ListCloneSiteOperationsResponse) {
+    }
+    
+    /*
+    ListSiteClones lists all clones for a particular origin site
+    */
+    rpc ListSiteClones(ListSiteClonesRequest) returns (ListSiteClonesResponse) {
+    }
+
     // Databases
 
     /*

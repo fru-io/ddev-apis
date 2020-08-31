@@ -30,13 +30,11 @@ enum SiteType {
 
 message GitRepository {
   /*
-  `Required`
   The URL of the repository
   */
   string url = 1;
 
   /*
-  `Required`
   The branch, tag, or commit.  Default: `master`.
   */
   string ref = 2;
@@ -289,6 +287,102 @@ message Typo3SiteOptions {
   A list of ephemeral mount paths relative to docroot
   */
   repeated string ephemeralPaths = 24;
+}
+
+message CloneOperation {
+
+  /*
+  `OutputOnly`
+  Reference to the clone site operation 
+  */
+  string cloneOperationRef = 1;
+  
+  /*
+  `OutputOnly`
+  Name of the origin site
+  */
+  string originSiteName = 2;
+
+  /*
+  `OutputOnly`
+  Name of the new site
+  */
+  string newCloneSiteName = 3;
+
+  /*
+  `OutputOnly`
+  Status of the clone operation
+  */
+  string status = 4;
+}
+
+message CloneSiteRequest {
+
+  /*
+  `Required`
+  The name of the origin site
+  */
+  string originSiteName = 1;
+
+  /*
+  `Required`
+  The name of the new site
+  */
+  string newCloneSiteName = 2;
+  
+  /*
+  `Optional`
+  Arguments to override git repository or revision
+  */
+  oneof Repository {
+    GitRepository git = 3;
+  }
+
+  /*
+  `Optional`
+  Override to use a db backup instead of the origin's site database
+  */
+  string dbBackup = 17;
+
+  /*
+  `Optional`
+  Override to the a filestore backup instead of the origin's site filestore
+  */
+  string fsBackup = 18;
+}
+
+message CloneSiteResponse {
+  /*
+  `OutputOnly`
+  Reference to the clone site operation 
+  */
+  string cloneOperationRef = 1;
+}
+
+message ListCloneSiteOperationsRequest {}
+
+message ListCloneSiteOperationsResponse {
+  /*
+  `OutputOnly`
+  List of currently pending clone site operations
+  */
+  repeated CloneOperation cloneOperations = 1;
+}
+
+message ListSiteClonesRequest {
+  /*
+  `Required`
+  List all clones for a particular origin site
+  */
+  string originSiteName = 1;
+}
+
+message ListSiteClonesResponse {
+  /*
+  `OutputOnly`
+  List all clones for a particular origin site
+  */
+  repeated Site clones = 1;
 }
 
 message CreateSiteRequest {
