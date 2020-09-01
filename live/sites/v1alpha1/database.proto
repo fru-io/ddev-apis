@@ -157,6 +157,10 @@ message PushDatabaseBackupRequest {
 */
 message PushDatabaseBackupResponse {
 
+  /*
+  The name of the restorable backup resource
+  */
+  string backup = 1;
 }
 
 /*
