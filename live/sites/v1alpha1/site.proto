@@ -369,7 +369,7 @@ message ListCloneSiteOperationsResponse {
   repeated CloneOperation cloneOperations = 1;
 }
 
-message ListSiteClonesRequest {
+message ListClonesForSiteRequest {
   /*
   `Required`
   List all clones for a particular origin site
@@ -377,7 +377,7 @@ message ListSiteClonesRequest {
   string originSiteName = 1;
 }
 
-message ListSiteClonesResponse {
+message ListClonesForSiteResponse {
   /*
   `OutputOnly`
   List all clones for a particular origin site

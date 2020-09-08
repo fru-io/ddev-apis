@@ -103,15 +103,15 @@ service Sites {
     }
     
     /*
-    ListCloneSiteOperations lists all currently pending clone site operations
+    ListCloneSiteOperations lists all clone site operations
     */
     rpc ListCloneSiteOperations(ListCloneSiteOperationsRequest) returns (ListCloneSiteOperationsResponse) {
     }
     
     /*
-    ListSiteClones lists all clones for a particular origin site
+    ListClonesForSite lists all clones for a particular origin site
     */
-    rpc ListSiteClones(ListSiteClonesRequest) returns (ListSiteClonesResponse) {
+    rpc ListClonesForSite(ListClonesForSiteRequest) returns (ListClonesForSiteResponse) {
     }
 
     // Databases
