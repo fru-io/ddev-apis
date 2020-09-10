@@ -3,6 +3,9 @@
 
 ## Table of Contents
 
+- [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
+    - [Sites](#ddev.sites.v1alpha1.Sites)
+  
 - [live/sites/v1alpha1/file.proto](#live/sites/v1alpha1/file.proto)
     - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
     - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
@@ -19,9 +22,6 @@
     - [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse)
     - [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest)
     - [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse)
-  
-- [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
-    - [Sites](#ddev.sites.v1alpha1.Sites)
   
 - [live/sites/v1alpha1/database.proto](#live/sites/v1alpha1/database.proto)
     - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
@@ -42,6 +42,9 @@
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
     - [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest)
     - [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse)
+    - [CloneOperation](#ddev.sites.v1alpha1.CloneOperation)
+    - [CloneRequest](#ddev.sites.v1alpha1.CloneRequest)
+    - [CloneResponse](#ddev.sites.v1alpha1.CloneResponse)
     - [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest)
     - [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse)
     - [Cron](#ddev.sites.v1alpha1.Cron)
@@ -52,6 +55,10 @@
     - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
     - [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse)
     - [GitRepository](#ddev.sites.v1alpha1.GitRepository)
+    - [ListCloneSiteOperationsRequest](#ddev.sites.v1alpha1.ListCloneSiteOperationsRequest)
+    - [ListCloneSiteOperationsResponse](#ddev.sites.v1alpha1.ListCloneSiteOperationsResponse)
+    - [ListClonesForSiteRequest](#ddev.sites.v1alpha1.ListClonesForSiteRequest)
+    - [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse)
     - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
     - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
     - [LogOptions](#ddev.sites.v1alpha1.LogOptions)
@@ -69,9 +76,67 @@
     - [WordpressSite](#ddev.sites.v1alpha1.WordpressSite)
     - [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions)
   
+    - [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState)
     - [SiteType](#ddev.sites.v1alpha1.SiteType)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="live/sites/v1alpha1/service.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/service.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="ddev.sites.v1alpha1.Sites"></a>
+
+### Sites
+The Sites service provides site level functions inside a users ddev-live workspace.
+To access the sites service consumers will have to initialize an authenticated client.  This requires
+several metadata to be passed to the client.
+
+`x-auth-token` which is a authentication token for the call.  This will be required to be a temporary token issued by the BillingAPI.
+
+`x-ddev-workspace` which is the workspace for all procedures.  For example a client request `ListSites` will list all sites in the workspace whose value is derived from the key `x-ddev-workspace`.
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
+| GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
+| ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
+| UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
+| DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
+| SiteLogStream | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogStream returns a stream of logs for a site |
+| AccessLogStream | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogStream returns a stream of access logs for a site |
+| MysqlLogStream | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogStream returns a stream of access logs for a site |
+| SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
+| CloneSite | [CloneRequest](#ddev.sites.v1alpha1.CloneRequest) | [CloneResponse](#ddev.sites.v1alpha1.CloneResponse) | CloneSite creates a clone of already existing site |
+| ListCloneSiteOperations | [ListCloneSiteOperationsRequest](#ddev.sites.v1alpha1.ListCloneSiteOperationsRequest) | [ListCloneSiteOperationsResponse](#ddev.sites.v1alpha1.ListCloneSiteOperationsResponse) | ListCloneSiteOperations lists all clone site operations |
+| ListClonesForSite | [ListClonesForSiteRequest](#ddev.sites.v1alpha1.ListClonesForSiteRequest) | [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse) | ListClonesForSite lists all clones for a particular origin site |
+| BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
+| RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
+| PushDatabaseBackup | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackup creates a new backup for a site and attempts to restore the site to that backup |
+| PushDatabaseBackupStream | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) stream | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackupStream creates a new backup for a site and attempts to restore the site to that backup |
+| PullDatabaseBackup | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) | PullDatabase pulls down a database backup locally |
+| PullDatabaseBackupStream | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) stream | PullDatabaseBackupStream pulls down a database backup locally |
+| ListDatabaseBackups | [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest) | [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse) | Lists database backups known for a provided site |
+| BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backups up a currently running site environment to the staging area |
+| RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores the current staging area to a sites environment |
+| PushFileBackup | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFile upload file assets to a sites backup staging area |
+| PushFileBackupStream | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) stream | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFileStream allows client side streaming of large files to a staged backup area |
+| PullFileBackupStream | [PullFileBackupRequest](#ddev.sites.v1alpha1.PullFileBackupRequest) | [PullFileBackupResponse](#ddev.sites.v1alpha1.PullFileBackupResponse) stream | PullFileStream streams currently staged file[s] from the server and pulls them down to a local source |
+| DescribeFileBackup | [DescribeFileBackupRequest](#ddev.sites.v1alpha1.DescribeFileBackupRequest) | [DescribeFileBackupResponse](#ddev.sites.v1alpha1.DescribeFileBackupResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
+| ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
+
+ 
 
 
 
@@ -321,60 +386,6 @@ TODO
  
 
  
-
- 
-
-
-
-<a name="live/sites/v1alpha1/service.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/sites/v1alpha1/service.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="ddev.sites.v1alpha1.Sites"></a>
-
-### Sites
-The Sites service provides site level functions inside a users ddev-live workspace.
-To access the sites service consumers will have to initialize an authenticated client.  This requires
-several metadata to be passed to the client.
-
-`x-auth-token` which is a authentication token for the call.  This will be required to be a temporary token issued by the BillingAPI.
-
-`x-ddev-workspace` which is the workspace for all procedures.  For example a client request `ListSites` will list all sites in the workspace whose value is derived from the key `x-ddev-workspace`.
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
-| GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
-| ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
-| UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
-| DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
-| SiteLogStream | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogStream returns a stream of logs for a site |
-| AccessLogStream | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogStream returns a stream of access logs for a site |
-| MysqlLogStream | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogStream returns a stream of access logs for a site |
-| SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
-| BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
-| RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
-| PushDatabaseBackup | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackup creates a new backup for a site and attempts to restore the site to that backup |
-| PushDatabaseBackupStream | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) stream | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackupStream creates a new backup for a site and attempts to restore the site to that backup |
-| PullDatabaseBackup | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) | PullDatabase pulls down a database backup locally |
-| PullDatabaseBackupStream | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) stream | PullDatabaseBackupStream pulls down a database backup locally |
-| ListDatabaseBackups | [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest) | [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse) | Lists database backups known for a provided site |
-| BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backups up a currently running site environment to the staging area |
-| RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores the current staging area to a sites environment |
-| PushFileBackup | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFile upload file assets to a sites backup staging area |
-| PushFileBackupStream | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) stream | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFileStream allows client side streaming of large files to a staged backup area |
-| PullFileBackupStream | [PullFileBackupRequest](#ddev.sites.v1alpha1.PullFileBackupRequest) | [PullFileBackupResponse](#ddev.sites.v1alpha1.PullFileBackupResponse) stream | PullFileStream streams currently staged file[s] from the server and pulls them down to a local source |
-| DescribeFileBackup | [DescribeFileBackupRequest](#ddev.sites.v1alpha1.DescribeFileBackupRequest) | [DescribeFileBackupResponse](#ddev.sites.v1alpha1.DescribeFileBackupResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
-| ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
 
  
 
@@ -631,6 +642,59 @@ Push a single database to a site
 
 
 
+<a name="ddev.sites.v1alpha1.CloneOperation"></a>
+
+### CloneOperation
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ref | [string](#string) |  | `OutputOnly` Reference to the clone site operation |
+| originSite | [string](#string) |  | `OutputOnly` Name of the origin site |
+| newSite | [string](#string) |  | `OutputOnly` Name of the new site |
+| state | [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState) |  | `OutputOnly` State of the clone operation |
+| info | [string](#string) |  | `OutputOnly` Optionally contains additional human readable information describing the state of the operation |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CloneRequest"></a>
+
+### CloneRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| originSite | [string](#string) |  | `Required` The name of the origin site |
+| newSite | [string](#string) |  | `Required` The name of the new site |
+| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
+| dbBackup | [string](#string) |  | `Optional` Override to use a db backup instead of the origin&#39;s site database |
+| fsBackup | [string](#string) |  | `Optional` Override to the a filestore backup instead of the origin&#39;s site filestore |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CloneResponse"></a>
+
+### CloneResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| operationRef | [string](#string) |  | `OutputOnly` Reference to the clone site operation |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.CreateSiteRequest"></a>
 
 ### CreateSiteRequest
@@ -790,8 +854,63 @@ A site of SiteType.DRUPAL
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| url | [string](#string) |  | `Required` The URL of the repository |
-| ref | [string](#string) |  | `Required` The branch, tag, or commit. Default: `master`. |
+| url | [string](#string) |  | The URL of the repository |
+| ref | [string](#string) |  | The branch, tag, or commit. Default: `master`. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListCloneSiteOperationsRequest"></a>
+
+### ListCloneSiteOperationsRequest
+
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListCloneSiteOperationsResponse"></a>
+
+### ListCloneSiteOperationsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [CloneOperation](#ddev.sites.v1alpha1.CloneOperation) | repeated | `OutputOnly` List of clone site operations |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListClonesForSiteRequest"></a>
+
+### ListClonesForSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| originSite | [string](#string) |  | `Required` List all clones for a particular origin site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListClonesForSiteResponse"></a>
+
+### ListClonesForSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| clones | [Site](#ddev.sites.v1alpha1.Site) | repeated | `OutputOnly` List all clones for a particular origin site |
 
 
 
@@ -1056,6 +1175,19 @@ A site of SiteType.WORDPRESS
 
 
  
+
+
+<a name="ddev.sites.v1alpha1.CloneOperationState"></a>
+
+### CloneOperationState
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CLONE_CREATED | 0 |  |
+| CLONE_SUCCEEDED | 1 |  |
+| CLONE_FAILED | 2 |  |
+
 
 
 <a name="ddev.sites.v1alpha1.SiteType"></a>
