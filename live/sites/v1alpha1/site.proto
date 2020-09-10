@@ -295,19 +295,19 @@ message CloneOperation {
   `OutputOnly`
   Reference to the clone site operation 
   */
-  string cloneOperationRef = 1;
+  string ref = 1;
   
   /*
   `OutputOnly`
   Name of the origin site
   */
-  string originSiteName = 2;
+  string originSite = 2;
 
   /*
   `OutputOnly`
   Name of the new site
   */
-  string newCloneSiteName = 3;
+  string newSite = 3;
 
   /*
   `OutputOnly`
@@ -316,26 +316,26 @@ message CloneOperation {
   string status = 4;
 }
 
-message CloneSiteRequest {
+message CloneRequest {
 
   /*
   `Required`
   The name of the origin site
   */
-  string originSiteName = 1;
+  string originSite = 1;
 
   /*
   `Required`
   The name of the new site
   */
-  string newCloneSiteName = 2;
+  string newSite = 2;
   
   /*
   `Optional`
   Arguments to override git repository or revision
   */
   oneof Repository {
-    GitRepository git = 3;
+    GitRepository git = 16;
   }
 
   /*
@@ -351,12 +351,12 @@ message CloneSiteRequest {
   string fsBackup = 18;
 }
 
-message CloneSiteResponse {
+message CloneResponse {
   /*
   `OutputOnly`
   Reference to the clone site operation 
   */
-  string cloneOperationRef = 1;
+  string operationRef = 1;
 }
 
 message ListCloneSiteOperationsRequest {}
@@ -364,9 +364,9 @@ message ListCloneSiteOperationsRequest {}
 message ListCloneSiteOperationsResponse {
   /*
   `OutputOnly`
-  List of currently pending clone site operations
+  List of clone site operations
   */
-  repeated CloneOperation cloneOperations = 1;
+  repeated CloneOperation items = 1;
 }
 
 message ListClonesForSiteRequest {
@@ -374,7 +374,7 @@ message ListClonesForSiteRequest {
   `Required`
   List all clones for a particular origin site
   */
-  string originSiteName = 1;
+  string originSite = 1;
 }
 
 message ListClonesForSiteResponse {

@@ -99,7 +99,7 @@ service Sites {
     /*
     CloneSite creates a clone of already existing site 
     */
-    rpc CloneSite(CloneSiteRequest) returns (CloneSiteResponse) {
+    rpc CloneSite(CloneRequest) returns (CloneResponse) {
     }
     
     /*
