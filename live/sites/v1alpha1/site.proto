@@ -28,6 +28,12 @@ enum SiteType {
     WORDPRESS = 2;
 }
 
+enum CloneOperationState {
+    CLONE_CREATED = 0;
+    CLONE_SUCCEEDED = 1;
+    CLONE_FAILED = 2;
+}
+
 message GitRepository {
   /*
   The URL of the repository
@@ -311,9 +317,15 @@ message CloneOperation {
 
   /*
   `OutputOnly`
-  Status of the clone operation
+  State of the clone operation
   */
-  string status = 4;
+  CloneOperationState state = 4;
+  
+  /*
+  `OutputOnly`
+  Optionally contains additional human readable information describing the state of the operation
+  */
+  string info = 5;
 }
 
 message CloneRequest {
