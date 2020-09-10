@@ -28,15 +28,19 @@ enum SiteType {
     WORDPRESS = 2;
 }
 
+enum CloneOperationState {
+    CLONE_CREATED = 0;
+    CLONE_SUCCEEDED = 1;
+    CLONE_FAILED = 2;
+}
+
 message GitRepository {
   /*
-  `Required`
   The URL of the repository
   */
   string url = 1;
 
   /*
-  `Required`
   The branch, tag, or commit.  Default: `master`.
   */
   string ref = 2;
@@ -289,6 +293,108 @@ message Typo3SiteOptions {
   A list of ephemeral mount paths relative to docroot
   */
   repeated string ephemeralPaths = 24;
+}
+
+message CloneOperation {
+
+  /*
+  `OutputOnly`
+  Reference to the clone site operation 
+  */
+  string ref = 1;
+  
+  /*
+  `OutputOnly`
+  Name of the origin site
+  */
+  string originSite = 2;
+
+  /*
+  `OutputOnly`
+  Name of the new site
+  */
+  string newSite = 3;
+
+  /*
+  `OutputOnly`
+  State of the clone operation
+  */
+  CloneOperationState state = 4;
+  
+  /*
+  `OutputOnly`
+  Optionally contains additional human readable information describing the state of the operation
+  */
+  string info = 5;
+}
+
+message CloneRequest {
+
+  /*
+  `Required`
+  The name of the origin site
+  */
+  string originSite = 1;
+
+  /*
+  `Required`
+  The name of the new site
+  */
+  string newSite = 2;
+  
+  /*
+  `Optional`
+  Arguments to override git repository or revision
+  */
+  oneof Repository {
+    GitRepository git = 16;
+  }
+
+  /*
+  `Optional`
+  Override to use a db backup instead of the origin's site database
+  */
+  string dbBackup = 17;
+
+  /*
+  `Optional`
+  Override to the a filestore backup instead of the origin's site filestore
+  */
+  string fsBackup = 18;
+}
+
+message CloneResponse {
+  /*
+  `OutputOnly`
+  Reference to the clone site operation 
+  */
+  string operationRef = 1;
+}
+
+message ListCloneSiteOperationsRequest {}
+
+message ListCloneSiteOperationsResponse {
+  /*
+  `OutputOnly`
+  List of clone site operations
+  */
+  repeated CloneOperation items = 1;
+}
+
+message ListClonesForSiteRequest {
+  /*
+  `Required`
+  List all clones for a particular origin site
+  */
+  string originSite = 1;
+}
+
+message ListClonesForSiteResponse {
+  /*
+  `OutputOnly`
+  List all clones for a particular origin site
+  */
+  repeated Site clones = 1;
 }
 
 message CreateSiteRequest {
