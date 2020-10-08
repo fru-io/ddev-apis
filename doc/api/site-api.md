@@ -50,6 +50,8 @@
     - [Cron](#ddev.sites.v1alpha1.Cron)
     - [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest)
     - [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse)
+    - [DescribeCloneRequest](#ddev.sites.v1alpha1.DescribeCloneRequest)
+    - [DescribeCloneResponse](#ddev.sites.v1alpha1.DescribeCloneResponse)
     - [DrupalSite](#ddev.sites.v1alpha1.DrupalSite)
     - [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions)
     - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
@@ -370,6 +372,7 @@ several metadata to be passed to the client.
 | MysqlLogStream | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogStream returns a stream of access logs for a site |
 | SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
 | CloneSite | [CloneRequest](#ddev.sites.v1alpha1.CloneRequest) | [CloneResponse](#ddev.sites.v1alpha1.CloneResponse) | CloneSite creates a clone of already existing site |
+| DescribeClone | [DescribeCloneRequest](#ddev.sites.v1alpha1.DescribeCloneRequest) | [DescribeCloneResponse](#ddev.sites.v1alpha1.DescribeCloneResponse) | DescribeClone describes the status of an in progress clone operation |
 | ListCloneSiteOperations | [ListCloneSiteOperationsRequest](#ddev.sites.v1alpha1.ListCloneSiteOperationsRequest) | [ListCloneSiteOperationsResponse](#ddev.sites.v1alpha1.ListCloneSiteOperationsResponse) | ListCloneSiteOperations lists all clone site operations |
 | ListClonesForSite | [ListClonesForSiteRequest](#ddev.sites.v1alpha1.ListClonesForSiteRequest) | [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse) | ListClonesForSite lists all clones for a particular origin site |
 | BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
@@ -773,6 +776,38 @@ Cron manages if and when the CMS cron executes
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The name of the site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DescribeCloneRequest"></a>
+
+### DescribeCloneRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| operationRef | [string](#string) |  | `Required` Reference to the clone site operation |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DescribeCloneResponse"></a>
+
+### DescribeCloneResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| state | [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState) |  | `OutputOnly` Reference to the clone site operation |
+| cloneRef | [string](#string) |  | `OutputOnly` Reference to the created site resource as a result of the clone operation. This field will be an empty string if the clone operation was not successful |
+| stateDetail | [string](#string) |  | `OutputOnly` Detailed description of the state |
 
 
 
