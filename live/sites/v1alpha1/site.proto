@@ -350,17 +350,18 @@ message CloneRequest {
     GitRepository git = 16;
   }
 
+  // TODO: Future
   /*
   `Optional`
   Override to use a db backup instead of the origin's site database
   */
-  string dbBackup = 17;
+  // string dbBackup = 17;
 
   /*
   `Optional`
   Override to the a filestore backup instead of the origin's site filestore
   */
-  string fsBackup = 18;
+  // string fsBackup = 18;
 }
 
 message CloneResponse {
