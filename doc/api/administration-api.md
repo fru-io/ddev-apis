@@ -3,9 +3,6 @@
 
 ## Table of Contents
 
-- [live/administration/v1alpha1/service.proto](#live/administration/v1alpha1/service.proto)
-    - [Administration](#ddev.administration.v1alpha1.Administration)
-  
 - [live/administration/v1alpha1/auth.proto](#live/administration/v1alpha1/auth.proto)
     - [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest)
     - [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse)
@@ -28,6 +25,9 @@
   
     - [Capability](#ddev.administration.v1alpha1.Capability)
   
+- [live/administration/v1alpha1/service.proto](#live/administration/v1alpha1/service.proto)
+    - [Administration](#ddev.administration.v1alpha1.Administration)
+  
 - [live/administration/v1alpha1/workspace.proto](#live/administration/v1alpha1/workspace.proto)
     - [AddWorkspaceAdminRequest](#ddev.administration.v1alpha1.AddWorkspaceAdminRequest)
     - [AddWorkspaceAdminResponse](#ddev.administration.v1alpha1.AddWorkspaceAdminResponse)
@@ -44,63 +44,6 @@
     - [ListWorkspaceRequest.ListWorkspaceScope](#ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope)
   
 - [Scalar Value Types](#scalar-value-types)
-
-
-
-<a name="live/administration/v1alpha1/service.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/administration/v1alpha1/service.proto
-
-
- 
-
- 
-
- 
-
-
-<a name="ddev.administration.v1alpha1.Administration"></a>
-
-### Administration
-The Billing service provides administrative functions over a users ddev-live account.
-To access the billing service consumers will have to initialize an authenticated client.  This requires
-several metadata to be passed to the client.
-
-`x-auth-token` which is a authentication token for the call.  In most cases this will be a temporary token 
-issued by the API.  This can be the integration token provided on the dashboard when retrieving temporary tokens.
-
-`x-ddev-workspace` which is the workspace for all workspace scoped procedures.  For example a client request `ListSubscriptions` will list all subscriptions in the workspace whose value is derived from the key `x-ddev-workspace`.
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateToken | [CreateTokenRequest](#ddev.administration.v1alpha1.CreateTokenRequest) | [CreateTokenResponse](#ddev.administration.v1alpha1.CreateTokenResponse) | Creates an ID token from a refresh token |
-| CreateRoles | [CreateRoleRequest](#ddev.administration.v1alpha1.CreateRoleRequest) | [CreateRoleResponse](#ddev.administration.v1alpha1.CreateRoleResponse) | Creates a Role |
-| DescribeRole | [DescribeRoleRequest](#ddev.administration.v1alpha1.DescribeRoleRequest) | [DescribeRoleResponse](#ddev.administration.v1alpha1.DescribeRoleResponse) | Describes a named role |
-| ListRoles | [ListRolesRequest](#ddev.administration.v1alpha1.ListRolesRequest) | [ListRolesResponse](#ddev.administration.v1alpha1.ListRolesResponse) | Lists all known roles |
-| SetCapabilities | [SetCapabilitiesRequest](#ddev.administration.v1alpha1.SetCapabilitiesRequest) | [SetCapabilitiesResponse](#ddev.administration.v1alpha1.SetCapabilitiesResponse) | Updates a users API capabilities. Will requre a refresh of their token through CreateToken. |
-| ListCapabilities | [ListCapabilitiesRequest](#ddev.administration.v1alpha1.ListCapabilitiesRequest) | [ListCapabilitiesResponse](#ddev.administration.v1alpha1.ListCapabilitiesResponse) | Lists a users API capabilities. |
-| ListWorkspaces | [ListWorkspaceRequest](#ddev.administration.v1alpha1.ListWorkspaceRequest) | [ListWorkspaceResponse](#ddev.administration.v1alpha1.ListWorkspaceResponse) | ListWorkspaces will return a list of workspaces the user has authorization for |
-| AddWorkspaceAdmin | [AddWorkspaceAdminRequest](#ddev.administration.v1alpha1.AddWorkspaceAdminRequest) | [AddWorkspaceAdminResponse](#ddev.administration.v1alpha1.AddWorkspaceAdminResponse) | Add an administrator to a workspace. Requires a workspace administrator token. |
-| AddWorkspaceDeveloper | [AddWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest) | [AddWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse) | Add a developer to a workspace. Requires a workspace administrator token. |
-| DeleteWorkspaceAdmin | [DeleteWorkspaceAdminRequest](#ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest) | [DeleteWorkspaceAdminResponse](#ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse) | Remove an administrator from a workspace. Requires a workspace administrator token. An administrator cannot remove themselves. |
-| DeleteWorkspaceDeveloper | [DeleteWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest) | [DeleteWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse) | Remove a developer from a workspace. Requires a workspace administrator token. |
-| IsAuthTokenViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can read the API scopes a user has. |
-| IsAuthTokenEditor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can issue different API access scopes within an organization |
-| IsBillingViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can access billing artifacts such as invoices |
-| IsBillingEditor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can modify elements such as their subscription |
-| IsWorkspaceAdmin | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which is an admin of a workspace |
-| IsWorkspaceViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which has read capability for workspace objects |
-| IsSiteEditor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which is capable of creating or modifying a site |
-| IsSiteViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which is capable of viewing site specifications created in a workspace |
-| IsLogsViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows for the viewing of site logs |
-| IsSiteExecutor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows for the execution of commands inside a running site container |
-| IsDatabaseAdmin | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows full control over site databases, which includes restore and push operations |
-| IsDatabaseViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows pull access for a sites database |
-| IsFileAdmin | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows full control over site files, which includes restore and push operations |
-| IsFileViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows pull access for a sites files |
-
- 
 
 
 
@@ -411,6 +354,63 @@ Describes a set of access policies for a user
  
 
  
+
+ 
+
+
+
+<a name="live/administration/v1alpha1/service.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/administration/v1alpha1/service.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="ddev.administration.v1alpha1.Administration"></a>
+
+### Administration
+The Billing service provides administrative functions over a users ddev-live account.
+To access the billing service consumers will have to initialize an authenticated client.  This requires
+several metadata to be passed to the client.
+
+`x-auth-token` which is a authentication token for the call.  In most cases this will be a temporary token 
+issued by the API.  This can be the integration token provided on the dashboard when retrieving temporary tokens.
+
+`x-ddev-workspace` which is the workspace for all workspace scoped procedures.  For example a client request `ListSubscriptions` will list all subscriptions in the workspace whose value is derived from the key `x-ddev-workspace`.
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateToken | [CreateTokenRequest](#ddev.administration.v1alpha1.CreateTokenRequest) | [CreateTokenResponse](#ddev.administration.v1alpha1.CreateTokenResponse) | Creates an ID token from a refresh token |
+| CreateRoles | [CreateRoleRequest](#ddev.administration.v1alpha1.CreateRoleRequest) | [CreateRoleResponse](#ddev.administration.v1alpha1.CreateRoleResponse) | Creates a Role |
+| DescribeRole | [DescribeRoleRequest](#ddev.administration.v1alpha1.DescribeRoleRequest) | [DescribeRoleResponse](#ddev.administration.v1alpha1.DescribeRoleResponse) | Describes a named role |
+| ListRoles | [ListRolesRequest](#ddev.administration.v1alpha1.ListRolesRequest) | [ListRolesResponse](#ddev.administration.v1alpha1.ListRolesResponse) | Lists all known roles |
+| SetCapabilities | [SetCapabilitiesRequest](#ddev.administration.v1alpha1.SetCapabilitiesRequest) | [SetCapabilitiesResponse](#ddev.administration.v1alpha1.SetCapabilitiesResponse) | Updates a users API capabilities. Will requre a refresh of their token through CreateToken. |
+| ListCapabilities | [ListCapabilitiesRequest](#ddev.administration.v1alpha1.ListCapabilitiesRequest) | [ListCapabilitiesResponse](#ddev.administration.v1alpha1.ListCapabilitiesResponse) | Lists a users API capabilities. |
+| ListWorkspaces | [ListWorkspaceRequest](#ddev.administration.v1alpha1.ListWorkspaceRequest) | [ListWorkspaceResponse](#ddev.administration.v1alpha1.ListWorkspaceResponse) | ListWorkspaces will return a list of workspaces the user has authorization for |
+| AddWorkspaceAdmin | [AddWorkspaceAdminRequest](#ddev.administration.v1alpha1.AddWorkspaceAdminRequest) | [AddWorkspaceAdminResponse](#ddev.administration.v1alpha1.AddWorkspaceAdminResponse) | Add an administrator to a workspace. Requires a workspace administrator token. |
+| AddWorkspaceDeveloper | [AddWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest) | [AddWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse) | Add a developer to a workspace. Requires a workspace administrator token. |
+| DeleteWorkspaceAdmin | [DeleteWorkspaceAdminRequest](#ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest) | [DeleteWorkspaceAdminResponse](#ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse) | Remove an administrator from a workspace. Requires a workspace administrator token. An administrator cannot remove themselves. |
+| DeleteWorkspaceDeveloper | [DeleteWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest) | [DeleteWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse) | Remove a developer from a workspace. Requires a workspace administrator token. |
+| IsAuthTokenViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can read the API scopes a user has. |
+| IsAuthTokenEditor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can issue different API access scopes within an organization |
+| IsBillingViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can access billing artifacts such as invoices |
+| IsBillingEditor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can modify elements such as their subscription |
+| IsWorkspaceAdmin | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which is an admin of a workspace |
+| IsWorkspaceViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which has read capability for workspace objects |
+| IsSiteEditor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which is capable of creating or modifying a site |
+| IsSiteViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which is capable of viewing site specifications created in a workspace |
+| IsLogsViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows for the viewing of site logs |
+| IsSiteExecutor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows for the execution of commands inside a running site container |
+| IsDatabaseAdmin | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows full control over site databases, which includes restore and push operations |
+| IsDatabaseViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows pull access for a sites database |
+| IsFileAdmin | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows full control over site files, which includes restore and push operations |
+| IsFileViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which allows pull access for a sites files |
 
  
 
