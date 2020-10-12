@@ -36,6 +36,9 @@ several metadata to be passed to the client.
 */
 service Sites {
 
+    rpc CreatePoodle(CreateSiteRequest) returns (CreateSiteResponse) {
+    }
+
     // Sites
 
     /*
