@@ -16,9 +16,11 @@ syntax = "proto3";
 
 package ddev.sites.v1alpha1;
 
+import "live/sites/v1alpha1/metadata.proto";
+
 option go_package = "github.com/drud/site-api/gen/live/sites/v1alpha1";
 option java_multiple_files = true;
-option java_outer_classname = "ServiceProto";
+option java_outer_classname = "SiteProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
 
@@ -395,15 +397,9 @@ message DescribeCloneResponse {
 
   /*
   `OutputOnly`
-  A unix timestamp which expresses the time in which this clone was initially created
+  Object metadata for the clone resource.
   */
-  int64 created = 3;
-
-  /*
-  `OutputOnly`
-  A unix timestamp which expresses the time in which this clone was last updated
-  */
-  int64 updated = 4;
+  Metadata meta = 3;
 
   /*
   `OutputOnly`
