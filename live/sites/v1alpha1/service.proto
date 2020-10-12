@@ -101,6 +101,12 @@ service Sites {
     */
     rpc CloneSite(CloneRequest) returns (CloneResponse) {
     }
+
+    /*
+    DescribeClone describes the status of an in progress clone operation
+    */
+    rpc DescribeClone(DescribeCloneRequest) returns (DescribeCloneResponse) {
+    }
     
     /*
     ListCloneSiteOperations lists all clone site operations

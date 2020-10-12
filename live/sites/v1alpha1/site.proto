@@ -16,9 +16,11 @@ syntax = "proto3";
 
 package ddev.sites.v1alpha1;
 
+import "live/sites/v1alpha1/metadata.proto";
+
 option go_package = "github.com/drud/site-api/gen/live/sites/v1alpha1";
 option java_multiple_files = true;
-option java_outer_classname = "ServiceProto";
+option java_outer_classname = "SiteProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
 
@@ -370,6 +372,41 @@ message CloneResponse {
   Reference to the clone site operation 
   */
   string operationRef = 1;
+}
+
+message DescribeCloneRequest {
+  /*
+  `Required`
+  Reference to the clone site operation 
+  */
+  string operationRef = 1;
+}
+
+message DescribeCloneResponse {
+  /*
+  `OutputOnly`
+  Reference to the clone site operation 
+  */
+  CloneOperationState state = 1;
+
+  /*
+  `OutputOnly`
+  Reference to the created site resource as a result of the clone operation.  This field will be an empty string if the clone operation was not successful
+  */
+  string cloneRef = 2;
+
+  /*
+  `OutputOnly`
+  Object metadata for the clone resource.
+  */
+  Metadata meta = 3;
+
+  /*
+  `OutputOnly`
+  Detailed description of the state
+  */
+  string stateDetail = 17;
+
 }
 
 message ListCloneSiteOperationsRequest {}
