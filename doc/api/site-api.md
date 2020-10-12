@@ -39,6 +39,10 @@
   
     - [BackupState](#ddev.sites.v1alpha1.BackupState)
   
+- [live/sites/v1alpha1/metadata.proto](#live/sites/v1alpha1/metadata.proto)
+    - [Metadata](#ddev.sites.v1alpha1.Metadata)
+    - [Metadata.LabelsEntry](#ddev.sites.v1alpha1.Metadata.LabelsEntry)
+  
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
     - [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest)
     - [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse)
@@ -611,6 +615,55 @@ Push a single database to a site
 
 
 
+<a name="live/sites/v1alpha1/metadata.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/metadata.proto
+
+
+
+<a name="ddev.sites.v1alpha1.Metadata"></a>
+
+### Metadata
+Generic metadata about the object.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| labels | [Metadata.LabelsEntry](#ddev.sites.v1alpha1.Metadata.LabelsEntry) | repeated | A map of labels set on the object |
+| created | [int64](#int64) |  | `OutputOnly` A unix timestamp which expresses the time in which this object was initially created. A zero value indicates that the timestamp has not been set. |
+| updated | [int64](#int64) |  | `OutputOnly` A unix timestamp which expresses the time in which this object was last updated. A zero value indicates that the timestamp has not been set. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.Metadata.LabelsEntry"></a>
+
+### Metadata.LabelsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
 <a name="live/sites/v1alpha1/site.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -807,6 +860,7 @@ Cron manages if and when the CMS cron executes
 | ----- | ---- | ----- | ----------- |
 | state | [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState) |  | `OutputOnly` Reference to the clone site operation |
 | cloneRef | [string](#string) |  | `OutputOnly` Reference to the created site resource as a result of the clone operation. This field will be an empty string if the clone operation was not successful |
+| meta | [Metadata](#ddev.sites.v1alpha1.Metadata) |  | `OutputOnly` Object metadata for the clone resource. |
 | stateDetail | [string](#string) |  | `OutputOnly` Detailed description of the state |
 
 
