@@ -25,6 +25,16 @@ proto_library(
 )
 
 proto_library(
+    name = "metadata_proto",
+    srcs = [
+        "metadata.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
+
+proto_library(
     name = "service_proto",
     srcs = [
         "service.proto",
