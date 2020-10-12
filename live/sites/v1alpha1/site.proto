@@ -395,6 +395,18 @@ message DescribeCloneResponse {
 
   /*
   `OutputOnly`
+  A unix timestamp which expresses the time in which this clone was initially created
+  */
+  int64 created = 3;
+
+  /*
+  `OutputOnly`
+  A unix timestamp which expresses the time in which this clone was last updated
+  */
+  int64 updated = 4;
+
+  /*
+  `OutputOnly`
   Detailed description of the state
   */
   string stateDetail = 17;
