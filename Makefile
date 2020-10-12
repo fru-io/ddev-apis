@@ -13,6 +13,10 @@ endif
 
 all: build
 
+update:
+	bazel run //:gazelle
+
+
 prepare-release:
 	mkdir -p build/release/go
 	mkdir -p build/release/js
