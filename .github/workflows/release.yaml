@@ -33,12 +33,10 @@ jobs:
 
           # Fetch necessary protoc modules
           go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
-          go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
           go get github.com/golang/protobuf/protoc-gen-go
 
           # ensure these binaries are on the path
           sudo cp $GOPATH/bin/protoc-gen-grpc-gateway /usr/local/bin
-          sudo cp $GOPATH/bin/protoc-gen-swagger /usr/local/bin
           sudo cp $GOPATH/bin/protoc-gen-go /usr/local/bin
 
           # manually retrieve the grpc-web binary
