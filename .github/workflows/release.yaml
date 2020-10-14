@@ -72,5 +72,5 @@ jobs:
           # Set the version for this release
           npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
           npm version $npmVersion
-          npm publish
+          npm publish --access public
 
