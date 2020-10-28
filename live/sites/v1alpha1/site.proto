@@ -574,6 +574,45 @@ message MysqlLogsResponse {
 
 /*
 */
+message BuildLogsRequest {
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string name = 1;
+
+  /*
+  `Optional`
+  Additional options for logging
+  */
+  LogOptions options = 17;
+}
+
+/*
+*/
+message BuildLogsResponse {
+
+  /*
+  `OutputOnly` An array of scoped logs
+  */
+  repeated ScopedLogs logs = 1;
+}
+
+message ScopedLogs {
+  /*
+  `OutputOnly` A named scope to which these log messages apply
+  */
+  string scope = 1;
+
+  /*
+  `OutputOnly` The log data for this scope of logs
+  */
+  bytes content = 2;
+}
+
+/*
+*/
 message SiteExecRequest {
 
   /*
