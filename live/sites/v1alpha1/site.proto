@@ -25,9 +25,9 @@ option java_package = "com.ddev.live.sites.v1alpha1";
 
 
 enum SiteType {
-    DRUPAL = 0;
-    TYPO3 = 1;
-    WORDPRESS = 2;
+  DRUPAL = 0;
+  TYPO3 = 1;
+  WORDPRESS = 2;
 }
 
 enum CloneOperationState {
@@ -63,123 +63,36 @@ message Cron {
   string schedule = 2;
 }
 
-/*
-A site of SiteType.DRUPAL
-*/
-message DrupalSite {
-
-  /*
-  `OutputOnly`
-  The workspace of the site
-  */
-  string workspace = 1;
-
-  /*
-  `OutputOnly`
-  The name of the site
-  */
-  string name = 2;
-
-  /*
-  `OutputOnly`
-  */
-  oneof Repository {
-    GitRepository git = 3;
-  }
-
-  /*
-  `OutputOnly`
-  */
-  DrupalSiteOptions options = 17;
-}
-
-/*
-A site of SiteType.WORDPRESS
-*/
-message WordpressSite {
-
-  /*
-  `OutputOnly`
-  The workspace of the site
-  */
-  string workspace = 1;
-
-  /*
-  `OutputOnly`
-  The name of the site
-  */
-  string name = 2;
-
-  /*
-  `OutputOnly`
-  */
-  oneof Repository {
-    GitRepository git = 3;
-  }
-
-  /*
-  `OutputOnly`
-  */
-  WordpressSiteOptions options = 17;
-}
-
-/*
-A site of SiteType.TYPO3
-*/
-message Typo3Site {
-
-  /*
-  `OutputOnly`
-  The workspace of the site
-  */
-  string workspace = 1;
-
-  /*
-  `OutputOnly`
-  The name of the site
-  */
-  string name = 2;
-
-  /*
-  `OutputOnly`
-  */
-  oneof Repository {
-    GitRepository git = 3;
-  }
-
-  /*
-  `OutputOnly`
-  */
-  Typo3SiteOptions options = 17;
-}
-
 message Site {
 
   // because you cannot use repeated oneof we must wrap oneof in a repeatable message
 
-  oneof properties {
-    DrupalSite drupal = 1;
-    Typo3Site typo3 = 2;
-    WordpressSite wordpress = 3;
+  string name = 1;
+
+  string workspace = 2;
+  
+  /*
+  */
+  oneof Repository {
+    GitRepository git = 3;
   }
-}
 
-message DrupalSiteOptions {
-  
   /*
-  `Optional`
-  Specify the version of TYPO3 used for the site (default "9")
+  The type of the CMS used for the site
+  */
+  SiteType type = 4;
+
+  /*
+  The version of the CMS used for the site
   */
   string version = 18;
 
   /*
-  `Optional`
   Whether to run composer install when creating the site image
   */
   bool composerInstall = 19;
 
   /*
-  `Optional`
   If `composerInstall` is set, use this flags to specify which args are passed to composer install
   */
   repeated string composerArgs = 20;
@@ -190,108 +103,16 @@ message DrupalSiteOptions {
   Cron cron = 21;
 
   /*
-  `Optional`
   The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
   */
   string DocRoot = 22;
   
   /*
-  `Optional`
-  A list of persistent mount paths relative to docroot (ex. content/uploads). 
-  Defaults to "sites/default/files","/var/www/drupal-private/","sites/default/files/config/sync"
-  */
-  repeated string persistentPaths = 23;
-
-  /*
-  `Optional`
-  A list of ephemeral mount paths relative to docroot
-  */
-  repeated string ephemeralPaths = 24;
-}
-
-message WordpressSiteOptions {
-  
-  /*
-  `Optional`
-  Specify the version of TYPO3 used for the site (default "9")
-  */
-  string version = 18;
-
-  /*
-  `Optional`
-  Whether to run composer install when creating the site image
-  */
-  bool composerInstall = 19;
-
-  /*
-  `Optional`
-  If `composerInstall` is set, use this flags to specify which args are passed to composer install
-  */
-  repeated string composerArgs = 20;
-
-  /*
-  `Optional`
-  */
-  Cron cron = 21;
-
-  /*
-  `Optional`
-  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
-  */
-  string DocRoot = 22;
-  
-  /*
-  `Optional`
-  A list of persistent mount paths relative to docroot (ex. content/uploads)
-  */
-  repeated string persistentPaths = 23;
-
-  /*
-  `Optional`
-  A list of ephemeral mount paths relative to docroot
-  */
-  repeated string ephemeralPaths = 24;
-}
-
-message Typo3SiteOptions {
-  
-  /*
-  `Optional`
-  Specify the version of TYPO3 used for the site (default "9")
-  */
-  string version = 18;
-
-  /*
-  `Optional`
-  Whether to run composer install when creating the site image
-  */
-  bool composerInstall = 19;
-
-  /*
-  `Optional`
-  If `composerInstall` is set, use this flags to specify which args are passed to composer install
-  */
-  repeated string composerArgs = 20;
-
-  /*
-  `Optional`
-  */
-  Cron cron = 21;
-
-  /*
-  `Optional`
-  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
-  */
-  string DocRoot = 22;
-  
-  /*
-  `Optional`
   A list of persistent mount paths relative to docroot (ex. content/uploads). 
   */
   repeated string persistentPaths = 23;
 
   /*
-  `Optional`
   A list of ephemeral mount paths relative to docroot
   */
   repeated string ephemeralPaths = 24;
@@ -447,14 +268,55 @@ message CreateSiteRequest {
   `Required`
   */
   oneof Repository {
-    GitRepository git = 2;
+    GitRepository git = 3;
   }
 
-  oneof options {
-    DrupalSiteOptions drupal = 17;
-    WordpressSiteOptions wordpress = 18;
-    Typo3SiteOptions typo3 = 19;
-  }
+  /*
+  `Required`
+  The type of the CMS used for the site
+  */
+  SiteType type = 4;
+
+  /*
+  `Optional`
+  The version of the CMS used for the site
+  */
+  string version = 18;
+
+  /*
+  `Optional`
+  Whether to run composer install when creating the site image
+  */
+  bool composerInstall = 19;
+
+  /*
+  `Optional`
+  If `composerInstall` is set, use this flags to specify which args are passed to composer install
+  */
+  repeated string composerArgs = 20;
+
+  /*
+  `Optional`
+  */
+  Cron cron = 21;
+
+  /*
+  `Optional`
+  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
+  */
+  string DocRoot = 22;
+  
+  /*
+  `Optional`
+  A list of persistent mount paths relative to docroot (ex. content/uploads). 
+  */
+  repeated string persistentPaths = 23;
+
+  /*
+  `Optional`
+  A list of ephemeral mount paths relative to docroot
+  */
+  repeated string ephemeralPaths = 24;
 }
 
 /*
@@ -477,12 +339,6 @@ message GetSiteRequest {
   The name of the site
   */
   string name = 1;
-  
-  /*
-  `Required`
-  The type of site being retrieved
-  */
-  SiteType type = 2;
 }
 
 /*
@@ -513,6 +369,7 @@ message ListSiteResponse {
 }
 
 /*
+  TODO
 */
 message UpdateSiteRequest {
 
@@ -521,6 +378,7 @@ message UpdateSiteRequest {
 }
 
 /*
+TODO
 */
 message UpdateSiteResponse {
 
@@ -537,12 +395,6 @@ message DeleteSiteRequest {
   The name of the site
   */
   string name = 1;
-
-  /*
-  `Required`
-  The type of site being deleted
-  */
-  SiteType type = 2;
 }
 
 /*
@@ -612,12 +464,6 @@ message SiteLogsRequest {
   string name = 1;
 
   /*
-  `Required`
-  The type of site being deleted
-  */
-  SiteType type = 2;
-
-  /*
   `Optional`
   Additional options for logging
   */
@@ -644,12 +490,6 @@ message AccessLogsRequest {
   The name of the site
   */
   string name = 1;
-
-  /*
-  `Required`
-  The type of site being deleted
-  */
-  SiteType type = 2;
 
   /*
   `Optional`
@@ -679,16 +519,10 @@ message MysqlLogsRequest {
   string name = 1;
 
   /*
-  `Required`
-  The type of site being deleted
-  */
-  SiteType type = 2;
-
-  /*
   `Optional`
-  Continues to follow and send logs until the maximum allotted connection time has been reached
+  Additional options for logging
   */
-  bool follow = 17;
+  LogOptions options = 17;
 }
 
 /*
