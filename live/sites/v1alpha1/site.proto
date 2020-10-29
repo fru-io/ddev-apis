@@ -594,13 +594,6 @@ message BuildLogsRequest {
 message BuildLogsResponse {
 
   /*
-  `OutputOnly` An array of scoped logs
-  */
-  ScopedLog logs = 1;
-}
-
-message ScopedLog {
-  /*
   `OutputOnly` A named scope to which these log messages apply
   */
   string scope = 1;
@@ -609,6 +602,7 @@ message ScopedLog {
   `OutputOnly` The log data for this scope of logs
   */
   bytes content = 2;
+
 }
 
 /*

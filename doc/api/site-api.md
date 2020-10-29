@@ -72,7 +72,6 @@
     - [LogOptions](#ddev.sites.v1alpha1.LogOptions)
     - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
     - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
-    - [ScopedLog](#ddev.sites.v1alpha1.ScopedLog)
     - [Site](#ddev.sites.v1alpha1.Site)
     - [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest)
     - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
@@ -757,7 +756,8 @@ Generic metadata about the object.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| logs | [ScopedLog](#ddev.sites.v1alpha1.ScopedLog) |  | `OutputOnly` An array of scoped logs |
+| scope | [string](#string) |  | `OutputOnly` A named scope to which these log messages apply |
+| content | [bytes](#bytes) |  | `OutputOnly` The log data for this scope of logs |
 
 
 
@@ -1131,22 +1131,6 @@ Cron manages if and when the CMS cron executes
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | content | [bytes](#bytes) |  | TODO |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ScopedLog"></a>
-
-### ScopedLog
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| scope | [string](#string) |  | `OutputOnly` A named scope to which these log messages apply |
-| content | [bytes](#bytes) |  | `OutputOnly` The log data for this scope of logs |
 
 
 
