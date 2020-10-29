@@ -72,7 +72,7 @@
     - [LogOptions](#ddev.sites.v1alpha1.LogOptions)
     - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
     - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
-    - [ScopedLogs](#ddev.sites.v1alpha1.ScopedLogs)
+    - [ScopedLog](#ddev.sites.v1alpha1.ScopedLog)
     - [Site](#ddev.sites.v1alpha1.Site)
     - [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest)
     - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
@@ -757,7 +757,7 @@ Generic metadata about the object.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| logs | [ScopedLogs](#ddev.sites.v1alpha1.ScopedLogs) | repeated | `OutputOnly` An array of scoped logs |
+| logs | [ScopedLog](#ddev.sites.v1alpha1.ScopedLog) |  | `OutputOnly` An array of scoped logs |
 
 
 
@@ -1137,9 +1137,9 @@ Cron manages if and when the CMS cron executes
 
 
 
-<a name="ddev.sites.v1alpha1.ScopedLogs"></a>
+<a name="ddev.sites.v1alpha1.ScopedLog"></a>
 
-### ScopedLogs
+### ScopedLog
 
 
 

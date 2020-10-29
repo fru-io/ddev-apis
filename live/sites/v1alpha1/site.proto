@@ -596,10 +596,10 @@ message BuildLogsResponse {
   /*
   `OutputOnly` An array of scoped logs
   */
-  repeated ScopedLogs logs = 1;
+  ScopedLog logs = 1;
 }
 
-message ScopedLogs {
+message ScopedLog {
   /*
   `OutputOnly` A named scope to which these log messages apply
   */
