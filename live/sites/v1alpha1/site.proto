@@ -25,9 +25,13 @@ option java_package = "com.ddev.live.sites.v1alpha1";
 
 
 enum SiteType {
-  DRUPAL = 0;
-  TYPO3 = 1;
-  WORDPRESS = 2;
+  /*
+  NOT_SET indicates no type of site has been specified
+  */
+  NOT_SET = 0;
+  DRUPAL = 1;
+  TYPO3 = 2;
+  WORDPRESS = 3;
 }
 
 enum CloneOperationState {
