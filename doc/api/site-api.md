@@ -850,9 +850,10 @@ TODO
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| DRUPAL | 0 |  |
-| TYPO3 | 1 |  |
-| WORDPRESS | 2 |  |
+| NOT_SET | 0 | NOT_SET indicates no type of site has been specified |
+| DRUPAL | 1 |  |
+| TYPO3 | 2 |  |
+| WORDPRESS | 3 |  |
 
 
  
