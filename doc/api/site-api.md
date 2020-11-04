@@ -20,8 +20,41 @@
     - [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest)
     - [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse)
   
-- [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
-    - [Sites](#ddev.sites.v1alpha1.Sites)
+- [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
+    - [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest)
+    - [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse)
+    - [CloneOperation](#ddev.sites.v1alpha1.CloneOperation)
+    - [CloneRequest](#ddev.sites.v1alpha1.CloneRequest)
+    - [CloneResponse](#ddev.sites.v1alpha1.CloneResponse)
+    - [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest)
+    - [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse)
+    - [Cron](#ddev.sites.v1alpha1.Cron)
+    - [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest)
+    - [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse)
+    - [DescribeCloneRequest](#ddev.sites.v1alpha1.DescribeCloneRequest)
+    - [DescribeCloneResponse](#ddev.sites.v1alpha1.DescribeCloneResponse)
+    - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
+    - [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse)
+    - [GitRepository](#ddev.sites.v1alpha1.GitRepository)
+    - [ListCloneSiteOperationsRequest](#ddev.sites.v1alpha1.ListCloneSiteOperationsRequest)
+    - [ListCloneSiteOperationsResponse](#ddev.sites.v1alpha1.ListCloneSiteOperationsResponse)
+    - [ListClonesForSiteRequest](#ddev.sites.v1alpha1.ListClonesForSiteRequest)
+    - [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse)
+    - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
+    - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
+    - [LogOptions](#ddev.sites.v1alpha1.LogOptions)
+    - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
+    - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
+    - [Site](#ddev.sites.v1alpha1.Site)
+    - [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest)
+    - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
+    - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
+    - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
+    - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
+    - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
+  
+    - [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState)
+    - [SiteType](#ddev.sites.v1alpha1.SiteType)
   
 - [live/sites/v1alpha1/database.proto](#live/sites/v1alpha1/database.proto)
     - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
@@ -43,47 +76,8 @@
     - [Metadata](#ddev.sites.v1alpha1.Metadata)
     - [Metadata.LabelsEntry](#ddev.sites.v1alpha1.Metadata.LabelsEntry)
   
-- [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
-    - [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest)
-    - [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse)
-    - [CloneOperation](#ddev.sites.v1alpha1.CloneOperation)
-    - [CloneRequest](#ddev.sites.v1alpha1.CloneRequest)
-    - [CloneResponse](#ddev.sites.v1alpha1.CloneResponse)
-    - [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest)
-    - [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse)
-    - [Cron](#ddev.sites.v1alpha1.Cron)
-    - [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest)
-    - [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse)
-    - [DescribeCloneRequest](#ddev.sites.v1alpha1.DescribeCloneRequest)
-    - [DescribeCloneResponse](#ddev.sites.v1alpha1.DescribeCloneResponse)
-    - [DrupalSite](#ddev.sites.v1alpha1.DrupalSite)
-    - [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions)
-    - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
-    - [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse)
-    - [GitRepository](#ddev.sites.v1alpha1.GitRepository)
-    - [ListCloneSiteOperationsRequest](#ddev.sites.v1alpha1.ListCloneSiteOperationsRequest)
-    - [ListCloneSiteOperationsResponse](#ddev.sites.v1alpha1.ListCloneSiteOperationsResponse)
-    - [ListClonesForSiteRequest](#ddev.sites.v1alpha1.ListClonesForSiteRequest)
-    - [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse)
-    - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
-    - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
-    - [LogOptions](#ddev.sites.v1alpha1.LogOptions)
-    - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
-    - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
-    - [Site](#ddev.sites.v1alpha1.Site)
-    - [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest)
-    - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
-    - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
-    - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
-    - [Typo3Site](#ddev.sites.v1alpha1.Typo3Site)
-    - [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions)
-    - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
-    - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
-    - [WordpressSite](#ddev.sites.v1alpha1.WordpressSite)
-    - [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions)
-  
-    - [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState)
-    - [SiteType](#ddev.sites.v1alpha1.SiteType)
+- [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
+    - [Sites](#ddev.sites.v1alpha1.Sites)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -340,59 +334,530 @@ TODO
 
 
 
-<a name="live/sites/v1alpha1/service.proto"></a>
+<a name="live/sites/v1alpha1/site.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## live/sites/v1alpha1/service.proto
+## live/sites/v1alpha1/site.proto
+
+
+
+<a name="ddev.sites.v1alpha1.AccessLogsRequest"></a>
+
+### AccessLogsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the site |
+| options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.AccessLogsResponse"></a>
+
+### AccessLogsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CloneOperation"></a>
+
+### CloneOperation
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ref | [string](#string) |  | `OutputOnly` Reference to the clone site operation |
+| originSite | [string](#string) |  | `OutputOnly` Name of the origin site |
+| newSite | [string](#string) |  | `OutputOnly` Name of the new site |
+| state | [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState) |  | `OutputOnly` State of the clone operation |
+| info | [string](#string) |  | `OutputOnly` Optionally contains additional human readable information describing the state of the operation |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CloneRequest"></a>
+
+### CloneRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| originSite | [string](#string) |  | `Required` The name of the origin site |
+| newSite | [string](#string) |  | `Required` The name of the new site |
+| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CloneResponse"></a>
+
+### CloneResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| operationRef | [string](#string) |  | `OutputOnly` Reference to the clone site operation |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CreateSiteRequest"></a>
+
+### CreateSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the site |
+| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
+| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of the CMS used for the site |
+| version | [string](#string) |  | `Optional` The version of the CMS used for the site |
+| composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
+| composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
+| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
+| DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
+| persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads). |
+| ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CreateSiteResponse"></a>
+
+### CreateSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The properties of the site which was created. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.Cron"></a>
+
+### Cron
+Cron manages if and when the CMS cron executes
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| disabled | [bool](#bool) |  | `Optional` Disabled will stop the CMS cron from executing. Default true. |
+| schedule | [string](#string) |  | Schedule specifies when this process will execute using CronTab notation. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DeleteSiteRequest"></a>
+
+### DeleteSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DeleteSiteResponse"></a>
+
+### DeleteSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The name of the site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DescribeCloneRequest"></a>
+
+### DescribeCloneRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| operationRef | [string](#string) |  | `Required` Reference to the clone site operation |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DescribeCloneResponse"></a>
+
+### DescribeCloneResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| state | [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState) |  | `OutputOnly` Reference to the clone site operation |
+| cloneRef | [string](#string) |  | `OutputOnly` Reference to the created site resource as a result of the clone operation. This field will be an empty string if the clone operation was not successful |
+| meta | [Metadata](#ddev.sites.v1alpha1.Metadata) |  | `OutputOnly` Object metadata for the clone resource. |
+| stateDetail | [string](#string) |  | `OutputOnly` Detailed description of the state |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.GetSiteRequest"></a>
+
+### GetSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.GetSiteResponse"></a>
+
+### GetSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The requested site. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.GitRepository"></a>
+
+### GitRepository
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| url | [string](#string) |  | The URL of the repository |
+| ref | [string](#string) |  | The branch, tag, or commit. Default: `master`. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListCloneSiteOperationsRequest"></a>
+
+### ListCloneSiteOperationsRequest
+
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListCloneSiteOperationsResponse"></a>
+
+### ListCloneSiteOperationsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [CloneOperation](#ddev.sites.v1alpha1.CloneOperation) | repeated | `OutputOnly` List of clone site operations |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListClonesForSiteRequest"></a>
+
+### ListClonesForSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| originSite | [string](#string) |  | `Required` List all clones for a particular origin site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListClonesForSiteResponse"></a>
+
+### ListClonesForSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| clones | [Site](#ddev.sites.v1alpha1.Site) | repeated | `OutputOnly` List all clones for a particular origin site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListSiteRequest"></a>
+
+### ListSiteRequest
+
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListSiteResponse"></a>
+
+### ListSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sites | [Site](#ddev.sites.v1alpha1.Site) | repeated | `OutputOnly` A list of sites. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.LogOptions"></a>
+
+### LogOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached. Defaults to false. |
+| limitBytes | [int64](#int64) |  | `Optional` The approximate number of bytes to return from the message. |
+| previous | [bool](#bool) |  | `Optional` Retrieves the logs for a previously terminated run of the site |
+| sinceSeconds | [int64](#int64) |  | `Optional` The number of seconds from now to retrieve logs |
+| sinceTime | [string](#string) |  | `Optional` An RFC3999 formatted timestamp to start retrieving logs from |
+| taillines | [int64](#int64) |  | `Optional` The number of lines to retrieve at the tail end of a log |
+| timestamps | [bool](#bool) |  | `Optional` Will prepend RFC3999 timestamps at the beginning of each log line |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.MysqlLogsRequest"></a>
+
+### MysqlLogsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the site |
+| options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.MysqlLogsResponse"></a>
+
+### MysqlLogsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.Site"></a>
+
+### Site
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| workspace | [string](#string) |  |  |
+| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
+| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | The type of the CMS used for the site |
+| version | [string](#string) |  | The version of the CMS used for the site |
+| composerInstall | [bool](#bool) |  | Whether to run composer install when creating the site image |
+| composerArgs | [string](#string) | repeated | If `composerInstall` is set, use this flags to specify which args are passed to composer install |
+| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
+| DocRoot | [string](#string) |  | The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
+| persistentPaths | [string](#string) | repeated | A list of persistent mount paths relative to docroot (ex. content/uploads). |
+| ephemeralPaths | [string](#string) | repeated | A list of ephemeral mount paths relative to docroot |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.SiteExecRequest"></a>
+
+### SiteExecRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| command | [string](#string) | repeated |  |
+| quiet | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.SiteExecResponse"></a>
+
+### SiteExecResponse
+TODO:
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| stdout | [bytes](#bytes) |  | TODO |
+| stderr | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.SiteLogsRequest"></a>
+
+### SiteLogsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the site |
+| options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.SiteLogsResponse"></a>
+
+### SiteLogsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.UpdateSiteRequest"></a>
+
+### UpdateSiteRequest
+TODO
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.UpdateSiteResponse"></a>
+
+### UpdateSiteResponse
+TODO
+
+
+
+
+
+ 
+
+
+<a name="ddev.sites.v1alpha1.CloneOperationState"></a>
+
+### CloneOperationState
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CLONE_CREATED | 0 |  |
+| CLONE_SUCCEEDED | 1 |  |
+| CLONE_FAILED | 2 |  |
+
+
+
+<a name="ddev.sites.v1alpha1.SiteType"></a>
+
+### SiteType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DRUPAL | 0 |  |
+| TYPO3 | 1 |  |
+| WORDPRESS | 2 |  |
 
 
  
 
  
-
- 
-
-
-<a name="ddev.sites.v1alpha1.Sites"></a>
-
-### Sites
-The Sites service provides site level functions inside a users ddev-live workspace.
-To access the sites service consumers will have to initialize an authenticated client.  This requires
-several metadata to be passed to the client.
-
-`x-auth-token` which is a authentication token for the call.  This will be required to be a temporary token issued by the BillingAPI.
-
-`x-ddev-workspace` which is the workspace for all procedures.  For example a client request `ListSites` will list all sites in the workspace whose value is derived from the key `x-ddev-workspace`.
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
-| GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
-| ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
-| UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
-| DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
-| SiteLogStream | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogStream returns a stream of logs for a site |
-| AccessLogStream | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogStream returns a stream of access logs for a site |
-| MysqlLogStream | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogStream returns a stream of access logs for a site |
-| SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
-| CloneSite | [CloneRequest](#ddev.sites.v1alpha1.CloneRequest) | [CloneResponse](#ddev.sites.v1alpha1.CloneResponse) | CloneSite creates a clone of already existing site |
-| DescribeClone | [DescribeCloneRequest](#ddev.sites.v1alpha1.DescribeCloneRequest) | [DescribeCloneResponse](#ddev.sites.v1alpha1.DescribeCloneResponse) | DescribeClone describes the status of an in progress clone operation |
-| ListCloneSiteOperations | [ListCloneSiteOperationsRequest](#ddev.sites.v1alpha1.ListCloneSiteOperationsRequest) | [ListCloneSiteOperationsResponse](#ddev.sites.v1alpha1.ListCloneSiteOperationsResponse) | ListCloneSiteOperations lists all clone site operations |
-| ListClonesForSite | [ListClonesForSiteRequest](#ddev.sites.v1alpha1.ListClonesForSiteRequest) | [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse) | ListClonesForSite lists all clones for a particular origin site |
-| BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
-| RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
-| PushDatabaseBackup | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackup creates a new backup for a site and attempts to restore the site to that backup |
-| PushDatabaseBackupStream | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) stream | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackupStream creates a new backup for a site and attempts to restore the site to that backup |
-| PullDatabaseBackup | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) | PullDatabase pulls down a database backup locally |
-| PullDatabaseBackupStream | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) stream | PullDatabaseBackupStream pulls down a database backup locally |
-| ListDatabaseBackups | [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest) | [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse) | Lists database backups known for a provided site |
-| BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backups up a currently running site environment to the staging area |
-| RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores the current staging area to a sites environment |
-| PushFileBackup | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFile upload file assets to a sites backup staging area |
-| PushFileBackupStream | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) stream | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFileStream allows client side streaming of large files to a staged backup area |
-| PullFileBackupStream | [PullFileBackupRequest](#ddev.sites.v1alpha1.PullFileBackupRequest) | [PullFileBackupResponse](#ddev.sites.v1alpha1.PullFileBackupResponse) stream | PullFileStream streams currently staged file[s] from the server and pulls them down to a local source |
-| DescribeFileBackup | [DescribeFileBackupRequest](#ddev.sites.v1alpha1.DescribeFileBackupRequest) | [DescribeFileBackupResponse](#ddev.sites.v1alpha1.DescribeFileBackupResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
-| ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
 
  
 
@@ -664,639 +1129,59 @@ Generic metadata about the object.
 
 
 
-<a name="live/sites/v1alpha1/site.proto"></a>
+<a name="live/sites/v1alpha1/service.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## live/sites/v1alpha1/site.proto
-
-
-
-<a name="ddev.sites.v1alpha1.AccessLogsRequest"></a>
-
-### AccessLogsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site |
-| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
-| options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.AccessLogsResponse"></a>
-
-### AccessLogsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| content | [bytes](#bytes) |  | TODO |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.CloneOperation"></a>
-
-### CloneOperation
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ref | [string](#string) |  | `OutputOnly` Reference to the clone site operation |
-| originSite | [string](#string) |  | `OutputOnly` Name of the origin site |
-| newSite | [string](#string) |  | `OutputOnly` Name of the new site |
-| state | [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState) |  | `OutputOnly` State of the clone operation |
-| info | [string](#string) |  | `OutputOnly` Optionally contains additional human readable information describing the state of the operation |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.CloneRequest"></a>
-
-### CloneRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| originSite | [string](#string) |  | `Required` The name of the origin site |
-| newSite | [string](#string) |  | `Required` The name of the new site |
-| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.CloneResponse"></a>
-
-### CloneResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| operationRef | [string](#string) |  | `OutputOnly` Reference to the clone site operation |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.CreateSiteRequest"></a>
-
-### CreateSiteRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site |
-| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
-| drupal | [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions) |  |  |
-| wordpress | [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions) |  |  |
-| typo3 | [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions) |  |  |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.CreateSiteResponse"></a>
-
-### CreateSiteResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The properties of the site which was created. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.Cron"></a>
-
-### Cron
-Cron manages if and when the CMS cron executes
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| disabled | [bool](#bool) |  | `Optional` Disabled will stop the CMS cron from executing. Default true. |
-| schedule | [string](#string) |  | Schedule specifies when this process will execute using CronTab notation. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.DeleteSiteRequest"></a>
-
-### DeleteSiteRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site |
-| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.DeleteSiteResponse"></a>
-
-### DeleteSiteResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The name of the site |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.DescribeCloneRequest"></a>
-
-### DescribeCloneRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| operationRef | [string](#string) |  | `Required` Reference to the clone site operation |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.DescribeCloneResponse"></a>
-
-### DescribeCloneResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| state | [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState) |  | `OutputOnly` Reference to the clone site operation |
-| cloneRef | [string](#string) |  | `OutputOnly` Reference to the created site resource as a result of the clone operation. This field will be an empty string if the clone operation was not successful |
-| meta | [Metadata](#ddev.sites.v1alpha1.Metadata) |  | `OutputOnly` Object metadata for the clone resource. |
-| stateDetail | [string](#string) |  | `OutputOnly` Detailed description of the state |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.DrupalSite"></a>
-
-### DrupalSite
-A site of SiteType.DRUPAL
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
-| name | [string](#string) |  | `OutputOnly` The name of the site |
-| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
-| options | [DrupalSiteOptions](#ddev.sites.v1alpha1.DrupalSiteOptions) |  | `OutputOnly` |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.DrupalSiteOptions"></a>
-
-### DrupalSiteOptions
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
-| composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
-| composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
-| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
-| DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
-| persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads). Defaults to &#34;sites/default/files&#34;,&#34;/var/www/drupal-private/&#34;,&#34;sites/default/files/config/sync&#34; |
-| ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.GetSiteRequest"></a>
-
-### GetSiteRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site |
-| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being retrieved |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.GetSiteResponse"></a>
-
-### GetSiteResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The requested site. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.GitRepository"></a>
-
-### GitRepository
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| url | [string](#string) |  | The URL of the repository |
-| ref | [string](#string) |  | The branch, tag, or commit. Default: `master`. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ListCloneSiteOperationsRequest"></a>
-
-### ListCloneSiteOperationsRequest
-
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ListCloneSiteOperationsResponse"></a>
-
-### ListCloneSiteOperationsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [CloneOperation](#ddev.sites.v1alpha1.CloneOperation) | repeated | `OutputOnly` List of clone site operations |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ListClonesForSiteRequest"></a>
-
-### ListClonesForSiteRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| originSite | [string](#string) |  | `Required` List all clones for a particular origin site |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ListClonesForSiteResponse"></a>
-
-### ListClonesForSiteResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| clones | [Site](#ddev.sites.v1alpha1.Site) | repeated | `OutputOnly` List all clones for a particular origin site |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ListSiteRequest"></a>
-
-### ListSiteRequest
-
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ListSiteResponse"></a>
-
-### ListSiteResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sites | [Site](#ddev.sites.v1alpha1.Site) | repeated | `OutputOnly` A list of sites. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.LogOptions"></a>
-
-### LogOptions
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached. Defaults to false. |
-| limitBytes | [int64](#int64) |  | `Optional` The approximate number of bytes to return from the message. |
-| previous | [bool](#bool) |  | `Optional` Retrieves the logs for a previously terminated run of the site |
-| sinceSeconds | [int64](#int64) |  | `Optional` The number of seconds from now to retrieve logs |
-| sinceTime | [string](#string) |  | `Optional` An RFC3999 formatted timestamp to start retrieving logs from |
-| taillines | [int64](#int64) |  | `Optional` The number of lines to retrieve at the tail end of a log |
-| timestamps | [bool](#bool) |  | `Optional` Will prepend RFC3999 timestamps at the beginning of each log line |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.MysqlLogsRequest"></a>
-
-### MysqlLogsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site |
-| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
-| follow | [bool](#bool) |  | `Optional` Continues to follow and send logs until the maximum allotted connection time has been reached |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.MysqlLogsResponse"></a>
-
-### MysqlLogsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| content | [bytes](#bytes) |  | TODO |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.Site"></a>
-
-### Site
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| drupal | [DrupalSite](#ddev.sites.v1alpha1.DrupalSite) |  |  |
-| typo3 | [Typo3Site](#ddev.sites.v1alpha1.Typo3Site) |  |  |
-| wordpress | [WordpressSite](#ddev.sites.v1alpha1.WordpressSite) |  |  |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.SiteExecRequest"></a>
-
-### SiteExecRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| command | [string](#string) | repeated |  |
-| quiet | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.SiteExecResponse"></a>
-
-### SiteExecResponse
-TODO:
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| stdout | [bytes](#bytes) |  | TODO |
-| stderr | [bytes](#bytes) |  | TODO |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.SiteLogsRequest"></a>
-
-### SiteLogsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site |
-| type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | `Required` The type of site being deleted |
-| options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.SiteLogsResponse"></a>
-
-### SiteLogsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| content | [bytes](#bytes) |  | TODO |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.Typo3Site"></a>
-
-### Typo3Site
-A site of SiteType.TYPO3
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
-| name | [string](#string) |  | `OutputOnly` The name of the site |
-| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
-| options | [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions) |  | `OutputOnly` |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.Typo3SiteOptions"></a>
-
-### Typo3SiteOptions
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
-| composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
-| composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
-| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
-| DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
-| persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads). |
-| ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.UpdateSiteRequest"></a>
-
-### UpdateSiteRequest
-
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.UpdateSiteResponse"></a>
-
-### UpdateSiteResponse
-
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.WordpressSite"></a>
-
-### WordpressSite
-A site of SiteType.WORDPRESS
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `OutputOnly` The workspace of the site |
-| name | [string](#string) |  | `OutputOnly` The name of the site |
-| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
-| options | [WordpressSiteOptions](#ddev.sites.v1alpha1.WordpressSiteOptions) |  | `OutputOnly` |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.WordpressSiteOptions"></a>
-
-### WordpressSiteOptions
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  | `Optional` Specify the version of TYPO3 used for the site (default &#34;9&#34;) |
-| composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
-| composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
-| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
-| DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
-| persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads) |
-| ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
-
-
-
-
-
- 
-
-
-<a name="ddev.sites.v1alpha1.CloneOperationState"></a>
-
-### CloneOperationState
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| CLONE_CREATED | 0 |  |
-| CLONE_SUCCEEDED | 1 |  |
-| CLONE_FAILED | 2 |  |
-
-
-
-<a name="ddev.sites.v1alpha1.SiteType"></a>
-
-### SiteType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| DRUPAL | 0 |  |
-| TYPO3 | 1 |  |
-| WORDPRESS | 2 |  |
+## live/sites/v1alpha1/service.proto
 
 
  
 
  
+
+ 
+
+
+<a name="ddev.sites.v1alpha1.Sites"></a>
+
+### Sites
+The Sites service provides site level functions inside a users ddev-live workspace.
+To access the sites service consumers will have to initialize an authenticated client.  This requires
+several metadata to be passed to the client.
+
+`x-auth-token` which is a authentication token for the call.  This will be required to be a temporary token issued by the BillingAPI.
+
+`x-ddev-workspace` which is the workspace for all procedures.  For example a client request `ListSites` will list all sites in the workspace whose value is derived from the key `x-ddev-workspace`.
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
+| GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
+| ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
+| UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
+| DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
+| SiteLogStream | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogStream returns a stream of logs for a site |
+| AccessLogStream | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogStream returns a stream of access logs for a site |
+| MysqlLogStream | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogStream returns a stream of access logs for a site |
+| SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
+| CloneSite | [CloneRequest](#ddev.sites.v1alpha1.CloneRequest) | [CloneResponse](#ddev.sites.v1alpha1.CloneResponse) | CloneSite creates a clone of already existing site |
+| DescribeClone | [DescribeCloneRequest](#ddev.sites.v1alpha1.DescribeCloneRequest) | [DescribeCloneResponse](#ddev.sites.v1alpha1.DescribeCloneResponse) | DescribeClone describes the status of an in progress clone operation |
+| ListCloneSiteOperations | [ListCloneSiteOperationsRequest](#ddev.sites.v1alpha1.ListCloneSiteOperationsRequest) | [ListCloneSiteOperationsResponse](#ddev.sites.v1alpha1.ListCloneSiteOperationsResponse) | ListCloneSiteOperations lists all clone site operations |
+| ListClonesForSite | [ListClonesForSiteRequest](#ddev.sites.v1alpha1.ListClonesForSiteRequest) | [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse) | ListClonesForSite lists all clones for a particular origin site |
+| BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
+| RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
+| PushDatabaseBackup | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackup creates a new backup for a site and attempts to restore the site to that backup |
+| PushDatabaseBackupStream | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) stream | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackupStream creates a new backup for a site and attempts to restore the site to that backup |
+| PullDatabaseBackup | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) | PullDatabase pulls down a database backup locally |
+| PullDatabaseBackupStream | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) stream | PullDatabaseBackupStream pulls down a database backup locally |
+| ListDatabaseBackups | [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest) | [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse) | Lists database backups known for a provided site |
+| BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backups up a currently running site environment to the staging area |
+| RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores the current staging area to a sites environment |
+| PushFileBackup | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFile upload file assets to a sites backup staging area |
+| PushFileBackupStream | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) stream | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFileStream allows client side streaming of large files to a staged backup area |
+| PullFileBackupStream | [PullFileBackupRequest](#ddev.sites.v1alpha1.PullFileBackupRequest) | [PullFileBackupResponse](#ddev.sites.v1alpha1.PullFileBackupResponse) stream | PullFileStream streams currently staged file[s] from the server and pulls them down to a local source |
+| DescribeFileBackup | [DescribeFileBackupRequest](#ddev.sites.v1alpha1.DescribeFileBackupRequest) | [DescribeFileBackupResponse](#ddev.sites.v1alpha1.DescribeFileBackupResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
+| ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
 
  
 
