@@ -1,8 +1,8 @@
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 USER_ID:=$(shell id -u)
 
-SITE_PROTOS:=$(shell find live/sites/v1alpha1 -name *.proto)
-ADMIN_PROTOS:=$(shell find live/administration/v1alpha1 -name *.proto)
+SITE_PROTOS:=$(shell find live/sites/v1alpha1/ -name *.proto)
+ADMIN_PROTOS:=$(shell find live/administration/v1alpha1/ -name *.proto)
 
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
