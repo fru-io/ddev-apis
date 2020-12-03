@@ -1,8 +1,8 @@
 name: Release
 on: 
   push:
-    branch:
-      - test_actions
+    tags:
+      - "*"
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -40,28 +40,28 @@ jobs:
         run: |
           git config --global user.email "dlemon@ddev.com"
           git config --global user.name "API CI Runner"
-      # - name: release-node
-      #   run: |
-      #     make build-js
-      #     cd build/js
-      #     # initialize the npmrc
-      #     echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
-      #     npm config set registry  "https://npm.pkg.github.com/"
+      - name: release-node
+        run: |
+          make build-js
+          cd build/js
+          # initialize the npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
+          npm config set registry  "https://npm.pkg.github.com/"
 
-      #     # Set the version for this release
-      #     npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
-      #     npm version $npmVersion
-      #     npm publish
-      # - name: release-web
-      #   run: |
-      #     make build-ts
-      #     cd build/ts
-      #     # initialize the npmrc
-      #     echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
-      #     npm config set registry  "https://npm.pkg.github.com/"
+          # Set the version for this release
+          npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
+          npm version $npmVersion
+          npm publish
+      - name: release-web
+        run: |
+          make build-ts
+          cd build/ts
+          # initialize the npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
+          npm config set registry  "https://npm.pkg.github.com/"
 
-      #     # Set the version for this release
-      #     npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
-      #     npm version $npmVersion
-      #     npm publish --access public
+          # Set the version for this release
+          npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
+          npm version $npmVersion
+          npm publish --access public
 
