@@ -1,8 +1,8 @@
 name: Release
 on: 
-  push:
-    tags:
-      - "*"
+  pull_request:
+    branches:
+      - master
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -14,13 +14,6 @@ jobs:
       - name: prep npm
         run: |
           sudo apt install -y npm
-      # TODO: Replace with bazel builds
-      - name: prep go
-        run: |
-          wget https://dl.google.com/go/go1.14.10.linux-amd64.tar.gz
-          tar -xzf go1.14.10.linux-amd64.tar.gz
-          sudo cp -r go /usr/local/go
-          sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
       - name: prep protoc
         run: |
           wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-x86_64.zip
@@ -47,28 +40,28 @@ jobs:
         run: |
           git config --global user.email "dlemon@ddev.com"
           git config --global user.name "API CI Runner"
-      - name: release-node
-        run: |
-          make build-js
-          cd build/js
-          # initialize the npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
-          npm config set registry  "https://npm.pkg.github.com/"
+      # - name: release-node
+      #   run: |
+      #     make build-js
+      #     cd build/js
+      #     # initialize the npmrc
+      #     echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
+      #     npm config set registry  "https://npm.pkg.github.com/"
 
-          # Set the version for this release
-          npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
-          npm version $npmVersion
-          npm publish
-      - name: release-web
-        run: |
-          make build-ts
-          cd build/ts
-          # initialize the npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
-          npm config set registry  "https://npm.pkg.github.com/"
+      #     # Set the version for this release
+      #     npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
+      #     npm version $npmVersion
+      #     npm publish
+      # - name: release-web
+      #   run: |
+      #     make build-ts
+      #     cd build/ts
+      #     # initialize the npmrc
+      #     echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
+      #     npm config set registry  "https://npm.pkg.github.com/"
 
-          # Set the version for this release
-          npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
-          npm version $npmVersion
-          npm publish --access public
+      #     # Set the version for this release
+      #     npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
+      #     npm version $npmVersion
+      #     npm publish --access public
 
