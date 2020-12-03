@@ -71,16 +71,16 @@ release: prepare-release doc release-ts release-js release-go
 site-doc:
 	docker run --rm \
 	--user ${USER_ID} \
-	-v ${ROOT_DIR}/doc/api:/out \
-	-v ${ROOT_DIR}/:/protos \
+	-v ${ROOT_DIR}/doc/api:/out:Z \
+	-v ${ROOT_DIR}/:/protos:Z \
 	pseudomuto/protoc-gen-doc --doc_opt=markdown,site-api.md \
 	${SITE_PROTOS}
 
 admin-doc:
 	docker run --rm \
 	--user ${USER_ID} \
-	-v ${ROOT_DIR}/doc/api:/out \
-	-v ${ROOT_DIR}/:/protos \
+	-v ${ROOT_DIR}/doc/api:/out:Z \
+	-v ${ROOT_DIR}/:/protos:Z \
 	pseudomuto/protoc-gen-doc --doc_opt=markdown,administration-api.md \
 	${ADMIN_PROTOS}
 
