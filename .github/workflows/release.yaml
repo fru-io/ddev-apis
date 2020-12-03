@@ -43,32 +43,3 @@ jobs:
           wget https://github.com/grpc/grpc-web/releases/download/1.1.0/protoc-gen-grpc-web-1.1.0-linux-x86_64
           sudo mv protoc-gen-grpc-web-1.1.0-linux-x86_64 /usr/local/bin/protoc-gen-grpc-web
           sudo chmod a+x /usr/local/bin/protoc-gen-grpc-web
-      - name: prep git
-        run: |
-          git config --global user.email "dlemon@ddev.com"
-          git config --global user.name "API CI Runner"
-      - name: release-node
-        run: |
-          make build-js
-          cd build/js
-          # initialize the npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
-          npm config set registry  "https://npm.pkg.github.com/"
-
-          # Set the version for this release
-          npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
-          npm version $npmVersion
-          npm publish
-      - name: release-web
-        run: |
-          make build-ts
-          cd build/ts
-          # initialize the npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
-          npm config set registry  "https://npm.pkg.github.com/"
-
-          # Set the version for this release
-          npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
-          npm version $npmVersion
-          npm publish --access public
-
