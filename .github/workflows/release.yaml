@@ -1,8 +1,8 @@
 name: Release
 on: 
   push:
-    tags:
-      - "*"
+    branch:
+      - "ci-test"
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -17,8 +17,8 @@ jobs:
       # TODO: Replace with bazel builds
       - name: prep go
         run: |
-          wget https://dl.google.com/go/go1.14.10.linux-amd64.tar.gz
-          tar -xzf go1.14.10.linux-amd64.tar.gz
+          wget https://dl.google.com/go/go1.14.12.linux-amd64.tar.gz
+          tar -xzf go1.14.12.linux-amd64.tar.gz
           sudo cp -r go /usr/local/go
           sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
       - name: prep protoc
