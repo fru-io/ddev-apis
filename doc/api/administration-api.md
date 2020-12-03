@@ -23,8 +23,15 @@
     - [CreateGithubIntegrationResponse](#ddev.administration.v1alpha1.CreateGithubIntegrationResponse)
     - [DeleteGithubIntegrationRequest](#ddev.administration.v1alpha1.DeleteGithubIntegrationRequest)
     - [DeleteGithubIntegrationResponse](#ddev.administration.v1alpha1.DeleteGithubIntegrationResponse)
+    - [GetRepositoryMetadataRequest](#ddev.administration.v1alpha1.GetRepositoryMetadataRequest)
+    - [GetRepositoryMetadataResponse](#ddev.administration.v1alpha1.GetRepositoryMetadataResponse)
     - [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest)
     - [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse)
+    - [GithubRepositoryName](#ddev.administration.v1alpha1.GithubRepositoryName)
+    - [GithubRepositoryOwner](#ddev.administration.v1alpha1.GithubRepositoryOwner)
+    - [GithubRepositoryReference](#ddev.administration.v1alpha1.GithubRepositoryReference)
+    - [ListGithubRepositoriesRequest](#ddev.administration.v1alpha1.ListGithubRepositoriesRequest)
+    - [ListGithubRepositoriesResponse](#ddev.administration.v1alpha1.ListGithubRepositoriesResponse)
     - [UpdateGithubIntegrationRequest](#ddev.administration.v1alpha1.UpdateGithubIntegrationRequest)
     - [UpdateGithubIntegrationResponse](#ddev.administration.v1alpha1.UpdateGithubIntegrationResponse)
   
@@ -324,6 +331,41 @@ If the request is set to DEVELOPER the response will contain any workspace where
 
 
 
+<a name="ddev.administration.v1alpha1.GetRepositoryMetadataRequest"></a>
+
+### GetRepositoryMetadataRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `Required` The Repository ID. |
+| owner | [string](#string) |  | `Optional` The Repository owner. |
+| name | [string](#string) |  | `Optional` The Repository name. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GetRepositoryMetadataResponse"></a>
+
+### GetRepositoryMetadataResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `OutputOnly` The Repository ID. |
+| owner | [string](#string) |  | `OutputOnly` The Repository owner. |
+| name | [string](#string) |  | `OutputOnly` The Repository name. |
+| meta | [GithubRepositoryReference](#ddev.administration.v1alpha1.GithubRepositoryReference) | repeated | `OutputOnly` The Repository metadata. |
+
+
+
+
+
+
 <a name="ddev.administration.v1alpha1.GithubIntegrationRequest"></a>
 
 ### GithubIntegrationRequest
@@ -351,6 +393,81 @@ If the request is set to DEVELOPER the response will contain any workspace where
 | ----- | ---- | ----- | ----------- |
 | installationID | [int64](#int64) |  | `Required` Installation ID. |
 | githubAppID | [int64](#int64) |  | `Required` Github App ID. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryName"></a>
+
+### GithubRepositoryName
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `OutputOnly` The Repository ID. |
+| name | [string](#string) |  | `OutputOnly` The Repository name. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryOwner"></a>
+
+### GithubRepositoryOwner
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` The Owner name. |
+| repositories | [GithubRepositoryName](#ddev.administration.v1alpha1.GithubRepositoryName) | repeated | `OutputOnly` List of Repository Names for this Owner. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryReference"></a>
+
+### GithubRepositoryReference
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sha | [string](#string) |  | `OutputOnly` Reference commit sha. |
+| branch | [string](#string) |  |  |
+| tag | [string](#string) |  |  |
+| pullrequest | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListGithubRepositoriesRequest"></a>
+
+### ListGithubRepositoriesRequest
+
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListGithubRepositoriesResponse"></a>
+
+### ListGithubRepositoriesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GithubRepositoryOwner](#ddev.administration.v1alpha1.GithubRepositoryOwner) | repeated | `OutputOnly` Github repositories available to the user. |
 
 
 
@@ -763,6 +880,8 @@ issued by the API.  This can be the integration token provided on the dashboard 
 | CreateGithubIntegration | [CreateGithubIntegrationRequest](#ddev.administration.v1alpha1.CreateGithubIntegrationRequest) | [CreateGithubIntegrationResponse](#ddev.administration.v1alpha1.CreateGithubIntegrationResponse) | Creates a github integration from an installation ID |
 | DeleteGithubIntegration | [DeleteGithubIntegrationRequest](#ddev.administration.v1alpha1.DeleteGithubIntegrationRequest) | [DeleteGithubIntegrationResponse](#ddev.administration.v1alpha1.DeleteGithubIntegrationResponse) | Deletes a github integration |
 | UpdateGithubIntegration | [UpdateGithubIntegrationRequest](#ddev.administration.v1alpha1.UpdateGithubIntegrationRequest) | [UpdateGithubIntegrationResponse](#ddev.administration.v1alpha1.UpdateGithubIntegrationResponse) | Updates a github integration |
+| ListGithubRepositories | [ListGithubRepositoriesRequest](#ddev.administration.v1alpha1.ListGithubRepositoriesRequest) | [ListGithubRepositoriesResponse](#ddev.administration.v1alpha1.ListGithubRepositoriesResponse) | List github repositories |
+| GetRepositoryMetadata | [GetRepositoryMetadataRequest](#ddev.administration.v1alpha1.GetRepositoryMetadataRequest) | [GetRepositoryMetadataResponse](#ddev.administration.v1alpha1.GetRepositoryMetadataResponse) | Returns metadata of a repository by ID |
 
  
 
