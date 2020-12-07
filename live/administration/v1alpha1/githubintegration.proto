@@ -111,3 +111,111 @@ message UpdateGithubIntegrationResponse {
     */
     GithubIntegrationResponse integration = 1;
 }
+
+message GithubRepositoryReference {
+
+    /*
+    `OutputOnly`
+    Reference commit sha.
+    */
+    string sha = 1;
+
+    /*
+    `OutputOnly`
+    Reference type.
+    */
+    oneof type {
+        string branch = 10;
+        string tag = 11;
+        string pullrequest = 12;
+    }
+}
+
+message GithubRepositoryOwner {
+
+    /*
+    `OutputOnly`
+    The Owner name.
+    */
+    string name = 1;
+
+    /*
+    `OutputOnly`
+    List of Repository Names for this Owner.
+    */
+    repeated GithubRepositoryName repositories = 2;
+}
+
+message GithubRepositoryName {
+
+    /*
+    `OutputOnly`
+    The Repository ID.
+    */
+    string id = 1;
+
+    /*
+    `OutputOnly`
+    The Repository name.
+    */
+    string name = 2;
+}
+
+message ListGithubRepositoriesRequest {}
+
+message ListGithubRepositoriesResponse {
+
+    /*
+    `OutputOnly`
+    Github repositories available to the user.
+    */
+    repeated GithubRepositoryOwner items = 1;
+}
+
+message GetRepositoryMetadataRequest {
+
+    /*
+    `Required`
+    The Repository ID.
+    */
+    string id = 1;
+
+    /*
+    `Optional`
+    The Repository owner.
+    */
+    string owner = 16;
+
+    /*
+    `Optional`
+    The Repository name.
+    */
+    string name = 17;
+}
+
+message GetRepositoryMetadataResponse {
+
+    /*
+    `OutputOnly`
+    The Repository ID.
+    */
+    string id = 1;
+
+    /*
+    `OutputOnly`
+    The Repository owner.
+    */
+    string owner = 2;
+
+    /*
+    `OutputOnly`
+    The Repository name.
+    */
+    string name = 3;
+
+    /*
+    `OutputOnly`
+    The Repository metadata.
+    */
+    repeated GithubRepositoryReference meta = 4;
+}
