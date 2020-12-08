@@ -3,6 +3,32 @@
 
 ## Table of Contents
 
+- [live/administration/v1alpha1/auth.proto](#live/administration/v1alpha1/auth.proto)
+    - [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest)
+    - [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse)
+    - [CreateRoleRequest](#ddev.administration.v1alpha1.CreateRoleRequest)
+    - [CreateRoleResponse](#ddev.administration.v1alpha1.CreateRoleResponse)
+    - [CreateTokenRequest](#ddev.administration.v1alpha1.CreateTokenRequest)
+    - [CreateTokenResponse](#ddev.administration.v1alpha1.CreateTokenResponse)
+    - [DescribeRoleRequest](#ddev.administration.v1alpha1.DescribeRoleRequest)
+    - [DescribeRoleResponse](#ddev.administration.v1alpha1.DescribeRoleResponse)
+    - [ListCapabilitiesRequest](#ddev.administration.v1alpha1.ListCapabilitiesRequest)
+    - [ListCapabilitiesResponse](#ddev.administration.v1alpha1.ListCapabilitiesResponse)
+    - [ListRolesRequest](#ddev.administration.v1alpha1.ListRolesRequest)
+    - [ListRolesResponse](#ddev.administration.v1alpha1.ListRolesResponse)
+    - [Role](#ddev.administration.v1alpha1.Role)
+    - [Scope](#ddev.administration.v1alpha1.Scope)
+    - [SetCapabilitiesRequest](#ddev.administration.v1alpha1.SetCapabilitiesRequest)
+    - [SetCapabilitiesResponse](#ddev.administration.v1alpha1.SetCapabilitiesResponse)
+    - [SetRolesRequest](#ddev.administration.v1alpha1.SetRolesRequest)
+    - [SetRolesResponse](#ddev.administration.v1alpha1.SetRolesResponse)
+    - [Team](#ddev.administration.v1alpha1.Team)
+  
+    - [Capability](#ddev.administration.v1alpha1.Capability)
+  
+- [live/administration/v1alpha1/service.proto](#live/administration/v1alpha1/service.proto)
+    - [Administration](#ddev.administration.v1alpha1.Administration)
+  
 - [live/administration/v1alpha1/workspace.proto](#live/administration/v1alpha1/workspace.proto)
     - [AddWorkspaceAdminRequest](#ddev.administration.v1alpha1.AddWorkspaceAdminRequest)
     - [AddWorkspaceAdminResponse](#ddev.administration.v1alpha1.AddWorkspaceAdminResponse)
@@ -35,481 +61,7 @@
     - [UpdateGithubIntegrationRequest](#ddev.administration.v1alpha1.UpdateGithubIntegrationRequest)
     - [UpdateGithubIntegrationResponse](#ddev.administration.v1alpha1.UpdateGithubIntegrationResponse)
   
-- [live/administration/v1alpha1/auth.proto](#live/administration/v1alpha1/auth.proto)
-    - [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest)
-    - [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse)
-    - [CreateRoleRequest](#ddev.administration.v1alpha1.CreateRoleRequest)
-    - [CreateRoleResponse](#ddev.administration.v1alpha1.CreateRoleResponse)
-    - [CreateTokenRequest](#ddev.administration.v1alpha1.CreateTokenRequest)
-    - [CreateTokenResponse](#ddev.administration.v1alpha1.CreateTokenResponse)
-    - [DescribeRoleRequest](#ddev.administration.v1alpha1.DescribeRoleRequest)
-    - [DescribeRoleResponse](#ddev.administration.v1alpha1.DescribeRoleResponse)
-    - [ListCapabilitiesRequest](#ddev.administration.v1alpha1.ListCapabilitiesRequest)
-    - [ListCapabilitiesResponse](#ddev.administration.v1alpha1.ListCapabilitiesResponse)
-    - [ListRolesRequest](#ddev.administration.v1alpha1.ListRolesRequest)
-    - [ListRolesResponse](#ddev.administration.v1alpha1.ListRolesResponse)
-    - [Role](#ddev.administration.v1alpha1.Role)
-    - [Scope](#ddev.administration.v1alpha1.Scope)
-    - [SetCapabilitiesRequest](#ddev.administration.v1alpha1.SetCapabilitiesRequest)
-    - [SetCapabilitiesResponse](#ddev.administration.v1alpha1.SetCapabilitiesResponse)
-    - [SetRolesRequest](#ddev.administration.v1alpha1.SetRolesRequest)
-    - [SetRolesResponse](#ddev.administration.v1alpha1.SetRolesResponse)
-  
-    - [Capability](#ddev.administration.v1alpha1.Capability)
-  
-- [live/administration/v1alpha1/service.proto](#live/administration/v1alpha1/service.proto)
-    - [Administration](#ddev.administration.v1alpha1.Administration)
-  
 - [Scalar Value Types](#scalar-value-types)
-
-
-
-<a name="live/administration/v1alpha1/workspace.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/administration/v1alpha1/workspace.proto
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceAdminRequest"></a>
-
-### AddWorkspaceAdminRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to add this administrator to. |
-| email | [string](#string) |  | `Required` The email of the workspace administrator |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceAdminResponse"></a>
-
-### AddWorkspaceAdminResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest"></a>
-
-### AddWorkspaceDeveloperRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to add this developer to. |
-| email | [string](#string) |  | `Required` The email of the workspace developer. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse"></a>
-
-### AddWorkspaceDeveloperResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest"></a>
-
-### DeleteWorkspaceAdminRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to remove this administrator from. |
-| email | [string](#string) |  | `Required` The email of the workspace administrator. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse"></a>
-
-### DeleteWorkspaceAdminResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest"></a>
-
-### DeleteWorkspaceDeveloperRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to remove this developer from. |
-| email | [string](#string) |  | `Required` The email of the workspace developer. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse"></a>
-
-### DeleteWorkspaceDeveloperResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.ListWorkspaceRequest"></a>
-
-### ListWorkspaceRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| Scope | [ListWorkspaceRequest.ListWorkspaceScope](#ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope) |  | `Optional` The scope of the list request. Defaults to `ListWorkspaceScope.DEVELOPER`. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.ListWorkspaceResponse"></a>
-
-### ListWorkspaceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspaces | [Workspace](#ddev.administration.v1alpha1.Workspace) | repeated | `OutputOnly` - A workspace for the current user |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.Workspace"></a>
-
-### Workspace
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `OutputOnly` Workspace Name. |
-| admins | [string](#string) | repeated | `OutputOnly` Administrators of the workspace |
-| developers | [string](#string) | repeated | `OutputOnly` Developers in the workspace |
-
-
-
-
-
- 
-
-
-<a name="ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope"></a>
-
-### ListWorkspaceRequest.ListWorkspaceScope
-Defines the scope of the request.  If the scope is set to ADMIN the response will contain only workspaces where the provided token user is an administrator.
-If the request is set to DEVELOPER the response will contain any workspace where the provided token user is an administrator or a developer.
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| DEVELOPER | 0 |  |
-| ADMIN | 1 |  |
-
-
- 
-
- 
-
- 
-
-
-
-<a name="live/administration/v1alpha1/githubintegration.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/administration/v1alpha1/githubintegration.proto
-
-
-
-<a name="ddev.administration.v1alpha1.CreateGithubIntegrationRequest"></a>
-
-### CreateGithubIntegrationRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| integration | [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest) |  | `Required` The new GithubIntegration resource |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.CreateGithubIntegrationResponse"></a>
-
-### CreateGithubIntegrationResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| integration | [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse) |  | `OutputOnly` The new GithubIntegration resource |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteGithubIntegrationRequest"></a>
-
-### DeleteGithubIntegrationRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| integration | [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest) |  | `Required` The deleted GithubIntegration resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteGithubIntegrationResponse"></a>
-
-### DeleteGithubIntegrationResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| integration | [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse) |  | `OutputOnly` The deleted GithubIntegration resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GetRepositoryMetadataRequest"></a>
-
-### GetRepositoryMetadataRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | `Required` The Repository ID. |
-| owner | [string](#string) |  | `Optional` The Repository owner. |
-| name | [string](#string) |  | `Optional` The Repository name. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GetRepositoryMetadataResponse"></a>
-
-### GetRepositoryMetadataResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | `OutputOnly` The Repository ID. |
-| owner | [string](#string) |  | `OutputOnly` The Repository owner. |
-| name | [string](#string) |  | `OutputOnly` The Repository name. |
-| meta | [GithubRepositoryReference](#ddev.administration.v1alpha1.GithubRepositoryReference) | repeated | `OutputOnly` The Repository metadata. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GithubIntegrationRequest"></a>
-
-### GithubIntegrationRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| installationID | [int64](#int64) |  | `Required` Installation ID. |
-| githubAppID | [int64](#int64) |  | `Required` Github App ID. |
-| githubAppSlug | [string](#string) |  | `Optional` Github App Slug. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GithubIntegrationResponse"></a>
-
-### GithubIntegrationResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| installationID | [int64](#int64) |  | `Required` Installation ID. |
-| githubAppID | [int64](#int64) |  | `Required` Github App ID. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GithubRepositoryName"></a>
-
-### GithubRepositoryName
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | `OutputOnly` The Repository ID. |
-| name | [string](#string) |  | `OutputOnly` The Repository name. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GithubRepositoryOwner"></a>
-
-### GithubRepositoryOwner
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `OutputOnly` The Owner name. |
-| repositories | [GithubRepositoryName](#ddev.administration.v1alpha1.GithubRepositoryName) | repeated | `OutputOnly` List of Repository Names for this Owner. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GithubRepositoryReference"></a>
-
-### GithubRepositoryReference
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sha | [string](#string) |  | `OutputOnly` Reference commit sha. |
-| branch | [string](#string) |  |  |
-| tag | [string](#string) |  |  |
-| pullrequest | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.ListGithubRepositoriesRequest"></a>
-
-### ListGithubRepositoriesRequest
-
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.ListGithubRepositoriesResponse"></a>
-
-### ListGithubRepositoriesResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| items | [GithubRepositoryOwner](#ddev.administration.v1alpha1.GithubRepositoryOwner) | repeated | `OutputOnly` Github repositories available to the user. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.UpdateGithubIntegrationRequest"></a>
-
-### UpdateGithubIntegrationRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| integration | [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest) |  | `Required` The updated GithubIntegration resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.UpdateGithubIntegrationResponse"></a>
-
-### UpdateGithubIntegrationResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| integration | [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse) |  | `OutputOnly` The updated GithubIntegration resource. |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
 
 
 
@@ -791,6 +343,23 @@ Scope is a structure helpful in parsing user authorization in a workspace
 
 
 
+
+<a name="ddev.administration.v1alpha1.Team"></a>
+
+### Team
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| Name | [string](#string) |  | `OutputOnly` The name of the team |
+| Members | [string](#string) | repeated | `OutputOnly` A list of members on this team |
+| Roles | [Role](#ddev.administration.v1alpha1.Role) | repeated | `OutputOnly` A list of custom roles defined for this team |
+
+
+
+
+
  
 
 
@@ -882,6 +451,454 @@ issued by the API.  This can be the integration token provided on the dashboard 
 | UpdateGithubIntegration | [UpdateGithubIntegrationRequest](#ddev.administration.v1alpha1.UpdateGithubIntegrationRequest) | [UpdateGithubIntegrationResponse](#ddev.administration.v1alpha1.UpdateGithubIntegrationResponse) | Updates a github integration |
 | ListGithubRepositories | [ListGithubRepositoriesRequest](#ddev.administration.v1alpha1.ListGithubRepositoriesRequest) | [ListGithubRepositoriesResponse](#ddev.administration.v1alpha1.ListGithubRepositoriesResponse) | List github repositories |
 | GetRepositoryMetadata | [GetRepositoryMetadataRequest](#ddev.administration.v1alpha1.GetRepositoryMetadataRequest) | [GetRepositoryMetadataResponse](#ddev.administration.v1alpha1.GetRepositoryMetadataResponse) | Returns metadata of a repository by ID |
+
+ 
+
+
+
+<a name="live/administration/v1alpha1/workspace.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/administration/v1alpha1/workspace.proto
+
+
+
+<a name="ddev.administration.v1alpha1.AddWorkspaceAdminRequest"></a>
+
+### AddWorkspaceAdminRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to add this administrator to. |
+| email | [string](#string) |  | `Required` The email of the workspace administrator |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.AddWorkspaceAdminResponse"></a>
+
+### AddWorkspaceAdminResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest"></a>
+
+### AddWorkspaceDeveloperRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to add this developer to. |
+| email | [string](#string) |  | `Required` The email of the workspace developer. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse"></a>
+
+### AddWorkspaceDeveloperResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest"></a>
+
+### DeleteWorkspaceAdminRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to remove this administrator from. |
+| email | [string](#string) |  | `Required` The email of the workspace administrator. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse"></a>
+
+### DeleteWorkspaceAdminResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest"></a>
+
+### DeleteWorkspaceDeveloperRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to remove this developer from. |
+| email | [string](#string) |  | `Required` The email of the workspace developer. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse"></a>
+
+### DeleteWorkspaceDeveloperResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListWorkspaceRequest"></a>
+
+### ListWorkspaceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| Scope | [ListWorkspaceRequest.ListWorkspaceScope](#ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope) |  | `Optional` The scope of the list request. Defaults to `ListWorkspaceScope.DEVELOPER`. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListWorkspaceResponse"></a>
+
+### ListWorkspaceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspaces | [Workspace](#ddev.administration.v1alpha1.Workspace) | repeated | `OutputOnly` - A workspace for the current user |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.Workspace"></a>
+
+### Workspace
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` Workspace Name. |
+| teams | [Team](#ddev.administration.v1alpha1.Team) | repeated | `OutputOnly` Administrators of the workspace |
+
+
+
+
+
+ 
+
+
+<a name="ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope"></a>
+
+### ListWorkspaceRequest.ListWorkspaceScope
+Defines the scope of the request.  If the scope is set to ADMIN the response will contain only workspaces where the provided token user is an administrator.
+If the request is set to DEVELOPER the response will contain any workspace where the provided token user is an administrator or a developer.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DEVELOPER | 0 |  |
+| ADMIN | 1 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="live/administration/v1alpha1/githubintegration.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/administration/v1alpha1/githubintegration.proto
+
+
+
+<a name="ddev.administration.v1alpha1.CreateGithubIntegrationRequest"></a>
+
+### CreateGithubIntegrationRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| integration | [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest) |  | `Required` The new GithubIntegration resource |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.CreateGithubIntegrationResponse"></a>
+
+### CreateGithubIntegrationResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| integration | [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse) |  | `OutputOnly` The new GithubIntegration resource |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteGithubIntegrationRequest"></a>
+
+### DeleteGithubIntegrationRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| integration | [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest) |  | `Required` The deleted GithubIntegration resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteGithubIntegrationResponse"></a>
+
+### DeleteGithubIntegrationResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| integration | [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse) |  | `OutputOnly` The deleted GithubIntegration resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GetRepositoryMetadataRequest"></a>
+
+### GetRepositoryMetadataRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `Required` The Repository ID. |
+| owner | [string](#string) |  | `Optional` The Repository owner. |
+| name | [string](#string) |  | `Optional` The Repository name. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GetRepositoryMetadataResponse"></a>
+
+### GetRepositoryMetadataResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `OutputOnly` The Repository ID. |
+| owner | [string](#string) |  | `OutputOnly` The Repository owner. |
+| name | [string](#string) |  | `OutputOnly` The Repository name. |
+| meta | [GithubRepositoryReference](#ddev.administration.v1alpha1.GithubRepositoryReference) | repeated | `OutputOnly` The Repository metadata. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubIntegrationRequest"></a>
+
+### GithubIntegrationRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| installationID | [int64](#int64) |  | `Required` Installation ID. |
+| githubAppID | [int64](#int64) |  | `Required` Github App ID. |
+| githubAppSlug | [string](#string) |  | `Optional` Github App Slug. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubIntegrationResponse"></a>
+
+### GithubIntegrationResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| installationID | [int64](#int64) |  | `Required` Installation ID. |
+| githubAppID | [int64](#int64) |  | `Required` Github App ID. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryName"></a>
+
+### GithubRepositoryName
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `OutputOnly` The Repository ID. |
+| name | [string](#string) |  | `OutputOnly` The Repository name. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryOwner"></a>
+
+### GithubRepositoryOwner
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` The Owner name. |
+| repositories | [GithubRepositoryName](#ddev.administration.v1alpha1.GithubRepositoryName) | repeated | `OutputOnly` List of Repository Names for this Owner. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryReference"></a>
+
+### GithubRepositoryReference
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sha | [string](#string) |  | `OutputOnly` Reference commit sha. |
+| branch | [string](#string) |  |  |
+| tag | [string](#string) |  |  |
+| pullrequest | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListGithubRepositoriesRequest"></a>
+
+### ListGithubRepositoriesRequest
+
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListGithubRepositoriesResponse"></a>
+
+### ListGithubRepositoriesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GithubRepositoryOwner](#ddev.administration.v1alpha1.GithubRepositoryOwner) | repeated | `OutputOnly` Github repositories available to the user. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.UpdateGithubIntegrationRequest"></a>
+
+### UpdateGithubIntegrationRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| integration | [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest) |  | `Required` The updated GithubIntegration resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.UpdateGithubIntegrationResponse"></a>
+
+### UpdateGithubIntegrationResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| integration | [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse) |  | `OutputOnly` The updated GithubIntegration resource. |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 

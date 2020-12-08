@@ -45,6 +45,27 @@ message Scope {
     string role = 3;
 }
 
+message Team {
+
+    /*
+    `OutputOnly`
+    The name of the team
+    */
+    string Name = 1;
+
+    /*
+    `OutputOnly`
+    A list of members on this team
+    */
+    repeated string Members = 2;
+
+    /*
+    `OutputOnly`
+    A list of custom roles defined for this team
+    */
+    repeated Role Roles = 3;
+}
+
 message Role {
 
     /*

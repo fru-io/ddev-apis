@@ -16,6 +16,8 @@ syntax = "proto3";
 
 package ddev.administration.v1alpha1;
 
+import "live/administration/v1alpha1/auth.proto";
+
 option go_package = "github.com/drud/admin-api/gen/live/administration/v1alpha1";
 option java_multiple_files = true;
 option java_outer_classname = "ServiceProto";
@@ -38,15 +40,9 @@ message Workspace {
     `OutputOnly`
     Administrators of the workspace
     */
-    repeated string admins = 2;
-    
-    /*
-    `OutputOnly`
-    Developers in the workspace
-    */
-    repeated string developers = 3;
-}
+    repeated Team teams = 2;
 
+}
 
 message ListWorkspaceRequest {
     
