@@ -144,6 +144,12 @@ message GithubRepositoryOwner {
     List of Repository Names for this Owner.
     */
     repeated GithubRepositoryName repositories = 2;
+
+    /*
+    `OutputOnly`
+    The Installation ID of this Owner's GitHub App installation.
+    */
+    string installationID = 3;
 }
 
 message GithubRepositoryName {

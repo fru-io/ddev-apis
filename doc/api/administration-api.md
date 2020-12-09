@@ -425,6 +425,7 @@ If the request is set to DEVELOPER the response will contain any workspace where
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | `OutputOnly` The Owner name. |
 | repositories | [GithubRepositoryName](#ddev.administration.v1alpha1.GithubRepositoryName) | repeated | `OutputOnly` List of Repository Names for this Owner. |
+| installationID | [string](#string) |  | `OutputOnly` The Installation ID of this Owner&#39;s GitHub App installation. |
 
 
 
