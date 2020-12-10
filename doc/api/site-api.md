@@ -3,26 +3,6 @@
 
 ## Table of Contents
 
-- [live/sites/v1alpha1/metadata.proto](#live/sites/v1alpha1/metadata.proto)
-    - [Metadata](#ddev.sites.v1alpha1.Metadata)
-    - [Metadata.LabelsEntry](#ddev.sites.v1alpha1.Metadata.LabelsEntry)
-  
-- [live/sites/v1alpha1/database.proto](#live/sites/v1alpha1/database.proto)
-    - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
-    - [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse)
-    - [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup)
-    - [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata)
-    - [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest)
-    - [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse)
-    - [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest)
-    - [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse)
-    - [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest)
-    - [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse)
-    - [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest)
-    - [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse)
-  
-    - [BackupState](#ddev.sites.v1alpha1.BackupState)
-  
 - [live/sites/v1alpha1/file.proto](#live/sites/v1alpha1/file.proto)
     - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
     - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
@@ -42,6 +22,26 @@
   
 - [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
     - [Sites](#ddev.sites.v1alpha1.Sites)
+  
+- [live/sites/v1alpha1/database.proto](#live/sites/v1alpha1/database.proto)
+    - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
+    - [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse)
+    - [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup)
+    - [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata)
+    - [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest)
+    - [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse)
+    - [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest)
+    - [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse)
+    - [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest)
+    - [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse)
+    - [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest)
+    - [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse)
+  
+    - [BackupState](#ddev.sites.v1alpha1.BackupState)
+  
+- [live/sites/v1alpha1/metadata.proto](#live/sites/v1alpha1/metadata.proto)
+    - [Metadata](#ddev.sites.v1alpha1.Metadata)
+    - [Metadata.LabelsEntry](#ddev.sites.v1alpha1.Metadata.LabelsEntry)
   
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
     - [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest)
@@ -80,272 +80,6 @@
     - [SiteType](#ddev.sites.v1alpha1.SiteType)
   
 - [Scalar Value Types](#scalar-value-types)
-
-
-
-<a name="live/sites/v1alpha1/metadata.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/sites/v1alpha1/metadata.proto
-
-
-
-<a name="ddev.sites.v1alpha1.Metadata"></a>
-
-### Metadata
-Generic metadata about the object.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| labels | [Metadata.LabelsEntry](#ddev.sites.v1alpha1.Metadata.LabelsEntry) | repeated | A map of labels set on the object |
-| created | [int64](#int64) |  | `OutputOnly` A unix timestamp which expresses the time in which this object was initially created. A zero value indicates that the timestamp has not been set. |
-| updated | [int64](#int64) |  | `OutputOnly` A unix timestamp which expresses the time in which this object was last updated. A zero value indicates that the timestamp has not been set. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.Metadata.LabelsEntry"></a>
-
-### Metadata.LabelsEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="live/sites/v1alpha1/database.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/sites/v1alpha1/database.proto
-
-
-
-<a name="ddev.sites.v1alpha1.BackupDatabaseRequest"></a>
-
-### BackupDatabaseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [string](#string) |  | `Required` The name of the site to backup. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.BackupDatabaseResponse"></a>
-
-### BackupDatabaseResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | The state of the backup |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.DatabaseBackup"></a>
-
-### DatabaseBackup
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| metadata | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | Metadata information about this backup |
-| content | [bytes](#bytes) |  | The raw bytes the the content. Supported MIME Types: `gz` |
-| CRC32c | [string](#string) |  | `Optional` CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. In the event of streaming requests the CRC32c shall represent the checksum of the entire file. If provided a checksum mismatch will result in an error on the receiver. |
-| MD5 | [string](#string) |  | `Optional` MD5 hash of the data; encoded using base64. In the event of streaming requests the MD5 shall represent the checksum of the entire file. If provided a checksum mismatch will result in an error on the receiver. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.DatabaseBackupMetadata"></a>
-
-### DatabaseBackupMetadata
-The backup object
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the backup |
-| databaseReference | [string](#string) |  | The database this backup references |
-| created | [int64](#int64) |  | `OutputOnly` The unix timestamp in which this backup was taken |
-| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  | `OutputOnly` The state of this backup |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ListDatabaseBackupsRequest"></a>
-
-### ListDatabaseBackupsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [string](#string) |  | `Required` The name of the site |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.ListDatabaseBackupsResponse"></a>
-
-### ListDatabaseBackupsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) | repeated | `OutputOnly` The metadata for all backup objects. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PullDatabaseBackupRequest"></a>
-
-### PullDatabaseBackupRequest
-Pull database pulls the state of a specified database backup
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| backup | [string](#string) |  | `Required` The name of the backup to pull. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PullDatabaseBackupResponse"></a>
-
-### PullDatabaseBackupResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | `OutputOnly` The backup object |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PushDatabaseBackupRequest"></a>
-
-### PushDatabaseBackupRequest
-Push a single database to a site
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [string](#string) |  | `Required` The name of the site to push to. |
-| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | The backup object |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PushDatabaseBackupResponse"></a>
-
-### PushDatabaseBackupResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| backup | [string](#string) |  | The name of the restorable backup resource |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.RestoreDatabaseRequest"></a>
-
-### RestoreDatabaseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| site | [string](#string) |  | `Required` The name of the site to restore. |
-| backup | [string](#string) |  | `Required` The name of the backup to restore the site to. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.RestoreDatabaseResponse"></a>
-
-### RestoreDatabaseResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | The state of the backup |
-
-
-
-
-
- 
-
-
-<a name="ddev.sites.v1alpha1.BackupState"></a>
-
-### BackupState
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| CREATED | 0 |  |
-| FINISHED | 1 |  |
-| DELETED | 2 |  |
-
-
- 
-
- 
-
- 
 
 
 
@@ -653,6 +387,272 @@ several metadata to be passed to the client.
 | PullFileBackupStream | [PullFileBackupRequest](#ddev.sites.v1alpha1.PullFileBackupRequest) | [PullFileBackupResponse](#ddev.sites.v1alpha1.PullFileBackupResponse) stream | PullFileStream streams currently staged file[s] from the server and pulls them down to a local source |
 | DescribeFileBackup | [DescribeFileBackupRequest](#ddev.sites.v1alpha1.DescribeFileBackupRequest) | [DescribeFileBackupResponse](#ddev.sites.v1alpha1.DescribeFileBackupResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
 | ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
+
+ 
+
+
+
+<a name="live/sites/v1alpha1/database.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/database.proto
+
+
+
+<a name="ddev.sites.v1alpha1.BackupDatabaseRequest"></a>
+
+### BackupDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site to backup. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.BackupDatabaseResponse"></a>
+
+### BackupDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | The state of the backup |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DatabaseBackup"></a>
+
+### DatabaseBackup
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | Metadata information about this backup |
+| content | [bytes](#bytes) |  | The raw bytes the the content. Supported MIME Types: `gz` |
+| CRC32c | [string](#string) |  | `Optional` CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. In the event of streaming requests the CRC32c shall represent the checksum of the entire file. If provided a checksum mismatch will result in an error on the receiver. |
+| MD5 | [string](#string) |  | `Optional` MD5 hash of the data; encoded using base64. In the event of streaming requests the MD5 shall represent the checksum of the entire file. If provided a checksum mismatch will result in an error on the receiver. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.DatabaseBackupMetadata"></a>
+
+### DatabaseBackupMetadata
+The backup object
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the backup |
+| databaseReference | [string](#string) |  | The database this backup references |
+| created | [int64](#int64) |  | `OutputOnly` The unix timestamp in which this backup was taken |
+| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  | `OutputOnly` The state of this backup |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListDatabaseBackupsRequest"></a>
+
+### ListDatabaseBackupsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListDatabaseBackupsResponse"></a>
+
+### ListDatabaseBackupsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) | repeated | `OutputOnly` The metadata for all backup objects. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PullDatabaseBackupRequest"></a>
+
+### PullDatabaseBackupRequest
+Pull database pulls the state of a specified database backup
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [string](#string) |  | `Required` The name of the backup to pull. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PullDatabaseBackupResponse"></a>
+
+### PullDatabaseBackupResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | `OutputOnly` The backup object |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PushDatabaseBackupRequest"></a>
+
+### PushDatabaseBackupRequest
+Push a single database to a site
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site to push to. |
+| backup | [DatabaseBackup](#ddev.sites.v1alpha1.DatabaseBackup) |  | The backup object |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PushDatabaseBackupResponse"></a>
+
+### PushDatabaseBackupResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [string](#string) |  | The name of the restorable backup resource |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.RestoreDatabaseRequest"></a>
+
+### RestoreDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [string](#string) |  | `Required` The name of the site to restore. |
+| backup | [string](#string) |  | `Required` The name of the backup to restore the site to. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.RestoreDatabaseResponse"></a>
+
+### RestoreDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | The state of the backup |
+
+
+
+
+
+ 
+
+
+<a name="ddev.sites.v1alpha1.BackupState"></a>
+
+### BackupState
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CREATED | 0 |  |
+| FINISHED | 1 |  |
+| DELETED | 2 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="live/sites/v1alpha1/metadata.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/metadata.proto
+
+
+
+<a name="ddev.sites.v1alpha1.Metadata"></a>
+
+### Metadata
+Generic metadata about the object.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| labels | [Metadata.LabelsEntry](#ddev.sites.v1alpha1.Metadata.LabelsEntry) | repeated | A map of labels set on the object |
+| created | [int64](#int64) |  | `OutputOnly` A unix timestamp which expresses the time in which this object was initially created. A zero value indicates that the timestamp has not been set. |
+| updated | [int64](#int64) |  | `OutputOnly` A unix timestamp which expresses the time in which this object was last updated. A zero value indicates that the timestamp has not been set. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.Metadata.LabelsEntry"></a>
+
+### Metadata.LabelsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 
