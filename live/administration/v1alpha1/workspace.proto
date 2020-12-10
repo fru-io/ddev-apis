@@ -76,12 +76,6 @@ message AddWorkspaceAdminRequest {
 
     /*
     `Required`
-    The name of the workspace to add this administrator to.
-    */
-    string workspace = 1;
-
-    /*
-    `Required`
     The email of the workspace administrator
     */
     string email = 2;
@@ -96,12 +90,6 @@ message AddWorkspaceAdminResponse {
 }
 
 message AddWorkspaceDeveloperRequest {
-
-    /*
-    `Required`
-    The name of the workspace to add this developer to.
-    */
-    string workspace = 1;
 
     /*
     `Required`
@@ -122,12 +110,6 @@ message DeleteWorkspaceAdminRequest {
 
     /*
     `Required`
-    The name of the workspace to remove this administrator from.
-    */
-    string workspace = 1;
-
-    /*
-    `Required`
     The email of the workspace administrator.
     */
     string email = 2;
@@ -143,12 +125,6 @@ message DeleteWorkspaceAdminResponse {
 }
 
 message DeleteWorkspaceDeveloperRequest {
-
-    /*
-    `Required`
-    The name of the workspace to remove this developer from.
-    */
-    string workspace = 1;
     
     /*
     `Required`
@@ -164,4 +140,31 @@ message DeleteWorkspaceDeveloperResponse {
     The updated workspace resource.
     */
     Workspace workspace = 1;
+}
+
+
+message ListWorkspaceDeveloperRequest {
+}
+
+message ListWorkspaceDeveloperResponse {
+
+    /*
+    `OutputOnly`
+    The email of workspace developers.
+    */
+    repeated string developers = 1;
+}
+
+
+
+message ListWorkspaceAdminRequest {
+}
+
+message ListWorkspaceAdminResponse {
+
+    /*
+    `OutputOnly`
+    The email of workspace developers.
+    */
+    repeated string administrators = 1;
 }

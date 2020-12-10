@@ -110,6 +110,18 @@ service Administration {
     rpc DeleteWorkspaceDeveloper(DeleteWorkspaceDeveloperRequest) returns (DeleteWorkspaceDeveloperResponse) {       
     }
 
+    /* 
+    Remove an administrator from a workspace.  Requires a workspace administrator token.  An administrator cannot remove themselves.
+    */
+    rpc ListWorkspaceAdmin(ListWorkspaceAdminRequest) returns (ListWorkspaceAdminResponse) {       
+    }
+
+    /* 
+    Remove a developer from a workspace.  Requires a workspace administrator token.
+    */
+    rpc ListWorkspaceDeveloper(ListWorkspaceDeveloperRequest) returns (ListWorkspaceDeveloperResponse) {       
+    }
+
     /*
     Helpers on parsing permissions from context metadata
     */
