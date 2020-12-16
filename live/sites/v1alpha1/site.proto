@@ -87,6 +87,11 @@ message Site {
   SiteType type = 4;
 
   /*
+  The URLs for the site
+  */
+  repeated string urls = 5;
+
+  /*
   The version of the CMS used for the site
   */
   string version = 18;

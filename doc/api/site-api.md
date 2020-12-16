@@ -1083,6 +1083,7 @@ Cron manages if and when the CMS cron executes
 | workspace | [string](#string) |  |  |
 | git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | The type of the CMS used for the site |
+| urls | [string](#string) | repeated | The URLs for the site |
 | version | [string](#string) |  | The version of the CMS used for the site |
 | composerInstall | [bool](#bool) |  | Whether to run composer install when creating the site image |
 | composerArgs | [string](#string) | repeated | If `composerInstall` is set, use this flags to specify which args are passed to composer install |
