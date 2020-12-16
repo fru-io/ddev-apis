@@ -234,6 +234,17 @@ message DescribeCloneResponse {
 
 }
 
+message DeleteCloneRequest {
+  /*
+  `Required`
+  Reference to the clone site operation 
+  */
+  string operationRef = 1;
+}
+
+message DeleteCloneResponse {
+}
+
 message ListCloneSiteOperationsRequest {}
 
 message ListCloneSiteOperationsResponse {
