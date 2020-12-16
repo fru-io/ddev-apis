@@ -71,6 +71,7 @@
     - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
     - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
     - [Site](#ddev.sites.v1alpha1.Site)
+    - [Site.StatusEntry](#ddev.sites.v1alpha1.Site.StatusEntry)
     - [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest)
     - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
     - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
@@ -79,6 +80,7 @@
     - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
   
     - [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState)
+    - [SiteStatus](#ddev.sites.v1alpha1.SiteStatus)
     - [SiteType](#ddev.sites.v1alpha1.SiteType)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -1084,6 +1086,7 @@ Cron manages if and when the CMS cron executes
 | git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | The type of the CMS used for the site |
 | urls | [string](#string) | repeated | The URLs for the site |
+| status | [Site.StatusEntry](#ddev.sites.v1alpha1.Site.StatusEntry) | repeated | A map of statuses for a site. Keys for this map are expressed by the enumerated type SiteStatus where each value will represent a boolean indicating a healthy response |
 | version | [string](#string) |  | The version of the CMS used for the site |
 | composerInstall | [bool](#bool) |  | Whether to run composer install when creating the site image |
 | composerArgs | [string](#string) | repeated | If `composerInstall` is set, use this flags to specify which args are passed to composer install |
@@ -1091,6 +1094,22 @@ Cron manages if and when the CMS cron executes
 | DocRoot | [string](#string) |  | The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
 | persistentPaths | [string](#string) | repeated | A list of persistent mount paths relative to docroot (ex. content/uploads). |
 | ephemeralPaths | [string](#string) | repeated | A list of ephemeral mount paths relative to docroot |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.Site.StatusEntry"></a>
+
+### Site.StatusEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [int32](#int32) |  |  |
+| value | [bool](#bool) |  |  |
 
 
 
@@ -1193,6 +1212,19 @@ TODO
 | CLONE_CREATED | 0 |  |
 | CLONE_SUCCEEDED | 1 |  |
 | CLONE_FAILED | 2 |  |
+
+
+
+<a name="ddev.sites.v1alpha1.SiteStatus"></a>
+
+### SiteStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SERVER | 0 |  |
+| DATABASE | 1 |  |
+| FILESTORE | 2 |  |
 
 
 

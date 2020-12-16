@@ -98,9 +98,9 @@ message Site {
   repeated string urls = 5;
 
   /*
-  The status of the site
+  A map of statuses for a site.  Keys for this map are expressed by the enumerated type SiteStatus where each value will represent a boolean indicating a healthy response
   */
-  map<int64, bool> status = 15;
+  map<int32, bool> status = 15;
 
   /*
   The version of the CMS used for the site
