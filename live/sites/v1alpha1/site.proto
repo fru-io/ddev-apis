@@ -40,6 +40,15 @@ enum CloneOperationState {
     CLONE_FAILED = 2;
 }
 
+enum SiteStatus {
+  SERVER_HEALTHY = 0;
+  SERVER_UNHEALTHY = 1;
+  DATABASE_HEALTHY = 2;
+  DATABASE_UNHEALTHY = 3;
+  FILESTORE_HEALTHY = 4;
+  FILESTORE_UNHEALTHY = 5;
+}
+
 message GitRepository {
   /*
   The URL of the repository
@@ -90,6 +99,11 @@ message Site {
   The URLs for the site
   */
   repeated string urls = 5;
+
+  /*
+  The status of the site
+  */
+  repeated SiteStatus status = 15;
 
   /*
   The version of the CMS used for the site
