@@ -41,12 +41,9 @@ enum CloneOperationState {
 }
 
 enum SiteStatus {
-  SERVER_HEALTHY = 0;
-  SERVER_UNHEALTHY = 1;
-  DATABASE_HEALTHY = 2;
-  DATABASE_UNHEALTHY = 3;
-  FILESTORE_HEALTHY = 4;
-  FILESTORE_UNHEALTHY = 5;
+  SERVER = 0;
+  DATABASE = 1;
+  FILESTORE = 2;
 }
 
 message GitRepository {
@@ -103,7 +100,7 @@ message Site {
   /*
   The status of the site
   */
-  repeated SiteStatus status = 15;
+  map<int64, bool> status = 15;
 
   /*
   The version of the CMS used for the site
