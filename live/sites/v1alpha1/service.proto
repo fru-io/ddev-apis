@@ -120,6 +120,12 @@ service Sites {
     rpc ListClonesForSite(ListClonesForSiteRequest) returns (ListClonesForSiteResponse) {
     }
 
+    /*
+    DeleteClone removes a clone resource and any children of that clone resource
+    */
+    rpc DeleteClone(DeleteCloneRequest) returns (DeleteCloneResponse) {
+    }
+
     // Databases
 
     /*
