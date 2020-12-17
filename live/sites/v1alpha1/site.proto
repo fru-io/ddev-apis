@@ -40,10 +40,10 @@ enum CloneOperationState {
     CLONE_FAILED = 2;
 }
 
-enum SiteStatus {
-  SERVER = 0;
-  DATABASE = 1;
-  FILESTORE = 2;
+message SiteStatus {
+  bool server = 1;
+  bool database = 2;
+  bool filestore = 3;
 }
 
 message GitRepository {

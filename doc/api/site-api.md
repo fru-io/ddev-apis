@@ -76,11 +76,11 @@
     - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
     - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
     - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
+    - [SiteStatus](#ddev.sites.v1alpha1.SiteStatus)
     - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
     - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
   
     - [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState)
-    - [SiteStatus](#ddev.sites.v1alpha1.SiteStatus)
     - [SiteType](#ddev.sites.v1alpha1.SiteType)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -1180,6 +1180,23 @@ TODO:
 
 
 
+<a name="ddev.sites.v1alpha1.SiteStatus"></a>
+
+### SiteStatus
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| server | [bool](#bool) |  |  |
+| database | [bool](#bool) |  |  |
+| filestore | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.UpdateSiteRequest"></a>
 
 ### UpdateSiteRequest
@@ -1212,19 +1229,6 @@ TODO
 | CLONE_CREATED | 0 |  |
 | CLONE_SUCCEEDED | 1 |  |
 | CLONE_FAILED | 2 |  |
-
-
-
-<a name="ddev.sites.v1alpha1.SiteStatus"></a>
-
-### SiteStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| SERVER | 0 |  |
-| DATABASE | 1 |  |
-| FILESTORE | 2 |  |
 
 
 
