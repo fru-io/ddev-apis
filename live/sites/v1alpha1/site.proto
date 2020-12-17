@@ -40,6 +40,18 @@ enum CloneOperationState {
     CLONE_FAILED = 2;
 }
 
+/*
+Defines the overall status of a site.  A site is defined as health when all substatus elements are true.
+*/
+message SiteStatus {
+  // Server healthy status
+  bool server = 1;
+  // Database healthy status
+  bool database = 2;
+  // Filestore healthy status
+  bool filestore = 3;
+}
+
 message GitRepository {
   /*
   The URL of the repository
@@ -85,6 +97,16 @@ message Site {
   The type of the CMS used for the site
   */
   SiteType type = 4;
+
+  /*
+  The URLs for the site
+  */
+  repeated string urls = 5;
+
+  /*
+  A set of different status descriptions for a site
+  */
+  SiteStatus status = 15;
 
   /*
   The version of the CMS used for the site
@@ -232,6 +254,17 @@ message DescribeCloneResponse {
   */
   string stateDetail = 17;
 
+}
+
+message DeleteCloneRequest {
+  /*
+  `Required`
+  Reference to the clone site operation 
+  */
+  string operationRef = 1;
+}
+
+message DeleteCloneResponse {
 }
 
 message ListCloneSiteOperationsRequest {}
