@@ -71,7 +71,6 @@
     - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
     - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
     - [Site](#ddev.sites.v1alpha1.Site)
-    - [Site.StatusEntry](#ddev.sites.v1alpha1.Site.StatusEntry)
     - [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest)
     - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
     - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
@@ -1086,7 +1085,7 @@ Cron manages if and when the CMS cron executes
 | git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | The type of the CMS used for the site |
 | urls | [string](#string) | repeated | The URLs for the site |
-| status | [Site.StatusEntry](#ddev.sites.v1alpha1.Site.StatusEntry) | repeated | A map of statuses for a site. Keys for this map are expressed by the enumerated type names from SiteStatus where each value will represent a boolean indicating a healthy response |
+| status | [SiteStatus](#ddev.sites.v1alpha1.SiteStatus) |  | A set of different status descriptions for a site |
 | version | [string](#string) |  | The version of the CMS used for the site |
 | composerInstall | [bool](#bool) |  | Whether to run composer install when creating the site image |
 | composerArgs | [string](#string) | repeated | If `composerInstall` is set, use this flags to specify which args are passed to composer install |
@@ -1094,22 +1093,6 @@ Cron manages if and when the CMS cron executes
 | DocRoot | [string](#string) |  | The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
 | persistentPaths | [string](#string) | repeated | A list of persistent mount paths relative to docroot (ex. content/uploads). |
 | ephemeralPaths | [string](#string) | repeated | A list of ephemeral mount paths relative to docroot |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.Site.StatusEntry"></a>
-
-### Site.StatusEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [bool](#bool) |  |  |
 
 
 
@@ -1183,14 +1166,14 @@ TODO:
 <a name="ddev.sites.v1alpha1.SiteStatus"></a>
 
 ### SiteStatus
-
+Defines the overall status of a site.  A site is defined as health when all substatus elements are true.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| server | [bool](#bool) |  |  |
-| database | [bool](#bool) |  |  |
-| filestore | [bool](#bool) |  |  |
+| server | [bool](#bool) |  | Server healthy status |
+| database | [bool](#bool) |  | Database healthy status |
+| filestore | [bool](#bool) |  | Filestore healthy status |
 
 
 

@@ -40,9 +40,15 @@ enum CloneOperationState {
     CLONE_FAILED = 2;
 }
 
+/*
+Defines the overall status of a site.  A site is defined as health when all substatus elements are true.
+*/
 message SiteStatus {
+  // Server healthy status
   bool server = 1;
+  // Database healthy status
   bool database = 2;
+  // Filestore healthy status
   bool filestore = 3;
 }
 
@@ -98,9 +104,9 @@ message Site {
   repeated string urls = 5;
 
   /*
-  A map of statuses for a site.  Keys for this map are expressed by the enumerated type names from SiteStatus where each value will represent a boolean indicating a healthy response
+  A set of different status descriptions for a site
   */
-  map<string, bool> status = 15;
+  SiteStatus status = 15;
 
   /*
   The version of the CMS used for the site
