@@ -2,63 +2,6 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
-package(default_visibility = ["//visibility:public"])
-
-proto_library(
-    name = "database_proto",
-    srcs = [
-        "database.proto",
-    ],
-    visibility = [
-        "//visibility:public",
-    ],
-)
-
-proto_library(
-    name = "file_proto",
-    srcs = [
-        "file.proto",
-    ],
-    visibility = [
-        "//visibility:public",
-    ],
-)
-
-proto_library(
-    name = "metadata_proto",
-    srcs = [
-        "metadata.proto",
-    ],
-    visibility = [
-        "//visibility:public",
-    ],
-)
-
-proto_library(
-    name = "service_proto",
-    srcs = [
-        "service.proto",
-    ],
-    visibility = [
-        "//visibility:public",
-    ],
-    deps = [
-        ":database_proto",
-        ":file_proto",
-        ":site_proto",
-    ],
-)
-
-proto_library(
-    name = "site_proto",
-    srcs = [
-        "site.proto",
-    ],
-    visibility = [
-        "//visibility:public",
-    ],
-)
-
 proto_library(
     name = "v1alpha1_proto",
     srcs = [
@@ -68,6 +11,7 @@ proto_library(
         "service.proto",
         "site.proto",
     ],
+    visibility = ["//visibility:public"],
 )
 
 go_proto_library(
@@ -75,10 +19,12 @@ go_proto_library(
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
     importpath = "github.com/drud/site-api/gen/live/sites/v1alpha1",
     proto = ":v1alpha1_proto",
+    visibility = ["//visibility:public"],
 )
 
 go_library(
     name = "go_default_library",
     embed = [":v1alpha1_go_proto"],
     importpath = "github.com/drud/site-api/gen/live/sites/v1alpha1",
+    visibility = ["//visibility:public"],
 )
