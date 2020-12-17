@@ -75,6 +75,7 @@
     - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
     - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
     - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
+    - [SiteStatus](#ddev.sites.v1alpha1.SiteStatus)
     - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
     - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
   
@@ -1083,6 +1084,8 @@ Cron manages if and when the CMS cron executes
 | workspace | [string](#string) |  |  |
 | git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | The type of the CMS used for the site |
+| urls | [string](#string) | repeated | The URLs for the site |
+| status | [SiteStatus](#ddev.sites.v1alpha1.SiteStatus) |  | A set of different status descriptions for a site |
 | version | [string](#string) |  | The version of the CMS used for the site |
 | composerInstall | [bool](#bool) |  | Whether to run composer install when creating the site image |
 | composerArgs | [string](#string) | repeated | If `composerInstall` is set, use this flags to specify which args are passed to composer install |
@@ -1154,6 +1157,23 @@ TODO:
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | content | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.SiteStatus"></a>
+
+### SiteStatus
+Defines the overall status of a site.  A site is defined as health when all substatus elements are true.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| server | [bool](#bool) |  | Server healthy status |
+| database | [bool](#bool) |  | Database healthy status |
+| filestore | [bool](#bool) |  | Filestore healthy status |
 
 
 
