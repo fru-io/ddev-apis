@@ -46,6 +46,8 @@
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
     - [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest)
     - [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse)
+    - [BuildLogsRequest](#ddev.sites.v1alpha1.BuildLogsRequest)
+    - [BuildLogsResponse](#ddev.sites.v1alpha1.BuildLogsResponse)
     - [CloneOperation](#ddev.sites.v1alpha1.CloneOperation)
     - [CloneRequest](#ddev.sites.v1alpha1.CloneRequest)
     - [CloneResponse](#ddev.sites.v1alpha1.CloneResponse)
@@ -371,6 +373,7 @@ several metadata to be passed to the client.
 | SiteLogStream | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogStream returns a stream of logs for a site |
 | AccessLogStream | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogStream returns a stream of access logs for a site |
 | MysqlLogStream | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogStream returns a stream of access logs for a site |
+| BuildLogStream | [BuildLogsRequest](#ddev.sites.v1alpha1.BuildLogsRequest) | [BuildLogsResponse](#ddev.sites.v1alpha1.BuildLogsResponse) stream | BuildLogStream returns a stream of build logs for a site |
 | SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
 | CloneSite | [CloneRequest](#ddev.sites.v1alpha1.CloneRequest) | [CloneResponse](#ddev.sites.v1alpha1.CloneResponse) | CloneSite creates a clone of already existing site |
 | DescribeClone | [DescribeCloneRequest](#ddev.sites.v1alpha1.DescribeCloneRequest) | [DescribeCloneResponse](#ddev.sites.v1alpha1.DescribeCloneResponse) | DescribeClone describes the status of an in progress clone operation |
@@ -694,6 +697,38 @@ Generic metadata about the object.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | content | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.BuildLogsRequest"></a>
+
+### BuildLogsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the site |
+| options | [LogOptions](#ddev.sites.v1alpha1.LogOptions) |  | `Optional` Additional options for logging |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.BuildLogsResponse"></a>
+
+### BuildLogsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| scope | [string](#string) |  | `OutputOnly` A named scope to which these log messages apply |
+| content | [bytes](#bytes) |  | `OutputOnly` The log data for this scope of logs |
 
 
 

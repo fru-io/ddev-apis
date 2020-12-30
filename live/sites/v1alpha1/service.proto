@@ -87,6 +87,14 @@ service Sites {
 
     }
 
+
+    /*
+    BuildLogStream returns a stream of build logs for a site
+    */
+    rpc BuildLogStream(BuildLogsRequest) returns (stream BuildLogsResponse) {
+
+    }
+
     /*
     SiteExecStream allows for the streaming execution of commands inside a site container
     */
