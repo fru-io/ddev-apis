@@ -14,6 +14,7 @@ jobs:
       - name: prep npm
         run: |
           sudo apt update
+          sudo apt install -y nodejs-dev node-gyp libssl1.0-dev
           sudo apt install -y npm
       - name: prep protoc
         run: |
