@@ -50,6 +50,12 @@ message SiteStatus {
   bool database = 2;
   // Filestore healthy status
   bool filestore = 3;
+  // DNS updated status
+  bool dns = 4;
+  // Building status, if a site is currently building either initially or updating
+  bool building = 5;
+  // Deleted status, if a site has been deleted from the platform
+  bool deleted = 6;
 }
 
 message GitRepository {
@@ -403,6 +409,23 @@ message ListSiteResponse {
   A list of sites.
   */
   repeated Site sites = 1;
+}
+
+
+/*
+*/
+message ListSiteStreamRequest {
+}
+
+/*
+*/
+message ListSiteStreamResponse {
+
+  /*
+  `OutputOnly`
+  A site representing an add/update/delete event
+  */
+  Site site = 1;
 }
 
 /*

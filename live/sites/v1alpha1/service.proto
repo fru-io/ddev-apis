@@ -57,6 +57,12 @@ service Sites {
     }
 
     /*
+    ListSiteStream returns all sites within a workspace and watches for any new sites or updates to previously returned sites
+    */
+    rpc ListSiteStream(ListSiteStreamRequest) returns (stream ListSiteStreamResponse) {
+    }
+
+    /*
     */
     rpc UpdateSite(UpdateSiteRequest) returns (UpdateSiteResponse) {
     }

@@ -69,6 +69,8 @@
     - [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse)
     - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
     - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
+    - [ListSiteStreamRequest](#ddev.sites.v1alpha1.ListSiteStreamRequest)
+    - [ListSiteStreamResponse](#ddev.sites.v1alpha1.ListSiteStreamResponse)
     - [LogOptions](#ddev.sites.v1alpha1.LogOptions)
     - [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest)
     - [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse)
@@ -368,6 +370,7 @@ several metadata to be passed to the client.
 | CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
 | GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
 | ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
+| ListSiteStream | [ListSiteStreamRequest](#ddev.sites.v1alpha1.ListSiteStreamRequest) | [ListSiteStreamResponse](#ddev.sites.v1alpha1.ListSiteStreamResponse) stream | ListSiteStream returns all sites within a workspace and watches for any new sites or updates to previously returned sites |
 | UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
 | DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
 | SiteLogStream | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogStream returns a stream of logs for a site |
@@ -1055,6 +1058,31 @@ Cron manages if and when the CMS cron executes
 
 
 
+<a name="ddev.sites.v1alpha1.ListSiteStreamRequest"></a>
+
+### ListSiteStreamRequest
+
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.ListSiteStreamResponse"></a>
+
+### ListSiteStreamResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` A site representing an add/update/delete event |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.LogOptions"></a>
 
 ### LogOptions
@@ -1209,6 +1237,9 @@ Defines the overall status of a site.  A site is defined as health when all subs
 | server | [bool](#bool) |  | Server healthy status |
 | database | [bool](#bool) |  | Database healthy status |
 | filestore | [bool](#bool) |  | Filestore healthy status |
+| dns | [bool](#bool) |  | DNS updated status |
+| building | [bool](#bool) |  | Building status, if a site is currently building either initially or updating |
+| deleted | [bool](#bool) |  | Deleted status, if a site has been deleted from the platform |
 
 
 
