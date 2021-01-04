@@ -54,6 +54,8 @@ message SiteStatus {
   bool dns = 4;
   // Building status, if a site is currently building either initially or updating
   bool building = 5;
+  // Deleted status, if a site has been deleted from the platform
+  bool deleted = 6;
 }
 
 message GitRepository {
