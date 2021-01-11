@@ -717,200 +717,192 @@ Describes a set of access policies for a user
 <a name="live/administration/v1alpha1/workspace.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## live/administration/v1alpha1/workspace.proto
+## live/administration/v1alpha1/githubintegration.proto
 
 
 
-<a name="ddev.administration.v1alpha1.AddWorkspaceAdminRequest"></a>
+<a name="ddev.administration.v1alpha1.CreateGithubIntegrationRequest"></a>
 
-### AddWorkspaceAdminRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to add this administrator to. |
-| email | [string](#string) |  | `Required` The email of the workspace administrator |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceAdminResponse"></a>
-
-### AddWorkspaceAdminResponse
+### CreateGithubIntegrationRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+| integration | [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest) |  | `Required` The new GithubIntegration resource |
 
 
 
 
 
 
-<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest"></a>
+<a name="ddev.administration.v1alpha1.CreateGithubIntegrationResponse"></a>
 
-### AddWorkspaceDeveloperRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to add this developer to. |
-| email | [string](#string) |  | `Required` The email of the workspace developer. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse"></a>
-
-### AddWorkspaceDeveloperResponse
+### CreateGithubIntegrationResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+| integration | [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse) |  | `OutputOnly` The new GithubIntegration resource |
 
 
 
 
 
 
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest"></a>
+<a name="ddev.administration.v1alpha1.DeleteGithubIntegrationRequest"></a>
 
-### DeleteWorkspaceAdminRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to remove this administrator from. |
-| email | [string](#string) |  | `Required` The email of the workspace administrator. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse"></a>
-
-### DeleteWorkspaceAdminResponse
+### DeleteGithubIntegrationRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+| integration | [GithubIntegrationRequest](#ddev.administration.v1alpha1.GithubIntegrationRequest) |  | `Required` The deleted GithubIntegration resource. |
 
 
 
 
 
 
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest"></a>
+<a name="ddev.administration.v1alpha1.DeleteGithubIntegrationResponse"></a>
 
-### DeleteWorkspaceDeveloperRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to remove this developer from. |
-| email | [string](#string) |  | `Required` The email of the workspace developer. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse"></a>
-
-### DeleteWorkspaceDeveloperResponse
+### DeleteGithubIntegrationResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+| integration | [GithubIntegrationResponse](#ddev.administration.v1alpha1.GithubIntegrationResponse) |  | `OutputOnly` The deleted GithubIntegration resource. |
 
 
 
 
 
 
-<a name="ddev.administration.v1alpha1.ListWorkspaceRequest"></a>
+<a name="ddev.administration.v1alpha1.GetRepositoryMetadataRequest"></a>
 
-### ListWorkspaceRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| Scope | [ListWorkspaceRequest.ListWorkspaceScope](#ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope) |  | `Optional` The scope of the list request. Defaults to `ListWorkspaceScope.DEVELOPER`. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.ListWorkspaceResponse"></a>
-
-### ListWorkspaceResponse
+### GetRepositoryMetadataRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| workspaces | [Workspace](#ddev.administration.v1alpha1.Workspace) | repeated | `OutputOnly` - A workspace for the current user |
+| id | [string](#string) |  | `Required` The Repository ID. |
+| owner | [string](#string) |  | `Optional` The Repository owner. |
+| name | [string](#string) |  | `Optional` The Repository name. |
 
 
 
 
 
 
-<a name="ddev.administration.v1alpha1.Workspace"></a>
+<a name="ddev.administration.v1alpha1.GetRepositoryMetadataResponse"></a>
 
-### Workspace
+### GetRepositoryMetadataResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `OutputOnly` Workspace Name. |
-| admins | [string](#string) | repeated | `OutputOnly` Administrators of the workspace |
-| developers | [string](#string) | repeated | `OutputOnly` Developers in the workspace |
+| id | [string](#string) |  | `OutputOnly` The Repository ID. |
+| owner | [string](#string) |  | `OutputOnly` The Repository owner. |
+| name | [string](#string) |  | `OutputOnly` The Repository name. |
+| meta | [GithubRepositoryReference](#ddev.administration.v1alpha1.GithubRepositoryReference) | repeated | `OutputOnly` The Repository metadata. |
 
 
 
 
 
- 
+
+<a name="ddev.administration.v1alpha1.GithubIntegrationRequest"></a>
+
+### GithubIntegrationRequest
 
 
-<a name="ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope"></a>
 
-### ListWorkspaceRequest.ListWorkspaceScope
-Defines the scope of the request.  If the scope is set to ADMIN the response will contain only workspaces where the provided token user is an administrator.
-If the request is set to DEVELOPER the response will contain any workspace where the provided token user is an administrator or a developer.
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| DEVELOPER | 0 |  |
-| ADMIN | 1 |  |
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| installationID | [int64](#int64) |  | `Required` Installation ID. |
+| githubAppID | [int64](#int64) |  | `Required` Github App ID. |
+| githubAppSlug | [string](#string) |  | `Optional` Github App Slug. |
 
 
- 
 
- 
 
- 
+
+
+<a name="ddev.administration.v1alpha1.GithubIntegrationResponse"></a>
+
+### GithubIntegrationResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| installationID | [int64](#int64) |  | `Required` Installation ID. |
+| githubAppID | [int64](#int64) |  | `Required` Github App ID. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryName"></a>
+
+### GithubRepositoryName
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | `OutputOnly` The Repository ID. |
+| name | [string](#string) |  | `OutputOnly` The Repository name. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryOwner"></a>
+
+### GithubRepositoryOwner
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` The Owner name. |
+| repositories | [GithubRepositoryName](#ddev.administration.v1alpha1.GithubRepositoryName) | repeated | `OutputOnly` List of Repository Names for this Owner. |
+| installationID | [string](#string) |  | `OutputOnly` The Installation ID of this Owner&#39;s GitHub App installation. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GithubRepositoryReference"></a>
+
+### GithubRepositoryReference
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sha | [string](#string) |  | `OutputOnly` Reference commit sha. |
+| branch | [string](#string) |  |  |
+| tag | [string](#string) |  |  |
+| pullrequest | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListGithubRepositoriesRequest"></a>
+
+### ListGithubRepositoriesRequest
 
 
 
@@ -973,14 +965,19 @@ If the request is set to DEVELOPER the response will contain any workspace where
 
 ### DeleteGitlabIntegrationResponse
 
+ 
 
+ 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | integration | [GitlabIntegrationResponse](#ddev.administration.v1alpha1.GitlabIntegrationResponse) |  | `OutputOnly` The deleted GitlabIntegration resource. |
 
 
+<a name="live/administration/v1alpha1/workspace.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
 
+## live/administration/v1alpha1/workspace.proto
 
 
 
@@ -1134,6 +1131,9 @@ If the request is set to DEVELOPER the response will contain any workspace where
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
 
 
 
