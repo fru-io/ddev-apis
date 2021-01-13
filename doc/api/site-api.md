@@ -955,6 +955,7 @@ Defines the overall status of a site.  A site is defined as health when all subs
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the site (needed to reference the existing site) |
 | git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | tags | [UpdateSiteRequest.TagsEntry](#ddev.sites.v1alpha1.UpdateSiteRequest.TagsEntry) | repeated | `Optional` Specify tags for a site |
 | version | [string](#string) |  | `Optional` The version of the CMS used for the site |
