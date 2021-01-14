@@ -59,7 +59,6 @@
     - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
     - [SiteStatus](#ddev.sites.v1alpha1.SiteStatus)
     - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
-    - [UpdateSiteRequest.TagsEntry](#ddev.sites.v1alpha1.UpdateSiteRequest.TagsEntry)
     - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
   
     - [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState)
@@ -956,34 +955,7 @@ Defines the overall status of a site.  A site is defined as health when all subs
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the site (needed to reference the existing site) |
-| git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
-| tags | [UpdateSiteRequest.TagsEntry](#ddev.sites.v1alpha1.UpdateSiteRequest.TagsEntry) | repeated | `Optional` Specify tags for a site |
-| version | [string](#string) |  | `Optional` The version of the CMS used for the site |
-| composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
-| composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
-| cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
-| DocRoot | [string](#string) |  | `Optional` The relative docroot of the site, like &#39;docroot&#39; or &#39;htdocs&#39; or &#39;web&#39;. Defaults to empty, the repository&#39;s root directory. |
-| persistentPaths | [string](#string) | repeated | `Optional` A list of persistent mount paths relative to docroot (ex. content/uploads). |
-| ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
-| expiry | [string](#string) |  | `Optional` Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration. |
-| phpVersion | [string](#string) |  | `Optional` Specify the version of PHP for the site |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.UpdateSiteRequest.TagsEntry"></a>
-
-### UpdateSiteRequest.TagsEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `Required` The requested site. |
 
 
 

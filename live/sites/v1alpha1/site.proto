@@ -464,77 +464,11 @@ message ListSiteResponse {
 }
 
 message UpdateSiteRequest {
-    /*
+  /*
   `Required`
-  The name of the site (needed to reference the existing site)
+  The requested site.
   */
-  string name = 1;
-
-  /*
-  `Optional`
-  */
-  oneof Repository {
-    GitRepository git = 16;
-  }
-
-  /*
-  `Optional`
-  Specify tags for a site
-  */
-  map<string, string> tags = 17;
-
-  /*
-  `Optional`
-  The version of the CMS used for the site
-  */
-  string version = 18;
-
-  /*
-  `Optional`
-  Whether to run composer install when creating the site image
-  */
-  bool composerInstall = 19;
-
-  /*
-  `Optional`
-  If `composerInstall` is set, use this flags to specify which args are passed to composer install
-  */
-  repeated string composerArgs = 20;
-
-  /*
-  `Optional`
-  */
-  Cron cron = 21;
-
-  /*
-  `Optional`
-  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
-  */
-  string DocRoot = 22;
-  
-  /*
-  `Optional`
-  A list of persistent mount paths relative to docroot (ex. content/uploads). 
-  */
-  repeated string persistentPaths = 23;
-
-  /*
-  `Optional`
-  A list of ephemeral mount paths relative to docroot
-  */
-  repeated string ephemeralPaths = 24;
-
-  /*
-  `Optional`
-  Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration.
-  */
-  string expiry = 25;
-  
-  /*
-  `Optional`
-  Specify the version of PHP for the site
-  */
-  string phpVersion = 26;
+  Site site = 1;
 }
 
 message UpdateSiteResponse {
