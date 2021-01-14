@@ -1,0 +1,246 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.administration.v1alpha1;
+
+option go_package = "github.com/drud/admin-api/gen/live/administration/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "GitlabIntegrationProto";
+option java_package = "com.ddev.live.administration.v1alpha1";
+
+message GitlabIntegrationResponse {
+
+    /*
+    `OutputOnly`
+    Gitlab integration ID.
+    */
+    string id = 1;
+
+    /*
+    `OutputOnly`
+    Gitlab server URL.
+    */
+    string host = 2;
+
+    /*
+    `OutputOnly`
+    Username for the token.
+    */
+    string username = 3;
+}
+
+message CreateGitlabIntegrationRequest {
+
+    /*
+    `Required`
+    Gitlab integration ID.
+    */
+    string id = 1;
+
+    /*
+    `Required`
+    Gitlab server URL.
+    */
+    string host = 2;
+
+    /*
+    `Required`
+    Username for the token.
+    */
+    string username = 3;
+    
+    /*
+    `Required`
+    Gitlab Personal Access Token.
+    */
+    string token = 4;
+}
+
+message CreateGitlabIntegrationResponse {
+
+    /*
+    `OutputOnly`
+    The new GitlabIntegration resource
+    */
+    GitlabIntegrationResponse integration = 1;
+}
+
+message GetGitlabIntegrationRequest {
+
+    /*
+    `Required`
+    Gitlab integration ID.
+    */
+    string id = 1;
+}
+
+message GetGitlabIntegrationResponse {
+
+    /*
+    `OutputOnly`
+    Gitlab integration.
+    */
+    GitlabIntegrationResponse integration = 1;
+}
+
+message DeleteGitlabIntegrationRequest {
+
+    /*
+    `Required`
+    Gitlab integration ID.
+    */
+    string id = 1;
+}
+
+message DeleteGitlabIntegrationResponse {
+
+    /*
+    `OutputOnly`
+    The deleted GitlabIntegration resource.
+    */
+    GitlabIntegrationResponse integration = 1;
+}
+
+message ListGitlabIntegrationsRequest {}
+
+message ListGitlabIntegrationsResponse {
+
+    /*
+    `OutputOnly`
+    Gitlab integrations.
+    */
+    repeated GitlabIntegrationResponse integrations = 1;
+}
+
+message ListGitlabProjectsRequest {
+
+    /*
+    `Optional`
+    Gitlab integration ID.
+    */
+    string id = 16;
+}
+
+message ListGitlabProjectsResponse {
+
+    /*
+    `OutputOnly`
+    Gitlab integrations available to the user.
+    */
+    repeated GitlabIntegration integrations = 1;
+}
+
+message GitlabIntegration {
+
+    /*
+    `OutputOnly`
+    Gitlab integration ID.
+    */
+    string id = 1;
+
+    /*
+    `OutputOnly`
+    Gitlab projects available to the user.
+    */
+    repeated GitlabProjectOwner owners = 2;
+}
+
+message GitlabProjectOwner {
+   
+    /*
+    `OutputOnly`
+    Gitlab account username.
+    */
+    string name = 1;
+
+    /*
+    `OutputOnly`
+    List of Project Names for this Owner.
+    */
+    repeated GitlabProjectName projects = 2;
+}
+
+message GitlabProjectName {
+
+    /*
+    `OutputOnly`
+    The Project ID.
+    */
+    string id = 1;
+
+    /*
+    `OutputOnly`
+    The Project name.
+    */
+    string name = 2;
+}
+
+message GetGitlabProjectMetadataRequest {
+
+    /*
+    `Required`
+    Integration ID.
+    */
+    string integrationID = 1;
+
+    /*
+    `Required`
+    Project ID.
+    */
+    string projectID = 2;
+}
+
+message GetGitlabProjectMetadataResponse {
+
+    /*
+    `OutputOnly`
+    The Project ID.
+    */
+    string id = 1;
+
+    /*
+    `OutputOnly`
+    The Project metadata.
+    */
+    repeated GitlabProjectReference meta = 2;
+}
+
+message GitlabProjectReference {
+
+    /*
+    `OutputOnly`
+    Reference commit sha.
+    */
+    string sha = 1;
+
+    /*
+    `OutputOnly`
+    Reference type.
+    */
+    string ref = 2;
+
+    /*
+    `OutputOnly`
+    Reference type (branch, tag, mr).
+    */
+    ReferenceType type = 3;
+}
+
+enum ReferenceType {
+    Branch = 0;
+    Tag = 1;
+    MR = 2;
+}
