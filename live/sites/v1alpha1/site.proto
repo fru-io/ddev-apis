@@ -610,12 +610,19 @@ message BuildLogsResponse {
 message SiteExecRequest {
 
   /*
+  The name of the site to run a command against
   */
   string name = 1;
 
   /*
+  The command to run against the site
   */
   repeated string command = 2;
+
+  /*
+  Interactive specifies the if the stream will continue to listen for input after the inital command
+  */
+  bool interactive = 16;
 
   /*
   */
