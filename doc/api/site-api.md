@@ -1142,8 +1142,9 @@ Cron manages if and when the CMS cron executes
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| command | [string](#string) | repeated |  |
+| name | [string](#string) |  | The name of the site to run a command against |
+| command | [string](#string) | repeated | The command to run against the site |
+| interactive | [bool](#bool) |  | Interactive specifies the if the stream will continue to listen for input after the inital command |
 | quiet | [bool](#bool) |  |  |
 
 
