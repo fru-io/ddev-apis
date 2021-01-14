@@ -129,6 +129,12 @@ message Site {
   SiteStatus status = 15;
 
   /*
+    `Optional`
+    Mutable attributes for a site.
+  */
+  Attributes attributes = 16;
+  
+  /*
   `Optional`
   The version of the CMS used for the site
   */

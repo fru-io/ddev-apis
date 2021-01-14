@@ -818,6 +818,7 @@ Cron manages if and when the CMS cron executes
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | The type of the CMS used for the site |
 | urls | [string](#string) | repeated | The URLs for the site |
 | status | [SiteStatus](#ddev.sites.v1alpha1.SiteStatus) |  | `Optional` A set of different status descriptions for a site |
+| attributes | [Site.Attributes](#ddev.sites.v1alpha1.Site.Attributes) |  | `Optional` Mutable attributes for a site. |
 | version | [string](#string) |  | `Optional` The version of the CMS used for the site |
 | composerInstall | [bool](#bool) |  | `Optional` Whether to run composer install when creating the site image |
 | composerArgs | [string](#string) | repeated | `Optional` If `composerInstall` is set, use this flags to specify which args are passed to composer install |
