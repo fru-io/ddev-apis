@@ -103,45 +103,85 @@ message Site {
   */
   repeated string urls = 5;
 
+  // NOTE: when beta, clean up attribute number 
+  message Attributes {
+    /*
+    `Optional`
+    Specify tags for a site
+    */
+    map<string, string> tags = 16;
+
+    /*
+    `Optional`
+    */
+    Cron cron = 21;
+
+    /*
+    `Optional`
+    Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration.
+    */
+    string expiry = 25;
+  }
   /*
+  `Optional`
   A set of different status descriptions for a site
   */
   SiteStatus status = 15;
 
   /*
+    `Optional`
+    Mutable attributes for a site.
+  */
+  Attributes attributes = 16;
+  
+  /*
+  `Optional`
   The version of the CMS used for the site
   */
   string version = 18;
 
   /*
+  `Optional`
   Whether to run composer install when creating the site image
   */
   bool composerInstall = 19;
 
   /*
+  `Optional`
   If `composerInstall` is set, use this flags to specify which args are passed to composer install
   */
   repeated string composerArgs = 20;
 
   /*
   `Optional`
+  `Deprecated`
+  Please use Attributes.Cron
   */
   Cron cron = 21;
 
   /*
+  `Optional`
   The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
   */
   string DocRoot = 22;
   
   /*
+  `Optional`
   A list of persistent mount paths relative to docroot (ex. content/uploads). 
   */
   repeated string persistentPaths = 23;
 
   /*
+  `Optional`
   A list of ephemeral mount paths relative to docroot
   */
   repeated string ephemeralPaths = 24;
+
+  /*
+  `Optional`
+  Specify the version of PHP for the site
+  */
+  string phpVersion = 26;
 }
 
 message CloneOperation {
@@ -316,6 +356,12 @@ message CreateSiteRequest {
 
   /*
   `Optional`
+  Specify tags for a site
+  */
+  map<string, string> tags = 16;
+
+  /*
+  `Optional`
   The version of the CMS used for the site
   */
   string version = 18;
@@ -354,6 +400,18 @@ message CreateSiteRequest {
   A list of ephemeral mount paths relative to docroot
   */
   repeated string ephemeralPaths = 24;
+
+  /*
+  `Optional`
+  Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration.
+  */
+  string expiry = 25;
+  
+  /*
+  `Optional`
+  Specify the version of PHP for the site
+  */
+  string phpVersion = 26;
 }
 
 /*
@@ -405,22 +463,21 @@ message ListSiteResponse {
   repeated Site sites = 1;
 }
 
-/*
-  TODO
-*/
 message UpdateSiteRequest {
 
   /*
+  `Required`
+  The requested site.
   */
+  Site site = 1;
 }
 
-/*
-TODO
-*/
 message UpdateSiteResponse {
-
   /*
+  `OutputOnly`
+  The requested site.
   */
+  Site site = 1;
 }
 
 /*
