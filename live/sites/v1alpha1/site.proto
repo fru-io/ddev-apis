@@ -464,11 +464,6 @@ message ListSiteResponse {
 }
 
 message UpdateSiteRequest {
-    /*
-  `Required`
-  The name of the site (needed to reference the existing site)
-  */
-  string name = 1;
 
   /*
   `Required`
