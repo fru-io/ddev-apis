@@ -59,7 +59,6 @@
     - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
     - [SiteStatus](#ddev.sites.v1alpha1.SiteStatus)
     - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
-    - [UpdateSiteRequest.TagsEntry](#ddev.sites.v1alpha1.UpdateSiteRequest.TagsEntry)
     - [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse)
   
     - [CloneOperationState](#ddev.sites.v1alpha1.CloneOperationState)
@@ -681,6 +680,7 @@ Cron manages if and when the CMS cron executes
 
 
 
+
 <a name="ddev.sites.v1alpha1.ListCloneSiteOperationsResponse"></a>
 
 ### ListCloneSiteOperationsResponse
@@ -735,6 +735,7 @@ Cron manages if and when the CMS cron executes
 
 
 
+
 <a name="ddev.sites.v1alpha1.ListSiteResponse"></a>
 
 ### ListSiteResponse
@@ -775,8 +776,6 @@ Cron manages if and when the CMS cron executes
 
 ### MysqlLogsRequest
 
-### Site.Attributes
-NOTE: when beta, clean up attribute number
 
 
 | Field | Type | Label | Description |
@@ -962,13 +961,11 @@ Defines the overall status of a site.  A site is defined as health when all subs
 
 
 
- 
 
 <a name="ddev.sites.v1alpha1.UpdateSiteResponse"></a>
 
 ### UpdateSiteResponse
 
-### CloneOperationState
 
 
 | Field | Type | Label | Description |
@@ -976,9 +973,7 @@ Defines the overall status of a site.  A site is defined as health when all subs
 | site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The requested site. |
 
 
-<a name="ddev.sites.v1alpha1.SiteType"></a>
 
-### SiteType
 
 
  
@@ -995,7 +990,6 @@ Defines the overall status of a site.  A site is defined as health when all subs
 | CLONE_SUCCEEDED | 1 |  |
 | CLONE_FAILED | 2 |  |
 
-## live/sites/v1alpha1/database.proto
 
 
 <a name="ddev.sites.v1alpha1.SiteType"></a>
@@ -1061,12 +1055,6 @@ Defines the overall status of a site.  A site is defined as health when all subs
 ### DatabaseBackup
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the backup |
-| databaseReference | [string](#string) |  | The database this backup references |
-| created | [int64](#int64) |  | `OutputOnly` The unix timestamp in which this backup was taken |
-| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  | `OutputOnly` The state of this backup |
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
@@ -1117,8 +1105,6 @@ The backup object
 
 ### ListDatabaseBackupsResponse
 
-### PullDatabaseBackupRequest
-Pull database pulls the state of a specified database backup
 
 
 | Field | Type | Label | Description |
@@ -1149,8 +1135,6 @@ Pull database pulls the state of a specified database backup
 
 ### PullDatabaseBackupResponse
 
-### PushDatabaseBackupRequest
-Push a single database to a site
 
 
 | Field | Type | Label | Description |
@@ -1208,13 +1192,11 @@ Push a single database to a site
 
 
 
- 
 
 <a name="ddev.sites.v1alpha1.RestoreDatabaseResponse"></a>
 
 ### RestoreDatabaseResponse
 
-### BackupState
 
 
 | Field | Type | Label | Description |
@@ -1222,11 +1204,8 @@ Push a single database to a site
 | backup | [DatabaseBackupMetadata](#ddev.sites.v1alpha1.DatabaseBackupMetadata) |  | The state of the backup |
 
 
- 
 
- 
 
- 
 
  
 
@@ -1257,10 +1236,6 @@ Push a single database to a site
 ## live/sites/v1alpha1/metadata.proto
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
 
 <a name="ddev.sites.v1alpha1.Metadata"></a>
 
@@ -1274,11 +1249,8 @@ Generic metadata about the object.
 | created | [int64](#int64) |  | `OutputOnly` A unix timestamp which expresses the time in which this object was initially created. A zero value indicates that the timestamp has not been set. |
 | updated | [int64](#int64) |  | `OutputOnly` A unix timestamp which expresses the time in which this object was last updated. A zero value indicates that the timestamp has not been set. |
 
- 
 
- 
 
- 
 
 
 
@@ -1286,7 +1258,6 @@ Generic metadata about the object.
 
 ### Metadata.LabelsEntry
 
-## live/sites/v1alpha1/service.proto
 
 
 | Field | Type | Label | Description |
@@ -1294,49 +1265,17 @@ Generic metadata about the object.
 | key | [string](#string) |  |  |
 | value | [string](#string) |  |  |
 
- 
 
 
 
-<a name="ddev.sites.v1alpha1.Sites"></a>
 
  
 
  
 
-`x-ddev-workspace` which is the workspace for all procedures.  For example a client request `ListSites` will list all sites in the workspace whose value is derived from the key `x-ddev-workspace`.
+ 
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateSite | [CreateSiteRequest](#ddev.sites.v1alpha1.CreateSiteRequest) | [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse) | CreateSite creates one of the supported site types |
-| GetSite | [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest) | [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse) | GetSite returns the state of a site by name |
-| ListSites | [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest) | [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse) | ListSites returns all sites within a workspace |
-| UpdateSite | [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest) | [UpdateSiteResponse](#ddev.sites.v1alpha1.UpdateSiteResponse) |  |
-| DeleteSite | [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest) | [DeleteSiteResponse](#ddev.sites.v1alpha1.DeleteSiteResponse) |  |
-| SiteLogStream | [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest) | [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse) stream | SiteLogStream returns a stream of logs for a site |
-| AccessLogStream | [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest) | [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse) stream | AccessLogStream returns a stream of access logs for a site |
-| MysqlLogStream | [MysqlLogsRequest](#ddev.sites.v1alpha1.MysqlLogsRequest) | [MysqlLogsResponse](#ddev.sites.v1alpha1.MysqlLogsResponse) stream | MysqlLogStream returns a stream of access logs for a site |
-| BuildLogStream | [BuildLogsRequest](#ddev.sites.v1alpha1.BuildLogsRequest) | [BuildLogsResponse](#ddev.sites.v1alpha1.BuildLogsResponse) stream | BuildLogStream returns a stream of build logs for a site |
-| SiteExecStream | [SiteExecRequest](#ddev.sites.v1alpha1.SiteExecRequest) stream | [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse) stream | SiteExecStream allows for the streaming execution of commands inside a site container |
-| CloneSite | [CloneRequest](#ddev.sites.v1alpha1.CloneRequest) | [CloneResponse](#ddev.sites.v1alpha1.CloneResponse) | CloneSite creates a clone of already existing site |
-| DescribeClone | [DescribeCloneRequest](#ddev.sites.v1alpha1.DescribeCloneRequest) | [DescribeCloneResponse](#ddev.sites.v1alpha1.DescribeCloneResponse) | DescribeClone describes the status of an in progress clone operation |
-| ListCloneSiteOperations | [ListCloneSiteOperationsRequest](#ddev.sites.v1alpha1.ListCloneSiteOperationsRequest) | [ListCloneSiteOperationsResponse](#ddev.sites.v1alpha1.ListCloneSiteOperationsResponse) | ListCloneSiteOperations lists all clone site operations |
-| ListClonesForSite | [ListClonesForSiteRequest](#ddev.sites.v1alpha1.ListClonesForSiteRequest) | [ListClonesForSiteResponse](#ddev.sites.v1alpha1.ListClonesForSiteResponse) | ListClonesForSite lists all clones for a particular origin site |
-| DeleteClone | [DeleteCloneRequest](#ddev.sites.v1alpha1.DeleteCloneRequest) | [DeleteCloneResponse](#ddev.sites.v1alpha1.DeleteCloneResponse) | DeleteClone removes a clone resource and any children of that clone resource |
-| BackupDatabase | [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest) | [BackupDatabaseResponse](#ddev.sites.v1alpha1.BackupDatabaseResponse) | BackupDatabase backs up a database associated with a site |
-| RestoreDatabase | [RestoreDatabaseRequest](#ddev.sites.v1alpha1.RestoreDatabaseRequest) | [RestoreDatabaseResponse](#ddev.sites.v1alpha1.RestoreDatabaseResponse) | RestoreDatabase restores a sites databases to a known backup |
-| PushDatabaseBackup | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackup creates a new backup for a site and attempts to restore the site to that backup |
-| PushDatabaseBackupStream | [PushDatabaseBackupRequest](#ddev.sites.v1alpha1.PushDatabaseBackupRequest) stream | [PushDatabaseBackupResponse](#ddev.sites.v1alpha1.PushDatabaseBackupResponse) | PushDatabaseBackupStream creates a new backup for a site and attempts to restore the site to that backup |
-| PullDatabaseBackup | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) | PullDatabase pulls down a database backup locally |
-| PullDatabaseBackupStream | [PullDatabaseBackupRequest](#ddev.sites.v1alpha1.PullDatabaseBackupRequest) | [PullDatabaseBackupResponse](#ddev.sites.v1alpha1.PullDatabaseBackupResponse) stream | PullDatabaseBackupStream pulls down a database backup locally |
-| ListDatabaseBackups | [ListDatabaseBackupsRequest](#ddev.sites.v1alpha1.ListDatabaseBackupsRequest) | [ListDatabaseBackupsResponse](#ddev.sites.v1alpha1.ListDatabaseBackupsResponse) | Lists database backups known for a provided site |
-| BackupFiles | [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest) | [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse) | BackupFiles backups up a currently running site environment to the staging area |
-| RestoreFiles | [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest) | [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse) | RestoreFiles restores the current staging area to a sites environment |
-| PushFileBackup | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFile upload file assets to a sites backup staging area |
-| PushFileBackupStream | [PushFileBackupRequest](#ddev.sites.v1alpha1.PushFileBackupRequest) stream | [PushFileBackupResponse](#ddev.sites.v1alpha1.PushFileBackupResponse) | PushFileStream allows client side streaming of large files to a staged backup area |
-| PullFileBackupStream | [PullFileBackupRequest](#ddev.sites.v1alpha1.PullFileBackupRequest) | [PullFileBackupResponse](#ddev.sites.v1alpha1.PullFileBackupResponse) stream | PullFileStream streams currently staged file[s] from the server and pulls them down to a local source |
-| DescribeFileBackup | [DescribeFileBackupRequest](#ddev.sites.v1alpha1.DescribeFileBackupRequest) | [DescribeFileBackupResponse](#ddev.sites.v1alpha1.DescribeFileBackupResponse) | DescribeFiles returns the metadata for current files staged for a restore operation |
-| ListFileBackups | [ListFileBackupsRequest](#ddev.sites.v1alpha1.ListFileBackupsRequest) | [ListFileBackupsResponse](#ddev.sites.v1alpha1.ListFileBackupsResponse) | Lists file backups known for a provided site |
+ 
 
 
 
