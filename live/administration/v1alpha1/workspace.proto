@@ -45,6 +45,31 @@ message Workspace {
     Developers in the workspace
     */
     repeated string developers = 3;
+
+    /*
+    `OutputOnly`
+    The subscription in which this workspace belongs
+    */
+    string subscription = 4;
+}
+
+message CreateWorkspaceRequest {
+
+    string subscription = 1;
+
+    string name = 2;
+}
+
+message CreateWorkspaceResponse {
+    Workspace workspace = 1;
+}
+
+message DeleteWorkspaceRequest {
+    // The name of the workspace to delete
+    string name = 1;
+}
+
+message DeleteWorkspaceResponse {
 }
 
 
