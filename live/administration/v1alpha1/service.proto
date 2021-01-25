@@ -80,8 +80,14 @@ service Administration {
 
     }
 
-
     // Workspaces
+    // Creates a workspace for a subscription
+    rpc CreateWorkspace(CreateWorkspaceRequest) returns (CreateWorkspaceResponse) {
+    }
+
+    // Deletes a workspace and all of its resources for a subscription
+    rpc DeleteWorkspace(DeleteWorkspaceRequest) returns (DeleteWorkspaceResponse) {
+    }
     
     // ListWorkspaces will return a list of workspaces the user has authorization for
     rpc ListWorkspaces(ListWorkspaceRequest) returns (ListWorkspaceResponse) {
