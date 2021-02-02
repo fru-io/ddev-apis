@@ -15,6 +15,7 @@
 syntax = "proto3";
 
 package ddev.sites.v1alpha1;
+import "live/sites/v1alpha1/file.proto";
 
 option go_package = "github.com/drud/site-api/gen/live/sites/v1alpha1";
 option java_multiple_files = true;
@@ -289,6 +290,57 @@ message Typo3SiteOptions {
   A list of ephemeral mount paths relative to docroot
   */
   repeated string ephemeralPaths = 24;
+}
+
+message LaunchLocalSiteRequest {
+
+    /*
+    `Required`
+    The content of .ddev/config.yaml
+    */
+    string localConfig = 1;
+}
+
+message LaunchLocalSiteResponse {
+
+    /*
+    `OutputOnly`
+    The properties of the site which was created.
+    */
+    Site site = 1;
+}
+
+message SyncLocalSiteRequest {
+
+    /*
+    `Required`
+    The content of .ddev/config.yaml
+    */
+    string localConfig = 1;
+
+    /*
+    Files to push to the site
+    */
+    repeated File file = 2;
+
+    /*
+    Database content to push to the site
+    */
+    bytes dbContent = 3;
+}
+
+message SyncLocalSiteResponse {
+  /*
+  `OutputOnly`
+  The list of files and their checksums recieved server side
+  */
+  repeated FileChecksum checksums = 1;
+
+  /*
+  `OutputOnly`
+  The SHA 256 sum of the recieved db content
+  */
+  string dbsha256 = 2;
 }
 
 message CreateSiteRequest {
