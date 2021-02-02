@@ -3,21 +3,6 @@
 
 ## Table of Contents
 
-- [live/sites/v1alpha1/file.proto](#live/sites/v1alpha1/file.proto)
-    - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
-    - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
-    - [File](#ddev.sites.v1alpha1.File)
-    - [FileChecksum](#ddev.sites.v1alpha1.FileChecksum)
-    - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
-    - [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse)
-    - [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest)
-    - [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse)
-    - [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest)
-    - [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse)
-  
-- [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
-    - [Sites](#ddev.sites.v1alpha1.Sites)
-  
 - [live/sites/v1alpha1/database.proto](#live/sites/v1alpha1/database.proto)
     - [Backup](#ddev.sites.v1alpha1.Backup)
     - [BackupDatabaseRequest](#ddev.sites.v1alpha1.BackupDatabaseRequest)
@@ -33,6 +18,21 @@
   
     - [BackupState](#ddev.sites.v1alpha1.BackupState)
   
+- [live/sites/v1alpha1/file.proto](#live/sites/v1alpha1/file.proto)
+    - [BackupFilesRequest](#ddev.sites.v1alpha1.BackupFilesRequest)
+    - [BackupFilesResponse](#ddev.sites.v1alpha1.BackupFilesResponse)
+    - [File](#ddev.sites.v1alpha1.File)
+    - [FileChecksum](#ddev.sites.v1alpha1.FileChecksum)
+    - [PullFilesRequest](#ddev.sites.v1alpha1.PullFilesRequest)
+    - [PullFilesResponse](#ddev.sites.v1alpha1.PullFilesResponse)
+    - [PushFilesRequest](#ddev.sites.v1alpha1.PushFilesRequest)
+    - [PushFilesResponse](#ddev.sites.v1alpha1.PushFilesResponse)
+    - [RestoreFilesRequest](#ddev.sites.v1alpha1.RestoreFilesRequest)
+    - [RestoreFilesResponse](#ddev.sites.v1alpha1.RestoreFilesResponse)
+  
+- [live/sites/v1alpha1/service.proto](#live/sites/v1alpha1/service.proto)
+    - [Sites](#ddev.sites.v1alpha1.Sites)
+  
 - [live/sites/v1alpha1/site.proto](#live/sites/v1alpha1/site.proto)
     - [AccessLogsRequest](#ddev.sites.v1alpha1.AccessLogsRequest)
     - [AccessLogsResponse](#ddev.sites.v1alpha1.AccessLogsResponse)
@@ -46,6 +46,8 @@
     - [GetSiteRequest](#ddev.sites.v1alpha1.GetSiteRequest)
     - [GetSiteResponse](#ddev.sites.v1alpha1.GetSiteResponse)
     - [GitRepository](#ddev.sites.v1alpha1.GitRepository)
+    - [LaunchLocalSiteRequest](#ddev.sites.v1alpha1.LaunchLocalSiteRequest)
+    - [LaunchLocalSiteResponse](#ddev.sites.v1alpha1.LaunchLocalSiteResponse)
     - [ListSiteRequest](#ddev.sites.v1alpha1.ListSiteRequest)
     - [ListSiteResponse](#ddev.sites.v1alpha1.ListSiteResponse)
     - [LogOptions](#ddev.sites.v1alpha1.LogOptions)
@@ -56,6 +58,8 @@
     - [SiteExecResponse](#ddev.sites.v1alpha1.SiteExecResponse)
     - [SiteLogsRequest](#ddev.sites.v1alpha1.SiteLogsRequest)
     - [SiteLogsResponse](#ddev.sites.v1alpha1.SiteLogsResponse)
+    - [SyncLocalSiteRequest](#ddev.sites.v1alpha1.SyncLocalSiteRequest)
+    - [SyncLocalSiteResponse](#ddev.sites.v1alpha1.SyncLocalSiteResponse)
     - [Typo3Site](#ddev.sites.v1alpha1.Typo3Site)
     - [Typo3SiteOptions](#ddev.sites.v1alpha1.Typo3SiteOptions)
     - [UpdateSiteRequest](#ddev.sites.v1alpha1.UpdateSiteRequest)
@@ -66,6 +70,202 @@
     - [SiteType](#ddev.sites.v1alpha1.SiteType)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="live/sites/v1alpha1/database.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/sites/v1alpha1/database.proto
+
+
+
+<a name="ddev.sites.v1alpha1.Backup"></a>
+
+### Backup
+TODO
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| databaseReference | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.BackupDatabaseRequest"></a>
+
+### BackupDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the database to backup. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.BackupDatabaseResponse"></a>
+
+### BackupDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | The state of the backup |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.BackupStatus"></a>
+
+### BackupStatus
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  |  |
+| time | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.Database"></a>
+
+### Database
+TODO
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` The name of the file |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PullDatabaseRequest"></a>
+
+### PullDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the database to push to. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PullDatabaseResponse"></a>
+
+### PullDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  | `OutputOnly` The raw bytes the the content with the first 512 bytes expressing the ContentType. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PushDatabaseRequest"></a>
+
+### PushDatabaseRequest
+Push a single database to a site
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the database to push to. |
+| content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.PushDatabaseResponse"></a>
+
+### PushDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sha256 | [string](#string) |  | `OutputOnly` The SHA 256 sum of the recieved content |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.RestoreDatabaseRequest"></a>
+
+### RestoreDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The name of the database to backup. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.RestoreDatabaseResponse"></a>
+
+### RestoreDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | The state of the backup |
+
+
+
+
+
+ 
+
+
+<a name="ddev.sites.v1alpha1.BackupState"></a>
+
+### BackupState
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FINISHED | 0 |  |
+| DELETED | 1 |  |
+
+
+ 
+
+ 
+
+ 
 
 
 
@@ -285,202 +485,6 @@ several metadata to be passed to the client.
 
 
 
-<a name="live/sites/v1alpha1/database.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/sites/v1alpha1/database.proto
-
-
-
-<a name="ddev.sites.v1alpha1.Backup"></a>
-
-### Backup
-TODO
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| databaseReference | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.BackupDatabaseRequest"></a>
-
-### BackupDatabaseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to backup. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.BackupDatabaseResponse"></a>
-
-### BackupDatabaseResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | The state of the backup |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.BackupStatus"></a>
-
-### BackupStatus
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| state | [BackupState](#ddev.sites.v1alpha1.BackupState) |  |  |
-| time | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.Database"></a>
-
-### Database
-TODO
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `OutputOnly` The name of the file |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PullDatabaseRequest"></a>
-
-### PullDatabaseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to push to. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PullDatabaseResponse"></a>
-
-### PullDatabaseResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| content | [bytes](#bytes) |  | `OutputOnly` The raw bytes the the content with the first 512 bytes expressing the ContentType. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PushDatabaseRequest"></a>
-
-### PushDatabaseRequest
-Push a single database to a site
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to push to. |
-| content | [bytes](#bytes) |  | The raw bytes the the content to pass. Supported MIME Types: `gz` |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.PushDatabaseResponse"></a>
-
-### PushDatabaseResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sha256 | [string](#string) |  | `OutputOnly` The SHA 256 sum of the recieved content |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.RestoreDatabaseRequest"></a>
-
-### RestoreDatabaseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The name of the database to backup. |
-
-
-
-
-
-
-<a name="ddev.sites.v1alpha1.RestoreDatabaseResponse"></a>
-
-### RestoreDatabaseResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| backup | [Backup](#ddev.sites.v1alpha1.Backup) |  | The state of the backup |
-
-
-
-
-
- 
-
-
-<a name="ddev.sites.v1alpha1.BackupState"></a>
-
-### BackupState
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| FINISHED | 0 |  |
-| DELETED | 1 |  |
-
-
- 
-
- 
-
- 
-
-
-
 <a name="live/sites/v1alpha1/site.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -687,6 +691,36 @@ A site of SiteType.DRUPAL
 
 
 
+<a name="ddev.sites.v1alpha1.LaunchLocalSiteRequest"></a>
+
+### LaunchLocalSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| localConfig | [string](#string) |  | `Required` The content of .ddev/config.yaml |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.LaunchLocalSiteResponse"></a>
+
+### LaunchLocalSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| site | [Site](#ddev.sites.v1alpha1.Site) |  | `OutputOnly` The properties of the site which was created. |
+
+
+
+
+
+
 <a name="ddev.sites.v1alpha1.ListSiteRequest"></a>
 
 ### ListSiteRequest
@@ -841,6 +875,39 @@ TODO:
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | content | [bytes](#bytes) |  | TODO |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.SyncLocalSiteRequest"></a>
+
+### SyncLocalSiteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| localConfig | [string](#string) |  | `Required` The content of .ddev/config.yaml |
+| file | [File](#ddev.sites.v1alpha1.File) | repeated | Files to push to the site |
+| dbContent | [bytes](#bytes) |  | Database content to push to the site |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.SyncLocalSiteResponse"></a>
+
+### SyncLocalSiteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| checksums | [FileChecksum](#ddev.sites.v1alpha1.FileChecksum) | repeated | `OutputOnly` The list of files and their checksums recieved server side |
+| dbsha256 | [string](#string) |  | `OutputOnly` The SHA 256 sum of the recieved db content |
 
 
 
