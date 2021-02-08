@@ -57,6 +57,16 @@ build-ts: prepare-release
 	#TODO: I do not want to manage this file, and eventually want to move the build to bazel for both proto and NPM, so I am doing this here
 	cp package.json build/ts/package.json
 
+build-php: prepare-release
+	docker run --rm \
+	--user ${USER_ID} \
+	-v ${ROOT_DIR}/:/proto \
+	drud/protoc-builder \
+	protoc \
+	--proto_path=/proto \
+	--php_out=/proto/build/php \
+	${SITE_PROTOS} ${ADMIN_PROTOS}
+
 release-ts: build-ts
 	tar -zcvf build/release/ts/typescript-gen-source.tar.gz build/ts
 
