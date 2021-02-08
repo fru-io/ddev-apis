@@ -1,0 +1,27 @@
+FROM ubuntu:16.04
+
+RUN apt update && \
+  apt install -y npm && \
+  apt install -y wget && \
+  apt install -y unzip && \
+  apt install -y git && \
+  wget https://dl.google.com/go/go1.14.10.linux-amd64.tar.gz && \
+  tar -xzf go1.14.10.linux-amd64.tar.gz	&& \
+  cp -r go /usr/local/go && \
+  ln -sf /usr/local/go/bin/go /usr/local/bin/go && \
+  wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-x86_64.zip && \
+  unzip protoc-3.12.3-linux-x86_64.zip && \
+  cp bin/protoc /usr/local/bin/protoc && \
+  chmod a+x /usr/local/bin/protoc && \
+  export GOPATH="$HOME/go" && \
+  mkdir -p $GOPATH && \
+  echo "Fetch necessary protoc modules" && \
+  go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway && \
+  go get github.com/golang/protobuf/protoc-gen-go && \
+  echo "ensure these binaries are on the path" && \
+  cp $GOPATH/bin/protoc-gen-grpc-gateway /usr/local/bin && \
+  cp $GOPATH/bin/protoc-gen-go /usr/local/bin && \
+  echo "manually retrieve the grpc-web binary" && \
+  wget https://github.com/grpc/grpc-web/releases/download/1.1.0/protoc-gen-grpc-web-1.1.0-linux-x86_64 && \
+  mv protoc-gen-grpc-web-1.1.0-linux-x86_64 /usr/local/bin/protoc-gen-grpc-web && \
+  chmod a+x /usr/local/bin/protoc-gen-grpc-web

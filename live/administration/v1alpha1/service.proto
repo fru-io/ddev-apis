@@ -18,6 +18,8 @@ package ddev.administration.v1alpha1;
 
 import "live/administration/v1alpha1/auth.proto";
 import "live/administration/v1alpha1/workspace.proto";
+import "live/administration/v1alpha1/githubintegration.proto";
+import "live/administration/v1alpha1/gitlabintegration.proto";
 
 option go_package = "github.com/drud/admin-api/gen/live/administration/v1alpha1";
 option java_multiple_files = true;
@@ -195,5 +197,65 @@ service Administration {
     Describes a permission which allows pull access for a sites files
     */
     rpc IsFileViewer(AuthorizationRequest) returns (AuthorizationResponse) {
+    }
+
+    /*
+    Creates a github integration from an installation ID
+    */
+    rpc CreateGithubIntegration(CreateGithubIntegrationRequest) returns (CreateGithubIntegrationResponse) {
+    }
+
+    /*
+    Deletes a github integration
+    */
+    rpc DeleteGithubIntegration(DeleteGithubIntegrationRequest) returns (DeleteGithubIntegrationResponse) {
+    }
+
+    /*
+    Updates a github integration
+    */
+    rpc UpdateGithubIntegration(UpdateGithubIntegrationRequest) returns (UpdateGithubIntegrationResponse) {
+    }
+
+    /*
+    List github repositories
+    */
+    rpc ListGithubRepositories(ListGithubRepositoriesRequest) returns (ListGithubRepositoriesResponse) {
+    }
+
+    /*
+    Creates a gitlab integration from an installation ID
+    */
+    rpc CreateGitlabIntegration(CreateGitlabIntegrationRequest) returns (CreateGitlabIntegrationResponse) {
+    }
+
+    /*
+    Deletes a gitlab integration
+    */
+    rpc DeleteGitlabIntegration(DeleteGitlabIntegrationRequest) returns (DeleteGitlabIntegrationResponse) {
+    }
+
+    /*
+    Lists gitlab integrations
+    */
+    rpc ListGitlabIntegrations(ListGitlabIntegrationsRequest) returns (ListGitlabIntegrationsResponse) {
+    }
+
+    /*
+    List gitlab projects
+    */
+    rpc ListGitlabProjects(ListGitlabProjectsRequest) returns (ListGitlabProjectsResponse) {
+    }
+
+    /*
+    Returns metadata of a Gitlab project by ID
+    */
+    rpc GetGitlabProjectMetadata(GetGitlabProjectMetadataRequest) returns (GetGitlabProjectMetadataResponse) {
+    }
+
+    /*
+    Returns metadata of a repository by ID
+    */
+    rpc GetRepositoryMetadata(GetRepositoryMetadataRequest) returns (GetRepositoryMetadataResponse) {
     }
 }

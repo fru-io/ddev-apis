@@ -1,0 +1,227 @@
+// Copyright 2020 Drud Technologies.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ddev.administration.v1alpha1;
+
+option go_package = "github.com/drud/admin-api/gen/live/administration/v1alpha1";
+option java_multiple_files = true;
+option java_outer_classname = "GithubIntegrationProto";
+option java_package = "com.ddev.live.administration.v1alpha1";
+
+
+message GithubIntegrationRequest {
+
+    /*
+    `Required`
+    Installation ID.
+    */
+    int64 installationID = 1;
+
+    /*
+    `Required`
+    Github App ID.
+    */
+    int64 githubAppID = 2;
+
+     /*
+    `Optional`
+    Github App Slug.
+    */
+    string githubAppSlug = 16;
+}
+
+message GithubIntegrationResponse {
+
+    /*
+    `Required`
+    Installation ID.
+    */
+    int64 installationID = 1;
+
+    /*
+    `Required`
+    Github App ID.
+    */
+    int64 githubAppID = 2;
+}
+
+message CreateGithubIntegrationRequest {
+
+    /*
+    `Required`
+    The new GithubIntegration resource
+    */
+    GithubIntegrationRequest integration = 1;
+}
+
+message CreateGithubIntegrationResponse {
+
+    /*
+    `OutputOnly`
+    The new GithubIntegration resource
+    */
+    GithubIntegrationResponse integration = 1;
+}
+
+message DeleteGithubIntegrationRequest {
+
+    /*
+    `Required`
+    The deleted GithubIntegration resource.
+    */
+    GithubIntegrationRequest integration = 1;
+}
+
+message DeleteGithubIntegrationResponse {
+
+    /*
+    `OutputOnly`
+    The deleted GithubIntegration resource.
+    */
+    GithubIntegrationResponse integration = 1;
+}
+
+message UpdateGithubIntegrationRequest {
+
+    /*
+    `Required`
+    The updated GithubIntegration resource.
+    */
+    GithubIntegrationRequest integration = 1;
+}
+
+message UpdateGithubIntegrationResponse {
+
+    /*
+    `OutputOnly`
+    The updated GithubIntegration resource.
+    */
+    GithubIntegrationResponse integration = 1;
+}
+
+message GithubRepositoryReference {
+
+    /*
+    `OutputOnly`
+    Reference commit sha.
+    */
+    string sha = 1;
+
+    /*
+    `OutputOnly`
+    Reference type.
+    */
+    oneof type {
+        string branch = 10;
+        string tag = 11;
+        string pullrequest = 12;
+    }
+}
+
+message GithubRepositoryOwner {
+
+    /*
+    `OutputOnly`
+    The Owner name.
+    */
+    string name = 1;
+
+    /*
+    `OutputOnly`
+    List of Repository Names for this Owner.
+    */
+    repeated GithubRepositoryName repositories = 2;
+
+    /*
+    `OutputOnly`
+    The Installation ID of this Owner's GitHub App installation.
+    */
+    string installationID = 3;
+}
+
+message GithubRepositoryName {
+
+    /*
+    `OutputOnly`
+    The Repository ID.
+    */
+    string id = 1;
+
+    /*
+    `OutputOnly`
+    The Repository name.
+    */
+    string name = 2;
+}
+
+message ListGithubRepositoriesRequest {}
+
+message ListGithubRepositoriesResponse {
+
+    /*
+    `OutputOnly`
+    Github repositories available to the user.
+    */
+    repeated GithubRepositoryOwner items = 1;
+}
+
+message GetRepositoryMetadataRequest {
+
+    /*
+    `Required`
+    The Repository ID.
+    */
+    string id = 1;
+
+    /*
+    `Optional`
+    The Repository owner.
+    */
+    string owner = 16;
+
+    /*
+    `Optional`
+    The Repository name.
+    */
+    string name = 17;
+}
+
+message GetRepositoryMetadataResponse {
+
+    /*
+    `OutputOnly`
+    The Repository ID.
+    */
+    string id = 1;
+
+    /*
+    `OutputOnly`
+    The Repository owner.
+    */
+    string owner = 2;
+
+    /*
+    `OutputOnly`
+    The Repository name.
+    */
+    string name = 3;
+
+    /*
+    `OutputOnly`
+    The Repository metadata.
+    */
+    repeated GithubRepositoryReference meta = 4;
+}

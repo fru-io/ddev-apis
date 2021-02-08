@@ -16,27 +16,49 @@ syntax = "proto3";
 
 package ddev.sites.v1alpha1;
 
+import "live/sites/v1alpha1/metadata.proto";
+
 option go_package = "github.com/drud/site-api/gen/live/sites/v1alpha1";
 option java_multiple_files = true;
-option java_outer_classname = "ServiceProto";
+option java_outer_classname = "SiteProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
 
 enum SiteType {
-    DRUPAL = 0;
-    TYPO3 = 1;
-    WORDPRESS = 2;
+  /*
+  NOT_SET indicates no type of site has been specified
+  */
+  NOT_SET = 0;
+  DRUPAL = 1;
+  TYPO3 = 2;
+  WORDPRESS = 3;
+}
+
+enum CloneOperationState {
+    CLONE_CREATED = 0;
+    CLONE_SUCCEEDED = 1;
+    CLONE_FAILED = 2;
+}
+
+/*
+Defines the overall status of a site.  A site is defined as health when all substatus elements are true.
+*/
+message SiteStatus {
+  // Server healthy status
+  bool server = 1;
+  // Database healthy status
+  bool database = 2;
+  // Filestore healthy status
+  bool filestore = 3;
 }
 
 message GitRepository {
   /*
-  `Required`
   The URL of the repository
   */
   string url = 1;
 
   /*
-  `Required`
   The branch, tag, or commit.  Default: `master`.
   */
   string ref = 2;
@@ -57,112 +79,64 @@ message Cron {
   string schedule = 2;
 }
 
-/*
-A site of SiteType.DRUPAL
-*/
-message DrupalSite {
-
-  /*
-  `OutputOnly`
-  The workspace of the site
-  */
-  string workspace = 1;
-
-  /*
-  `OutputOnly`
-  The name of the site
-  */
-  string name = 2;
-
-  /*
-  `OutputOnly`
-  */
-  oneof Repository {
-    GitRepository git = 3;
-  }
-
-  /*
-  `OutputOnly`
-  */
-  DrupalSiteOptions options = 17;
-}
-
-/*
-A site of SiteType.WORDPRESS
-*/
-message WordpressSite {
-
-  /*
-  `OutputOnly`
-  The workspace of the site
-  */
-  string workspace = 1;
-
-  /*
-  `OutputOnly`
-  The name of the site
-  */
-  string name = 2;
-
-  /*
-  `OutputOnly`
-  */
-  oneof Repository {
-    GitRepository git = 3;
-  }
-
-  /*
-  `OutputOnly`
-  */
-  WordpressSiteOptions options = 17;
-}
-
-/*
-A site of SiteType.TYPO3
-*/
-message Typo3Site {
-
-  /*
-  `OutputOnly`
-  The workspace of the site
-  */
-  string workspace = 1;
-
-  /*
-  `OutputOnly`
-  The name of the site
-  */
-  string name = 2;
-
-  /*
-  `OutputOnly`
-  */
-  oneof Repository {
-    GitRepository git = 3;
-  }
-
-  /*
-  `OutputOnly`
-  */
-  Typo3SiteOptions options = 17;
-}
-
 message Site {
 
   // because you cannot use repeated oneof we must wrap oneof in a repeatable message
 
-  oneof properties {
-    DrupalSite drupal = 1;
-    Typo3Site typo3 = 2;
-    WordpressSite wordpress = 3;
+  string name = 1;
+
+  string workspace = 2;
+  
+  /*
+  */
+  oneof Repository {
+    GitRepository git = 3;
   }
-}
 
-message DrupalSiteOptions {
+  /*
+  The type of the CMS used for the site
+  */
+  SiteType type = 4;
+
+  /*
+  The URLs for the site
+  */
+  repeated string urls = 5;
+
+  // NOTE: when beta, clean up attribute number 
+  message Attributes {
+    /*
+    `Optional`
+    Specify tags for a site
+    */
+    map<string, string> tags = 16;
+
+    /*
+    `Optional`
+    */
+    Cron cron = 21;
+
+    /*
+    `Optional`
+    Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration.
+    */
+    string expiry = 25;
+  }
+  /*
+  `Optional`
+  A set of different status descriptions for a site
+  */
+  SiteStatus status = 15;
+
+  /*
+    `Optional`
+    Mutable attributes for a site.
+  */
+  Attributes attributes = 16;
   
   /*
   `Optional`
-  Specify the version of TYPO3 used for the site (default "9")
+  The version of the CMS used for the site
   */
   string version = 18;
 
@@ -180,95 +154,8 @@ message DrupalSiteOptions {
 
   /*
   `Optional`
-  */
-  Cron cron = 21;
-
-  /*
-  `Optional`
-  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
-  */
-  string DocRoot = 22;
-  
-  /*
-  `Optional`
-  A list of persistent mount paths relative to docroot (ex. content/uploads). 
-  Defaults to "sites/default/files","/var/www/drupal-private/","sites/default/files/config/sync"
-  */
-  repeated string persistentPaths = 23;
-
-  /*
-  `Optional`
-  A list of ephemeral mount paths relative to docroot
-  */
-  repeated string ephemeralPaths = 24;
-}
-
-message WordpressSiteOptions {
-  
-  /*
-  `Optional`
-  Specify the version of TYPO3 used for the site (default "9")
-  */
-  string version = 18;
-
-  /*
-  `Optional`
-  Whether to run composer install when creating the site image
-  */
-  bool composerInstall = 19;
-
-  /*
-  `Optional`
-  If `composerInstall` is set, use this flags to specify which args are passed to composer install
-  */
-  repeated string composerArgs = 20;
-
-  /*
-  `Optional`
-  */
-  Cron cron = 21;
-
-  /*
-  `Optional`
-  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
-  */
-  string DocRoot = 22;
-  
-  /*
-  `Optional`
-  A list of persistent mount paths relative to docroot (ex. content/uploads)
-  */
-  repeated string persistentPaths = 23;
-
-  /*
-  `Optional`
-  A list of ephemeral mount paths relative to docroot
-  */
-  repeated string ephemeralPaths = 24;
-}
-
-message Typo3SiteOptions {
-  
-  /*
-  `Optional`
-  Specify the version of TYPO3 used for the site (default "9")
-  */
-  string version = 18;
-
-  /*
-  `Optional`
-  Whether to run composer install when creating the site image
-  */
-  bool composerInstall = 19;
-
-  /*
-  `Optional`
-  If `composerInstall` is set, use this flags to specify which args are passed to composer install
-  */
-  repeated string composerArgs = 20;
-
-  /*
-  `Optional`
+  `Deprecated`
+  Please use Attributes.Cron
   */
   Cron cron = 21;
 
@@ -289,6 +176,161 @@ message Typo3SiteOptions {
   A list of ephemeral mount paths relative to docroot
   */
   repeated string ephemeralPaths = 24;
+
+  /*
+  `Optional`
+  Specify the version of PHP for the site
+  */
+  string phpVersion = 26;
+}
+
+message CloneOperation {
+
+  /*
+  `OutputOnly`
+  Reference to the clone site operation 
+  */
+  string ref = 1;
+  
+  /*
+  `OutputOnly`
+  Name of the origin site
+  */
+  string originSite = 2;
+
+  /*
+  `OutputOnly`
+  Name of the new site
+  */
+  string newSite = 3;
+
+  /*
+  `OutputOnly`
+  State of the clone operation
+  */
+  CloneOperationState state = 4;
+  
+  /*
+  `OutputOnly`
+  Optionally contains additional human readable information describing the state of the operation
+  */
+  string info = 5;
+}
+
+message CloneRequest {
+
+  /*
+  `Required`
+  The name of the origin site
+  */
+  string originSite = 1;
+
+  /*
+  `Required`
+  The name of the new site
+  */
+  string newSite = 2;
+  
+  /*
+  `Optional`
+  Arguments to override git repository or revision
+  */
+  oneof Repository {
+    GitRepository git = 16;
+  }
+
+  // TODO: Future
+  /*
+  `Optional`
+  Override to use a db backup instead of the origin's site database
+  */
+  // string dbBackup = 17;
+
+  /*
+  `Optional`
+  Override to the a filestore backup instead of the origin's site filestore
+  */
+  // string fsBackup = 18;
+}
+
+message CloneResponse {
+  /*
+  `OutputOnly`
+  Reference to the clone site operation 
+  */
+  string operationRef = 1;
+}
+
+message DescribeCloneRequest {
+  /*
+  `Required`
+  Reference to the clone site operation 
+  */
+  string operationRef = 1;
+}
+
+message DescribeCloneResponse {
+  /*
+  `OutputOnly`
+  Reference to the clone site operation 
+  */
+  CloneOperationState state = 1;
+
+  /*
+  `OutputOnly`
+  Reference to the created site resource as a result of the clone operation.  This field will be an empty string if the clone operation was not successful
+  */
+  string cloneRef = 2;
+
+  /*
+  `OutputOnly`
+  Object metadata for the clone resource.
+  */
+  Metadata meta = 3;
+
+  /*
+  `OutputOnly`
+  Detailed description of the state
+  */
+  string stateDetail = 17;
+
+}
+
+message DeleteCloneRequest {
+  /*
+  `Required`
+  Reference to the clone site operation 
+  */
+  string operationRef = 1;
+}
+
+message DeleteCloneResponse {
+}
+
+message ListCloneSiteOperationsRequest {}
+
+message ListCloneSiteOperationsResponse {
+  /*
+  `OutputOnly`
+  List of clone site operations
+  */
+  repeated CloneOperation items = 1;
+}
+
+message ListClonesForSiteRequest {
+  /*
+  `Required`
+  List all clones for a particular origin site
+  */
+  string originSite = 1;
+}
+
+message ListClonesForSiteResponse {
+  /*
+  `OutputOnly`
+  List all clones for a particular origin site
+  */
+  repeated Site clones = 1;
 }
 
 message CreateSiteRequest {
@@ -303,14 +345,73 @@ message CreateSiteRequest {
   `Required`
   */
   oneof Repository {
-    GitRepository git = 2;
+    GitRepository git = 3;
   }
 
-  oneof options {
-    DrupalSiteOptions drupal = 17;
-    WordpressSiteOptions wordpress = 18;
-    Typo3SiteOptions typo3 = 19;
-  }
+  /*
+  `Required`
+  The type of the CMS used for the site
+  */
+  SiteType type = 4;
+
+  /*
+  `Optional`
+  Specify tags for a site
+  */
+  map<string, string> tags = 16;
+
+  /*
+  `Optional`
+  The version of the CMS used for the site
+  */
+  string version = 18;
+
+  /*
+  `Optional`
+  Whether to run composer install when creating the site image
+  */
+  bool composerInstall = 19;
+
+  /*
+  `Optional`
+  If `composerInstall` is set, use this flags to specify which args are passed to composer install
+  */
+  repeated string composerArgs = 20;
+
+  /*
+  `Optional`
+  */
+  Cron cron = 21;
+
+  /*
+  `Optional`
+  The relative docroot of the site, like 'docroot' or 'htdocs' or 'web'. Defaults to empty, the repository's root directory.
+  */
+  string DocRoot = 22;
+  
+  /*
+  `Optional`
+  A list of persistent mount paths relative to docroot (ex. content/uploads). 
+  */
+  repeated string persistentPaths = 23;
+
+  /*
+  `Optional`
+  A list of ephemeral mount paths relative to docroot
+  */
+  repeated string ephemeralPaths = 24;
+
+  /*
+  `Optional`
+  Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration.
+  */
+  string expiry = 25;
+  
+  /*
+  `Optional`
+  Specify the version of PHP for the site
+  */
+  string phpVersion = 26;
 }
 
 /*
@@ -333,12 +434,6 @@ message GetSiteRequest {
   The name of the site
   */
   string name = 1;
-  
-  /*
-  `Required`
-  The type of site being retrieved
-  */
-  SiteType type = 2;
 }
 
 /*
@@ -368,20 +463,21 @@ message ListSiteResponse {
   repeated Site sites = 1;
 }
 
-/*
-*/
 message UpdateSiteRequest {
 
   /*
+  `Required`
+  The requested site.
   */
+  Site site = 1;
 }
 
-/*
-*/
 message UpdateSiteResponse {
-
   /*
+  `OutputOnly`
+  The requested site.
   */
+  Site site = 1;
 }
 
 /*
@@ -393,12 +489,6 @@ message DeleteSiteRequest {
   The name of the site
   */
   string name = 1;
-
-  /*
-  `Required`
-  The type of site being deleted
-  */
-  SiteType type = 2;
 }
 
 /*
@@ -468,12 +558,6 @@ message SiteLogsRequest {
   string name = 1;
 
   /*
-  `Required`
-  The type of site being deleted
-  */
-  SiteType type = 2;
-
-  /*
   `Optional`
   Additional options for logging
   */
@@ -500,12 +584,6 @@ message AccessLogsRequest {
   The name of the site
   */
   string name = 1;
-
-  /*
-  `Required`
-  The type of site being deleted
-  */
-  SiteType type = 2;
 
   /*
   `Optional`
@@ -535,16 +613,10 @@ message MysqlLogsRequest {
   string name = 1;
 
   /*
-  `Required`
-  The type of site being deleted
-  */
-  SiteType type = 2;
-
-  /*
   `Optional`
-  Continues to follow and send logs until the maximum allotted connection time has been reached
+  Additional options for logging
   */
-  bool follow = 17;
+  LogOptions options = 17;
 }
 
 /*
@@ -559,15 +631,55 @@ message MysqlLogsResponse {
 
 /*
 */
-message SiteExecRequest {
+message BuildLogsRequest {
 
   /*
+  `Required`
+  The name of the site
   */
   string name = 1;
 
   /*
+  `Optional`
+  Additional options for logging
+  */
+  LogOptions options = 17;
+}
+
+/*
+*/
+message BuildLogsResponse {
+
+  /*
+  `OutputOnly` A named scope to which these log messages apply
+  */
+  string scope = 1;
+
+  /*
+  `OutputOnly` The log data for this scope of logs
+  */
+  bytes content = 2;
+
+}
+
+/*
+*/
+message SiteExecRequest {
+
+  /*
+  The name of the site to run a command against
+  */
+  string name = 1;
+
+  /*
+  The command to run against the site
   */
   repeated string command = 2;
+
+  /*
+  Interactive specifies the if the stream will continue to listen for input after the inital command
+  */
+  bool interactive = 16;
 
   /*
   */

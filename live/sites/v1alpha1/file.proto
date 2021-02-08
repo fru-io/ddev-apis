@@ -18,42 +18,60 @@ package ddev.sites.v1alpha1;
 
 option go_package = "github.com/drud/site-api/gen/live/sites/v1alpha1";
 option java_multiple_files = true;
-option java_outer_classname = "ServiceProto";
+option java_outer_classname = "FileProto";
 option java_package = "com.ddev.live.sites.v1alpha1";
 
 
-/*
-TODO
-*/
-message File {
+message FileBackupMetadata {
+  
   /*
-  The name of the file.
+  The name of the backup
   */
   string name = 1;
+
+  /*
+  The database this backup references
+  */
+  string databaseReference = 2;
+
+  /*
+  The unix timestamp in which this backup was taken
+  */
+  int64 created = 3;
+}
+
+message File {
+
+  /*
+  The relative path, including the filename.
+  */
+  string path = 1;
 
   /*
   The content of the file expressed in bytes.
   */
   bytes content = 2;
 
+  /*
+  CRC32c checksum of the data, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order.  If provided a checksum mismatch on the receiving end will result in an error.
+  */
+  string CRC32c = 17;
+
+  /*
+  MD5 hash of the data; encoded using base64. If provided a checksum mismatch on the receiving end will result in an error.
+  */
+  string MD5 = 18;
 }
 
 /*
 TODO
 */
-message FileChecksum {
-  /*
-  The name of the file.
-  */
-  string name = 1;
+message FileBackup {
 
-  /*
-  The sha checksum of this file
-  */
-  string sha256 = 2;
+  FileBackupMetadata metadata = 1;
 
+  repeated File files = 2;
 }
-
 
 //
 // Message Types
@@ -65,9 +83,9 @@ message BackupFilesRequest {
 
   /*
   `Required`
-  The name of the backup.
+  The name of the site.
   */
-  string name = 1;
+  string site = 1;
 }
 
 /*
@@ -75,9 +93,10 @@ message BackupFilesRequest {
 message BackupFilesResponse {
 
   /*
-  The list of files and their checksums restored server side
+  `OutputOnly`
+  The name of the filebackup object.
   */
-  repeated FileChecksum checksums = 1;
+  string name = 1;
 }
 
 /*
@@ -86,9 +105,10 @@ message RestoreFilesRequest {
 
   /*
   `Required`
-  The name of the backup to restore files from.
+  The name of the site to restore files to.
   */
-  string backup = 1;
+  string site = 1;
+
 }
 
 /*
@@ -96,51 +116,118 @@ message RestoreFilesRequest {
 message RestoreFilesResponse {
 
   /*
-  The list of files and their checksums restored server side
-  */
-  repeated FileChecksum checksums = 1;
-
-}
-
-/*
-*/
-message PushFilesRequest {
-
-  /*
-  `Required`
-  The name of the database to push to.
-  */
-  repeated File file = 1;
-}
-
-/*
-*/
-message PushFilesResponse {
-
-  /*
-  The list of files and their checksums recieved server side
-  */
-  repeated FileChecksum checksums = 1;
-}
-
-/*
-*/
-message PullFilesRequest {
-
-  /*
-  `Required`
-  The name of the database to push to.
+  `OutputOnly`
+  The name of the filerestore object.
   */
   string name = 1;
 }
 
 /*
 */
-message PullFilesResponse {
+message PushFileBackupRequest {
+
+  /*
+  `Required`
+  The name of the site to stage files for
+  */
+  string site = 1;
+
+  /*
+  `Required`
+  The file to stage for the site
+  */
+  File file = 2;
+
+  /*
+  `Optional`
+  Destination directory for the files.  If specified all files will be relative to this location.
+  */
+  string directory = 17;
+}
+
+/*
+*/
+message PushFileBackupResponse {
+
+  /*
+  `Optional`
+  The name of the asset created for this backup
+  */
+  string name = 1;
+  
+}
+
+/*
+*/
+message PullFileBackupRequest {
+
+  /*
+  `Required`
+  The name of the site to pull files from.
+  */
+  string site = 1;
+
+  /*
+  `Optional`
+  The path to the files or directories to pull.  If unspecified all files will be pulled.
+  */
+  repeated string paths = 17;
+}
+
+/*
+*/
+message PullFileBackupResponse {
 
   /*
   `OutputOnly`
-  The raw bytes the the content with the first 512 bytes expressing the ContentType.
+  The staged files for the requested backup
   */
-  bytes content = 1;
+  File file = 1;
+}
+
+message DescribeFileBackupRequest {
+
+  /*
+  `Required`
+  The name of the site to describe files for.
+  */
+  string site = 1;
+
+  /*
+  `Optional`
+  A list of paths or directories to describe.
+  */
+  repeated string paths = 17;
+}
+
+message DescribeFileBackupResponse {
+
+  /*
+  `OutputOnly`
+  The metadata for files matching the request with content omitted.
+  */
+  repeated File metadata = 1;
+}
+
+
+/*
+*/
+message ListFileBackupsRequest {
+
+  /*
+  `Required`
+  The name of the site
+  */
+  string site = 1;
+}
+
+/*
+*/
+message ListFileBackupsResponse {
+  
+  /*
+  `OutputOnly`
+  The metadata for all backup objects.
+  */
+  repeated FileBackupMetadata metadata = 1;
 }
