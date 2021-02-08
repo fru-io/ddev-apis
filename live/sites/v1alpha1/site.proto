@@ -103,6 +103,9 @@ message Site {
   */
   repeated string urls = 5;
 
+  /*
+  Creation Timestamp of site using RFC-3339
+  */
   string creationTime = 6;
   
   // NOTE: when beta, clean up attribute number 
