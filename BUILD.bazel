@@ -1,0 +1,9 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+gazelle(
+    name = "gazelle",
+    external = "vendored",
+    prefix = "github.com/drud/ddev-apis",
+)

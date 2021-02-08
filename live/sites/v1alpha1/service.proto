@@ -87,11 +87,51 @@ service Sites {
 
     }
 
+
+    /*
+    BuildLogStream returns a stream of build logs for a site
+    */
+    rpc BuildLogStream(BuildLogsRequest) returns (stream BuildLogsResponse) {
+
+    }
+
     /*
     SiteExecStream allows for the streaming execution of commands inside a site container
     */
     rpc SiteExecStream(stream SiteExecRequest) returns (stream SiteExecResponse) {
 
+    }
+
+    // Site Clones
+
+    /*
+    CloneSite creates a clone of already existing site 
+    */
+    rpc CloneSite(CloneRequest) returns (CloneResponse) {
+    }
+
+    /*
+    DescribeClone describes the status of an in progress clone operation
+    */
+    rpc DescribeClone(DescribeCloneRequest) returns (DescribeCloneResponse) {
+    }
+    
+    /*
+    ListCloneSiteOperations lists all clone site operations
+    */
+    rpc ListCloneSiteOperations(ListCloneSiteOperationsRequest) returns (ListCloneSiteOperationsResponse) {
+    }
+    
+    /*
+    ListClonesForSite lists all clones for a particular origin site
+    */
+    rpc ListClonesForSite(ListClonesForSiteRequest) returns (ListClonesForSiteResponse) {
+    }
+
+    /*
+    DeleteClone removes a clone resource and any children of that clone resource
+    */
+    rpc DeleteClone(DeleteCloneRequest) returns (DeleteCloneResponse) {
     }
 
     // Databases
@@ -109,39 +149,76 @@ service Sites {
     }
 
     /*
-    BackupFiles backs up files associated with a site
+    PushDatabaseBackup creates a new backup for a site and attempts to restore the site to that backup
+    */
+    rpc PushDatabaseBackup(PushDatabaseBackupRequest) returns (PushDatabaseBackupResponse) {
+    }
+
+    /*
+    PushDatabaseBackupStream creates a new backup for a site and attempts to restore the site to that backup
+    */
+    rpc PushDatabaseBackupStream(stream PushDatabaseBackupRequest) returns (PushDatabaseBackupResponse) {
+    }
+
+    /*
+    PullDatabase pulls down a database backup locally
+    */
+    rpc PullDatabaseBackup(PullDatabaseBackupRequest) returns (PullDatabaseBackupResponse) {
+    }
+
+    /*
+    PullDatabaseBackupStream pulls down a database backup locally
+    */
+    rpc PullDatabaseBackupStream(PullDatabaseBackupRequest) returns (stream PullDatabaseBackupResponse) {
+    }
+
+    /*
+    Lists database backups known for a provided site
+    */
+    rpc ListDatabaseBackups(ListDatabaseBackupsRequest) returns (ListDatabaseBackupsResponse) {
+    }
+
+    // Files
+
+    /*
+    BackupFiles backups up a currently running site environment to the staging area 
     */
     rpc BackupFiles(BackupFilesRequest) returns (BackupFilesResponse) {
     }
 
     /*
-    RestoreFiles restores a sites files to a known backup
+    RestoreFiles restores the current staging area to a sites environment
     */
     rpc RestoreFiles(RestoreFilesRequest) returns (RestoreFilesResponse) {
     }
 
     /*
-    PushFiles pushes local files to a running site
+    PushFile upload file assets to a sites backup staging area
     */
-    rpc PushFiles(PushFilesRequest) returns (PushFilesResponse) {
+    rpc PushFileBackup(PushFileBackupRequest) returns (PushFileBackupResponse) {
     }    
 
     /*
-    PullFiles pulls down files locally
+    PushFileStream allows client side streaming of large files to a staged backup area
     */
-    rpc PullFiles(PullFilesRequest) returns (PullFilesResponse) {
-    }  
+    rpc PushFileBackupStream(stream PushFileBackupRequest) returns (PushFileBackupResponse) {
+    }    
 
     /*
-    PushDatabase pushes a database to a running site
+    PullFileStream streams currently staged file[s] from the server and pulls them down to a local source
     */
-    rpc PushDatabase(PushDatabaseRequest) returns (PushDatabaseResponse) {
+    rpc PullFileBackupStream(PullFileBackupRequest) returns (stream PullFileBackupResponse) {
     }
 
     /*
-    PullDatabase pulls down a database locally
+    DescribeFiles returns the metadata for current files staged for a restore operation
     */
-    rpc PullDatabase(PullDatabaseRequest) returns (PullDatabaseResponse) {
-    }  
+    rpc DescribeFileBackup(DescribeFileBackupRequest) returns (DescribeFileBackupResponse) {
+    }
 
+    /*
+    Lists file backups known for a provided site
+    */
+    rpc ListFileBackups(ListFileBackupsRequest) returns (ListFileBackupsResponse) {
+    }
 }

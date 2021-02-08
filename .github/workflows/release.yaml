@@ -13,14 +13,9 @@ jobs:
         id: tagger
       - name: prep npm
         run: |
+          sudo apt update
+          sudo apt install -y nodejs-dev node-gyp libssl1.0-dev
           sudo apt install -y npm
-      # TODO: Replace with bazel builds
-      - name: prep go
-        run: |
-          wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
-          tar -xzf go1.14.4.linux-amd64.tar.gz
-          sudo cp -r go /usr/local/go
-          sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
       - name: prep protoc
         run: |
           wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-x86_64.zip
@@ -33,19 +28,33 @@ jobs:
 
           # Fetch necessary protoc modules
           go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
-          go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
           go get github.com/golang/protobuf/protoc-gen-go
 
           # ensure these binaries are on the path
           sudo cp $GOPATH/bin/protoc-gen-grpc-gateway /usr/local/bin
-          sudo cp $GOPATH/bin/protoc-gen-swagger /usr/local/bin
           sudo cp $GOPATH/bin/protoc-gen-go /usr/local/bin
 
           # manually retrieve the grpc-web binary
           wget https://github.com/grpc/grpc-web/releases/download/1.1.0/protoc-gen-grpc-web-1.1.0-linux-x86_64
           sudo mv protoc-gen-grpc-web-1.1.0-linux-x86_64 /usr/local/bin/protoc-gen-grpc-web
           sudo chmod a+x /usr/local/bin/protoc-gen-grpc-web
-      - name: release-ts
+      - name: prep git
+        run: |
+          git config --global user.email "dlemon@ddev.com"
+          git config --global user.name "API CI Runner"
+      - name: release-node
+        run: |
+          make build-js
+          cd build/js
+          # initialize the npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
+          npm config set registry  "https://npm.pkg.github.com/"
+
+          # Set the version for this release
+          npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
+          npm version $npmVersion
+          npm publish
+      - name: release-web
         run: |
           make build-ts
           cd build/ts
@@ -56,4 +65,5 @@ jobs:
           # Set the version for this release
           npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
           npm version $npmVersion
-          npm publish
+          npm publish --access public
+
