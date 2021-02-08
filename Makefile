@@ -26,6 +26,7 @@ prepare-release:
 	mkdir -p build/dep
 	# TODO: Bazel
 	if [ ! -d build/dep/googleapis ];then git clone https://github.com/googleapis/googleapis.git build/dep/googleapis; fi
+	if [ ! -d build/dep/protobuf ];then git clone https://github.com/protocolbuffers/protobuf.git build/dep/protobuf; fi
 
 push-builder:
 	docker build -f Docker-protoc -t drud/protoc-builder .
@@ -51,6 +52,8 @@ build-js: prepare-release
 	drud/protoc-builder \
 	protoc \
 	--proto_path=/proto \
+	-I=/proto/build/dep/googleapis \
+	-I=/proto/build/dep/protobuf/src \
 	--js_out=import_style=commonjs,binary:/proto/build/js \
 	${SITE_PROTOS} ${ADMIN_PROTOS}
 
@@ -62,10 +65,12 @@ release-js: build-js
 build-ts: prepare-release
 	docker run --rm \
 	--user ${USER_ID} \
-	-v ${ROOT_DIR}/:/proto \
+	-v ${ROOT_DIR}:/proto \
 	drud/protoc-builder \
 	protoc \
 	--proto_path=/proto \
+	-I=/proto/build/dep/googleapis \
+	-I=/proto/build/dep/protobuf/src \
 	--js_out=import_style=commonjs:/proto/build/ts \
 	--grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:/proto/build/ts \
 	${SITE_PROTOS} ${ADMIN_PROTOS}
