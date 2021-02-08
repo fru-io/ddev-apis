@@ -816,6 +816,7 @@ Cron manages if and when the CMS cron executes
 | git | [GitRepository](#ddev.sites.v1alpha1.GitRepository) |  |  |
 | type | [SiteType](#ddev.sites.v1alpha1.SiteType) |  | The type of the CMS used for the site |
 | urls | [string](#string) | repeated | The URLs for the site |
+| creationTime | [string](#string) |  |  |
 | status | [SiteStatus](#ddev.sites.v1alpha1.SiteStatus) |  | `Optional` A set of different status descriptions for a site |
 | attributes | [Site.Attributes](#ddev.sites.v1alpha1.Site.Attributes) |  | `Optional` Mutable attributes for a site. |
 | version | [string](#string) |  | `Optional` The version of the CMS used for the site |
