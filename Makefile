@@ -20,6 +20,7 @@ prepare-release:
 	mkdir -p build/go
 	mkdir -p build/js
 	mkdir -p build/ts
+	mkdir -p build/php
 	mkdir -p build/dep
 	# TODO: Bazel
 	if [ ! -d build/dep/googleapis ];then git clone https://github.com/googleapis/googleapis.git build/dep/googleapis; fi
