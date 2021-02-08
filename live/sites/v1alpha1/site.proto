@@ -17,7 +17,6 @@ syntax = "proto3";
 package ddev.sites.v1alpha1;
 
 import "live/sites/v1alpha1/metadata.proto";
-import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/drud/site-api/gen/live/sites/v1alpha1";
 option java_multiple_files = true;
@@ -103,11 +102,6 @@ message Site {
   The URLs for the site
   */
   repeated string urls = 5;
-
-  /*
-  Creation Timestamp of site using RFC-3339
-  */
-  google.protobuf.Timestamp creationTime = 6;
 
   // NOTE: when beta, clean up attribute number 
   message Attributes {
