@@ -45,6 +45,11 @@ message Workspace {
     Developers in the workspace
     */
     repeated string developers = 3;
+
+    /*
+    The ID of the subscription which this workspace belongs
+    */
+    string subscription = 4;
 }
 
 
