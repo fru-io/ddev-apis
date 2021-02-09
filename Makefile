@@ -23,6 +23,7 @@ prepare-release:
 	mkdir -p build/go
 	mkdir -p build/js
 	mkdir -p build/ts
+	mkdir -p build/php
 	mkdir -p build/dep
 	# TODO: Bazel
 	if [ ! -d build/dep/googleapis ];then git clone https://github.com/googleapis/googleapis.git build/dep/googleapis; fi
@@ -72,6 +73,16 @@ build-ts: prepare-release
 
 	#TODO: I do not want to manage this file, and eventually want to move the build to bazel for both proto and NPM, so I am doing this here
 	cp package-web.json build/ts/package.json
+
+build-php: prepare-release
+	docker run --rm \
+	--user ${USER_ID} \
+	-v ${ROOT_DIR}/:/proto \
+	drud/protoc-builder \
+	protoc \
+	--proto_path=/proto \
+	--php_out=/proto/build/php \
+	${SITE_PROTOS} ${ADMIN_PROTOS}
 
 release-ts: build-ts
 	tar -zcvf build/release/ts/typescript-gen-source.tar.gz build/ts
