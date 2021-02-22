@@ -32,6 +32,7 @@
     - [CreateSiteRequest.TagsEntry](#ddev.sites.v1alpha1.CreateSiteRequest.TagsEntry)
     - [CreateSiteResponse](#ddev.sites.v1alpha1.CreateSiteResponse)
     - [Cron](#ddev.sites.v1alpha1.Cron)
+    - [CustomCron](#ddev.sites.v1alpha1.CustomCron)
     - [DeleteCloneRequest](#ddev.sites.v1alpha1.DeleteCloneRequest)
     - [DeleteCloneResponse](#ddev.sites.v1alpha1.DeleteCloneResponse)
     - [DeleteSiteRequest](#ddev.sites.v1alpha1.DeleteSiteRequest)
@@ -484,6 +485,7 @@ TODO
 | ephemeralPaths | [string](#string) | repeated | `Optional` A list of ephemeral mount paths relative to docroot |
 | expiry | [string](#string) |  | `Optional` Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration. |
 | phpVersion | [string](#string) |  | `Optional` Specify the version of PHP for the site |
+| customCron | [CustomCron](#ddev.sites.v1alpha1.CustomCron) | repeated | `Optional` Specify a list of desired custom cron commands &amp; their schedules to be run on. |
 
 
 
@@ -530,6 +532,22 @@ Cron manages if and when the CMS cron executes
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | disabled | [bool](#bool) |  | `Optional` Disabled will stop the CMS cron from executing. Default true. |
+| schedule | [string](#string) |  | Schedule specifies when this process will execute using CronTab notation. |
+
+
+
+
+
+
+<a name="ddev.sites.v1alpha1.CustomCron"></a>
+
+### CustomCron
+CustomCron manages when and what a custom cron executes
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| command | [string](#string) |  | Command will be the custom command to be run on the schedule set. |
 | schedule | [string](#string) |  | Schedule specifies when this process will execute using CronTab notation. |
 
 
@@ -844,6 +862,7 @@ NOTE: when beta, clean up attribute number
 | tags | [Site.Attributes.TagsEntry](#ddev.sites.v1alpha1.Site.Attributes.TagsEntry) | repeated | `Optional` Specify tags for a site |
 | cron | [Cron](#ddev.sites.v1alpha1.Cron) |  | `Optional` |
 | expiry | [string](#string) |  | `Optional` Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration. |
+| customCron | [CustomCron](#ddev.sites.v1alpha1.CustomCron) | repeated | `Optional` Specify a list of desired custom cron commands &amp; their schedules to be run on. |
 
 
 

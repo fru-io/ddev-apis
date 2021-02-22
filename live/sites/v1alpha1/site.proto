@@ -79,6 +79,20 @@ message Cron {
   string schedule = 2;
 }
 
+// CustomCron manages when and what a custom cron executes
+message CustomCron {
+
+  /*
+  Command will be the custom command to be run on the schedule set.
+  */
+  string command = 1;
+
+  /*
+  Schedule specifies when this process will execute using CronTab notation.
+  */
+  string schedule = 2;
+}
+
 message Site {
 
   // because you cannot use repeated oneof we must wrap oneof in a repeatable message
@@ -126,6 +140,12 @@ message Site {
     Specify the amount of time after which the site should be considered expired and garbage collected. Supported units are minutes, hours, days, with max of 5 days (e.g. 90m, 3h, 5d, etc.), empty string means no expiration.
     */
     string expiry = 25;
+
+    /*
+    `Optional`
+    Specify a list of desired custom cron commands & their schedules to be run on.
+    */
+    repeated CustomCron customCron = 27;
   }
   /*
   `Optional`
@@ -417,6 +437,12 @@ message CreateSiteRequest {
   Specify the version of PHP for the site
   */
   string phpVersion = 26;
+
+  /*
+    `Optional`
+    Specify a list of desired custom cron commands & their schedules to be run on.
+    */
+  repeated CustomCron customCron = 27;
 }
 
 /*
