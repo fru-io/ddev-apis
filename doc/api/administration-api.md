@@ -637,7 +637,7 @@ issued by the API.  This can be the integration token provided on the dashboard 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | subscription | [string](#string) |  | `Required` The id of the subscription for the workspace |
-| workspace | [string](#string) |  | The name of the workspace in the subscription |
+| workspace | [string](#string) |  | `Required` The name of the workspace in the subscription |
 
 
 

@@ -179,6 +179,7 @@ message SetDefaultWorkspaceRequest {
     string subscription = 1;
 
     /*
+    `Required`
     The name of the workspace in the subscription
     */
     string workspace = 2;
