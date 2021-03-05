@@ -170,3 +170,25 @@ message DeleteWorkspaceDeveloperResponse {
     */
     Workspace workspace = 1;
 }
+
+message SetDefaultWorkspaceRequest {
+    /*
+    `Required`
+    The id of the subscription for the workspace
+    */
+    string subscription = 1;
+
+    /*
+    The name of the workspace in the subscription
+    */
+    string workspace = 2;
+}
+
+message SetDefaultWorkspaceResponse {
+
+    /*
+    `OutputOnly`
+    The users default workspace
+    */
+    Workspace workspace = 1;
+}

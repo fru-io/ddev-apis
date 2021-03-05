@@ -112,6 +112,12 @@ service Administration {
     }
 
     /*
+    Updates a users current default workspace.
+    */
+    rpc SetDefaultWorkspace(SetDefaultWorkspaceRequest) returns (SetDefaultWorkspaceResponse) {
+    }
+
+    /*
     Helpers on parsing permissions from context metadata
     */
 
