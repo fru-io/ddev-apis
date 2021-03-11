@@ -90,6 +90,12 @@ message AddWorkspaceAdminRequest {
     The email of the workspace administrator
     */
     string email = 2;
+
+    /*
+    `Required`
+    The subscription to which the workspace belongs
+    */
+    string subscription = 3;
 }
 
 message AddWorkspaceAdminResponse {
@@ -113,6 +119,12 @@ message AddWorkspaceDeveloperRequest {
     The email of the workspace developer.
     */
     string email = 2;
+
+    /*
+    `Required`
+    The subscription to which the workspace belongs
+    */
+    string subscription = 3;
 }
 
 message AddWorkspaceDeveloperResponse {
@@ -136,6 +148,12 @@ message DeleteWorkspaceAdminRequest {
     The email of the workspace administrator.
     */
     string email = 2;
+
+    /*
+    `Required`
+    The subscription to which the workspace belongs
+    */
+    string subscription = 3;
 }
 
 message DeleteWorkspaceAdminResponse {
@@ -160,6 +178,12 @@ message DeleteWorkspaceDeveloperRequest {
     The email of the workspace developer.
     */
     string email = 2;
+
+    /*
+    `Required`
+    The subscription to which the workspace belongs
+    */
+    string subscription = 3;
 }
 
 message DeleteWorkspaceDeveloperResponse {
