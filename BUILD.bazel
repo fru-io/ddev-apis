@@ -7,3 +7,22 @@ gazelle(
     external = "vendored",
     prefix = "github.com/drud/ddev-apis",
 )
+
+
+load("@rules_proto_grpc//go:defs.bzl", "go_grpc_compile")
+
+go_grpc_compile(
+    name = "admin_grpc",
+    deps = [
+        "//live/administration/v1alpha1:v1alpha1_proto",
+    ],
+)
+
+load("@rules_proto_grpc//go:defs.bzl", "go_grpc_compile")
+
+go_grpc_compile(
+    name = "site_grpc",
+    deps = [
+        "//live/sites/v1alpha1:v1alpha1_proto",
+    ],
+)
