@@ -8,7 +8,6 @@ gazelle(
     prefix = "github.com/drud/ddev-apis",
 )
 
-
 load("@rules_proto_grpc//go:defs.bzl", "go_grpc_compile")
 
 go_grpc_compile(
