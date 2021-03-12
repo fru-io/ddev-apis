@@ -217,3 +217,14 @@ message SetDefaultWorkspaceResponse {
     */
     Workspace workspace = 1;
 }
+
+message GetDefaultWorkspaceRequest {
+}
+
+message GetDefaultWorkspaceResponse {
+    /*
+    `OutputOnly`
+    The callers default workspace
+    */
+    string workspace = 1;
+}
