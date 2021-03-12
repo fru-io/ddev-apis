@@ -50,6 +50,11 @@ message Workspace {
     The ID of the subscription which this workspace belongs
     */
     string subscription = 4;
+
+    /*
+    Optional metadata information about this workspace
+    */
+    map<string, string> metadata = 16;
 }
 
 
@@ -229,18 +234,18 @@ message GetDefaultWorkspaceResponse {
     string workspace = 1;
 }
 
-message ResolveWorkspaceRequest {
+message GetWorkspaceRequest {
     /*
     `Required`
     The desired workspace name
     */
-    string shortname = 1;
+    string name = 1;
 }
 
-message ResolveWorkspaceResponse {
+message GetWorkspaceResponse {
     /*
     `OutputOnly`
     The name of the workspace best passed into the auth server
     */
-    string workspace = 1;
+    Workspace workspace = 1;
 }

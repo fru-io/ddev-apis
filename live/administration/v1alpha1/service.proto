@@ -127,7 +127,7 @@ service Administration {
     `Deprecated`
     User workspaces are qualified by their subscription.  Resolve workspace will attempt to resolve a users fully qualified workspace name from its short name.
     */
-    rpc ResolveWorkspace(ResolveWorkspaceRequest) returns (ResolveWorkspaceResponse) {
+    rpc GetWorkspace(GetWorkspaceRequest) returns (GetWorkspaceResponse) {
     }
 
     /*
