@@ -118,9 +118,16 @@ service Administration {
     }
 
     /*
-    Updates a users current default workspace.
+    Gets a users current default workspace.  A users default workspace is specified in the JWT which they carry, however this may not be as up to date as their user record.  If a user was to, for example, generate a new token and then set their default workspace their token would reflect their previous default until it is reissued.
     */
     rpc GetDefaultWorkspace(GetDefaultWorkspaceRequest) returns (GetDefaultWorkspaceResponse) {
+    }
+
+    /*
+    `Deprecated`
+    User workspaces are qualified by their subscription.  Resolve workspace will attempt to resolve a users fully qualified workspace name from its short name.
+    */
+    rpc ResolveWorkspace(ResolveWorkspaceRequest) returns (ResolveWorkspaceResponse) {
     }
 
     /*

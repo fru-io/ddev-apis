@@ -228,3 +228,19 @@ message GetDefaultWorkspaceResponse {
     */
     string workspace = 1;
 }
+
+message ResolveWorkspaceRequest {
+    /*
+    `Required`
+    The desired workspace name
+    */
+    string shortname = 1;
+}
+
+message ResolveWorkspaceResponse {
+    /*
+    `OutputOnly`
+    The name of the workspace best passed into the auth server
+    */
+    string workspace = 1;
+}

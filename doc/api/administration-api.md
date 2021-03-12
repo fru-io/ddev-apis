@@ -41,6 +41,8 @@
     - [GetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.GetDefaultWorkspaceResponse)
     - [ListWorkspaceRequest](#ddev.administration.v1alpha1.ListWorkspaceRequest)
     - [ListWorkspaceResponse](#ddev.administration.v1alpha1.ListWorkspaceResponse)
+    - [ResolveWorkspaceRequest](#ddev.administration.v1alpha1.ResolveWorkspaceRequest)
+    - [ResolveWorkspaceResponse](#ddev.administration.v1alpha1.ResolveWorkspaceResponse)
     - [SetDefaultWorkspaceRequest](#ddev.administration.v1alpha1.SetDefaultWorkspaceRequest)
     - [SetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.SetDefaultWorkspaceResponse)
     - [Workspace](#ddev.administration.v1alpha1.Workspace)
@@ -440,7 +442,8 @@ issued by the API.  This can be the integration token provided on the dashboard 
 | DeleteWorkspaceAdmin | [DeleteWorkspaceAdminRequest](#ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest) | [DeleteWorkspaceAdminResponse](#ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse) | Remove an administrator from a workspace. Requires a workspace administrator token. An administrator cannot remove themselves. |
 | DeleteWorkspaceDeveloper | [DeleteWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest) | [DeleteWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse) | Remove a developer from a workspace. Requires a workspace administrator token. |
 | SetDefaultWorkspace | [SetDefaultWorkspaceRequest](#ddev.administration.v1alpha1.SetDefaultWorkspaceRequest) | [SetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.SetDefaultWorkspaceResponse) | Updates a users current default workspace. |
-| GetDefaultWorkspace | [GetDefaultWorkspaceRequest](#ddev.administration.v1alpha1.GetDefaultWorkspaceRequest) | [GetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.GetDefaultWorkspaceResponse) | Updates a users current default workspace. |
+| GetDefaultWorkspace | [GetDefaultWorkspaceRequest](#ddev.administration.v1alpha1.GetDefaultWorkspaceRequest) | [GetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.GetDefaultWorkspaceResponse) | Gets a users current default workspace. A users default workspace is specified in the JWT which they carry, however this may not be as up to date as their user record. If a user was to, for example, generate a new token and then set their default workspace their token would reflect their previous default until it is reissued. |
+| ResolveWorkspace | [ResolveWorkspaceRequest](#ddev.administration.v1alpha1.ResolveWorkspaceRequest) | [ResolveWorkspaceResponse](#ddev.administration.v1alpha1.ResolveWorkspaceResponse) | `Deprecated` User workspaces are qualified by their subscription. Resolve workspace will attempt to resolve a users fully qualified workspace name from its short name. |
 | IsAuthTokenViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can read the API scopes a user has. |
 | IsAuthTokenEditor | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can issue different API access scopes within an organization |
 | IsBillingViewer | [AuthorizationRequest](#ddev.administration.v1alpha1.AuthorizationRequest) | [AuthorizationResponse](#ddev.administration.v1alpha1.AuthorizationResponse) | Describes a permission which can access billing artifacts such as invoices |
@@ -654,6 +657,36 @@ issued by the API.  This can be the integration token provided on the dashboard 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | workspaces | [Workspace](#ddev.administration.v1alpha1.Workspace) | repeated | `OutputOnly` - A workspace for the current user |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ResolveWorkspaceRequest"></a>
+
+### ResolveWorkspaceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| shortname | [string](#string) |  | `Required` The desired workspace name |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ResolveWorkspaceResponse"></a>
+
+### ResolveWorkspaceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `OutputOnly` The name of the workspace best passed into the auth server |
 
 
 
