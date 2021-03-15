@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package ddev.administration.v1alpha1;
 
-option go_package = "github.com/drud/admin-api/gen/live/administration/v1alpha1";
+option go_package = "github.com/drud/ddev-apis-go/live/administration/v1alpha1";
 option java_multiple_files = true;
 option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.administration.v1alpha1";
@@ -50,6 +50,11 @@ message Workspace {
     The ID of the subscription which this workspace belongs
     */
     string subscription = 4;
+
+    /*
+    Optional metadata information about this workspace
+    */
+    map<string, string> metadata = 16;
 }
 
 
@@ -90,6 +95,12 @@ message AddWorkspaceAdminRequest {
     The email of the workspace administrator
     */
     string email = 2;
+
+    /*
+    `Required`
+    The subscription to which the workspace belongs
+    */
+    string subscription = 3;
 }
 
 message AddWorkspaceAdminResponse {
@@ -113,6 +124,12 @@ message AddWorkspaceDeveloperRequest {
     The email of the workspace developer.
     */
     string email = 2;
+
+    /*
+    `Required`
+    The subscription to which the workspace belongs
+    */
+    string subscription = 3;
 }
 
 message AddWorkspaceDeveloperResponse {
@@ -136,6 +153,12 @@ message DeleteWorkspaceAdminRequest {
     The email of the workspace administrator.
     */
     string email = 2;
+
+    /*
+    `Required`
+    The subscription to which the workspace belongs
+    */
+    string subscription = 3;
 }
 
 message DeleteWorkspaceAdminResponse {
@@ -160,6 +183,12 @@ message DeleteWorkspaceDeveloperRequest {
     The email of the workspace developer.
     */
     string email = 2;
+
+    /*
+    `Required`
+    The subscription to which the workspace belongs
+    */
+    string subscription = 3;
 }
 
 message DeleteWorkspaceDeveloperResponse {
@@ -167,6 +196,56 @@ message DeleteWorkspaceDeveloperResponse {
     /*
     `OutputOnly`
     The updated workspace resource.
+    */
+    Workspace workspace = 1;
+}
+
+message SetDefaultWorkspaceRequest {
+    /*
+    `Required`
+    The id of the subscription for the workspace
+    */
+    string subscription = 1;
+
+    /*
+    `Required`
+    The name of the workspace in the subscription
+    */
+    string workspace = 2;
+}
+
+message SetDefaultWorkspaceResponse {
+
+    /*
+    `OutputOnly`
+    The users default workspace
+    */
+    Workspace workspace = 1;
+}
+
+message GetDefaultWorkspaceRequest {
+}
+
+message GetDefaultWorkspaceResponse {
+    /*
+    `OutputOnly`
+    The callers default workspace
+    */
+    string workspace = 1;
+}
+
+message GetWorkspaceRequest {
+    /*
+    `Required`
+    The desired workspace name
+    */
+    string name = 1;
+}
+
+message GetWorkspaceResponse {
+    /*
+    `OutputOnly`
+    The name of the workspace best passed into the auth server
     */
     Workspace workspace = 1;
 }

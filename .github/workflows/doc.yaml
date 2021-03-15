@@ -1,0 +1,21 @@
+name: Doc
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: release-doc
+        run: |
+          make doc
+      - name: Commit to common state repository
+        uses: drud/action-cross-commit@master
+        with:
+          source-folder: doc
+          destination-repository: https://${{ secrets.GIT_BUILD_TOKEN }}@github.com/drud/ddev-apis.git
+          destination-folder: doc
+          destination-branch: main
+          git-user: "Build User"
+          git-user-email: cicd@ddev.com

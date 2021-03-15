@@ -33,13 +33,8 @@ push-builder:
 	docker push drud/protoc-builder
 
 build-go: prepare-release
-	protoc \
-	--proto_path=build/dep/googleapis \
-	--proto_path=. \
-	--go_out=plugins=grpc:build/go \
-	--swagger_out=allow_delete_body=true:build/go \
-	--grpc-gateway_out=allow_delete_body=true:build/go \
-	${SITE_PROTOS} ${ADMIN_PROTOS}
+	bazel build //:admin_grpc
+	bazel build //:site_grpc
 
 release-go: build-go
 	tar -zcvf build/release/go/go-gen-source.tar.gz build/go

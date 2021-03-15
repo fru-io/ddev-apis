@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package ddev.sites.v1alpha1;
 
-option go_package = "github.com/drud/site-api/gen/live/sites/v1alpha1";
+option go_package = "github.com/drud/ddev-apis-go/live/sites/v1alpha1";
 option java_multiple_files = true;
 option java_outer_classname = "DatabaseProto";
 option java_package = "com.ddev.live.sites.v1alpha1";

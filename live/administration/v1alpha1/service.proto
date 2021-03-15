@@ -21,7 +21,7 @@ import "live/administration/v1alpha1/workspace.proto";
 import "live/administration/v1alpha1/githubintegration.proto";
 import "live/administration/v1alpha1/gitlabintegration.proto";
 
-option go_package = "github.com/drud/admin-api/gen/live/administration/v1alpha1";
+option go_package = "github.com/drud/ddev-apis-go/live/administration/v1alpha1";
 option java_multiple_files = true;
 option java_outer_classname = "ServiceProto";
 option java_package = "com.ddev.live.administration.v1alpha1";
@@ -109,6 +109,25 @@ service Administration {
     Remove a developer from a workspace.  Requires a workspace administrator token.
     */
     rpc DeleteWorkspaceDeveloper(DeleteWorkspaceDeveloperRequest) returns (DeleteWorkspaceDeveloperResponse) {       
+    }
+
+    /*
+    Updates a users current default workspace.
+    */
+    rpc SetDefaultWorkspace(SetDefaultWorkspaceRequest) returns (SetDefaultWorkspaceResponse) {
+    }
+
+    /*
+    Gets a users current default workspace.  A users default workspace is specified in the JWT which they carry, however this may not be as up to date as their user record.  If a user was to, for example, generate a new token and then set their default workspace their token would reflect their previous default until it is reissued.
+    */
+    rpc GetDefaultWorkspace(GetDefaultWorkspaceRequest) returns (GetDefaultWorkspaceResponse) {
+    }
+
+    /*
+    `Deprecated`
+    User workspaces are qualified by their subscription.  Resolve workspace will attempt to resolve a users fully qualified workspace name from its short name.
+    */
+    rpc GetWorkspace(GetWorkspaceRequest) returns (GetWorkspaceResponse) {
     }
 
     /*
