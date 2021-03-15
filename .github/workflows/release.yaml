@@ -40,8 +40,29 @@ jobs:
           sudo chmod a+x /usr/local/bin/protoc-gen-grpc-web
       - name: prep git
         run: |
-          git config --global user.email "dlemon@ddev.com"
+          git config --global user.email "cicd@ddev.com
           git config --global user.name "API CI Runner"
+      - name: build-go
+        run: |
+          make build-go
+      - name: Commit admin-api gen to ddev-apis-go
+        uses: drud/action-cross-commit@master
+        with:
+          source-folder: bazel-bin/admin_grpc/live/administration
+          destination-repository: https://${{ secrets.GIT_BUILD_TOKEN }}@github.com/drud/ddev-apis-go.git
+          destination-folder: live/administration
+          destination-branch: main
+          git-user: "Build User"
+          git-user-email: cicd@ddev.com
+      - name: Commit site-api gen to ddev-apis-go
+        uses: drud/action-cross-commit@master
+        with:
+          source-folder: bazel-bin/site_grpc/live/sites
+          destination-repository: https://${{ secrets.GIT_BUILD_TOKEN }}@github.com/drud/ddev-apis-go.git
+          destination-folder: live/sites
+          destination-branch: main
+          git-user: "Build User"
+          git-user-email: cicd@ddev.com
       - name: release-node
         run: |
           make build-js
@@ -66,24 +87,3 @@ jobs:
           npmVersion=$(echo ${{steps.tagger.outputs.tag}} | sed s%^v%%)
           npm version $npmVersion
           npm publish --access public
-      - name: release-go
-        run: |
-          make release-go
-      - name: Commit admin-api gen to ddev-apis-go
-        uses: drud/action-cross-commit@master
-        with:
-          source-folder: bazel-bin/admin_grpc/live/administration
-          destination-repository: https://${{ secrets.GIT_BUILD_TOKEN }}@github.com/drud/ddev-apis-go.git
-          destination-folder: live/administration
-          destination-branch: main
-          git-user: "Build User"
-          git-user-email: cicd@ddev.com
-      - name: Commit site-api gen to ddev-apis-go
-        uses: drud/action-cross-commit@master
-        with:
-          source-folder: bazel-bin/site_grpc/live/sites
-          destination-repository: https://${{ secrets.GIT_BUILD_TOKEN }}@github.com/drud/ddev-apis-go.git
-          destination-folder: live/sites
-          destination-branch: main
-          git-user: "Build User"
-          git-user-email: cicd@ddev.com
