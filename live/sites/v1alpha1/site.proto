@@ -342,6 +342,35 @@ message ListCloneSiteOperationsResponse {
   repeated CloneOperation items = 1;
 }
 
+message TriggerCloneRefreshRequest {
+  /*
+  `Required`
+  Reference to the clone site operation 
+  */
+  string operationRef = 1;
+
+  /*
+  `Optional`
+  Whether the site should be cloned again
+  */
+  bool server = 16;
+  
+  /*
+  `Optional`
+  Whether the database should be cloned again
+  */
+  bool database = 17;
+
+  /*
+  `Optional`
+  Whether the filestore should be cloned again
+  */
+  bool filestore = 18;
+}
+
+message TriggerCloneRefreshResponse {
+}
+
 message ListClonesForSiteRequest {
   /*
   `Required`

@@ -134,6 +134,12 @@ service Sites {
     rpc DeleteClone(DeleteCloneRequest) returns (DeleteCloneResponse) {
     }
 
+    /*
+    TriggerCloneRefresh refreshes already existing clone
+    */
+    rpc TriggerCloneRefresh(TriggerCloneRefreshRequest) returns (TriggerCloneRefreshResponse) {
+    }
+
     // Databases
 
     /*
