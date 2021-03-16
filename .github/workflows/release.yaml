@@ -55,7 +55,6 @@ jobs:
           rsync -avh ../bazel-bin/admin_grpc/live/administration/ live/administration --delete
           # copy the new site-api artifacts
           rsync -avh ../bazel-bin/site_grpc/live/sites/ live/sites --delete
-          cd ddev-apis-go
           git add --all
           git commit -m "CI Runner"
           git push --set-upstream origin ${{steps.tagger.outputs.tag}}
