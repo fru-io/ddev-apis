@@ -49,12 +49,13 @@ jobs:
           rm -f bazel-bin
           cp -r $dir bazel-bin
           git clone https://${{ secrets.GIT_BUILD_TOKEN }}:x-oauth-basic@github.com/drud/ddev-apis-go.git
-          # copy the new admin-api artifacts
-          cp -r bazel-bin/admin_grpc/live/administration ddev-apis-go/live/
-          # copy the new site-api artifacts
-          cp -r bazel-bin/site_grpc/live/sites ddev-apis-go/live/
           cd ddev-apis-go
           git checkout -b ${{steps.tagger.outputs.tag}}
+          # copy the new admin-api artifacts
+          rsync -avh ../bazel-bin/admin_grpc/live/administration/ live/administration --delete
+          # copy the new site-api artifacts
+          rsync -avh ../bazel-bin/site_grpc/live/sites/ live/sites --delete
+          cd ddev-apis-go
           git add --all
           git commit -m "CI Runner"
           git push --set-upstream origin ${{steps.tagger.outputs.tag}}
