@@ -45,6 +45,9 @@ jobs:
       - name: build-go
         run: |
           make build-go
+          dir=$(file bazel-bin | sed 's/bazel-bin: symbolic link to \(.*\)/\1/')
+          rm -f bazel-bin
+          cp -r $dir bazel-bin
       - name: Commit admin-api gen to ddev-apis-go
         uses: drud/action-cross-commit@master
         with:
