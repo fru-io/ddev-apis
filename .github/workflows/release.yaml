@@ -40,7 +40,7 @@ jobs:
           sudo chmod a+x /usr/local/bin/protoc-gen-grpc-web
       - name: prep git
         run: |
-          git config --global user.email "cicd@ddev.com
+          git config --global user.email "cicd@ddev.com"
           git config --global user.name "API CI Runner"
       - name: build-go
         run: |
