@@ -48,24 +48,16 @@ jobs:
           dir=$(file bazel-bin | sed 's/bazel-bin: symbolic link to \(.*\)/\1/')
           rm -f bazel-bin
           cp -r $dir bazel-bin
-      - name: Commit admin-api gen to ddev-apis-go
-        uses: drud/action-cross-commit@master
-        with:
-          source-folder: bazel-bin/admin_grpc/live/administration
-          destination-repository: https://${{ secrets.GIT_BUILD_TOKEN }}@github.com/drud/ddev-apis-go.git
-          destination-folder: live/administration
-          destination-branch: main
-          git-user: "Build User"
-          git-user-email: cicd@ddev.com
-      - name: Commit site-api gen to ddev-apis-go
-        uses: drud/action-cross-commit@master
-        with:
-          source-folder: bazel-bin/site_grpc/live/sites
-          destination-repository: https://${{ secrets.GIT_BUILD_TOKEN }}@github.com/drud/ddev-apis-go.git
-          destination-folder: live/sites
-          destination-branch: main
-          git-user: "Build User"
-          git-user-email: cicd@ddev.com
+          git clone https://${{ secrets.GIT_BUILD_TOKEN }}:x-oauth-basic@github.com/drud/ddev-apis-go.git
+          # copy the new admin-api artifacts
+          cp -r bazel-bin/admin_grpc/live/administration ddev-apis-go/live/
+          # copy the new site-api artifacts
+          cp -r bazel-bin/site_grpc/live/sites ddev-apis-go/live/
+          cd ddev-apis-go
+          git checkout -b ${{steps.tagger.outputs.tag}}
+          git add --all
+          git commit -m "CI Runner"
+          git push --set-upstream origin ${{steps.tagger.outputs.tag}}
       - name: release-node
         run: |
           make build-js
