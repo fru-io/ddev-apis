@@ -761,3 +761,19 @@ message SiteExecResponse {
   */
   bytes stderr = 2;
 }
+
+message NamespaceForWorkspaceRequest {
+  /*
+  `Required`
+  DDEV-Live workspace
+  */
+  string workspace = 1;
+}
+
+message NamespaceForWorkspaceResponse {
+  /*
+  `OutputOnly`
+  Kubernetes namespace
+  */
+  string namespace = 1;
+}

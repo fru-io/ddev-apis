@@ -227,4 +227,10 @@ service Sites {
     */
     rpc ListFileBackups(ListFileBackupsRequest) returns (ListFileBackupsResponse) {
     }
+
+    /*
+    NamespaceForWorkspace is a helper API call that allows exchange of a DDEV-Live workspace to Kubernetes namespace for legacy kubernetes API calls
+    */
+    rpc NamespaceForWorkspace(NamespaceForWorkspaceRequest) returns (NamespaceForWorkspaceResponse) {
+    }  
 }
