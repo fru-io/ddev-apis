@@ -3,6 +3,33 @@
 
 ## Table of Contents
 
+- [live/administration/v1alpha1/usage.proto](#live/administration/v1alpha1/usage.proto)
+    - [UsageItem](#ddev.administration.v1alpha1.UsageItem)
+    - [UsageRequest](#ddev.administration.v1alpha1.UsageRequest)
+    - [UsageResponse](#ddev.administration.v1alpha1.UsageResponse)
+  
+- [live/administration/v1alpha1/workspace.proto](#live/administration/v1alpha1/workspace.proto)
+    - [AddWorkspaceAdminRequest](#ddev.administration.v1alpha1.AddWorkspaceAdminRequest)
+    - [AddWorkspaceAdminResponse](#ddev.administration.v1alpha1.AddWorkspaceAdminResponse)
+    - [AddWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest)
+    - [AddWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse)
+    - [DeleteWorkspaceAdminRequest](#ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest)
+    - [DeleteWorkspaceAdminResponse](#ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse)
+    - [DeleteWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest)
+    - [DeleteWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse)
+    - [GetDefaultWorkspaceRequest](#ddev.administration.v1alpha1.GetDefaultWorkspaceRequest)
+    - [GetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.GetDefaultWorkspaceResponse)
+    - [GetWorkspaceRequest](#ddev.administration.v1alpha1.GetWorkspaceRequest)
+    - [GetWorkspaceResponse](#ddev.administration.v1alpha1.GetWorkspaceResponse)
+    - [ListWorkspaceRequest](#ddev.administration.v1alpha1.ListWorkspaceRequest)
+    - [ListWorkspaceResponse](#ddev.administration.v1alpha1.ListWorkspaceResponse)
+    - [SetDefaultWorkspaceRequest](#ddev.administration.v1alpha1.SetDefaultWorkspaceRequest)
+    - [SetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.SetDefaultWorkspaceResponse)
+    - [Workspace](#ddev.administration.v1alpha1.Workspace)
+    - [Workspace.MetadataEntry](#ddev.administration.v1alpha1.Workspace.MetadataEntry)
+  
+    - [ListWorkspaceRequest.ListWorkspaceScope](#ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope)
+  
 - [live/administration/v1alpha1/githubintegration.proto](#live/administration/v1alpha1/githubintegration.proto)
     - [CreateGithubIntegrationRequest](#ddev.administration.v1alpha1.CreateGithubIntegrationRequest)
     - [CreateGithubIntegrationResponse](#ddev.administration.v1alpha1.CreateGithubIntegrationResponse)
@@ -63,32 +90,380 @@
   
     - [Capability](#ddev.administration.v1alpha1.Capability)
   
-- [live/administration/v1alpha1/workspace.proto](#live/administration/v1alpha1/workspace.proto)
-    - [AddWorkspaceAdminRequest](#ddev.administration.v1alpha1.AddWorkspaceAdminRequest)
-    - [AddWorkspaceAdminResponse](#ddev.administration.v1alpha1.AddWorkspaceAdminResponse)
-    - [AddWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest)
-    - [AddWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse)
-    - [DeleteWorkspaceAdminRequest](#ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest)
-    - [DeleteWorkspaceAdminResponse](#ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse)
-    - [DeleteWorkspaceDeveloperRequest](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest)
-    - [DeleteWorkspaceDeveloperResponse](#ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse)
-    - [GetDefaultWorkspaceRequest](#ddev.administration.v1alpha1.GetDefaultWorkspaceRequest)
-    - [GetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.GetDefaultWorkspaceResponse)
-    - [GetWorkspaceRequest](#ddev.administration.v1alpha1.GetWorkspaceRequest)
-    - [GetWorkspaceResponse](#ddev.administration.v1alpha1.GetWorkspaceResponse)
-    - [ListWorkspaceRequest](#ddev.administration.v1alpha1.ListWorkspaceRequest)
-    - [ListWorkspaceResponse](#ddev.administration.v1alpha1.ListWorkspaceResponse)
-    - [SetDefaultWorkspaceRequest](#ddev.administration.v1alpha1.SetDefaultWorkspaceRequest)
-    - [SetDefaultWorkspaceResponse](#ddev.administration.v1alpha1.SetDefaultWorkspaceResponse)
-    - [Workspace](#ddev.administration.v1alpha1.Workspace)
-    - [Workspace.MetadataEntry](#ddev.administration.v1alpha1.Workspace.MetadataEntry)
-  
-    - [ListWorkspaceRequest.ListWorkspaceScope](#ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope)
-  
 - [live/administration/v1alpha1/service.proto](#live/administration/v1alpha1/service.proto)
     - [Administration](#ddev.administration.v1alpha1.Administration)
   
+- [live/administration/v1alpha1/quota.proto](#live/administration/v1alpha1/quota.proto)
+    - [QuotaItem](#ddev.administration.v1alpha1.QuotaItem)
+    - [QuotaRequest](#ddev.administration.v1alpha1.QuotaRequest)
+    - [QuotaResponse](#ddev.administration.v1alpha1.QuotaResponse)
+  
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="live/administration/v1alpha1/usage.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/administration/v1alpha1/usage.proto
+
+
+
+<a name="ddev.administration.v1alpha1.UsageItem"></a>
+
+### UsageItem
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| usage | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.UsageRequest"></a>
+
+### UsageRequest
+
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.UsageResponse"></a>
+
+### UsageResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [UsageItem](#ddev.administration.v1alpha1.UsageItem) | repeated |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="live/administration/v1alpha1/workspace.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/administration/v1alpha1/workspace.proto
+
+
+
+<a name="ddev.administration.v1alpha1.AddWorkspaceAdminRequest"></a>
+
+### AddWorkspaceAdminRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to add this administrator to. |
+| email | [string](#string) |  | `Required` The email of the workspace administrator |
+| subscription | [string](#string) |  | `Required` The subscription to which the workspace belongs |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.AddWorkspaceAdminResponse"></a>
+
+### AddWorkspaceAdminResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest"></a>
+
+### AddWorkspaceDeveloperRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to add this developer to. |
+| email | [string](#string) |  | `Required` The email of the workspace developer. |
+| subscription | [string](#string) |  | `Required` The subscription to which the workspace belongs |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse"></a>
+
+### AddWorkspaceDeveloperResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest"></a>
+
+### DeleteWorkspaceAdminRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to remove this administrator from. |
+| email | [string](#string) |  | `Required` The email of the workspace administrator. |
+| subscription | [string](#string) |  | `Required` The subscription to which the workspace belongs |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse"></a>
+
+### DeleteWorkspaceAdminResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest"></a>
+
+### DeleteWorkspaceDeveloperRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `Required` The name of the workspace to remove this developer from. |
+| email | [string](#string) |  | `Required` The email of the workspace developer. |
+| subscription | [string](#string) |  | `Required` The subscription to which the workspace belongs |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse"></a>
+
+### DeleteWorkspaceDeveloperResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GetDefaultWorkspaceRequest"></a>
+
+### GetDefaultWorkspaceRequest
+
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GetDefaultWorkspaceResponse"></a>
+
+### GetDefaultWorkspaceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [string](#string) |  | `OutputOnly` The callers default workspace |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GetWorkspaceRequest"></a>
+
+### GetWorkspaceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `Required` The desired workspace name |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.GetWorkspaceResponse"></a>
+
+### GetWorkspaceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The name of the workspace best passed into the auth server |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListWorkspaceRequest"></a>
+
+### ListWorkspaceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| Scope | [ListWorkspaceRequest.ListWorkspaceScope](#ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope) |  | `Optional` The scope of the list request. Defaults to `ListWorkspaceScope.DEVELOPER`. |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.ListWorkspaceResponse"></a>
+
+### ListWorkspaceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspaces | [Workspace](#ddev.administration.v1alpha1.Workspace) | repeated | `OutputOnly` - A workspace for the current user |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.SetDefaultWorkspaceRequest"></a>
+
+### SetDefaultWorkspaceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| subscription | [string](#string) |  | `Required` The id of the subscription for the workspace |
+| workspace | [string](#string) |  | `Required` The name of the workspace in the subscription |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.SetDefaultWorkspaceResponse"></a>
+
+### SetDefaultWorkspaceResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The users default workspace |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.Workspace"></a>
+
+### Workspace
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | `OutputOnly` Workspace Name. |
+| admins | [string](#string) | repeated | `OutputOnly` Administrators of the workspace |
+| developers | [string](#string) | repeated | `OutputOnly` Developers in the workspace |
+| subscription | [string](#string) |  | The ID of the subscription which this workspace belongs |
+| metadata | [Workspace.MetadataEntry](#ddev.administration.v1alpha1.Workspace.MetadataEntry) | repeated | Optional metadata information about this workspace |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.Workspace.MetadataEntry"></a>
+
+### Workspace.MetadataEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope"></a>
+
+### ListWorkspaceRequest.ListWorkspaceScope
+Defines the scope of the request.  If the scope is set to ADMIN the response will contain only workspaces where the provided token user is an administrator.
+If the request is set to DEVELOPER the response will contain any workspace where the provided token user is an administrator or a developer.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DEVELOPER | 0 |  |
+| ADMIN | 1 |  |
+
+
+ 
+
+ 
+
+ 
 
 
 
@@ -945,314 +1320,6 @@ Describes a set of access policies for a user
 
 
 
-<a name="live/administration/v1alpha1/workspace.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## live/administration/v1alpha1/workspace.proto
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceAdminRequest"></a>
-
-### AddWorkspaceAdminRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to add this administrator to. |
-| email | [string](#string) |  | `Required` The email of the workspace administrator |
-| subscription | [string](#string) |  | `Required` The subscription to which the workspace belongs |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceAdminResponse"></a>
-
-### AddWorkspaceAdminResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperRequest"></a>
-
-### AddWorkspaceDeveloperRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to add this developer to. |
-| email | [string](#string) |  | `Required` The email of the workspace developer. |
-| subscription | [string](#string) |  | `Required` The subscription to which the workspace belongs |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.AddWorkspaceDeveloperResponse"></a>
-
-### AddWorkspaceDeveloperResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminRequest"></a>
-
-### DeleteWorkspaceAdminRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to remove this administrator from. |
-| email | [string](#string) |  | `Required` The email of the workspace administrator. |
-| subscription | [string](#string) |  | `Required` The subscription to which the workspace belongs |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceAdminResponse"></a>
-
-### DeleteWorkspaceAdminResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperRequest"></a>
-
-### DeleteWorkspaceDeveloperRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `Required` The name of the workspace to remove this developer from. |
-| email | [string](#string) |  | `Required` The email of the workspace developer. |
-| subscription | [string](#string) |  | `Required` The subscription to which the workspace belongs |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.DeleteWorkspaceDeveloperResponse"></a>
-
-### DeleteWorkspaceDeveloperResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The updated workspace resource. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GetDefaultWorkspaceRequest"></a>
-
-### GetDefaultWorkspaceRequest
-
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GetDefaultWorkspaceResponse"></a>
-
-### GetDefaultWorkspaceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [string](#string) |  | `OutputOnly` The callers default workspace |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GetWorkspaceRequest"></a>
-
-### GetWorkspaceRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `Required` The desired workspace name |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.GetWorkspaceResponse"></a>
-
-### GetWorkspaceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The name of the workspace best passed into the auth server |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.ListWorkspaceRequest"></a>
-
-### ListWorkspaceRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| Scope | [ListWorkspaceRequest.ListWorkspaceScope](#ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope) |  | `Optional` The scope of the list request. Defaults to `ListWorkspaceScope.DEVELOPER`. |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.ListWorkspaceResponse"></a>
-
-### ListWorkspaceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspaces | [Workspace](#ddev.administration.v1alpha1.Workspace) | repeated | `OutputOnly` - A workspace for the current user |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.SetDefaultWorkspaceRequest"></a>
-
-### SetDefaultWorkspaceRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| subscription | [string](#string) |  | `Required` The id of the subscription for the workspace |
-| workspace | [string](#string) |  | `Required` The name of the workspace in the subscription |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.SetDefaultWorkspaceResponse"></a>
-
-### SetDefaultWorkspaceResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| workspace | [Workspace](#ddev.administration.v1alpha1.Workspace) |  | `OutputOnly` The users default workspace |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.Workspace"></a>
-
-### Workspace
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | `OutputOnly` Workspace Name. |
-| admins | [string](#string) | repeated | `OutputOnly` Administrators of the workspace |
-| developers | [string](#string) | repeated | `OutputOnly` Developers in the workspace |
-| subscription | [string](#string) |  | The ID of the subscription which this workspace belongs |
-| metadata | [Workspace.MetadataEntry](#ddev.administration.v1alpha1.Workspace.MetadataEntry) | repeated | Optional metadata information about this workspace |
-
-
-
-
-
-
-<a name="ddev.administration.v1alpha1.Workspace.MetadataEntry"></a>
-
-### Workspace.MetadataEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
-
-
-
-
-
- 
-
-
-<a name="ddev.administration.v1alpha1.ListWorkspaceRequest.ListWorkspaceScope"></a>
-
-### ListWorkspaceRequest.ListWorkspaceScope
-Defines the scope of the request.  If the scope is set to ADMIN the response will contain only workspaces where the provided token user is an administrator.
-If the request is set to DEVELOPER the response will contain any workspace where the provided token user is an administrator or a developer.
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| DEVELOPER | 0 |  |
-| ADMIN | 1 |  |
-
-
- 
-
- 
-
- 
-
-
-
 <a name="live/administration/v1alpha1/service.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -1318,6 +1385,63 @@ issued by the API.  This can be the integration token provided on the dashboard 
 | ListGitlabProjects | [ListGitlabProjectsRequest](#ddev.administration.v1alpha1.ListGitlabProjectsRequest) | [ListGitlabProjectsResponse](#ddev.administration.v1alpha1.ListGitlabProjectsResponse) | List gitlab projects |
 | GetGitlabProjectMetadata | [GetGitlabProjectMetadataRequest](#ddev.administration.v1alpha1.GetGitlabProjectMetadataRequest) | [GetGitlabProjectMetadataResponse](#ddev.administration.v1alpha1.GetGitlabProjectMetadataResponse) | Returns metadata of a Gitlab project by ID |
 | GetRepositoryMetadata | [GetRepositoryMetadataRequest](#ddev.administration.v1alpha1.GetRepositoryMetadataRequest) | [GetRepositoryMetadataResponse](#ddev.administration.v1alpha1.GetRepositoryMetadataResponse) | Returns metadata of a repository by ID |
+
+ 
+
+
+
+<a name="live/administration/v1alpha1/quota.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## live/administration/v1alpha1/quota.proto
+
+
+
+<a name="ddev.administration.v1alpha1.QuotaItem"></a>
+
+### QuotaItem
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| quota | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.QuotaRequest"></a>
+
+### QuotaRequest
+
+
+
+
+
+
+
+<a name="ddev.administration.v1alpha1.QuotaResponse"></a>
+
+### QuotaResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [QuotaItem](#ddev.administration.v1alpha1.QuotaItem) | repeated |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 
